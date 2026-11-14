@@ -4,7 +4,7 @@ import Link from "next/link";
 import deadlines from "../lib/deadlines.json";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS } from "../lib/scholarships";
-import { getSaved, removeSaved, onSavedChange } from "../lib/saved";
+import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved } from "../lib/saved";
 import { fmtDate } from "./ScholarshipParts";
 
 const today = () => new Date().toISOString().slice(0, 10);
@@ -71,15 +71,46 @@ export default function MyList({ lang }) {
   const t = T[lang];
   const m = t.my;
   const [saved, setSaved] = useState(null);
-  useEffect(() => { setSaved(getSaved()); return onSavedChange(setSaved); }, []);
+  const [incoming, setIncoming] = useState(null);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    setSaved(getSaved());
+    const check = () => { const sh = readShared(); if (sh) setIncoming(items(sh, lang).map((x) => x.k)); };
+    check();
+    window.addEventListener("hashchange", check);
+    const off = onSavedChange(setSaved);
+    return () => { off(); window.removeEventListener("hashchange", check); };
+  }, [lang]);
   if (saved === null) return null;
   const list = items(saved, lang);
+  const clearHash = () => { history.replaceState(null, "", window.location.pathname); setIncoming(null); };
+  const newOnes = incoming ? incoming.filter((k) => !saved.includes(k)) : [];
+  const link = list.length ? shareUrl(list.map((x) => x.k)) : "";
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 2500); }
+    catch { document.getElementById("share-link")?.select(); }
+  };
   const withDates = list.filter((x) => x.dates.length);
 
   return (
     <>
       <h1>{m.title}</h1>
       <p className="lead">{m.lead}</p>
+      {incoming && (
+        <div className="share-in">
+          {incoming.length === 0 ? (
+            <p>{m.shareBad}</p>
+          ) : newOnes.length === 0 ? (
+            <p>{m.shareHave}</p>
+          ) : (
+            <>
+              <p>{m.shareFound(newOnes.length)}</p>
+              <button className="btn gold small" onClick={() => { addSaved(newOnes); clearHash(); }}>{m.shareAdd}</button>
+            </>
+          )}
+          <button className="linkbtn" onClick={clearHash}>{m.shareClose}</button>
+        </div>
+      )}
       {list.length === 0 ? (
         <div className="how">
           <h2>{m.emptyTitle}</h2>
@@ -97,6 +128,13 @@ export default function MyList({ lang }) {
               <button className="btn gold small" onClick={() => download(withDates, lang, "mynewgate-deadlines.ics")}>{m.downloadAll}</button>
             </div>
           )}
+          <div className="share-box">
+            <p><b>{m.shareTitle}</b> {m.shareNote}</p>
+            <div className="share-row">
+              <input id="share-link" readOnly value={link} dir="ltr" onFocus={(e) => e.target.select()} aria-label={m.shareTitle} />
+              <button className="btn small" onClick={copy}>{copied ? m.copied : m.copy}</button>
+            </div>
+          </div>
           <ol className="mylist">
             {list.map((it) => {
               const left = it.next ? daysLeft(it.next.d) : null;
@@ -128,7 +166,7 @@ export default function MyList({ lang }) {
           </ol>
         </>
       )}
-      <p className="meta">{m.privacy}</p>
+      <p className="meta">{m.privacy} {list.length > 0 && m.sharePrivacy}</p>
     </>
   );
 }
