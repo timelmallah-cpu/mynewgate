@@ -1,4 +1,7 @@
 import { T, CONTACT_EMAIL } from "../lib/i18n";
+import ContactForm from "./ContactForm";
+
+const HAS_FORM = Boolean(process.env.NEXT_PUBLIC_WEB3FORMS_KEY);
 
 export default function Contact({ lang }) {
   const c = T[lang].contact;
@@ -7,8 +10,21 @@ export default function Contact({ lang }) {
       <h1>{c.title}</h1>
       <p className="lead">{c.lead}</p>
 
+      <div className="how">
+        <h2>{c.noteTitle}</h2>
+        <p>{c.note}</p>
+      </div>
+
+      {HAS_FORM && (
+        <section className="form-wrap">
+          <h2>{c.formTitle}</h2>
+          <ContactForm lang={lang} />
+        </section>
+      )}
+
       <section className="contact-box">
-        <a className="btn gold" href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(c.subject)}`}>
+        {HAS_FORM && <h2>{c.emailTitle}</h2>}
+        <a className={HAS_FORM ? "btn ghost-light" : "btn gold"} href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(c.subject)}`}>
           {c.button}
         </a>
         <p className="contact-mail">
@@ -22,11 +38,6 @@ export default function Contact({ lang }) {
           <li key={title}><b>{title}</b>{text}</li>
         ))}
       </ul>
-
-      <div className="how">
-        <h2>{c.noteTitle}</h2>
-        <p>{c.note}</p>
-      </div>
     </>
   );
 }
