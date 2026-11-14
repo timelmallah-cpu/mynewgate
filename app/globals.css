@@ -20,11 +20,13 @@ body {
 main { max-width: 760px; margin: 0 auto; padding: 24px 16px 48px; }
 a { color: var(--brand); }
 .top {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
   max-width: 760px; margin: 0 auto; padding: 16px;
 }
 .brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: var(--ink); }
+.top-end { display: flex; align-items: center; gap: 10px; }
 .tag { font-size: .8rem; background: var(--warn-soft); color: var(--warn); padding: 2px 10px; border-radius: 999px; }
+.lang { font-size: .9rem; font-weight: 600; text-decoration: none; border: 1px solid var(--brand); border-radius: 999px; padding: 2px 12px; }
 .foot { max-width: 760px; margin: 0 auto; padding: 16px; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); }
 h1 { font-size: 1.9rem; line-height: 1.4; margin: 8px 0 12px; }
 h2 { font-size: 1.3rem; margin: 0 0 12px; }
@@ -39,8 +41,8 @@ h2 { font-size: 1.3rem; margin: 0 0 12px; }
 .notice { background: var(--brand-soft); border-radius: 12px; padding: 14px 16px; margin: 20px 0; font-size: .95rem; }
 .options { display: grid; gap: 10px; margin: 16px 0 24px; }
 .opt {
-  text-align: right; font: inherit; background: var(--card); border: 1.5px solid var(--line);
-  border-radius: 12px; padding: 14px 16px; cursor: pointer;
+  display: flex; align-items: center; gap: 12px; text-align: start; font: inherit;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: 12px; padding: 14px 16px; cursor: pointer;
 }
 .opt[aria-pressed="true"] { border-color: var(--brand); background: var(--brand-soft); font-weight: 600; }
 .progress { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 20px; }
@@ -49,10 +51,9 @@ h2 { font-size: 1.3rem; margin: 0 0 12px; }
 .meta { color: var(--muted); font-size: .92rem; }
 .badge { display: inline-block; font-size: .8rem; padding: 1px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); }
 .badge.warn { background: var(--warn-soft); color: var(--warn); }
+.warnline { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 6px 10px; margin: 8px 0 0; font-size: .9rem; }
 dl { margin: 0; }
 dt { font-weight: 600; margin-top: 14px; }
 dd { margin: 2px 0 0; color: var(--ink); }
 .ltr { direction: ltr; unicode-bidi: isolate; }
-.warnline { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 6px 10px; margin: 8px 0 0; font-size: .9rem; }
-.opt { display: flex; align-items: center; gap: 12px; }
 .flag { flex: none; border-radius: 3px; vertical-align: middle; }

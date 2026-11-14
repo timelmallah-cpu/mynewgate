@@ -5,6 +5,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 
 const NP = "غير منشور في المصدر";
+const EN = JSON.parse(readFileSync("data/translations_en.json", "utf8"));
+const missingEn = new Set();
+const en = (t) => { if (EN[t] === undefined) { missingEn.add(t); return t; } return EN[t]; };
 const CITY_AR = JSON.parse(readFileSync("data/city_names_ar.json", "utf8"));
 const raw = readFileSync("data/programmes/all_programmes.csv", "utf8").replace(/^﻿/, "");
 const rows = parse(raw, { columns: true, skip_empty_lines: true });
@@ -78,11 +81,20 @@ const out = rows.map((r) => {
     source: r["رابط المصدر"],
     reviewed: r["تاريخ المراجعة"],
     status: r["حالة التحقق"],
+    en: {
+      countryLabel: en(r["الدولة"]), fieldLabel: en(r["التخصص"]), city: r["المدينة"],
+      degree: en(r["الدرجة"]), duration: en(r["المدة"]), feeText: en(feeText),
+      adminFee: en(r["رسوم الفصل الإدارية"]), deadline: en(r["موعد التقديم لغير الأوروبيين"]),
+      english: en(r["شرط اللغة الإنجليزية"]), other: en(r["شروط مهمة أخرى"]),
+      howToApply: en(r["طريقة التقديم"]), living: en(r["متوسط تكلفة المعيشة الشهرية في المدينة"]),
+      housing: en(r["السكن الجامعي / المساعدة في السكن"]), status: en(r["حالة التحقق"]),
+    },
   };
 });
 
 const noAr = rows.filter((r) => !CITY_AR[r["المدينة"]]).map((r) => r["المدينة"]);
 if (noAr.length) console.warn("Cities without Arabic name:", [...new Set(noAr)]);
+if (missingEn.size) console.warn(`Missing English translations (${missingEn.size}), add them to data/translations_en.json:`, [...missingEn]);
 const bad = out.filter((p) => !p.country || !p.field);
 if (bad.length) throw new Error("Unmapped country/field in rows: " + bad.map((b) => b.id));
 writeFileSync("lib/programmes.json", JSON.stringify(out, null, 1));
