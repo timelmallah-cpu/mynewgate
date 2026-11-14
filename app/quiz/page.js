@@ -84,7 +84,7 @@ function Card({ p }) {
     <div className="card">
       <div className="ltr" style={{ fontWeight: 700 }}>{p.name}</div>
       <div className="meta">
-        <Flag code={p.country} size={18} /> {p.countryAr} · {p.city} · <span className="ltr">{p.university}</span>
+        <Flag code={p.country} size={18} /> {p.countryAr} · المدينة: {p.city} · <span className="ltr">{p.university}</span>
       </div>
       <div className="row" style={{ marginTop: 8 }}>
         <span className={p.feePerYear === null || p.feeNeedsCheck ? "badge warn" : "badge"}>

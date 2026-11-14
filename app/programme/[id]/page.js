@@ -35,7 +35,7 @@ export default async function Programme({ params }) {
       <Link href="/quiz">رجوع إلى الأسئلة</Link>
       <h1 className="ltr" style={{ textAlign: "right" }}>{p.name}</h1>
       <p className="meta">
-        <span className="ltr">{p.university}</span> · {p.city} · {p.countryAr} · {p.fieldAr}
+        <span className="ltr">{p.university}</span> · المدينة: {p.city} · {p.countryAr} · {p.fieldAr}
       </p>
       <div className="card">
         <dl>
