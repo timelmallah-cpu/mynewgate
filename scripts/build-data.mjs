@@ -26,7 +26,7 @@ const LINKS = new Map(
 const raw = readFileSync("data/programmes/all_programmes.csv", "utf8").replace(/^﻿/, "");
 const rows = parse(raw, { columns: true, skip_empty_lines: true });
 
-const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee" };
+const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro" };
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health",
