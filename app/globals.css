@@ -357,3 +357,13 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .cc-facts p, .cc-facts ul { margin: 0 0 8px; font-size: .95rem; }
 .cc-facts ul { padding-inline-start: 18px; }
 @media (max-width: 720px) { .cc-grid { grid-template-columns: minmax(0, 1fr); } .cc-out { position: static; order: -1; } }
+
+/* Quiz: edit answers from results */
+.tries { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.answers { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; margin: 0 0 16px; }
+.answers h3 { margin: 0 0 6px; font-size: 1rem; }
+.answers ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.answers li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr) auto; gap: 10px; align-items: baseline; padding: 6px 0; border-top: 1px solid var(--line); }
+.answers li:first-child { border-top: 0; }
+.answers .k { color: var(--muted); font-size: .92rem; }
+.answers .v { font-weight: 600; overflow-wrap: anywhere; }
