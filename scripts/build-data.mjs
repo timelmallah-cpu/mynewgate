@@ -9,6 +9,7 @@ const EN = JSON.parse(readFileSync("data/translations_en.json", "utf8"));
 const missingEn = new Set();
 const en = (t) => { if (EN[t] === undefined) { missingEn.add(t); return t; } return EN[t]; };
 const CITY_AR = JSON.parse(readFileSync("data/city_names_ar.json", "utf8"));
+const COORDS = JSON.parse(readFileSync("data/city_coords.json", "utf8")); // [lat, lon] of the city centre
 const LINKS = new Map(
   parse(readFileSync("data/programme_links.csv", "utf8"), { columns: true, skip_empty_lines: true })
     .map((l) => [`${l.programme}|${l.university}`, l])
@@ -71,6 +72,7 @@ const out = rows.map((r) => {
     fieldAr: r["التخصص"],
     name: r["اسم البرنامج (الرسمي)"],
     university: r["الجامعة"],
+    coords: COORDS[r["المدينة"]] || null,
     city: CITY_AR[r["المدينة"]] ? `${CITY_AR[r["المدينة"]]} (${r["المدينة"]})` : r["المدينة"],
     degree: r["الدرجة"],
     duration: r["المدة"],
@@ -101,6 +103,8 @@ const out = rows.map((r) => {
 });
 
 const noAr = rows.filter((r) => !CITY_AR[r["المدينة"]]).map((r) => r["المدينة"]);
+const noXY = rows.filter((r) => !COORDS[r["المدينة"]]).map((r) => r["المدينة"]);
+if (noXY.length) console.warn("Cities without coordinates (add to data/city_coords.json):", [...new Set(noXY)]);
 if (noAr.length) console.warn("Cities without Arabic name:", [...new Set(noAr)]);
 if (missingEn.size) console.warn(`Missing English translations (${missingEn.size}), add them to data/translations_en.json:`, [...missingEn]);
 const bad = out.filter((p) => !p.country || !p.field);

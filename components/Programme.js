@@ -50,6 +50,8 @@ export default function Programme({ id, lang }) {
         </div>
       </section>
 
+      <MapBox p={p} t={t} />
+
       <div className="card">
         <dl className="details">
           {KEYS.map((k) => (
@@ -86,5 +88,27 @@ function LinkRow({ label, url, note, t, primary }) {
         </>
       )}
     </div>
+  );
+}
+
+// City map from OpenStreetMap (no key, no tracking) + a Google Maps search for the university.
+function MapBox({ p, t }) {
+  const q = encodeURIComponent(`${p.university}, ${p.en ? p.en.city : p.city}`);
+  const gmaps = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  let src = null;
+  if (p.coords) {
+    const [lat, lon] = p.coords;
+    const bbox = [lon - 1.1, lat - 0.5, lon + 1.1, lat + 0.5].map((v) => v.toFixed(4)).join(",");
+    src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
+  }
+  return (
+    <section className="mapbox">
+      <h2>{t.mapTitle}</h2>
+      {src && <iframe title={t.mapFrame} src={src} loading="lazy" referrerPolicy="no-referrer" />}
+      <div className="map-actions">
+        <a className="btn ghost small" href={gmaps} target="_blank" rel="noopener noreferrer">{t.openMaps} ↗</a>
+        <span className="note">{t.mapNote}</span>
+      </div>
+    </section>
   );
 }
