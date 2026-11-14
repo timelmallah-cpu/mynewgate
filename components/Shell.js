@@ -28,12 +28,16 @@ export default function Shell({ lang, children }) {
         <header className="top">
           <Link href={t.base || "/"} className="brand"><Mark />{t.brand}</Link>
           <div className="top-end">
+            <Link className="toplink" href={`${t.base}/contact`}>{t.contactLink}</Link>
             <span className="tag">{t.beta}</span>
             <LangSwitch lang={lang} label={t.switchLabel} />
           </div>
         </header>
         <main>{children}</main>
-        <footer className="foot"><p>{t.footer}</p></footer>
+        <footer className="foot">
+          <p>{t.footer}</p>
+          <p><Link href={`${t.base}/contact`}>{t.contactLink}</Link></p>
+        </footer>
       </body>
     </html>
   );
