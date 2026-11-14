@@ -122,7 +122,7 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 
 /* Quiz */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0 10px; }
+.steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 8px 0 10px; }
 .steps span { height: 6px; border-radius: 99px; background: var(--line); }
 .steps span.on { background: var(--navy); }
 .steps span.now { background: var(--gold); }
@@ -300,4 +300,7 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
   .top .tag { display: none; }
   .top-end { gap: 8px; }
   .brand { font-size: 1.05rem; }
+}
+@media (max-width: 560px) {
+  .top-end .toplink + .toplink { display: none; } /* contact stays in the footer */
 }

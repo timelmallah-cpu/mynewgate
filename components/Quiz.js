@@ -4,19 +4,20 @@ import Link from "next/link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
 import { T, view } from "../lib/i18n";
-import { FIELD_IDS, COUNTRY_IDS, BUDGETS, DURATIONS, match, feeLabel } from "../lib/options";
+import { LEVEL_IDS, FIELD_IDS, BA_FIELD_IDS, COUNTRY_IDS, BUDGETS, DURATIONS, BA_DURATIONS, match, feeLabel } from "../lib/options";
 
 export default function Quiz({ lang }) {
   const t = T[lang];
-  const STEPS = [
-    { key: "countries", q: t.qCountries, opts: COUNTRY_IDS.map((id) => ({ id, label: t.countries[id] })), multi: true },
-    { key: "field", q: t.qField, opts: [...FIELD_IDS.map((id) => ({ id, label: t.fields[id] })), { id: "any", label: t.anyField }] },
-    { key: "budget", q: t.qBudget, opts: BUDGETS.map((b) => ({ id: b.id, label: t.budgets[b.id] })) },
-    { key: "duration", q: t.qDuration, opts: DURATIONS.map((d) => ({ id: d.id, label: t.durations[d.id] })) },
-  ];
-
   const [step, setStep] = useState(0);
   const [a, setA] = useState({ countries: [] });
+  const ba = a.level === "bachelor";
+  const STEPS = [
+    { key: "level", q: t.qLevel, opts: LEVEL_IDS.map((id) => ({ id, label: t.levels[id] })) },
+    { key: "countries", q: t.qCountries, opts: COUNTRY_IDS.map((id) => ({ id, label: t.countries[id] })), multi: true },
+    { key: "field", q: t.qField, opts: [...(ba ? BA_FIELD_IDS : FIELD_IDS).map((id) => ({ id, label: t.fields[id] })), { id: "any", label: t.anyField }] },
+    { key: "budget", q: t.qBudget, opts: BUDGETS.map((b) => ({ id: b.id, label: t.budgets[b.id] })) },
+    { key: "duration", q: t.qDuration, opts: (ba ? BA_DURATIONS : DURATIONS).map((d) => ({ id: d.id, label: (ba ? t.baDurations : t.durations)[d.id] })) },
+  ];
   const done = step >= STEPS.length;
   const results = useMemo(() => (done ? match(programmes, a).map((p) => view(p, lang)) : []), [done, a, lang]);
   const known = results.filter((p) => p.feePerYear !== null);
@@ -47,7 +48,9 @@ export default function Quiz({ lang }) {
   const val = a[s.key];
   const chosen = (id) => (s.multi ? val.includes(id) : val === id);
   const pick = (id) =>
-    setA({ ...a, [s.key]: s.multi ? (val.includes(id) ? val.filter((x) => x !== id) : [...val, id]) : id });
+    setA(s.key === "level" && id !== a.level
+      ? { countries: a.countries, level: id } // field and duration options depend on the level
+      : { ...a, [s.key]: s.multi ? (val.includes(id) ? val.filter((x) => x !== id) : [...val, id]) : id });
   const ready = s.multi ? val.length > 0 : val !== undefined;
 
   return (

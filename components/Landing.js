@@ -27,7 +27,7 @@ export default function Landing({ lang }) {
           <li key={id}><Flag code={id} size={24} />{t.countries[id]}</li>
         ))}
       </ul>
-      <p className="meta count">{t.count(programmes.length)}</p>
+      <p className="meta count">{t.count(programmes.filter((p) => p.level === "master").length, programmes.filter((p) => p.level === "bachelor").length)}</p>
 
       <Link className="sch-promo" href={`${t.base}/scholarships`}>
         <span>

@@ -8,7 +8,7 @@ STATUS = ("من موقع الجامعة الرسمي - يلزم التأكد ق�
 MSC2 = ("سنتان (120 ساعة معتمدة)", "2 years (120 credits)")
 SEM3 = ("3 فصول دراسية (90 ساعة معتمدة)", "3 semesters (90 credits)")
 SEM4 = ("4 فصول دراسية (سنتان)", "4 semesters (2 years)")
-FIELDAR = {"cs": "علوم الحاسب", "ds": "علوم البيانات", "bus": "إدارة الأعمال", "eng": "الهندسة", "ph": "الصحة العامة"}
+FIELDAR = {"cs": "علوم الحاسب", "ds": "علوم البيانات", "bus": "إدارة الأعمال", "eng": "الهندسة", "ph": "الصحة العامة", "med": "الطب"}
 REVIEWED = "2026-11-14"
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -19,7 +19,7 @@ def P(**kw):
     return kw
 
 
-def write(country_ar, country_en, slug, rows):
+def write(country_ar, country_en, slug, rows, level="master"):
     tr = {country_ar: country_en}
 
     def t(v):
@@ -28,7 +28,9 @@ def write(country_ar, country_en, slug, rows):
 
     data = os.path.join(ROOT, "data")
     hdr = list(csv.reader(open(os.path.join(data, "programmes", "germany.csv"), encoding="utf-8-sig")))[0]
-    with open(os.path.join(data, "programmes", f"{slug}.csv"), "w", newline="", encoding="utf-8-sig") as f:
+    folder = "programmes" if level == "master" else "programmes_ba"
+    os.makedirs(os.path.join(data, folder), exist_ok=True)
+    with open(os.path.join(data, folder, f"{slug}.csv"), "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
         w.writerow(hdr)
         for i, r in enumerate(rows, 1):
@@ -45,12 +47,19 @@ def write(country_ar, country_en, slug, rows):
     # Official links (replace this country's rows)
     lp = os.path.join(data, "programme_links.csv")
     links = list(csv.reader(open(lp, encoding="utf-8")))
-    head, body = links[0], [l for l in links[1:] if l and l[0] != country_ar]
+    head, body = links[0], [l for l in links[1:] if l and not (l[0] == country_ar and l[-1] == level)]
     for r in rows:
         rn, an = r["req_note"], r["apply_note"]
-        body.append([country_ar, r["name"], r["uni"], r["req"] or "", rn[0], rn[1], r["apply"] or "", an[0], an[1]])
+        body.append([country_ar, r["name"], r["uni"], r["req"] or "", rn[0], rn[1], r["apply"] or "", an[0], an[1], level])
     with open(lp, "w", newline="", encoding="utf-8") as f:
         csv.writer(f).writerows([head] + body)
 
     from collections import Counter
-    print(country_en, len(rows), dict(Counter(r["field"] for r in rows)))
+    print(country_en, level, len(rows), dict(Counter(r["field"] for r in rows)))
+
+
+# Bachelor durations
+BA3 = ("3 سنوات (180 ساعة معتمدة)", "3 years (180 credits)")
+BA35 = ("3.5 سنوات (210 ساعات معتمدة)", "3.5 years (210 credits)")
+BA4 = ("4 سنوات (240 ساعة معتمدة)", "4 years (240 credits)")
+MED6 = ("6 سنوات (360 ساعة معتمدة)", "6 years (360 credits)")

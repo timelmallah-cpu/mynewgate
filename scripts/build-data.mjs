@@ -1,7 +1,7 @@
 // Converts data/programmes/all_programmes.csv into lib/programmes.json.
 // Deterministic rules only: the estimate is used for filtering; the original
 // official text is always shown to the user unchanged.
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 
 const NP = "غير منشور في المصدر";
@@ -21,20 +21,36 @@ function photoFor(uni) {
 const COORDS = JSON.parse(readFileSync("data/city_coords.json", "utf8")); // [lat, lon] of the city centre
 const LINKS = new Map(
   parse(readFileSync("data/programme_links.csv", "utf8"), { columns: true, skip_empty_lines: true })
-    .map((l) => [`${l.programme}|${l.university}`, l])
+    .map((l) => [`${l.programme}|${l.university}|${l.level || "master"}`, l])
 );
-const raw = readFileSync("data/programmes/all_programmes.csv", "utf8").replace(/^﻿/, "");
-const rows = parse(raw, { columns: true, skip_empty_lines: true });
+const read = (f) => parse(readFileSync(f, "utf8").replace(/^\uFEFF/, ""), { columns: true, skip_empty_lines: true });
+// Master's: one concatenated file, numeric ids (kept stable for existing URLs).
+const rows = read("data/programmes/all_programmes.csv").map((r) => ({ ...r, _level: "master", _id: Number(r["#"]) }));
+// Bachelor's (incl. long-cycle medicine): one file per country, ids "b-<country>-<n>".
+const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania"];
+const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro" };
+for (const c of BA_ORDER) {
+  const f = `data/programmes_ba/${c}.csv`;
+  if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
+}
 
 const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro" };
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
-  "الهندسة": "engineering", "الصحة العامة": "health",
+  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine",
 };
 
 // Years of study from the Arabic duration text.
-function years(d) {
+function years(d, level) {
   if (!d || d === NP) return null;
+  if (level === "bachelor") {
+    if (/3\.5 سنوات|210 ساعات|7 فصول/.test(d)) return 3.5;
+    if (/6 سنوات|360 ساعة|12 فصلاً/.test(d)) return 6;
+    if (/5 سنوات|300 ساعة/.test(d)) return 5;
+    if (/4 سنوات|240 ساعة|8 فصول/.test(d)) return 4;
+    if (/3 سنوات|180 ساعة|6 فصول/.test(d)) return 3;
+    return null;
+  }
   if (/4 فصول|سنتان|120 ساعة/.test(d)) return 2;
   if (/3 فصول|90 ساعة/.test(d)) return 1.5;
   if (/فصلان|سنة|شهراً|60 ساعة/.test(d)) return 1;
@@ -68,11 +84,12 @@ function annualFee(t, y) {
 }
 
 const out = rows.map((r) => {
-  const y = years(r["المدة"]);
+  const y = years(r["المدة"], r._level);
   const feeText = r["الرسوم الدراسية لغير الأوروبيين"];
-  const L = LINKS.get(`${r["اسم البرنامج (الرسمي)"]}|${r["الجامعة"]}`) ?? {};
+  const L = LINKS.get(`${r["اسم البرنامج (الرسمي)"]}|${r["الجامعة"]}|${r._level}`) ?? {};
   return {
-    id: Number(r["#"]),
+    id: r._id,
+    level: r._level,
     reqUrl: L.requirements_url || null, reqNote: L.requirements_note_ar || null,
     applyUrl: L.apply_url || null, applyNote: L.apply_note_ar || null,
     country: COUNTRY[r["الدولة"]],
@@ -122,4 +139,4 @@ if (missingEn.size) console.warn(`Missing English translations (${missingEn.size
 const bad = out.filter((p) => !p.country || !p.field);
 if (bad.length) throw new Error("Unmapped country/field in rows: " + bad.map((b) => b.id));
 writeFileSync("lib/programmes.json", JSON.stringify(out, null, 1));
-console.log(`programmes.json: ${out.length} programmes, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);
+console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);
