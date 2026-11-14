@@ -9,6 +9,10 @@ const EN = JSON.parse(readFileSync("data/translations_en.json", "utf8"));
 const missingEn = new Set();
 const en = (t) => { if (EN[t] === undefined) { missingEn.add(t); return t; } return EN[t]; };
 const CITY_AR = JSON.parse(readFileSync("data/city_names_ar.json", "utf8"));
+const LINKS = new Map(
+  parse(readFileSync("data/programme_links.csv", "utf8"), { columns: true, skip_empty_lines: true })
+    .map((l) => [`${l.programme}|${l.university}`, l])
+);
 const raw = readFileSync("data/programmes/all_programmes.csv", "utf8").replace(/^﻿/, "");
 const rows = parse(raw, { columns: true, skip_empty_lines: true });
 
@@ -56,8 +60,11 @@ function annualFee(t, y) {
 const out = rows.map((r) => {
   const y = years(r["المدة"]);
   const feeText = r["الرسوم الدراسية لغير الأوروبيين"];
+  const L = LINKS.get(`${r["اسم البرنامج (الرسمي)"]}|${r["الجامعة"]}`) ?? {};
   return {
     id: Number(r["#"]),
+    reqUrl: L.requirements_url || null, reqNote: L.requirements_note_ar || null,
+    applyUrl: L.apply_url || null, applyNote: L.apply_note_ar || null,
     country: COUNTRY[r["الدولة"]],
     countryAr: r["الدولة"],
     field: FIELD[r["التخصص"]],
@@ -88,6 +95,7 @@ const out = rows.map((r) => {
       english: en(r["شرط اللغة الإنجليزية"]), other: en(r["شروط مهمة أخرى"]),
       howToApply: en(r["طريقة التقديم"]), living: en(r["متوسط تكلفة المعيشة الشهرية في المدينة"]),
       housing: en(r["السكن الجامعي / المساعدة في السكن"]), status: en(r["حالة التحقق"]),
+      reqNote: L.requirements_note_en || null, applyNote: L.apply_note_en || null,
     },
   };
 });

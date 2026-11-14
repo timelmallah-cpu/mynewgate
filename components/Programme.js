@@ -35,11 +35,34 @@ export default function Programme({ id, lang }) {
           ))}
         </dl>
       </div>
+      <div className="card">
+        <h2>{t.linksTitle}</h2>
+        <LinkRow label={t.reqLink} url={p.reqUrl} note={p.reqNote} t={t} />
+        <LinkRow label={t.applyLink} url={p.applyUrl} note={p.applyNote} t={t} />
+      </div>
       <div className="notice">
         {t.source} <a className="ltr" href={url} target="_blank" rel="noopener noreferrer">{url}</a>
         <br />
         {t.reviewed} {p.reviewed} · {t.statusLabel} {p.status}
       </div>
     </>
+  );
+}
+
+function LinkRow({ label, url, note, t }) {
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div style={{ fontWeight: 600 }}>{label}</div>
+      {url ? (
+        <>
+          <a className="btn" href={url} target="_blank" rel="noopener noreferrer" style={{ padding: "6px 16px", marginTop: 4 }}>
+            {label} ↗
+          </a>
+          {note && <div className="meta">{note}</div>}
+        </>
+      ) : (
+        <div className="meta">{t.linkMissing}</div>
+      )}
+    </div>
   );
 }
