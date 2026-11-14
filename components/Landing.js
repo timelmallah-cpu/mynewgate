@@ -29,6 +29,14 @@ export default function Landing({ lang }) {
       </ul>
       <p className="meta count">{t.count(programmes.length)}</p>
 
+      <Link className="sch-promo" href={`${t.base}/scholarships`}>
+        <span>
+          <b>{t.sch.landingTitle}</b>
+          {t.sch.landingText}
+        </span>
+        <span className="btn small">{t.sch.landingBtn}</span>
+      </Link>
+
       <div className="how">
         <h2>{t.howTitle}</h2>
         <p>{t.heroNotice}</p>

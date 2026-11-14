@@ -4,6 +4,7 @@ import programmes from "../lib/programmes.json";
 import { T, view } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { feeLabel } from "../lib/options";
+import { scholarshipsFor } from "../lib/scholarships";
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -51,6 +52,8 @@ export default function Programme({ id, lang }) {
           <LinkRow label={t.applyLink} url={p.applyUrl} note={p.applyNote} t={t} primary />
         </div>
       </section>
+
+      <ProgScholarships raw={raw} t={t} lang={lang} />
 
       <MapBox p={p} t={t} />
 
@@ -130,5 +133,26 @@ function PhotoCredit({ ph, p, t }) {
       )}
       {" · "}{t.photoSource}{shared}
     </p>
+  );
+}
+
+// Fully funded scholarships linked to this programme's university or country.
+function ProgScholarships({ raw, t, lang }) {
+  const list = scholarshipsFor(raw);
+  const st = t.sch;
+  return (
+    <section className="prog-sch">
+      <h2>{st.progTitle}</h2>
+      {list.length > 0 && <p className="note">{st.progNote}</p>}
+      <ul>
+        {list.map((s) => (
+          <li key={s.id}>
+            <Link href={`${t.base}/scholarships/${s.id}`}>{s.name[lang]}</Link>
+            <span className="note">{s.summary[lang]} {s.links.note ? s.links.note[lang] : ""}</span>
+          </li>
+        ))}
+      </ul>
+      <Link className="btn ghost small" href={`${t.base}/scholarships`}>{st.allSch}</Link>
+    </section>
   );
 }
