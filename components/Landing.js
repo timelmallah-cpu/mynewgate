@@ -1,21 +1,38 @@
 import Link from "next/link";
 import programmes from "../lib/programmes.json";
+import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
+import { COUNTRY_IDS } from "../lib/options";
 
 export default function Landing({ lang }) {
   const t = T[lang];
   return (
     <>
-      <div className="row" style={{ justifyContent: "flex-end", marginBottom: 8 }}>
+      <div className="langpick">
         <span className="meta">{t.chooseLang}</span>
-        <a className={lang === "ar" ? "btn" : "btn ghost"} href="/" lang="ar" style={{ padding: "6px 16px" }}>العربية</a>
-        <a className={lang === "en" ? "btn" : "btn ghost"} href="/en" lang="en" style={{ padding: "6px 16px" }}>English</a>
+        <span className="seg">
+          <a href="/" lang="ar" aria-current={lang === "ar"}>العربية</a>
+          <a href="/en" lang="en" aria-current={lang === "en"}>English</a>
+        </span>
       </div>
-      <h1>{t.heroTitle}</h1>
-      <p className="lead">{t.heroLead}</p>
-      <div className="notice">{t.heroNotice}</div>
-      <p className="meta">{t.count(programmes.length)}</p>
-      <Link className="btn" href={`${t.base}/quiz`}>{t.start}</Link>
+
+      <section className="gate">
+        <h1>{t.heroTitle}</h1>
+        <p className="lead">{t.heroLead}</p>
+        <Link className="btn gold" href={`${t.base}/quiz`}>{t.start}</Link>
+      </section>
+
+      <ul className="countries" aria-label={t.coverage}>
+        {COUNTRY_IDS.map((id) => (
+          <li key={id}><Flag code={id} size={24} />{t.countries[id]}</li>
+        ))}
+      </ul>
+      <p className="meta count">{t.count(programmes.length)}</p>
+
+      <div className="how">
+        <h2>{t.howTitle}</h2>
+        <p>{t.heroNotice}</p>
+      </div>
     </>
   );
 }

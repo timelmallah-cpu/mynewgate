@@ -31,7 +31,7 @@ export default function Quiz({ lang }) {
         {known.map((p) => <Card key={p.id} p={p} lang={lang} />)}
         {unknown.length > 0 && (
           <>
-            <h2 style={{ marginTop: 28 }}>{t.unknownTitle(unknown.length)}</h2>
+            <h2 className="section-title">{t.unknownTitle(unknown.length)}</h2>
             <div className="notice">{t.unknownNote}</div>
             {unknown.map((p) => <Card key={p.id} p={p} lang={lang} />)}
           </>
@@ -52,18 +52,21 @@ export default function Quiz({ lang }) {
 
   return (
     <>
-      <div className="progress"><span style={{ width: `${(step / STEPS.length) * 100}%` }} /></div>
+      <div className="steps" aria-hidden="true">
+        {STEPS.map((_, i) => <span key={i} className={i < step ? "on" : i === step ? "now" : ""} />)}
+      </div>
       <p className="meta">{t.step(step + 1, STEPS.length)}</p>
       <h2>{s.q}</h2>
-      <div className="options">
+      <div className={s.opts.length > 4 ? "options two" : "options"}>
         {s.opts.map((o) => (
           <button key={o.id} className="opt" aria-pressed={chosen(o.id)} onClick={() => pick(o.id)}>
             {s.key === "countries" && <Flag code={o.id} />}
             {o.label}
+            <span className="tick">✓</span>
           </button>
         ))}
       </div>
-      <div className="row">
+      <div className="quiz-actions">
         <button className="btn" disabled={!ready} onClick={() => setStep(step + 1)}>
           {step === STEPS.length - 1 ? t.showResults : t.next}
         </button>
@@ -77,22 +80,31 @@ function Card({ p, lang }) {
   const t = T[lang];
   const i = p.other.indexOf(t.warnWord);
   const warning = i >= 0 ? p.other.slice(i) : null;
+  const known = p.feePerYear !== null && p.feePerYear > 0;
   return (
-    <div className="card">
-      <div className="ltr" style={{ fontWeight: 700, textAlign: "start" }}>{p.name}</div>
-      <div className="meta">
-        <Flag code={p.country} size={18} /> {p.countryLabel} · {t.city} {p.city} ·{" "}
+    <Link className="result" href={`${t.base}/programme/${p.id}`}>
+      <div className="name ltr">{p.name}</div>
+      <div className="fee">
+        {known ? (
+          <>
+            <span className="amount ltr">€{p.feePerYear.toLocaleString("en-US")}</span>
+            <span className="per">{t.perYear}{p.feeNeedsCheck ? t.toCheck : ""}</span>
+          </>
+        ) : (
+          <span className={p.feePerYear === null ? "amount unknown" : "amount"}>{feeLabel(p, lang)}</span>
+        )}
+      </div>
+      <div className="where">
+        <span><Flag code={p.country} size={18} /> {p.countryLabel}</span>
+        <span>{t.city} {p.city}</span>
         <span className="ltr">{p.university}</span>
       </div>
-      <div className="row" style={{ marginTop: 8 }}>
-        <span className={p.feePerYear === null || p.feeNeedsCheck ? "badge warn" : "badge"}>
-          {feeLabel(p, lang)}{p.feeNeedsCheck && p.feePerYear !== null ? t.toCheck : ""}
-        </span>
-        <span className="badge">{p.duration}</span>
+      <div className="facts">
+        <span><b>{t.keyDuration}:</b> {p.duration}</span>
+        <span><b>{t.deadline}</b> {p.deadline}</span>
       </div>
       {warning && <p className="warnline">{warning}</p>}
-      <p className="meta" style={{ margin: "8px 0" }}>{t.deadline} {p.deadline}</p>
-      <Link href={`${t.base}/programme/${p.id}`}>{t.details}</Link>
-    </div>
+      <span className="more">{t.details}</span>
+    </Link>
   );
 }

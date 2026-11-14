@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
 import { T, view } from "../lib/i18n";
+import Flag from "../lib/Flag";
+import { feeLabel } from "../lib/options";
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -18,15 +20,38 @@ export default function Programme({ id, lang }) {
   if (!raw) notFound();
   const p = view(raw, lang);
   const url = p.source.split(" ")[0];
+  const known = p.feePerYear !== null && p.feePerYear > 0;
   return (
     <>
-      <Link href={`${t.base}/quiz`}>{t.backToQuiz}</Link>
-      <h1 className="ltr" style={{ textAlign: "start" }}>{p.name}</h1>
-      <p className="meta">
-        <span className="ltr">{p.university}</span> · {t.city} {p.city} · {p.countryLabel} · {p.fieldLabel}
-      </p>
+      <Link className="back" href={`${t.base}/quiz`}>{t.backToQuiz}</Link>
+      <header className="prog-head">
+        <h1 className="ltr">{p.name}</h1>
+        <div className="where">
+          <span className="ltr">{p.university}</span>
+          <span>{t.city} {p.city}</span>
+          <span><Flag code={p.country} size={18} /> {p.countryLabel}</span>
+          <span>{p.fieldLabel}</span>
+        </div>
+      </header>
+      <dl className="prog-key">
+        <div>
+          <dt>{t.keyFee}</dt>
+          <dd>{known ? <span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
+        </div>
+        <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
+        <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}</dd></div>
+      </dl>
+
+      <section className="apply">
+        <h2>{t.linksTitle}</h2>
+        <div className="links">
+          <LinkRow label={t.reqLink} url={p.reqUrl} note={p.reqNote} t={t} primary={false} />
+          <LinkRow label={t.applyLink} url={p.applyUrl} note={p.applyNote} t={t} primary />
+        </div>
+      </section>
+
       <div className="card">
-        <dl>
+        <dl className="details">
           {KEYS.map((k) => (
             <div key={k}>
               <dt>{t.fieldsDetail[k]}</dt>
@@ -34,11 +59,6 @@ export default function Programme({ id, lang }) {
             </div>
           ))}
         </dl>
-      </div>
-      <div className="card">
-        <h2>{t.linksTitle}</h2>
-        <LinkRow label={t.reqLink} url={p.reqUrl} note={p.reqNote} t={t} />
-        <LinkRow label={t.applyLink} url={p.applyUrl} note={p.applyNote} t={t} />
       </div>
       <div className="notice">
         {t.source} <a className="ltr" href={url} target="_blank" rel="noopener noreferrer">{url}</a>
@@ -49,19 +69,21 @@ export default function Programme({ id, lang }) {
   );
 }
 
-function LinkRow({ label, url, note, t }) {
+function LinkRow({ label, url, note, t, primary }) {
   return (
-    <div style={{ marginBottom: 14 }}>
-      <div style={{ fontWeight: 600 }}>{label}</div>
+    <div>
       {url ? (
         <>
-          <a className="btn" href={url} target="_blank" rel="noopener noreferrer" style={{ padding: "6px 16px", marginTop: 4 }}>
+          <a className={primary ? "btn gold" : "btn"} href={url} target="_blank" rel="noopener noreferrer" style={{ width: "100%" }}>
             {label} ↗
           </a>
-          {note && <div className="meta">{note}</div>}
+          {note && <div className="note">{note}</div>}
         </>
       ) : (
-        <div className="meta">{t.linkMissing}</div>
+        <>
+          <div style={{ fontWeight: 600 }}>{label}</div>
+          <div className="note">{t.linkMissing}</div>
+        </>
       )}
     </div>
   );
