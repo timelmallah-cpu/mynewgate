@@ -1,0 +1,17 @@
+{
+  "name": "mynewgate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "data": "node scripts/build-data.mjs",
+    "dev": "npm run data && next dev",
+    "build": "npm run data && next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

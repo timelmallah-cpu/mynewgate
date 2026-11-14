@@ -10,3 +10,9 @@ MVP: الدراسة أولاً (ماجستير بالإنجليزية في ال�
 ## Structure
 - `docs/` — functional specification
 - `data/programmes/` — programme catalogue per country (seed data, pending university-page verification)
+
+## Run locally
+npm install
+npm run dev   # converts data/programmes/all_programmes.csv to lib/programmes.json, then starts Next.js
+
+Deploy: import this repo in Vercel (framework: Next.js, no environment variables needed yet).
