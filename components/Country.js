@@ -1,0 +1,151 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import programmes from "../lib/programmes.json";
+import { T, view } from "../lib/i18n";
+import Flag from "../lib/Flag";
+import { COUNTRY_IDS } from "../lib/options";
+import { COUNTRY_INFO } from "../lib/countryInfo";
+import { COSTS } from "../lib/costs";
+import { SCHOLARSHIPS } from "../lib/scholarships";
+
+const S = {
+  ar: {
+    tip: (n) => `اضغط للحصول على معلومات عن ${n}`,
+    title: (n) => `الدراسة في ${n}`,
+    facts: "معلومات أساسية",
+    capital: "العاصمة", language: "اللغة الرسمية", currency: "العملة",
+    onSite: "على موقعنا",
+    master: "برامج ماجستير بالإنجليزية", bachelor: "برامج بكالوريوس بالإنجليزية",
+    cities: "المدن", fees: "الرسوم السنوية لغير الأوروبيين",
+    feesRange: (a, b) => (a === b ? `${a} يورو` : `من ${a} إلى ${b} يورو`),
+    free: (n) => `${n} برنامج بدون رسوم دراسية`,
+    unknownFee: (n) => `${n} برنامج رسومه غير منشورة في المصدر`,
+    money: "إثبات القدرة المالية للتأشيرة",
+    sch: "منح ممولة بالكامل متاحة للعرب",
+    portal: "البوابة الرسمية للدراسة",
+    search: (n) => `ابحث في برامج ${n}`,
+    photoBy: "صورة:", source: "المصدر",
+    note: "العاصمة واللغة والعملة معلومات عامة. أما الأرقام فمن بيانات البرامج على موقعنا ومن الجهات الرسمية المذكورة مع كل رقم.",
+  },
+  en: {
+    tip: (n) => `Click for information about ${n}`,
+    title: (n) => `Studying in ${n}`,
+    facts: "Key facts",
+    capital: "Capital", language: "Official language", currency: "Currency",
+    onSite: "On our site",
+    master: "English-taught master's programmes", bachelor: "English-taught bachelor's programmes",
+    cities: "Cities", fees: "Annual fees for non-EU students",
+    feesRange: (a, b) => (a === b ? `€${a}` : `€${a} to €${b}`),
+    free: (n) => `${n} tuition-free programme${n === 1 ? "" : "s"}`,
+    unknownFee: (n) => `${n} programme${n === 1 ? "" : "s"} with no published fee`,
+    money: "Proof of funds for the visa",
+    sch: "Fully funded scholarships open to Arab students",
+    portal: "Official study portal",
+    search: (n) => `Search programmes in ${n}`,
+    photoBy: "Photo:", source: "Source",
+    note: "Capital, language and currency are general facts. Figures come from our programme data and from the official bodies linked next to each one.",
+  },
+};
+
+export const countryTip = (code, lang) => S[lang].tip(T[lang].countries[code]);
+export const countryParams = () => COUNTRY_IDS.map((code) => ({ code }));
+export const countryMeta = (code, lang) => ({ title: `${S[lang].title(T[lang].countries[code] || "")} | ${T[lang].brand}` });
+
+const n = (v) => Math.round(v).toLocaleString("en-US");
+
+export default function Country({ code, lang }) {
+  const info = COUNTRY_INFO[code];
+  if (!info) notFound();
+  const t = T[lang];
+  const s = S[lang];
+  const name = t.countries[code];
+  const list = programmes.filter((p) => p.country === code);
+  const cost = COSTS[code];
+  const sch = SCHOLARSHIPS.filter((x) => x.hosts.includes(code));
+  const [src, page, author, lic, licUrl] = info.photo;
+
+  const level = (lv) => {
+    const ps = list.filter((p) => p.level === lv);
+    const fees = ps.map((p) => p.feePerYear).filter((f) => f !== null && f > 0);
+    return {
+      count: ps.length,
+      free: ps.filter((p) => p.feePerYear === 0).length,
+      unknown: ps.filter((p) => p.feePerYear === null).length,
+      min: fees.length ? Math.min(...fees) : null,
+      max: fees.length ? Math.max(...fees) : null,
+    };
+  };
+  const cities = [...new Set(list.map((p) => view(p, lang).city))];
+
+  return (
+    <>
+      <figure className="country-hero">
+        <img src={src} alt={info.landmark[lang]} />
+        <figcaption>
+          <h1><Flag code={code} size={34} /> {s.title(name)}</h1>
+          <span>{info.landmark[lang]}</span>
+        </figcaption>
+      </figure>
+      <p className="credit">
+        {s.photoBy} <a href={page} target="_blank" rel="noopener noreferrer" className="ltr">{author}</a> · <a href={licUrl} target="_blank" rel="noopener noreferrer" className="ltr">{lic}</a> · Wikimedia Commons
+      </p>
+
+      <Link className="btn gold" href={`${t.base}/quiz?country=${code}`}>{s.search(name)}</Link>
+
+      <section className="country-sec">
+        <h2>{s.facts}</h2>
+        <dl className="prog-key">
+          <div><dt>{s.capital}</dt><dd>{info.capital[lang]}</dd></div>
+          <div><dt>{s.language}</dt><dd>{info.language[lang]}</dd></div>
+          <div><dt>{s.currency}</dt><dd>{info.currency[lang]}</dd></div>
+        </dl>
+      </section>
+
+      <section className="country-sec">
+        <h2>{s.onSite}</h2>
+        <div className="country-levels">
+          {["bachelor", "master"].map((lv) => {
+            const d = level(lv);
+            if (!d.count) return null;
+            return (
+              <div key={lv} className="card">
+                <b className="big">{d.count}</b> {s[lv]}
+                <ul>
+                  {d.min !== null && <li>{s.fees}: {s.feesRange(n(d.min), n(d.max))}</li>}
+                  {d.free > 0 && <li>{s.free(d.free)}</li>}
+                  {d.unknown > 0 && <li>{s.unknownFee(d.unknown)}</li>}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+        <p><b>{s.cities}:</b> {cities.join(lang === "ar" ? "، " : ", ")}</p>
+      </section>
+
+      {cost && (
+        <section className="country-sec">
+          <h2>{s.money}</h2>
+          <p>{cost.proof[lang]}{cost.proofCheck ? t.toCheck : ""} · <a href={cost.proofSrc} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></p>
+        </section>
+      )}
+
+      {sch.length > 0 && (
+        <section className="country-sec prog-sch">
+          <h2>{s.sch}</h2>
+          <ul>
+            {sch.map((x) => (
+              <li key={x.id}><Link href={`${t.base}/scholarships/${x.id}`}>{x.name[lang]}</Link></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section className="country-sec">
+        <h2>{s.portal}</h2>
+        <a className="btn ghost small" href={info.portal.url} target="_blank" rel="noopener noreferrer"><span className="ltr">{info.portal.name}</span> ↗</a>
+      </section>
+
+      <div className="notice">{s.note}</div>
+    </>
+  );
+}

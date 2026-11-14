@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
@@ -11,6 +11,11 @@ export default function Quiz({ lang }) {
   const [step, setStep] = useState(0);
   const [a, setA] = useState({ countries: [] });
   const [editing, setEditing] = useState(false);
+  // ?country=ee (from a country page) pre-selects that country.
+  useEffect(() => {
+    const c = new URLSearchParams(window.location.search).get("country");
+    if (c && COUNTRY_IDS.includes(c)) setA((x) => ({ ...x, countries: [c] }));
+  }, []);
   const e = ED[lang];
   const ba = a.level === "bachelor";
   const STEPS = [

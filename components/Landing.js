@@ -3,6 +3,7 @@ import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
+import { countryTip } from "./Country";
 
 export default function Landing({ lang }) {
   const t = T[lang];
@@ -24,7 +25,11 @@ export default function Landing({ lang }) {
 
       <ul className="countries" aria-label={t.coverage}>
         {COUNTRY_IDS.map((id) => (
-          <li key={id}><Flag code={id} size={24} />{t.countries[id]}</li>
+          <li key={id}>
+            <Link href={`${t.base}/country/${id}`} aria-label={countryTip(id, lang)} data-tip={countryTip(id, lang)}>
+              <Flag code={id} size={24} />{t.countries[id]}
+            </Link>
+          </li>
         ))}
       </ul>
       <p className="meta count">{t.count(programmes.filter((p) => p.level === "master").length, programmes.filter((p) => p.level === "bachelor").length)}</p>
