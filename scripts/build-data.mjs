@@ -71,6 +71,22 @@ function amounts(t) {
 }
 
 // Estimated tuition per year in EUR, or null when unknown/ambiguous.
+
+// Monthly living cost (EUR) read from the programme's own living-cost text; null when none published.
+function monthlyLiving(t) {
+  if (!t || /^(غير منشور|لا يوجد)/.test(t.trim())) return null;
+  const paren = t.match(/\(([^)]*)\)/);
+  let part = t.split("(")[0];
+  if (paren && /\d/.test(paren[1]) && /(يورو|شهرياً)/.test(paren[1]) && /(زلوتي|دولار|سنوياً)/.test(part)) part = paren[1];
+  const nums = (part.match(/\d[\d,]*/g) || []).map((n) => Number(n.replace(/,/g, ""))).filter((n) => n >= 100);
+  if (!nums.length) return null;
+  let v = /\d\s*-\s*\d/.test(part) && nums.length > 1 ? (nums[0] + nums[1]) / 2 : nums[0];
+  if (/زلوتي/.test(part)) v /= 4.4;
+  if (/دولار/.test(part)) v /= 1.11;
+  if (/سنوياً/.test(part)) v /= 12;
+  return Math.round(v / 10) * 10;
+}
+
 function annualFee(t, y) {
   if (!t || t.startsWith(NP)) return null;
   if (/^لا توجد/.test(t)) return 0;
@@ -137,6 +153,7 @@ const out = rows.map((r) => {
     other: r["شروط مهمة أخرى"],
     howToApply: r["طريقة التقديم"],
     living: r["متوسط تكلفة المعيشة الشهرية في المدينة"],
+    livingMonthly: monthlyLiving(r["متوسط تكلفة المعيشة الشهرية في المدينة"]),
     housing: r["السكن الجامعي / المساعدة في السكن"],
     source: r["رابط المصدر"],
     reviewed: r["تاريخ المراجعة"],

@@ -332,3 +332,28 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
   .lang { padding: 3px 10px; font-size: .85rem; }
   .brand svg { width: 20px; }
 }
+
+/* Cost calculator */
+.costcalc { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin: 0 0 18px; }
+.costcalc h2 { margin-top: 0; }
+.cc-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.cc-inputs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; min-width: 0; }
+.cc-field { display: grid; gap: 4px; }
+.cc-field > span:first-child { font-weight: 600; font-size: .97rem; }
+.cc-field small { color: var(--muted); font-size: .86rem; line-height: 1.6; overflow-wrap: anywhere; }
+.cc-input { display: flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
+.cc-input:focus-within { border-color: var(--navy); box-shadow: 0 0 0 3px var(--sky); }
+.cc-input input { flex: 1; min-width: 0; width: 100%; border: 0; background: transparent; font: inherit; font-size: 1.05rem; padding: 9px 12px; color: var(--ink); outline: none; }
+.cc-input em { font-style: normal; color: var(--muted); padding: 0 12px; font-size: .9rem; }
+.cc-out { position: sticky; top: 12px; background: var(--navy); color: #fff; border-radius: 16px; padding: 18px; display: grid; gap: 10px; }
+.cc-big { display: grid; gap: 2px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.18); }
+.cc-big span { color: #dbe2f2; }
+.cc-big b { font-family: var(--display); font-size: 2rem; color: var(--gold); line-height: 1.2; text-align: start; }
+.cc-row { display: flex; justify-content: space-between; gap: 10px; color: #dbe2f2; }
+.cc-row b { color: #fff; font-family: var(--display); }
+.cc-warn { margin: 0; background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 8px 12px; font-size: .92rem; }
+.cc-facts { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+.cc-facts h3 { font-size: 1rem; margin: 8px 0 4px; }
+.cc-facts p, .cc-facts ul { margin: 0 0 8px; font-size: .95rem; }
+.cc-facts ul { padding-inline-start: 18px; }
+@media (max-width: 720px) { .cc-grid { grid-template-columns: minmax(0, 1fr); } .cc-out { position: static; order: -1; } }

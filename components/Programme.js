@@ -7,6 +7,7 @@ import { feeLabel } from "../lib/options";
 import { scholarshipsFor } from "../lib/scholarships";
 import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
+import CostCalc from "./CostCalc";
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -57,6 +58,8 @@ export default function Programme({ id, lang }) {
       </section>
 
       <ProgScholarships raw={raw} t={t} lang={lang} />
+
+      <CostCalc p={p} lang={lang} />
 
       <MapBox p={p} t={t} />
 
