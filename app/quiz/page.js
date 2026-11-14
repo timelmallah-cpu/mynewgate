@@ -2,11 +2,12 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import programmes from "../../lib/programmes.json";
+import Flag from "../../lib/Flag";
 import { FIELDS, COUNTRIES, BUDGETS, DURATIONS, match, feeLabel } from "../../lib/options";
 
 const STEPS = [
-  { key: "field", q: "ما التخصص الذي تريد دراسته؟", opts: [...FIELDS, { id: "any", label: "أكثر من تخصص / لم أقرر" }] },
   { key: "countries", q: "أي الدول تفكر فيها؟ (يمكنك اختيار أكثر من دولة)", opts: COUNTRIES, multi: true },
+  { key: "field", q: "ما التخصص الذي تريد دراسته؟", opts: [...FIELDS, { id: "any", label: "أكثر من تخصص / لم أقرر" }] },
   { key: "budget", q: "ما أقصى رسوم دراسية تستطيع دفعها في السنة؟", opts: BUDGETS },
   { key: "duration", q: "كم مدة الدراسة التي تفضلها؟", opts: DURATIONS },
 ];
@@ -62,6 +63,7 @@ export default function Quiz() {
       <div className="options">
         {s.opts.map((o) => (
           <button key={o.id} className="opt" aria-pressed={chosen(o.id)} onClick={() => pick(o.id)}>
+            {s.key === "countries" && <Flag code={o.id} />}
             {o.label}
           </button>
         ))}
@@ -82,7 +84,7 @@ function Card({ p }) {
     <div className="card">
       <div className="ltr" style={{ fontWeight: 700 }}>{p.name}</div>
       <div className="meta">
-        <span className="ltr">{p.university}</span> · {p.city} · {p.countryAr}
+        <Flag code={p.country} size={18} /> {p.countryAr} · {p.city} · <span className="ltr">{p.university}</span>
       </div>
       <div className="row" style={{ marginTop: 8 }}>
         <span className={p.feePerYear === null || p.feeNeedsCheck ? "badge warn" : "badge"}>

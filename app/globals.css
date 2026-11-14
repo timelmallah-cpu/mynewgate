@@ -54,3 +54,5 @@ dt { font-weight: 600; margin-top: 14px; }
 dd { margin: 2px 0 0; color: var(--ink); }
 .ltr { direction: ltr; unicode-bidi: isolate; }
 .warnline { background: var(--warn-soft); color: var(--warn); border-radius: 8px; padding: 6px 10px; margin: 8px 0 0; font-size: .9rem; }
+.opt { display: flex; align-items: center; gap: 12px; }
+.flag { flex: none; border-radius: 3px; vertical-align: middle; }
