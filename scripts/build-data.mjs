@@ -9,6 +9,15 @@ const EN = JSON.parse(readFileSync("data/translations_en.json", "utf8"));
 const missingEn = new Set();
 const en = (t) => { if (EN[t] === undefined) { missingEn.add(t); return t; } return EN[t]; };
 const CITY_AR = JSON.parse(readFileSync("data/city_names_ar.json", "utf8"));
+const PHOTOS = JSON.parse(readFileSync("data/university_photos.json", "utf8"));
+const PHOTO_MAP = JSON.parse(readFileSync("data/university_photo_map.json", "utf8"));
+function photoFor(uni) {
+  const key = PHOTO_MAP[uni];
+  const v = key && PHOTOS[key];
+  if (!v) return null;
+  const [src, page, author, license, licenseUrl] = v;
+  return { src, page, author, license, licenseUrl, of: key };
+}
 const COORDS = JSON.parse(readFileSync("data/city_coords.json", "utf8")); // [lat, lon] of the city centre
 const LINKS = new Map(
   parse(readFileSync("data/programme_links.csv", "utf8"), { columns: true, skip_empty_lines: true })
@@ -73,6 +82,7 @@ const out = rows.map((r) => {
     name: r["اسم البرنامج (الرسمي)"],
     university: r["الجامعة"],
     coords: COORDS[r["المدينة"]] || null,
+    photo: photoFor(r["الجامعة"]),
     city: CITY_AR[r["المدينة"]] ? `${CITY_AR[r["المدينة"]]} (${r["المدينة"]})` : r["المدينة"],
     degree: r["الدرجة"],
     duration: r["المدة"],
@@ -103,6 +113,8 @@ const out = rows.map((r) => {
 });
 
 const noAr = rows.filter((r) => !CITY_AR[r["المدينة"]]).map((r) => r["المدينة"]);
+const badMap = Object.entries(PHOTO_MAP).filter(([k, v]) => k !== "_about" && !PHOTOS[v]).map(([k]) => k);
+if (badMap.length) console.warn("Photo map points to missing photos:", badMap);
 const noXY = rows.filter((r) => !COORDS[r["المدينة"]]).map((r) => r["المدينة"]);
 if (noXY.length) console.warn("Cities without coordinates (add to data/city_coords.json):", [...new Set(noXY)]);
 if (noAr.length) console.warn("Cities without Arabic name:", [...new Set(noAr)]);

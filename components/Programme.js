@@ -24,7 +24,8 @@ export default function Programme({ id, lang }) {
   return (
     <>
       <Link className="back" href={`${t.base}/quiz`}>{t.backToQuiz}</Link>
-      <header className="prog-head">
+      <header className={p.photo ? "prog-head has-photo" : "prog-head"}>
+        {p.photo && <img className="prog-photo" src={p.photo.src} alt={p.university} />}
         <h1 className="ltr">{p.name}</h1>
         <div className="where">
           <span className="ltr">{p.university}</span>
@@ -41,6 +42,7 @@ export default function Programme({ id, lang }) {
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}</dd></div>
       </dl>
+      {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
 
       <section className="apply">
         <h2>{t.linksTitle}</h2>
@@ -110,5 +112,23 @@ function MapBox({ p, t }) {
         <span className="note">{t.mapNote}</span>
       </div>
     </section>
+  );
+}
+
+// Attribution required by the photo's free licence (author, licence, link to the file).
+function PhotoCredit({ ph, p, t }) {
+  const shared = p.university.includes("&") ? ` (${t.photoOf} ${ph.of})` : "";
+  return (
+    <p className="credit">
+      {t.photoBy}{" "}
+      <a href={ph.page} target="_blank" rel="noopener noreferrer" className="ltr">{ph.author || t.photoUnknownAuthor}</a>
+      {" · "}
+      {ph.licenseUrl ? (
+        <a href={ph.licenseUrl} target="_blank" rel="noopener noreferrer" className="ltr">{ph.license}</a>
+      ) : (
+        <span className="ltr">{ph.license}</span>
+      )}
+      {" · "}{t.photoSource}{shared}
+    </p>
   );
 }

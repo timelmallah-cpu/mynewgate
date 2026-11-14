@@ -168,6 +168,10 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 /* Programme page */
 .back { display: inline-block; margin: 0 0 14px; font-weight: 600; text-decoration: none; }
 .prog-head { background: var(--navy); color: #fff; border-radius: 22px 22px 0 0; padding: 26px 24px 22px; }
+.prog-head.has-photo { padding-top: 0; overflow: hidden; }
+.prog-photo { display: block; width: calc(100% + 48px); margin: 0 -24px 22px; height: clamp(180px, 34vw, 300px); object-fit: cover; background: var(--navy-2); }
+.credit { font-size: .78rem; color: var(--muted); margin: -10px 4px 18px; }
+.credit a { color: var(--muted); }
 .prog-head h1 { color: #fff; font-size: clamp(1.45rem, 3.6vw, 2rem); margin-bottom: 8px; }
 .prog-head .where { color: #c9d3ea; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center; }
 .prog-key { margin: 0 0 18px; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--card); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 22px 22px; }
