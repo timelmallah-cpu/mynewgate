@@ -28,8 +28,9 @@ export default function Shell({ lang, children }) {
         <header className="top">
           <Link href={t.base || "/"} className="brand"><Mark />{t.brand}</Link>
           <div className="top-end">
+            <Link className="toplink" href={`${t.base}/my-list`}>{t.myLink}</Link>
             <Link className="toplink" href={`${t.base}/scholarships`}>{t.schLink}</Link>
-            <Link className="toplink" href={`${t.base}/contact`}>{t.contactLink}</Link>
+            <Link className="toplink contact" href={`${t.base}/contact`}>{t.contactLink}</Link>
             <span className="tag">{t.beta}</span>
             <LangSwitch lang={lang} label={t.switchLabel} />
           </div>
@@ -37,7 +38,7 @@ export default function Shell({ lang, children }) {
         <main>{children}</main>
         <footer className="foot">
           <p>{t.footer}</p>
-          <p><Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link></p>
+          <p><Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link></p>
         </footer>
       </body>
     </html>

@@ -83,6 +83,30 @@ function annualFee(t, y) {
   return Math.round(v);
 }
 
+// Deadline dates from the English deadline text. A range "1 April - 31 May" counts by its end date.
+// Dates without a year are recurring: we add this year's and next year's occurrence, marked estimated.
+const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const MRE = MONTHS.join("|");
+const pad = (n) => String(n).padStart(2, "0");
+function deadlineDates(t) {
+  if (!t) return [];
+  const out = [];
+  const add = (d, m, y) => {
+    const mi = MONTHS.indexOf(m) + 1;
+    if (!mi || d < 1 || d > 31) return;
+    if (y) out.push({ d: `${y}-${pad(mi)}-${pad(d)}`, est: false });
+    else { const now = new Date().getFullYear(); for (const yy of [now, now + 1]) out.push({ d: `${yy}-${pad(mi)}-${pad(d)}`, est: true }); }
+  };
+  // ranges: keep the end
+  const range = new RegExp(`(\\d{1,2})\\s+(${MRE})(?:\\s+(\\d{4}))?\\s*[-–]\\s*(\\d{1,2})\\s+(${MRE})(?:\\s+(\\d{4}))?`, "g");
+  let rest = t.replace(range, (_, d1, m1, y1, d2, m2, y2) => { add(+d2, m2, y2 || null); return " "; });
+  // "1 - 15 May" style ranges
+  rest = rest.replace(new RegExp(`(\\d{1,2})\\s*[-–]\\s*(\\d{1,2})\\s+(${MRE})(?:\\s+(\\d{4}))?`, "g"), (_, d1, d2, m, y) => { add(+d2, m, y || null); return " "; });
+  for (const m of rest.matchAll(new RegExp(`(\\d{1,2})\\s+(${MRE})(?:\\s+(\\d{4}))?`, "g"))) add(+m[1], m[2], m[3] || null);
+  const seen = new Set();
+  return out.filter((x) => !seen.has(x.d) && seen.add(x.d)).sort((a, b) => a.d.localeCompare(b.d));
+}
+
 const out = rows.map((r) => {
   const y = years(r["المدة"], r._level);
   const feeText = r["الرسوم الدراسية لغير الأوروبيين"];
@@ -139,4 +163,10 @@ if (missingEn.size) console.warn(`Missing English translations (${missingEn.size
 const bad = out.filter((p) => !p.country || !p.field);
 if (bad.length) throw new Error("Unmapped country/field in rows: " + bad.map((b) => b.id));
 writeFileSync("lib/programmes.json", JSON.stringify(out, null, 1));
+// Slim list for "My list" and calendar export (client side).
+writeFileSync("lib/deadlines.json", JSON.stringify(out.map((p) => ({
+  id: p.id, level: p.level, country: p.country, name: p.name, university: p.university,
+  ar: p.deadline, en: p.en.deadline, dates: deadlineDates(p.en.deadline),
+}))));
+console.log(`deadlines.json: ${out.filter((p) => deadlineDates(p.en.deadline).length).length} programmes with a parsed deadline date`);
 console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);

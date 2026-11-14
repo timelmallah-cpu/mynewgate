@@ -6,6 +6,7 @@ import Flag from "../lib/Flag";
 import { feeLabel } from "../lib/options";
 import { scholarshipsFor } from "../lib/scholarships";
 import ReportLink from "./ReportLink";
+import SaveButton from "./SaveButton";
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -45,6 +46,7 @@ export default function Programme({ id, lang }) {
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}</dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
+      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /></div>
 
       <section className="apply">
         <h2>{t.linksTitle}</h2>
