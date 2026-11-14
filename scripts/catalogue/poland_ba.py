@@ -43,9 +43,8 @@ add("med", "Medicine, English Division (MD)", "Medical University of Warsaw", "W
     ("أرسل المستندات إلى مكتب القبول بالبريد الإلكتروني أولاً ثم افتح طلباً على نظام ORS", "Send documents to the admissions office by email first, then open an ORS application"),
     "https://ed.wum.edu.pl/node/1043", "https://ed.wum.edu.pl/high-school-graduates")
 add("med", "Medicine in English (MD)", "Medical University of Silesia in Katowice", "Katowice", MD, MED,
-    ("حوالي 14,890 يورو سنوياً (65,500 زلوتي لعام 2025/2026 حسب مصدر غير رسمي؛ رسوم 2026/2027 في جدول الجامعة - للتحقق)",
-     "About €14,890 per year (PLN 65,500 for 2025/2026 per an unofficial source; 2026/2027 fees are in the university table - to verify)"),
-    NP, NP, NP, ("تُدفع الرسوم على 4 أقساط في السنة (حسب مصدر غير رسمي)", "Fees payable in 4 instalments a year (per an unofficial source)"), IRK,
+    PLNS("7,443", "32,750"),
+    NP, NP, NP, ("من جدول رسوم الجامعة لعام 2026/2027 للبرنامج بالإنجليزية", "From the university's 2026/2027 fee table for the English programme"), IRK,
     "https://student.sum.edu.pl/wp-content/uploads/2026/07/Tuition-Fees_2026_2027.pdf", "https://student.sum.edu.pl/wp-content/uploads/2026/07/Tuition-Fees_2026_2027.pdf")
 add("med", "Medicine in English (MD)", "Wroclaw Medical University", "Wrocław", MD, MED,
     ("حوالي 15,430 يورو سنوياً (67,900 زلوتي لعام 2026/2027 حسب مصدر غير رسمي - للتحقق)", "About €15,430 per year (PLN 67,900 for 2026/2027 per an unofficial source - to verify)"),
@@ -63,6 +62,15 @@ add("med", "Medicine (MD)", "Medical University of Lodz", "Łódź", MD, MED,
     ("غير منشور في الصفحة التي اطلعنا عليها", "Not published on the page we read"), NP, NP, NP,
     ("توجد دورة تحضيرية بالإنجليزية من 16 نوفمبر 2026 إلى 30 يونيو 2027", "A preparatory course in English runs from 16 November 2026 to 30 June 2027"), IRK,
     "https://study.gov.pl/medical-university-lodz", "https://study.gov.pl/medical-university-lodz")
+
+add("med", "Medicine, 6-year MD Program", "Poznan University of Medical Sciences", "Poznań", MD, MED,
+    ("الرسوم على موقع مركز التعليم الطبي بالإنجليزية (لم نطّلع على رقم 2026/2027)", "Fees are on the Center for Medical Education in English website (we have not read the 2026/2027 figure)"),
+    NP, NP, NP, ("أول جامعة حكومية في بولندا قدّمت دراسة كاملة بالإنجليزية؛ كل المدفوعات بالزلوتي", "The first public university in Poland to offer full-time studies in English; all payments in PLN"), IRK,
+    "https://pums.ump.edu.pl/admissions/9-admissions.html", "https://pums.ump.edu.pl/admissions/9-admissions.html")
+add("med", "Medicine (MD)", "Medical University of Lublin", "Lublin", MD, MED,
+    ("الرسوم في جدول الدفع للمقبولين منذ 2026/2027 على صفحة رسوم الطب (لم نطّلع على الرقم)", "Fees are in the payment schedule for students admitted from 2026/2027 on the medicine fees page (we have not read the figure)"),
+    NP, NP, NP, ("برنامج 6 سنوات و360 ساعة معتمدة بالإنجليزية", "6-year, 360-credit programme in English"), IRK,
+    "https://students.umlub.edu.pl/234", "https://admission.umlub.edu.pl/medicine")
 
 # ---------- Warsaw University of Technology (WUT) ----------
 WUT = "Warsaw University of Technology (WUT)"

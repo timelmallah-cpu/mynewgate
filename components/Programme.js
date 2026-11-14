@@ -5,6 +5,7 @@ import { T, view } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { feeLabel } from "../lib/options";
 import { scholarshipsFor } from "../lib/scholarships";
+import ReportLink from "./ReportLink";
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -72,6 +73,7 @@ export default function Programme({ id, lang }) {
         <br />
         {t.reviewed} {p.reviewed} · {t.statusLabel} {p.status}
       </div>
+      <ReportLink lang={lang} what={`${raw.name} | ${raw.university}`} path={`${t.base}/programme/${raw.id}`} />
     </>
   );
 }

@@ -31,11 +31,11 @@ add("med", "Medicine (English)", "Carol Davila University of Medicine and Pharma
     ("أقدم كلية طب في رومانيا؛ مقابلة عبر الإنترنت", "Romania's oldest medical faculty; online interview"),
     "https://umfcd.ro/en/wp-content/uploads/2026/INTERNATIONAL_STUDENTS/ADMISSION_2026/DOCUMENTS/METHODOLOGY/Methodology_EN_2026-2027%20ENGLISH.pdf")
 add("med", "Medicine (English)", "Iuliu Hațieganu University of Medicine and Pharmacy", "Cluj-Napoca", MD, MED,
-    ("حوالي 10,000 يورو سنوياً حسب مصادر غير رسمية؛ الرقم الرسمي في وثيقة رسوم 2026-2027 (للتحقق)", "About €10,000 per year per unofficial sources; the official figure is in the 2026-2027 fee document (to verify)"),
+    ("10,000 يورو للسنة الأولى لغير الأوروبيين (2026-2027، وثيقة رسوم الجامعة)", "€10,000 for the first year for non-EU students (2026-2027, university fee document)"),
     NP, NP, NP, ("الطب متاح أيضاً بالفرنسية", "Medicine is also offered in French"),
     "https://cdn.umfcluj.ro/uploads/2026/05/TUITION-FEES-FOR-THE-ACADEMIC-YEAR-2026_2027.pdf")
 add("med", "Medicine (English)", "Grigore T. Popa University of Medicine and Pharmacy", "Iași", MD, MED,
-    ("9,000 يورو سنوياً لعام 2026-2027 حسب مصدر إعلامي (للتحقق)", "€9,000 per year for 2026-2027 per a media source (to verify)"),
+    ("9,000 يورو سنوياً لعام 2026-2027 حسب مصدر إعلامي (للتحقق)؛ ملحق الرسوم الرسمي لعام 2025-2026 كان 8,500 يورو", "€9,000 per year for 2026-2027 per a media source (to verify); the official 2025-2026 fee annex said €8,500"),
     NP, NP, NP, ("تقييم على أساس الملف؛ الطب متاح أيضاً بالرومانية والفرنسية", "File-based evaluation; Medicine is also offered in Romanian and French"),
     "https://www.umfiasi.ro/en/admission/Documents/2026-2027/Metodologie%20admitere%20EN%20final%20senat%202026-2027.pdf")
 add("med", "Medicine in English", "George Emil Palade University of Medicine, Pharmacy, Science and Technology of Târgu Mureș", "Târgu Mureș", MD, MED,

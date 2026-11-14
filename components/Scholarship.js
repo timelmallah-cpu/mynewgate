@@ -4,6 +4,7 @@ import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, SCHOLARSHIPS_REVIEWED } from "../lib/scholarships";
 import { Hosts, fmtDate, KindTag } from "./ScholarshipParts";
 import { ScamBox } from "./Scholarships";
+import ReportLink from "./ReportLink";
 
 export const schParams = () => SCHOLARSHIPS.map((s) => ({ id: s.id }));
 export function schMeta(id, lang) {
@@ -62,6 +63,7 @@ export default function Scholarship({ id, lang }) {
         {t.source} <a className="ltr" href={s.url} target="_blank" rel="noopener noreferrer">{s.url}</a>
         <br />{st.reviewed} {SCHOLARSHIPS_REVIEWED}
       </div>
+      <ReportLink lang={lang} what={s.name.en} path={`${t.base}/scholarships/${s.id}`} />
     </>
   );
 }

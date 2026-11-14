@@ -61,15 +61,17 @@ add("bus", "Applied Economics BSc", ELTE, "Budapest", BSC, NP, SEM("2,700"),
 
 # ---------- Corvinus University of Budapest ----------
 COR = "Corvinus University of Budapest"
-COR_SRC = "https://www.uni-corvinus.hu/main-page/admission/?lang=en"
-for f, n in [("bus", "Business Administration and Management BSc"), ("bus", "International Business Economics BSc"), ("ds", "Data Science in Business BSc")]:
-    add(f, n, COR, "Budapest", BSC, S7 if "International" in n else NP,
-        ("حوالي 3,000 - 3,300 يورو للفصل لغير الأوروبيين حسب مواقع دراسة؛ جدول الرسوم الرسمي لعام 2026/2027 لم نطّلع عليه (للتحقق)",
-         "About €3,000 - 3,300 per semester for non-EU students per study portals; we have not read the official 2026/2027 fee list (to verify)"),
-        ("رسوم طلب 95 يورو", "€95 application fee"), NP, NP,
-        (KEKVA[0] + "؛ تخفيض على رسوم السنة الأولى لبعض المتقدمين حسب الجامعة", KEKVA[1] + "; first-year fee discounts for some applicants per the university"),
-        ("التقديم عبر منصة DreamApply للجامعة", "Through the university's DreamApply platform"), LIV_BUD, NP,
-        COR_SRC, "https://corvinus-university.dreamapply.com/")
+COR_SRC = "https://www.uni-corvinus.hu/main-page/hello-corvinus/fees-and-payments/tutition-fees/?lang=en"
+COR_OTHER = (KEKVA[0] + "؛ تخفيض على رسوم السنة الأولى لبعض المتقدمين حسب الجامعة", KEKVA[1] + "; first-year fee discounts for some applicants per the university")
+for f, n, fee, dur, src in [
+    ("bus", "Business and Management BSc", SEM("3,300", chk=" (رسوم 2027/2028 للتحقق)"), S7, COR_SRC),
+    ("bus", "International Business BSc", ("3,500 يورو للفصل لغير الأوروبيين (للبدء في سبتمبر 2027)", "€3,500 per semester for non-EEA students (September 2027 start)"), S8,
+     "https://www.uni-corvinus.hu/post/landing-page/international-business/?lang=en"),
+    ("bus", "Applied Economics BSc", SEM("3,300", chk=" (رسوم 2027/2028 للتحقق)"), NP, COR_SRC),
+    ("ds", "Data Science in Business BSc", ("فئة هذا البرنامج للتحقق: البرنامج مذكور في دليل الطلاب الدوليين لكنه غير موجود في جدول الرسوم الحالي", "Fee band to verify: the programme is in the international student guide but not in the current fee table"), NP,
+     "https://uni-corvinus.hu/downloads/aisp.1qpp4md/international-student-guide.pdf")]:
+    add(f, n, COR, "Budapest", BSC, dur, fee, ("رسوم طلب 95 يورو", "€95 application fee"), NP, NP, COR_OTHER,
+        ("التقديم عبر منصة DreamApply للجامعة", "Through the university's DreamApply platform"), LIV_BUD, NP, src, "https://corvinus-university.dreamapply.com/")
 
 # ---------- University of Debrecen ----------
 DEB = "University of Debrecen"

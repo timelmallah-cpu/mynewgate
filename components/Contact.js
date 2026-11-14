@@ -16,7 +16,7 @@ export default function Contact({ lang }) {
       </div>
 
       {HAS_FORM && (
-        <section className="form-wrap">
+        <section className="form-wrap" id="report">
           <h2>{c.formTitle}</h2>
           <ContactForm lang={lang} />
         </section>

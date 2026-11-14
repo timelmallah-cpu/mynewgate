@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { T, CONTACT_EMAIL } from "../lib/i18n";
 
 // Sends through Web3Forms (https://web3forms.com). The access key is designed to be
@@ -11,6 +11,18 @@ export default function ContactForm({ lang }) {
   const c = T[lang].contact;
   const f = c.form;
   const [state, setState] = useState("idle"); // idle | sending | sent | error
+  const topicRef = useRef(null);
+  const msgRef = useRef(null);
+
+  // "Report an error" links open this page with ?report=<page details>; prefill the form.
+  useEffect(() => {
+    const r = new URLSearchParams(window.location.search).get("report");
+    if (!r || !topicRef.current || !msgRef.current) return;
+    topicRef.current.value = topicRef.current.options[1]?.value || "";
+    msgRef.current.value = `${f.reportPrefix}\n${r}\n\n`;
+    msgRef.current.focus();
+    msgRef.current.setSelectionRange(msgRef.current.value.length, msgRef.current.value.length);
+  }, [f.reportPrefix]);
 
   if (!KEY) return null;
 
@@ -65,7 +77,7 @@ export default function ContactForm({ lang }) {
       </div>
       <div className="field">
         <label htmlFor="cf-topic">{f.topic}</label>
-        <select id="cf-topic" name="topic" required defaultValue="">
+        <select id="cf-topic" name="topic" required defaultValue="" ref={topicRef}>
           <option value="" disabled>{f.choose}</option>
           {c.topics.map(([title]) => {
             const v = title.replace(/[:：]\s*$/, "").trim();
@@ -75,7 +87,7 @@ export default function ContactForm({ lang }) {
       </div>
       <div className="field">
         <label htmlFor="cf-msg">{f.message}</label>
-        <textarea id="cf-msg" name="message" required minLength={10} maxLength={4000} rows={6} placeholder={f.placeholder} />
+        <textarea ref={msgRef} id="cf-msg" name="message" required minLength={10} maxLength={4000} rows={6} placeholder={f.placeholder} />
       </div>
       <input type="checkbox" name="botcheck" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <p className="note">{f.privacy}</p>
