@@ -1,8 +1,8 @@
 # mynewgate
 
-منصة عربية لتنظيم المعلومات الرسمية عن الدراسة والهجرة في ألمانيا وهولندا وإسبانيا.
+منصة عربية لتنظيم المعلومات الرسمية عن الدراسة والهجرة في ألمانيا وهولندا وإسبانيا وبلجيكا وإستونيا.
 
-An Arabic-first platform that organizes official study and immigration information for Germany, the Netherlands and Spain.
+An Arabic-first platform that organizes official study and immigration information for Germany, the Netherlands, Spain, Belgium and Estonia.
 
 ## المرحلة الحالية / Current phase
 MVP: الدراسة أولاً (ماجستير بالإنجليزية في الجامعات الحكومية)، خدمة مدفوعة.
