@@ -5,6 +5,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { parse } from "csv-parse/sync";
 
 const NP = "غير منشور في المصدر";
+const CITY_AR = JSON.parse(readFileSync("data/city_names_ar.json", "utf8"));
 const raw = readFileSync("data/programmes/all_programmes.csv", "utf8").replace(/^﻿/, "");
 const rows = parse(raw, { columns: true, skip_empty_lines: true });
 
@@ -60,7 +61,7 @@ const out = rows.map((r) => {
     fieldAr: r["التخصص"],
     name: r["اسم البرنامج (الرسمي)"],
     university: r["الجامعة"],
-    city: r["المدينة"],
+    city: CITY_AR[r["المدينة"]] ? `${CITY_AR[r["المدينة"]]} (${r["المدينة"]})` : r["المدينة"],
     degree: r["الدرجة"],
     duration: r["المدة"],
     years: y,
@@ -80,6 +81,8 @@ const out = rows.map((r) => {
   };
 });
 
+const noAr = rows.filter((r) => !CITY_AR[r["المدينة"]]).map((r) => r["المدينة"]);
+if (noAr.length) console.warn("Cities without Arabic name:", [...new Set(noAr)]);
 const bad = out.filter((p) => !p.country || !p.field);
 if (bad.length) throw new Error("Unmapped country/field in rows: " + bad.map((b) => b.id));
 writeFileSync("lib/programmes.json", JSON.stringify(out, null, 1));
