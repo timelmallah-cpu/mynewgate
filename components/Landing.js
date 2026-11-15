@@ -29,11 +29,8 @@ const TILES = {
   ],
 };
 
-// A smaller Wikimedia thumbnail for the photo strip.
-const thumb = (url) => {
-  const m = url.match(/^https:\/\/(?:upload|thumb)\.wikimedia\.org\/wikipedia\/commons\/(?:thumb\/)?([0-9a-f])\/([0-9a-f]{2})\/([^/]+)/);
-  return m ? `https://thumb.wikimedia.org/wikipedia/commons/thumb/${m[1]}/${m[2]}/${m[3]}/960px-${m[3]}` : url;
-};
+// A smaller Wikimedia thumbnail for the photo strip (only where a larger thumbnail of the same file is used).
+const thumb = (url) => url.replace("/1280px-", "/960px-");
 
 export default function Landing({ lang }) {
   const t = T[lang];
