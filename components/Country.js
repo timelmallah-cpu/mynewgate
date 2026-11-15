@@ -17,6 +17,7 @@ import { AUSB } from "../lib/ausbildung";
 import { VOC_TEXT, VOC } from "../lib/vocational";
 import WhatsApp from "./WhatsApp";
 import { CITIES } from "../lib/cities";
+import { progsAr } from "../lib/arCount";
 
 const S = {
   ar: {
@@ -25,13 +26,13 @@ const S = {
     facts: "معلومات أساسية",
     capital: "العاصمة", language: "اللغة الرسمية", currency: "العملة",
     onSite: "على موقعنا",
-    master: "برامج ماجستير بالإنجليزية", bachelor: "برامج بكالوريوس بالإنجليزية", doctorate: "برامج دكتوراه بالإنجليزية",
+    master: "للماجستير بالإنجليزية", bachelor: "للبكالوريوس بالإنجليزية", doctorate: "للدكتوراه بالإنجليزية",
     cities: "المدن", fees: "الرسوم السنوية لغير الأوروبيين",
     feesRange: (a, b) => (a === b ? `${a} يورو` : `من ${a} إلى ${b} يورو`),
-    free: (n) => `${n} برنامج بدون رسوم دراسية (قد توجد رسوم فصل إدارية)`,
-    unknownFee: (n) => `${n} برنامج رسومه غير منشورة في المصدر`,
+    free: (n) => `${progsAr(n)} بدون رسوم دراسية (قد توجد رسوم فصل إدارية)`,
+    unknownFee: (n) => `${progsAr(n)} ${n > 2 && n % 100 <= 10 && n % 100 >= 3 ? "رسومها" : "رسومه"} غير منشورة في المصدر`,
     feesPaid: "رسوم البرامج المدفوعة سنوياً لغير الأوروبيين",
-    noPeriod: (n) => `${n} برنامج فترة رسومه غير محددة (لا يدخل في النطاق)`,
+    noPeriod: (n) => `${progsAr(n)} بفترة رسوم غير محددة (خارج النطاق)`,
     periodNA: "فترة الرسوم غير محددة",
     someCheck: " (بعض الأرقام للتحقق)",
     money: "إثبات القدرة المالية للتأشيرة",
@@ -73,7 +74,7 @@ export const countryMeta = (code, lang) => {
   const name = T[lang].countries[code] || "";
   const n = programmes.filter((p) => p.country === code).length;
   const description = lang === "ar"
-    ? `الدراسة في ${name}${n ? `: ${n} برنامج بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
+    ? `الدراسة في ${name}${n ? `: ${progsAr(n)} بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
     : `Studying in ${name}${n ? `: ${n} English-taught programmes at public universities` : ""}, visa proof of funds, certificate recognition and staying after graduation, with official sources.`;
   return pageMeta(lang, { title: `${S[lang].title(name)} | ${T[lang].brand}`, description, path: `/country/${code}`, image: COUNTRY_INFO[code]?.photo[0] });
 };
@@ -148,7 +149,7 @@ export default function Country({ code, lang }) {
             return (
               <details key={lv} className="card level-acc">
                 <summary>
-                  <span className="level-head"><b className="big">{d.count}</b> {s[lv]}</span>
+                  <span className="level-head">{lang === "ar" ? <><b className="big">{progsAr(d.count)}</b> {s[lv]}</> : <><b className="big">{d.count}</b> {s[lv]}</>}</span>
                   <ul>
                     {d.free > 0 && <li><b>{s.free(d.free)}</b></li>}
                     {d.min !== null && <li>{d.free > 0 ? s.feesPaid : s.fees}: {s.feesRange(n(d.min), n(d.max))}{d.toCheck ? s.someCheck : ""}</li>}

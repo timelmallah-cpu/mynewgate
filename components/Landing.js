@@ -32,7 +32,7 @@ export default function Landing({ lang }) {
     <>
       <section className="gate">
         <h1>{h.title}</h1>
-        <p className="lead">{h.lead(n(programmes.length), COUNTRY_IDS.length)}</p>
+        <p className="lead">{h.lead(programmes.length, COUNTRY_IDS.length)}</p>
         <form className="gate-ask" action={`${t.base}/ask`} method="get" role="search">
           <label htmlFor="gate-q">{h.askLabel}</label>
           <div>

@@ -5,6 +5,7 @@ import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
 import { T, view } from "../lib/i18n";
 import { LEVEL_IDS, FIELD_IDS, BA_FIELD_IDS, COUNTRY_IDS, BUDGETS, DURATIONS, BA_DURATIONS, match, feeLabel } from "../lib/options";
+import { progsAr } from "../lib/arCount";
 
 export default function Quiz({ lang }) {
   const t = T[lang];
@@ -175,7 +176,7 @@ const ED = {
     tryDuration: "أي مدة",
     tryField: "كل المجالات",
     tryCountries: "كل الدول",
-    count: (n) => (n === 1 ? "برنامج واحد" : n === 2 ? "برنامجان" : n <= 10 ? `${n} برامج` : `${n} برنامجاً`),
+    count: (n) => progsAr(n),
   },
   en: {
     title: "Your answers",
