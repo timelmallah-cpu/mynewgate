@@ -29,7 +29,7 @@ const FOOT_GROUPS = [
     ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"],
   ] },
   { ar: "أدوات", en: "Tools", links: [
-    ["/english-check", "هل درجتك تكفي؟", "English score check"], ["/without-ielts", "من غير IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
+    ["/ask", "اسأل المساعد", "Ask the assistant"], ["/english-check", "هل درجتك تكفي؟", "English score check"], ["/without-ielts", "من غير IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
     ["/institutes", "معاهد اللغة", "Language institutes"], ["/gpa", "حوّل معدلك للألماني", "German grade converter"], ["/planner", "خطط مواعيدك", "Plan your dates"],
     ["/tools", "كل الأدوات", "All tools"],
   ] },

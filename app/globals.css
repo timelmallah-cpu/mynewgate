@@ -746,3 +746,21 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .city-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .city-chips a { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; text-decoration: none; background: #fff; }
 .city-chips small { color: var(--muted); margin-inline-start: 4px; }
+
+/* Assistant (/ask) */
+.ask-privacy { background: var(--sky); border-radius: 12px; padding: 10px 14px; }
+.ask-examples { margin: 14px 0; }
+.ask-examples button { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; background: #fff; font: inherit; cursor: pointer; text-align: start; }
+.ask-examples button:hover { border-color: var(--navy); }
+.ask-log { display: grid; gap: 12px; margin: 16px 0; }
+.ask-msg { border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; background: #fff; max-width: 100%; }
+.ask-msg.me { background: var(--sky); justify-self: start; }
+.ask-msg p { margin: 4px 0 0; white-space: pre-line; overflow-wrap: anywhere; }
+.ask-who { font-size: .8rem; font-weight: 600; color: var(--muted); }
+.ask-src { margin-top: 8px; font-size: .9rem; }
+.ask-src ul { margin: 4px 0 0; padding-inline-start: 18px; }
+.ask-err { color: #a12a1f; font-weight: 600; }
+.ask-form { display: flex; gap: 8px; align-items: stretch; position: sticky; bottom: 8px; background: var(--paper); padding: 6px 0; }
+.ask-form textarea { flex: 1; min-width: 0; font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; resize: vertical; }
+.ask-form .btn { white-space: nowrap; }
+.ask-foot .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--navy); text-decoration: underline; cursor: pointer; }
