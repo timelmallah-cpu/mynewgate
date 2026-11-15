@@ -9,7 +9,8 @@ const S = {
     updated: "آخر تحديث:",
     sections: [
       ["من نحن", "بوابتي الجديدة (MyNewGate) موقع يرتب المعلومات الرسمية عن الدراسة في أوروبا باللغة العربية، ويتبع لعلامة «مع حاتم». للتواصل في أي شيء يخص بياناتك: business@withhatem.com"],
-      ["ما الذي لا نجمعه", "لا تحتاج إلى حساب لاستخدام الموقع. الأسئلة التي تجيب عنها للبحث عن البرامج لا تُرسل إلى أي خادم، ولا نستخدم أدوات تتبع إعلانية أو تحليلات تعتمد على ملفات تعريف الارتباط (الكوكيز)."],
+      ["ما الذي لا نجمعه", "لا تحتاج إلى حساب لاستخدام الموقع. الأسئلة التي تجيب عنها للبحث عن البرامج لا تُرسل إلى أي خادم، ولا نستخدم أدوات تتبع إعلانية ولا ملفات تعريف الارتباط (الكوكيز)."],
+      ["إحصاءات الزيارات", "نستخدم Vercel Web Analytics لنعرف عدد الزيارات والصفحات الأكثر قراءة. لا تضع أي كوكيز ولا تحفظ بيانات تعرّف بك، وتميّز الزائر ببصمة مؤقتة محسوبة من الطلب تتغير كل يوم، فلا يمكن تتبعك بين الأيام أو بين المواقع. نرى أرقاماً مجمعة فقط، مثل عدد الزيارات والدولة ونوع الجهاز."],
       ["قائمتي", "البرامج والمنح التي تحفظها في «قائمتي» محفوظة في متصفحك فقط على جهازك. رابط القائمة الذي تنسخه يحمل أرقام البرامج فقط، ولا يُرسل إلينا. تستطيع حذفها بحذف العناصر من القائمة أو بمسح بيانات المتصفح."],
       ["النشرة الشهرية", "إذا اشتركت في النشرة نحفظ بريدك الإلكتروني فقط لنرسل لك النشرة. الأساس القانوني هو موافقتك، ولا يبدأ الاشتراك إلا بعد أن تضغط رابط التأكيد في رسالة نرسلها لك. نستخدم خدمة Kit (kit.com) لإدارة القائمة وإرسال الرسائل، وقد تُحفظ البيانات على خوادمها خارج المملكة المتحدة. في كل رسالة رابط لإلغاء الاشتراك، وعند الإلغاء نتوقف عن مراسلتك. لا نبيع بريدك ولا نعطيه لأي جهة أخرى."],
       ["نموذج التواصل", "إذا راسلتنا عبر صفحة «تواصل معنا» نستلم الاسم والبريد والرسالة التي تكتبها عبر خدمة Web3Forms، ونستخدمها فقط للرد عليك."],
@@ -24,7 +25,8 @@ const S = {
     updated: "Last updated:",
     sections: [
       ["Who we are", "MyNewGate (بوابتي الجديدة) organises official information about studying in Europe in Arabic. It is part of the \"With Hatem\" brand. For anything about your data, contact business@withhatem.com"],
-      ["What we don't collect", "You don't need an account to use the site. The answers you give in the programme finder are not sent to any server, and we don't use advertising trackers or cookie-based analytics."],
+      ["What we don't collect", "You don't need an account to use the site. The answers you give in the programme finder are not sent to any server, and we don't use advertising trackers or cookies."],
+      ["Visit statistics", "We use Vercel Web Analytics to see how many visits we get and which pages are read most. It sets no cookies and stores no data that identifies you; it tells visitors apart with a temporary hash of the request that resets every day, so you cannot be tracked across days or across websites. We only see aggregated figures such as visit counts, country and device type."],
       ["My list", "Programmes and scholarships you save to \"My list\" are stored only in your browser on your device. The list link you copy only holds programme numbers and is not sent to us. You can delete it by removing items or clearing your browser data."],
       ["Monthly newsletter", "If you subscribe, we keep only your email address, to send you the newsletter. The legal basis is your consent, and your subscription only starts after you click the link in the confirmation email we send you. We use Kit (kit.com) to manage the list and send emails, and the data may be stored on its servers outside the United Kingdom. Every email has an unsubscribe link, and we stop emailing you when you unsubscribe. We never sell or give your email to anyone else."],
       ["Contact form", "If you write to us through the Contact page, we receive the name, email and message you enter through the Web3Forms service, and use them only to reply to you."],
