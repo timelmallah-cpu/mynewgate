@@ -61,6 +61,17 @@ export function VocationalCountry({ code, lang }) {
           {v.check ? s.toCheck : ""}
         </p>
       </section>
+      {v.find && (
+        <section className="country-sec">
+          <h2>{s.findTitle}</h2>
+          <p>{v.find[lang]}</p>
+          <div className="cmp-actions">
+            <a className="btn gold" href={v.findUrl} target="_blank" rel="noopener noreferrer">{s.findBtn} ↗</a>
+            {v.second?.href && <Link className="btn ghost small" href={`${t.base}${v.second.href}`}>{v.second[lang]}</Link>}
+            {v.second?.url && <a className="btn ghost small" href={v.second.url} target="_blank" rel="noopener noreferrer">{v.second[lang]} ↗</a>}
+          </div>
+        </section>
+      )}
       <div className="notice">{s.note}</div>
     </>
   );
