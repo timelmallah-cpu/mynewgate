@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
@@ -21,6 +21,13 @@ export default function Quiz({ lang }) {
     if (hasC || hasL) setA((x) => ({ ...x, ...(hasC ? { countries: [c] } : {}), ...(hasL ? { level: l } : {}) }));
     if (hasL) setStep(hasC ? 2 : 1);
   }, []);
+  // Each new question (and the results) starts at the top of the page, not where the last list ended.
+  const firstStep = useRef(true);
+  useEffect(() => {
+    if (firstStep.current) { firstStep.current = false; return; }
+    const smooth = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: smooth ? "smooth" : "auto" });
+  }, [step]);
   const e = ED[lang];
   const ba = a.level === "bachelor";
   const phd = a.level === "doctorate"; // doctoral study in our countries is tuition-free and ~4 years: no budget or length step
