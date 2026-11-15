@@ -723,3 +723,16 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .letter-check { list-style: none; padding: 0; }
 .letter-check li { margin: 6px 0; }
 .letter-check input { margin-inline-end: 8px; }
+
+/* Legalisation guide */
+.legal-apostille { margin: 18px 0; }
+.legal-steps { padding-inline-start: 22px; }
+.legal-steps li { margin: 10px 0; }
+.legal-steps strong { display: block; color: var(--navy); }
+.legal-table { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin: 10px 0; }
+.legal-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 12px; padding: 10px 14px; border-top: 1px solid var(--line); }
+.legal-row:first-child { border-top: 0; }
+.legal-doc { font-weight: 600; color: var(--navy); }
+.legal-countries { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.legal-countries .card { margin: 0; }
+@media (max-width: 560px) { .legal-row { grid-template-columns: 1fr; gap: 2px; } }

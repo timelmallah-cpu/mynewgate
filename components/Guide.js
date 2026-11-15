@@ -55,6 +55,7 @@ export default function Guide({ lang }) {
         <h2>{s.docsTitle}</h2>
         <p>{s.docsLead}</p>
         <DocsChecklist lang={lang} countries={COUNTRY_IDS.map((c) => [c, t.countries[c]])} />
+        <p className="note"><Link href={`${t.base}/legalisation`}>{lang === "ar" ? "إزاي تصدق وتترجم أوراقك المصرية خطوة بخطوة" : "How to legalise and translate your Egyptian documents, step by step"}</Link></p>
       </section>
 
       <Link className="sch-promo" href={`${t.base}/compare`}>
