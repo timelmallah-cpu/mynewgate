@@ -539,3 +539,18 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .cc-details { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
 .cc-card h3 { margin-top: 0; }
 .cc-card h3 a { color: var(--navy); }
+
+/* English score checker */
+.ec-form { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); align-items: end; }
+.ec-tests { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1 / -1; }
+.ec-tests legend { font-weight: 700; margin-bottom: 6px; padding: 0; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--line); cursor: pointer; font-weight: 600; color: var(--navy); }
+.chip.on { background: var(--navy); color: #fff; box-shadow: none; }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip:focus-within { outline: 3px solid var(--gold); outline-offset: 2px; }
+.ec-field { display: grid; gap: 6px; font-weight: 600; }
+.ec-field input, .ec-field select { font: inherit; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; width: 100%; box-sizing: border-box; }
+.ec-res h2 { margin-top: 24px; }
+.ec-list { margin-top: 8px; }
+.ec-list small { display: block; }
+.ec-res details { margin-top: 12px; }

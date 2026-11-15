@@ -194,13 +194,23 @@ writeFileSync("lib/deadlines.json", JSON.stringify(out.map((p) => ({
 }))));
 console.log(`deadlines.json: ${out.filter((p) => deadlineDates(p.en.deadline).length).length} programmes with a parsed deadline date`);
 
+// English test minimums parsed from the English requirement text (first number after the test name = overall score).
+function englishReq(t) {
+  if (!t || /^Not published/.test(t)) return { il: null, tf: null, cf: null, ck: false };
+  const i = t.match(/IELTS[^0-9]{0,40}?(\d(?:\.\d)?)/i);
+  const f = t.match(/TOEFL[^0-9]{0,30}?(\d{2,3})\b/i);
+  const c = t.match(/\b(B1|B2|C1|C2)(?:\.\d)?\b/);
+  const il = i ? Number(i[1]) : null;
+  return { il: il >= 4 && il <= 9 ? il : null, tf: f && +f[1] >= 30 && +f[1] <= 120 ? +f[1] : null, cf: c ? c[1] : null, ck: /to verify|unofficial/i.test(t) };
+}
+
 // Slim per-language data for the comparison page, fetched by the browser only when it is opened.
 import { mkdirSync } from "node:fs";
 mkdirSync("public/data", { recursive: true });
 for (const lang of ["ar", "en"]) {
   writeFileSync(`public/data/compare-${lang}.json`, JSON.stringify(out.map((p) => {
     const v = lang === "ar" ? p : { ...p, ...p.en };
-    return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly };
+    return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly, ...englishReq(p.en.english) };
   })));
 }
 console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's + ${out.filter((p) => p.level === "doctorate").length} doctoral, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);
