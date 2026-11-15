@@ -33,6 +33,7 @@ export default function Guide({ lang }) {
     <>
       <h1>{s.title}</h1>
       <p className="lead">{s.lead}</p>
+      <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "في كلمة مش فاهمها؟ شوف قاموس الكلمات الغريبة" : "A word you don't understand? See the glossary"}</Link></p>
       <nav className="guide-jump">
         <a href="#recognition">{s.recTitle}</a>
         <a href="#documents">{s.docsTitle}</a>

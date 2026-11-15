@@ -649,3 +649,15 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .hs-scam { border-inline-start: 5px solid #c0392b; }
 .hs-scam ul { padding-inline-start: 20px; display: grid; gap: 6px; }
 .hs-prov { margin: 0 0 10px; padding: 8px 12px; background: var(--soft, #f3f5f9); border-radius: 8px; }
+
+/* Glossary */
+.gl-search { margin-bottom: 18px; }
+.gl-search input { width: 100%; }
+.gl-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; margin: 0 0 22px; }
+.gl-item { margin: 0; }
+.gl-item dt { font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+.gl-item dd { margin: 6px 0 0; }
+.gl-item dd p { margin: 0 0 6px; }
+.gl-item:target { box-shadow: 0 0 0 3px var(--gold); }
+.gl-item dt { display: flex; flex-direction: column; gap: 2px; }
+.gl-item dt small { font-weight: 500; font-size: .85rem; display: block; }
