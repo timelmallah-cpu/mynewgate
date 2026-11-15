@@ -690,3 +690,9 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 @media (max-width: 480px) { .countries { grid-template-columns: repeat(4, max-content); gap: 8px 6px; font-size: .9rem; } .countries a { gap: 4px; padding: 2px; } .countries svg { width: 20px; height: auto; } }
 @media (max-width: 350px) { .countries { grid-template-columns: repeat(2, max-content); gap: 8px 16px; } }
 @media (max-width: 560px) { html[lang="en"] .countries { grid-template-columns: repeat(2, max-content); gap: 8px 24px; font-size: 1rem; } }
+
+.lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; margin: 16px 0; }
+.lang-card h3 { display: flex; align-items: center; gap: 8px; margin-top: 0; }
+.lang-card .details > div { grid-template-columns: 1fr; padding: 8px 0; }
+.lang-card .lang-count { color: var(--navy); font-weight: 600; }
+.lang-card a { overflow-wrap: anywhere; }
