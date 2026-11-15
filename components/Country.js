@@ -11,6 +11,7 @@ import { PostStudyFacts } from "./AfterGrad";
 import { PS_TEXT } from "../lib/postStudy";
 import { RecognitionFacts } from "./Guide";
 import { GUIDE_TEXT } from "../lib/guide";
+import { AUSB } from "../lib/ausbildung";
 
 const S = {
   ar: {
@@ -144,6 +145,13 @@ export default function Country({ code, lang }) {
         <PostStudyFacts code={code} lang={lang} />
         <Link className="btn ghost small" href={`${t.base}/after-graduation`}>{PS_TEXT[lang].compare}</Link>
       </section>
+
+      {code === "de" && (
+        <Link className="sch-promo" href={`${t.base}/ausbildung`}>
+          <span><b>{AUSB[lang].landingTitle}</b>{AUSB[lang].landingText}</span>
+          <span className="btn small">{AUSB[lang].landingBtn}</span>
+        </Link>
+      )}
 
       {sch.length > 0 && (
         <section className="country-sec prog-sch">

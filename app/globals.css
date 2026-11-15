@@ -461,3 +461,8 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .cmp-col dd { margin: 0; overflow-wrap: anywhere; }
 .cmp-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 @media (max-width: 760px) { .cmp-grid { grid-template-columns: minmax(0, 1fr); } }
+.ausb-pay { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 10px 0; }
+.ausb-pay .card { text-align: center; padding: 12px 8px; }
+.ausb-pay span { display: block; color: var(--muted); font-size: .9rem; }
+.ausb-pay b { font-family: var(--display); color: var(--navy); font-size: 1.25rem; }
+@media (max-width: 560px) { .ausb-pay { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

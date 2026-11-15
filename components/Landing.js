@@ -1,5 +1,6 @@
 import { PS_TEXT } from "../lib/postStudy";
 import { GUIDE_TEXT } from "../lib/guide";
+import { AUSB } from "../lib/ausbildung";
 import Link from "next/link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
@@ -44,6 +45,10 @@ export default function Landing({ lang }) {
       <Link className="sch-promo" href={`${t.base}/after-graduation`}>
         <span><b>{PS_TEXT[lang].landingTitle}</b>{PS_TEXT[lang].landingText}</span>
         <span className="btn small">{PS_TEXT[lang].landingBtn}</span>
+      </Link>
+      <Link className="sch-promo" href={`${t.base}/ausbildung`}>
+        <span><b>{AUSB[lang].landingTitle}</b>{AUSB[lang].landingText}</span>
+        <span className="btn small">{AUSB[lang].landingBtn}</span>
       </Link>
       <Link className="sch-promo" href={`${t.base}/scholarships`}>
         <span>
