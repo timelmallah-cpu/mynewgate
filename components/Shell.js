@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import LangSwitch from "./LangSwitch";
+import PwaRegister from "./PwaRegister";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
@@ -41,9 +42,10 @@ export default function Shell({ lang, children }) {
         <main>{children}</main>
         <footer className="foot">
           <p>{t.footer}</p>
-          <p><Link href={`${t.base}/tools`}>{t.base ? "Tools" : "الأدوات"}</Link> · <Link href={`${t.base}/study`}>{t.base ? "Study guides" : "أدلة الدراسة"}</Link> · <Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/guide`}>{t.base ? "Application guide" : "دليل التقديم"}</Link> · <Link href={`${t.base}/compare`}>{t.base ? "Compare" : "قارن البرامج"}</Link> · <Link href={`${t.base}/countries`}>{t.base ? "Compare countries" : "قارن الدول"}</Link> · <Link href={`${t.base}/english-check`}>{t.base ? "English score check" : "هل درجتك تكفي؟"}</Link> · <Link href={`${t.base}/planner`}>{t.base ? "Plan your dates" : "خطط مواعيدك"}</Link> · <Link href={`${t.base}/housing`}>{t.base ? "Housing guide" : "دليل السكن"}</Link> · <Link href={`${t.base}/glossary`}>{t.base ? "Glossary" : "قاموس الكلمات"}</Link> · <Link href={`${t.base}/after-graduation`}>{t.base ? "After graduation" : "بعد التخرج"}</Link> · <Link href={`${t.base}/vocational`}>{t.base ? "Vocational training" : "التدريب المهني"}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link> · <Link href={`${t.base}/privacy`}>{t.base ? "Privacy" : "الخصوصية"}</Link></p>
+          <p><Link href={`${t.base}/tools`}>{t.base ? "Tools" : "الأدوات"}</Link> · <Link href={`${t.base}/study`}>{t.base ? "Study guides" : "أدلة الدراسة"}</Link> · <Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/guide`}>{t.base ? "Application guide" : "دليل التقديم"}</Link> · <Link href={`${t.base}/compare`}>{t.base ? "Compare" : "قارن البرامج"}</Link> · <Link href={`${t.base}/countries`}>{t.base ? "Compare countries" : "قارن الدول"}</Link> · <Link href={`${t.base}/english-check`}>{t.base ? "English score check" : "هل درجتك تكفي؟"}</Link> · <Link href={`${t.base}/planner`}>{t.base ? "Plan your dates" : "خطط مواعيدك"}</Link> · <Link href={`${t.base}/housing`}>{t.base ? "Housing guide" : "دليل السكن"}</Link> · <Link href={`${t.base}/glossary`}>{t.base ? "Glossary" : "قاموس الكلمات"}</Link> · <Link href={`${t.base}/install`}>{t.base ? "Install the app" : "ثبّت التطبيق"}</Link> · <Link href={`${t.base}/after-graduation`}>{t.base ? "After graduation" : "بعد التخرج"}</Link> · <Link href={`${t.base}/vocational`}>{t.base ? "Vocational training" : "التدريب المهني"}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link> · <Link href={`${t.base}/privacy`}>{t.base ? "Privacy" : "الخصوصية"}</Link></p>
         </footer>
         <Analytics />
+        <PwaRegister />
       </body>
     </html>
   );

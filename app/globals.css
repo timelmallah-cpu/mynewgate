@@ -661,3 +661,4 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .gl-item:target { box-shadow: 0 0 0 3px var(--gold); }
 .gl-item dt { display: flex; flex-direction: column; gap: 2px; }
 .gl-item dt small { font-weight: 500; font-size: .85rem; display: block; }
+.in-steps { padding-inline-start: 22px; display: grid; gap: 8px; margin: 0 0 8px; }
