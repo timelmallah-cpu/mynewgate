@@ -1,10 +1,10 @@
 // MyNewGate service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
-const V = "mng-v2";
+const V = "mng-v3";
 const OFFLINE = "/offline.html";
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, "/", "/icon-192.png"])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, "/", "/icon-192.png?v=2"])).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", (e) => {
@@ -17,7 +17,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin || url.pathname.startsWith("/api/") || url.pathname.startsWith("/_vercel/")) return;
 
-  if (url.pathname.startsWith("/_next/static/") || /\.(png|jpg|svg|woff2?)$/.test(url.pathname)) {
+  if (url.pathname.startsWith("/_next/static/") || (/\.(png|jpg|svg|woff2?)$/.test(url.pathname) && !/icon/.test(url.pathname))) {
     e.respondWith(caches.match(req).then((hit) => hit || fetch(req).then((res) => {
       if (res.ok) { const copy = res.clone(); caches.open(V).then((c) => c.put(req, copy)); }
       return res;
