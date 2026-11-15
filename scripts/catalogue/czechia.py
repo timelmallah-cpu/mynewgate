@@ -67,7 +67,24 @@ add(BA, "med", "General Medicine (in English)", "Charles University, Faculty of 
     ("400,000 كرونة تشيكية سنوياً", "CZK 400,000 per year"), NP, NP, NP, ("امتحان قبول", "Entrance exam"), NOSTR, NP, NP,
     "https://www.lfhk.cuni.cz/LFHKEN-179.html", "https://www.lfhk.cuni.cz/LFHKEN-179.html")
 
+# ---------- Dentistry and Pharmacy (in English), Charles University in Hradec Králové, added 2026-11-15 ----------
+add(BA, "dent", "Dentistry (in English)", "Charles University, Faculty of Medicine in Hradec Králové", "Hradec Kralove",
+    ("طب أسنان (MDDr.) - ماجستير متكامل", "Dentistry (MDDr.) - integrated Master's"), ("5 سنوات", "5 years"),
+    ("410,000 كرونة تشيكية سنوياً (2026/2027)", "CZK 410,000 per year (2026/2027)"), NP, NP, NP,
+    ("امتحان قبول؛ البرنامج متاح بالتشيكية مجاناً بقبول منفصل", "Entrance exam; also offered in Czech free of charge with a separate admission"), NOSTR, NP, NP,
+    "https://www.lfhk.cuni.cz/LFHKEN-180.html", "https://www.lfhk.cuni.cz/LFHKEN-182.html")
+add(BA, "pharm", "Pharmacy (in English)", "Charles University, Faculty of Pharmacy in Hradec Králové", "Hradec Kralove",
+    ("صيدلة - ماجستير متكامل", "Pharmacy - integrated Master's"), ("5 سنوات", "5 years"),
+    ("7,900 يورو سنوياً", "€7,900 per year"), NP,
+    ("لدفعة 2026/2027 كان آخر موعد 30 أبريل 2026، مع جولة إضافية حتى 1 سبتمبر 2026 (مواعيد 2027 للتحقق)", "For 2026/2027 the deadline was 30 April 2026, with an additional round until 1 September 2026 (2027 dates to verify)"),
+    NP, ("الرسوم تشمل دروساً اختيارية في التشيكية", "The fee includes optional Czech language classes"), NOSTR,
+    ("حوالي 3,500 يورو سنوياً غير الرسوم حسب الكلية (سكن ومواصلات ومعيشة وكتب)", "About €3,500 a year excluding tuition per the faculty (housing, transport, living, books)"),
+    ("سكن الجامعة في هراديتس كرالوفيه 150 يورو شهرياً للسرير (اختياري)", "University halls in Hradec Králové: €150 per bed per month (optional)"),
+    "https://www.faf.cuni.cz/en/admission/undergraduate/pharmacy/", "https://is.cuni.cz/studium/eng/prijimacky/index.php?do=info_fakulta&fak=11160")
+
 write("التشيك", "Czechia", "czechia", BA, level="bachelor")
+if os.environ.get("BA_ONLY"):  # bachelor rows only: keep master ids in all_programmes.csv unchanged
+    sys.exit()
 write("التشيك", "Czechia", "czechia", MA, level="master")
 
 ap = os.path.join(ROOT, "data", "programmes", "all_programmes.csv")

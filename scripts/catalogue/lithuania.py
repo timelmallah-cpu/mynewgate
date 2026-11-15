@@ -54,5 +54,17 @@ add(MA, "ph", "Lifestyle Medicine", LSMU, "Kaunas", ("ماجستير العلو�
     ("رسوم تسجيل 250 يورو بعد القبول، ودفعة مقدمة لغير الأوروبيين تساوي الرسوم السنوية كاملة", "€250 registration fee after acceptance, and a non-EU deposit equal to the full yearly fee"), NP, NP, NP, LSMU_HOW,
     "https://lsmu.lt/en/admission/tuition-fees/", "https://lsmu.lt/en/admission/admission-process/")
 
+# ---------- LSMU: Odontology and Pharmacy (integrated studies in English), added 2026-11-15 ----------
+LSMU = "Lithuanian University of Health Sciences (LSMU)"
+LSMU_ADM = ("رسوم طلب 150 يورو ورسوم تسجيل 250 يورو (غير مستردة)؛ عربون لغير الأوروبيين = نصف رسوم السنة", "€150 application fee and €250 registration fee (non-refundable); non-EU deposit = half the yearly fee")
+LSMU_OTHER = ("امتحان قبول إلزامي", "Compulsory entrance exam")
+LSMU_HOW = ("التقديم الإلكتروني على بوابة الجامعة الدولية", "Online on the university's international application portal")
+add(BA, "dent", "Odontology (integrated studies)", LSMU, "Kaunas", ("دراسة متكاملة: ماجستير في طب الأسنان", "Integrated studies: Master's in Odontology"), ("5 سنوات (300 ساعة معتمدة)", "5 years (300 credits)"),
+    ("13,600 يورو سنوياً للسنوات 1-3، و14,100 للسنتين 4-5 (2026/2027)", "€13,600 per year for years 1-3 and €14,100 for years 4-5 (2026/2027)"), LSMU_ADM, NP, NP, LSMU_OTHER, LSMU_HOW,
+    "https://lsmu.lt/en/admission/integrated-studies/odontology/", "https://lsmu.lt/en/admission/admission-process/")
+add(BA, "pharm", "Pharmacy (integrated studies)", LSMU, "Kaunas", ("دراسة متكاملة: ماجستير في علوم الصحة، صيدلي", "Integrated studies: MSc in Health Sciences, Pharmacist"), ("5 سنوات (300 ساعة معتمدة)", "5 years (300 credits)"),
+    ("5,600 يورو سنوياً للسنوات 1-3، و5,700 للسنتين 4-5 (2026/2027)", "€5,600 per year for years 1-3 and €5,700 for years 4-5 (2026/2027)"), LSMU_ADM, NP, ("إجادة الإنجليزية مطلوبة", "English proficiency required"), LSMU_OTHER, LSMU_HOW,
+    "https://lsmu.lt/en/admission/integrated-studies/pharmacy/", "https://lsmu.lt/en/admission/admission-process/")
+
 write("ليتوانيا", "Lithuania", "lithuania", BA, level="bachelor")
 write("ليتوانيا", "Lithuania", "lithuania", MA, level="master")

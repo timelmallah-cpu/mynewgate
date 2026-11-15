@@ -64,5 +64,13 @@ add(BA, "bus", "International Business and Start-up Entrepreneurship", RSU, "Rig
 for f, n, fee in [("ph", "Health Management (MSc)", "4,500"), ("bus", "Digital Strategy and Artificial Intelligence Management (MSc)", "5,000"), ("ds", "Biostatistics (MSc)", "5,000")]:
     add(MA, f, n, RSU, "Riga", ("ماجستير العلوم (MSc)", "Master of Science (MSc)"), MSC2, Y(fee), RSU_ADM, RSU_DL, NP, NP, RSU_HOW, RSU_FEES, RSU_WHEN)
 
+# ---------- Rīga Stradiņš University: Dentistry in English, added 2026-11-15 ----------
+add(BA, "dent", "Dentistry (in English)", "Rīga Stradiņš University (RSU)", "Riga", ("طبيب أسنان (DDS)", "Doctor of Dental Surgery (DDS)"), ("5 سنوات (300 ساعة معتمدة)", "5 years (300 credits)"),
+    Y("15,500"), ("رسوم طلب 100 يورو، ورسوم إدارية للتسجيل 1,800 يورو لطب الأسنان (غير مستردة)", "€100 application fee and a €1,800 registration administration fee for Dentistry (non-refundable)"), NP,
+    ("مستوى B2 في الإنجليزية على الأقل", "At least B2 English"),
+    ("32 مقعداً بالرسوم؛ الرسوم تشمل مواد طب الأسنان؛ تُدفع رسوم الفصل الأول خلال أسبوعين من عرض القبول", "32 fee-paying places; the fee includes dental materials; the first semester's fee is due within 2 weeks of the offer"),
+    ("التقديم الإلكتروني ثم مسابقة قبول", "Online application, then an admission competition"),
+    "https://www.rsu.lv/en/study-programme/dentistry", "https://www.rsu.lv/en/study-here/admissions/tuition-fees-studies-english")
+
 write("لاتفيا", "Latvia", "latvia", BA, level="bachelor")
 write("لاتفيا", "Latvia", "latvia", MA, level="master")

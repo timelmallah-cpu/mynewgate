@@ -143,4 +143,34 @@ add("med", "General Medicine (MD)", PTE, "Pécs", MD, MED,
     ("التقديم الإلكتروني على موقع القبول في كلية الطب", "Online on the medical school admissions site"), NP, NP,
     "https://admissions.medschool.pte.hu/en/menupont/65", "https://admissions.medschool.pte.hu/en/menupont/77")
 
+# ---------- Dentistry and Pharmacy in English, added 2026-11-15 ----------
+DMD = ("طبيب أسنان (DMD) - برنامج متكامل", "Doctor of Dental Medicine (DMD) - integrated programme")
+PHD_ = ("صيدلي (PharmD) - برنامج متكامل", "Doctor of Pharmacy (PharmD) - integrated programme")
+S10 = ("10 فصول دراسية (5 سنوات)", "10 semesters (5 years)")
+SU_HOW = ("التقديم الإلكتروني، ثم امتحان كتابي أونلاين ومقابلة شفوية", "Online application, then online written tests and an oral interview")
+SU_ADM = ("رسوم إجراءات القبول 250 يورو؛ عربون 2,000 يورو يُخصم من رسوم الفصل الأول؛ رسوم تسجيل 230 يورو", "€250 admission procedure fee; €2,000 deposit deducted from the first semester's fee; €230 enrolment fee")
+SU_DL = ("آخر موعد للتقديم 31 مايو 2027 (دفعة سبتمبر 2027)", "Application deadline 31 May 2027 (September 2027 intake)")
+SU_EN = ("امتحان القبول يشمل الإنجليزية والإنجليزية الطبية", "The entrance exam includes English and Biomedical English")
+add("dent", "Dentistry (DMD)", "Semmelweis University", "Budapest", DMD, S10, ("9,340 يورو للفصل (دفعة سبتمبر 2027)", "€9,340 per semester (September 2027 intake)"),
+    SU_ADM, SU_DL, SU_EN, ("امتحان في الأحياء والكيمياء؛ رسوم مواد إضافية: 1,180 يورو للفصل في السنة الثانية و2,350 يورو للفصل في السنوات 3-5", "Exam in Biology and Chemistry; extra material fee: €1,180 per semester in year 2 and €2,350 per semester in years 3-5"),
+    SU_HOW, LIV_BUD, NP, "https://semmelweis.hu/admission/programs/dentistry/", "https://semmelweis.hu/admission/programs/dentistry/")
+add("pharm", "Pharmaceutical Sciences", "Semmelweis University", "Budapest", PHD_, S10, ("5,820 يورو للفصل (دفعة سبتمبر 2027)", "€5,820 per semester (September 2027 intake)"),
+    SU_ADM, SU_DL, SU_EN, ("امتحان في الأحياء والكيمياء؛ رسوم مواد إضافية: 370 يورو للفصل في السنة الثانية و740 يورو للفصل في السنوات 3-5", "Exam in Biology and Chemistry; extra material fee: €370 per semester in year 2 and €740 per semester in years 3-5"),
+    SU_HOW, LIV_BUD, NP, "https://semmelweis.hu/admission/programs/pharmaceutical-sciences/", "https://semmelweis.hu/admission/programs/pharmaceutical-sciences/")
+add("dent", "Dentistry (DMD)", DEB, "Debrecen", DMD, S10, USDY("15,770", "17,500"), DEB_ADM, DEB_DL, ("مستوى B2 في الإنجليزية مطلوب", "B2 English required"),
+    ("الرسوم تشمل تكاليف المواد؛ امتحان كتابي وشفوي في الأحياء والفيزياء أو الكيمياء، أو إتمام الدورة الطبية التأسيسية في الجامعة", "The fee includes all material costs; written and oral exam in Biology and Physics or Chemistry, or completing the university's Basic Medicine Course"),
+    DEB_HOW, LIV_DEB, NP, "https://edu.unideb.hu/p/dentistry-full-time-graduate-program", DEB_APPLY)
+add("pharm", "Pharmacy (PharmD)", DEB, "Debrecen", PHD_, S10, USDY("7,210", "8,000"), DEB_ADM, DEB_DL, DEB_EN,
+    ("امتحان كتابي وشفوي في الأحياء والفيزياء أو الكيمياء، أو إتمام الدورة الطبية التأسيسية في الجامعة؛ البرامج تحت 10,000 دولار تُدفع رسوم سنة كاملة وتأمين قبل أوراق التأشيرة", "Written and oral exam in Biology and Physics or Chemistry, or completing the university's Basic Medicine Course; for programmes under $10,000 the full year's fee and a deposit are paid before the visa documents"),
+    DEB_HOW, LIV_DEB, NP, "https://edu.unideb.hu/page.php?id=52", DEB_APPLY)
+add("dent", "Dental Medicine (DMD)", SZ, "Szeged", DMD, S10, SEM("8,000"), NP, NP, NP, ("من جدول رسوم الجامعة الدولي 2026/2027", "From the university's 2026/2027 international fee table"), NP, NP, NP, SZ_FEES, SZ_FEES)
+add("pharm", "Pharmacy (PharmD)", SZ, "Szeged", PHD_, S10, SEM("5,420"), NP, NP, NP, ("من جدول رسوم الجامعة الدولي 2026/2027", "From the university's 2026/2027 international fee table"), NP, NP, NP, SZ_FEES, SZ_FEES)
+add("dent", "Dentistry in English", PTE, "Pécs", DMD, S10,
+    USDY("15,630", "17,350", " (السنة الدراسية غير مذكورة في الجدول - للتحقق)"),
+    ("رسوم امتحان القبول 250 دولار، ورسوم طلب حوالي 200 دولار (للتحقق)", "$250 entrance exam fee and an application fee of about $200 (to verify)"), NP, NP,
+    ("تُدفع 9,300 دولار في الفصل الأول و8,050 في الثاني", "$9,300 is paid in the first semester and $8,050 in the second"), NP, NP, NP, PTE_FEES, PTE_FEES)
+add("pharm", "Pharmacy in English", PTE, "Pécs", PHD_, S10,
+    ("حوالي 8,400 يورو سنوياً (4,400 يورو في الخريف و4,000 في الربيع؛ السنة الدراسية غير مذكورة في الجدول - للتحقق)", "About €8,400 per year (€4,400 in autumn and €4,000 in spring; the academic year is not stated in the table - to verify)"),
+    ("رسوم امتحان القبول 250 دولار", "$250 entrance exam fee"), NP, NP, PTE_OTHER, NP, NP, NP, PTE_FEES, PTE_FEES)
+
 write("المجر", "Hungary", "hungary", R, level="bachelor")

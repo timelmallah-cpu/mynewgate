@@ -8,7 +8,7 @@ STATUS = ("من موقع الجامعة الرسمي - يلزم التأكد ق�
 MSC2 = ("سنتان (120 ساعة معتمدة)", "2 years (120 credits)")
 SEM3 = ("3 فصول دراسية (90 ساعة معتمدة)", "3 semesters (90 credits)")
 SEM4 = ("4 فصول دراسية (سنتان)", "4 semesters (2 years)")
-FIELDAR = {"cs": "علوم الحاسب", "ds": "علوم البيانات", "bus": "إدارة الأعمال", "eng": "الهندسة", "ph": "الصحة العامة", "med": "الطب"}
+FIELDAR = {"cs": "علوم الحاسب", "ds": "علوم البيانات", "bus": "إدارة الأعمال", "eng": "الهندسة", "ph": "الصحة العامة", "med": "الطب", "dent": "طب الأسنان", "pharm": "الصيدلة"}
 REVIEWED = "2026-11-14"
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

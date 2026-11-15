@@ -43,7 +43,7 @@ for (const c of Object.keys(PHD_CODE)) {
 const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at" };
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
-  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine",
+  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy",
 };
 
 // Years of study from the Arabic duration text.

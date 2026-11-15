@@ -131,4 +131,14 @@ add("cs", "Computer Science (in English)", "University of Lodz", "Łódź", BSC,
     ("لدفعة 2026/2027: التسجيل من 7 مايو إلى 13 يوليو 2026 (2027 للتحقق)", "For 2026/2027: registration from 7 May to 13 July 2026 (2027 to verify)"), NP, NP, IRK,
     "https://rekrutacja.uni.lodz.pl/en-gb/offer/WYZSZE2026C/programme/DLIa_11/criteria/preview/turn/1", "https://rekrutacja.uni.lodz.pl/en-gb/offer/WYZSZE2026C/programme/DLIa_11/criteria/preview/turn/1")
 
+# ---------- Dentistry and Pharmacy in English, added 2026-11-15 ----------
+S10 = ("10 فصول دراسية (5 سنوات)", "10 semesters (5 years)")
+add("dent", "Dentistry in English (DMD)", "Wroclaw Medical University", "Wrocław", ("طبيب أسنان (lekarz dentysta) - ماجستير متكامل", "Dentist (lekarz dentysta) - long-cycle master's"), S10,
+    ("حوالي 17,890 يورو سنوياً (78,700 زلوتي سنوياً لعام 2026/2027؛ التحويل تقريبي)", "About €17,890 per year (PLN 78,700 per year for 2026/2027; approximate conversion)"),
+    NP, NP, NP, ("يمكن الدفع على قسطين أو أربعة أقساط بمبلغ أعلى قليلاً", "You can pay in two or four instalments for a slightly higher total"), IRK,
+    "https://admission.umw.edu.pl/tuition-fee/", "https://admission.umw.edu.pl/tuition-fee/")
+add("pharm", "Pharmacy, English Division", "Medical University of Gdańsk", "Gdańsk", ("صيدلي (magister farmacji) - ماجستير متكامل", "Pharmacist (magister farmacji) - long-cycle master's"), NP,
+    PLNS("4,740", "20,850"), NP, NP, NP, ("من قرار رئيس الجامعة رقم 41/2026 لرسوم 2026/2027", "From Rector's Order No. 41/2026 on 2026/2027 fees"), IRK,
+    "https://admission.mug.edu.pl/attachment/attachment/115883/ENG_z4126_oplaty_za_ksztalcenie_w_roku_akademickim_26_27.pdf", "https://admission.mug.edu.pl/1453.html")
+
 write("بولندا", "Poland", "poland", R, level="bachelor")
