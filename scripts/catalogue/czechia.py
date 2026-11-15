@@ -37,7 +37,7 @@ add(MA, "cs", "Computer Systems, Communication, and Security", "Masaryk Universi
     ("رسوم تقديم (القيمة على صفحة الكلية)", "Application fee (amount on the faculty page)"),
     ("مواعيد ثابتة كل سنة حسب صفحة كلية المعلوماتية: دفعة سبتمبر التقديم من 15 ديسمبر لحد 15 أبريل، ودفعة فبراير من 15 يونيو لحد 15 أكتوبر", "For the September 2026 intake the deadline was 15 April 2026, and for February 2027 it was 15 October 2026 (Study in Czechia portal); 2027 dates not published yet"),
     MU_EN, NP, ("التقديم أونلاين على نظام جامعة ماساريك", "Apply online through Masaryk University's system"), NP, NP, MU_SRC,
-    "https://portal.studyin.cz/en/study-programme/computer-systems--communication--and-security-ft-master-degree-fi-muni/information-and-communication-technologies--icts-/20251223053549-hN1",
+    "https://muni.cz/en/bachelors-and-masters-study-programmes/study-at-faculty-of-informatics",
     ("صفحة البرنامج على بوابة Study in Czechia", "Programme page on the Study in Czechia portal"))
 add(MA, "ds", "Artificial Intelligence and Data Processing", "Masaryk University", "Brno", MSC, ("سنتان حسب بوابة Studyportals (للتحقق)", "2 years per Studyportals (to verify)"), MU_FEE,
     NP, NP, MU_EN, NP, ("التقديم أونلاين على نظام جامعة ماساريك", "Apply online through Masaryk University's system"), NP, NP, MU_SRC, "https://www.muni.cz/en/admissions")

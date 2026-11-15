@@ -11,8 +11,9 @@ const files = [
 const where = new Map();
 for (const f of files) {
   const text = readFileSync(f, "utf8");
-  for (const m of text.matchAll(/https?:\/\/[^\s"'`<>)\],]+/g)) {
-    let u = m[0].replace(/[.;:]+$/, "");
+  // URLs sit inside quotes (JS/JSON) or CSV fields; Commons file names can contain commas and brackets.
+  for (const m of text.matchAll(/["'`,]\s*(https?:\/\/[^"'`\s<>]+?)(?=["'`]|,(?!_)|\s|$)/gm)) {
+    let u = m[1].replace(/[.;:]+$/, "");
     if (/localhost|example\.com|\$\{/.test(u)) continue;
     if (!where.has(u)) where.set(u, new Set());
     where.get(u).add(f);
