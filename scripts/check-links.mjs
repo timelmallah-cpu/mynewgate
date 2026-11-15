@@ -54,4 +54,4 @@ const md = [
 ].join("\n");
 writeFileSync("link-report.md", md);
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + "\n");
-console.log(md.split("\n").slice(0, 5).join("\n"));
+console.log(md);
