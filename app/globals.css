@@ -707,3 +707,9 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .inst-adv h2 { margin-top: 0; }
 .inst-adv a[dir="ltr"] { word-break: normal; white-space: nowrap; display: inline-block; }
 h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; }
+
+.foot-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px 24px; margin-top: 18px; }
+.foot-cols h2 { font-size: .95rem; margin: 0 0 8px; color: var(--navy); }
+.foot-cols ul { list-style: none; margin: 0; padding: 0; }
+.foot-cols li { margin: 0 0 6px; font-size: .9rem; }
+@media (max-width: 760px) { .foot-cols { grid-template-columns: 1fr 1fr; } }

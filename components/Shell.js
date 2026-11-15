@@ -22,6 +22,27 @@ function Mark() {
 
 // Root <html> for one language. Each language has its own root layout so
 // lang/dir are correct in the server-rendered HTML.
+// Footer links, grouped so the list stays readable on phones.
+const FOOT_GROUPS = [
+  { ar: "ابحث وقارن", en: "Search and compare", links: [
+    ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/study", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
+    ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/my-list", "قائمتي", "My list"],
+  ] },
+  { ar: "أدوات", en: "Tools", links: [
+    ["/english-check", "هل درجتك تكفي؟", "English score check"], ["/without-ielts", "من غير IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
+    ["/institutes", "معاهد اللغة", "Language institutes"], ["/gpa", "حوّل معدلك للألماني", "German grade converter"], ["/planner", "خطط مواعيدك", "Plan your dates"],
+    ["/tools", "كل الأدوات", "All tools"],
+  ] },
+  { ar: "أدلة", en: "Guides", links: [
+    ["/guide", "دليل التقديم", "Application guide"], ["/visa", "التأشيرة", "Student visa"], ["/school-certificate", "شهادة الثانوية", "School certificate"],
+    ["/housing", "دليل السكن", "Housing guide"], ["/after-graduation", "بعد التخرج", "After graduation"], ["/vocational", "التدريب المهني", "Vocational training"],
+    ["/glossary", "قاموس الكلمات", "Glossary"],
+  ] },
+  { ar: "عن الموقع", en: "About", links: [
+    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "اعلن معانا", "Advertise"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
+  ] },
+];
+
 export default function Shell({ lang, children }) {
   const t = T[lang];
   return (
@@ -42,7 +63,18 @@ export default function Shell({ lang, children }) {
         <main>{children}</main>
         <footer className="foot">
           <p>{t.footer}</p>
-          <p><Link href={`${t.base}/tools`}>{t.base ? "Tools" : "الأدوات"}</Link> · <Link href={`${t.base}/study`}>{t.base ? "Study guides" : "أدلة الدراسة"}</Link> · <Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/guide`}>{t.base ? "Application guide" : "دليل التقديم"}</Link> · <Link href={`${t.base}/compare`}>{t.base ? "Compare" : "قارن البرامج"}</Link> · <Link href={`${t.base}/countries`}>{t.base ? "Compare countries" : "قارن الدول"}</Link> · <Link href={`${t.base}/english-check`}>{t.base ? "English score check" : "هل درجتك تكفي؟"}</Link> · <Link href={`${t.base}/planner`}>{t.base ? "Plan your dates" : "خطط مواعيدك"}</Link> · <Link href={`${t.base}/housing`}>{t.base ? "Housing guide" : "دليل السكن"}</Link> · <Link href={`${t.base}/glossary`}>{t.base ? "Glossary" : "قاموس الكلمات"}</Link> · <Link href={`${t.base}/gpa`}>{t.base ? "German grade converter" : "حوّل معدلك للألماني"}</Link> · <Link href={`${t.base}/without-ielts`}>{t.base ? "Without IELTS" : "من غير IELTS"}</Link> · <Link href={`${t.base}/language`}>{t.base ? "Language & tests" : "اللغة والاختبارات"}</Link> · <Link href={`${t.base}/institutes`}>{t.base ? "Language institutes" : "معاهد اللغة"}</Link> · <Link href={`${t.base}/install`}>{t.base ? "Install the app" : "ثبّت التطبيق"}</Link> · <Link href={`${t.base}/after-graduation`}>{t.base ? "After graduation" : "بعد التخرج"}</Link> · <Link href={`${t.base}/vocational`}>{t.base ? "Vocational training" : "التدريب المهني"}</Link> · <Link href={`${t.base}/advertise`}>{t.base ? "Advertise" : "اعلن معانا"}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link> · <Link href={`${t.base}/privacy`}>{t.base ? "Privacy" : "الخصوصية"}</Link></p>
+          <nav className="foot-cols" aria-label={t.base ? "Site links" : "روابط الموقع"}>
+            {FOOT_GROUPS.map((g) => (
+              <div key={g.ar}>
+                <h2>{t.base ? g.en : g.ar}</h2>
+                <ul>
+                  {g.links.map(([href, ar, en]) => (
+                    <li key={href}><Link href={`${t.base}${href}`}>{t.base ? en : ar}</Link></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
         </footer>
         <Analytics />
         <PwaRegister />
