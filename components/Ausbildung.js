@@ -2,6 +2,7 @@ import Link from "next/link";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { AUSB, AUSB_SRC } from "../lib/ausbildung";
+import { VOC_TEXT } from "../lib/vocational";
 
 const Src = ({ href, s }) => <p className="ps-src"><a href={href} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></p>;
 const Dl = ({ rows }) => (
@@ -13,6 +14,7 @@ export default function Ausbildung({ lang }) {
   const s = AUSB[lang];
   return (
     <>
+      <p className="crumb"><Link href={`${t.base}/vocational`}>{VOC_TEXT[lang].back}</Link></p>
       <h1><Flag code="de" size={30} /> {s.title}</h1>
       <p className="lead">{s.lead}</p>
 

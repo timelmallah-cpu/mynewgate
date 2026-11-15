@@ -503,3 +503,8 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 @media (prefers-reduced-motion: reduce) { .tile, .photo-strip img { transition: none; } }
 .photo-credits summary { cursor: pointer; }
 .photo-credits ul { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 2px; }
+.crumb { margin: 0 0 8px; font-size: .92rem; }
+.crumb a { color: var(--navy); }
+.crumb a::before { content: "← "; }
+[dir="rtl"] .crumb a::before { content: "→ "; }
+.sch-promo b .flag { vertical-align: -3px; }

@@ -19,13 +19,13 @@ const TILES = {
     ["sch", "/scholarships", "منح ممولة بالكامل", "تدفع الرسوم ومعها مبلغ للمعيشة، مع فلتر حسب جنسيتك."],
     ["guide", "/guide", "دليل التقديم", "معادلة شهادتك، وقائمة المستندات، ومقارنة البرامج."],
     ["after", "/after-graduation", "ماذا بعد التخرج؟", "مدة إقامة البحث عن عمل وشروطها في كل دولة."],
-    ["ausb", "/ausbildung", "التدريب المهني في ألمانيا", "تدريب مدفوع وشهادة مهنية (Ausbildung)."],
+    ["ausb", "/vocational", "التدريب المهني", "ألمانيا وإسبانيا وفنلندا: الشروط والتأشيرة لغير الأوروبيين."],
   ],
   en: [
     ["sch", "/scholarships", "Fully funded scholarships", "Tuition plus a living allowance, filtered by your nationality."],
     ["guide", "/guide", "Application guide", "Certificate recognition, document checklist and programme comparison."],
     ["after", "/after-graduation", "After graduation", "How long you can stay to look for work, country by country."],
-    ["ausb", "/ausbildung", "Vocational training in Germany", "Paid training and a vocational qualification (Ausbildung)."],
+    ["ausb", "/vocational", "Vocational training", "Germany, Spain and Finland: conditions and visas for non-EU applicants."],
   ],
 };
 
