@@ -14,6 +14,18 @@ export default function Assistant({ lang }) {
   const [left, setLeft] = useState(null);
   const endRef = useRef(null);
 
+  const setMsg = (i, patch) => setMsgs((m) => m.map((x, j) => (j === i ? { ...x, ...patch } : x)));
+  const feedback = (i, vote, report = false) => {
+    const m = msgs[i];
+    const question = msgs.slice(0, i).reverse().find((x) => x.role === "user")?.text || "";
+    fetch("/api/ask/feedback", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ vote, report, lang, ...(report ? { question, answer: m.text, sources: (m.sources || []).map((x) => x.url) } : {}) }),
+    }).catch(() => {});
+  };
+  const vote = (i, v) => { setMsg(i, { vote: v, fb: v === "down" ? "ask" : "done" }); feedback(i, v); };
+  const report = (i, yes) => { setMsg(i, { fb: yes ? "sent" : "done" }); if (yes) feedback(i, "down", true); };
+
   const send = async (text) => {
     const q = (text ?? input).trim();
     if (!q || busy) return;
@@ -53,6 +65,26 @@ export default function Assistant({ lang }) {
           <div key={i} className={`ask-msg ${m.role === "user" ? "me" : "bot"}`}>
             <span className="ask-who">{m.role === "user" ? s.you : s.bot}</span>
             <p dir="auto">{m.text}</p>
+            {m.role === "model" && (
+              <div className="ask-fb">
+                {!m.vote && (
+                  <>
+                    <span>{s.helpful}</span>
+                    <button type="button" onClick={() => vote(i, "up")} aria-label={s.up} title={s.up}>👍</button>
+                    <button type="button" onClick={() => vote(i, "down")} aria-label={s.down} title={s.down}>👎</button>
+                  </>
+                )}
+                {m.fb === "ask" && (
+                  <span className="ask-report">
+                    {s.reportAsk}{" "}
+                    <button type="button" className="linkish" onClick={() => report(i, true)}>{s.reportYes}</button>{" · "}
+                    <button type="button" className="linkish" onClick={() => report(i, false)}>{s.reportNo}</button>
+                  </span>
+                )}
+                {m.fb === "done" && <span>{s.thanks}</span>}
+                {m.fb === "sent" && <span>{s.reportDone}</span>}
+              </div>
+            )}
             {m.sources?.length > 0 && (
               <div className="ask-src">
                 <span>{s.sources}</span>

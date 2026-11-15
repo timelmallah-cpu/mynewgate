@@ -3,6 +3,7 @@ import Link from "next/link";
 import { T } from "../lib/i18n";
 import LangSwitch from "./LangSwitch";
 import PwaRegister from "./PwaRegister";
+import AskFab from "./AskFab";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
@@ -78,6 +79,7 @@ export default function Shell({ lang, children }) {
         </footer>
         <Analytics />
         <PwaRegister />
+        <AskFab lang={lang} />
       </body>
     </html>
   );
