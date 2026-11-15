@@ -64,6 +64,7 @@ export default function Language({ lang }) {
           );
         })}
       </div>
+      <p className="tool-strip"><Link href={`${t.base}/institutes`}>{s.instLink}</Link></p>
       <div className="notice">{s.warn}</div>
       <p className="note">{s.reviewed}: {LANG_REVIEWED}</p>
     </>

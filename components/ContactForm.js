@@ -16,7 +16,12 @@ export default function ContactForm({ lang }) {
 
   // "Report an error" links open this page with ?report=<page details>; prefill the form.
   useEffect(() => {
-    const r = new URLSearchParams(window.location.search).get("report");
+    const q = new URLSearchParams(window.location.search);
+    if (q.get("topic") === "ads" && topicRef.current) {
+      topicRef.current.value = topicRef.current.options[3]?.value || "";
+      return;
+    }
+    const r = q.get("report");
     if (!r || !topicRef.current || !msgRef.current) return;
     topicRef.current.value = topicRef.current.options[1]?.value || "";
     msgRef.current.value = `${f.reportPrefix}\n${r}\n\n`;
