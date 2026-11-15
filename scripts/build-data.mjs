@@ -41,9 +41,11 @@ for (const c of Object.keys(PHD_CODE)) {
 }
 
 const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at" };
+// Economics degrees that were first filed under business or data science (ids stay the same).
+const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
-  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing",
+  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics",
 };
 
 // Years of study from the Arabic duration text.
@@ -150,7 +152,7 @@ const out = rows.map((r) => {
     applyUrl: L.apply_url || null, applyNote: L.apply_note_ar || null,
     country: COUNTRY[r["الدولة"]],
     countryAr: r["الدولة"],
-    field: FIELD[r["التخصص"]],
+    field: FIELD_OVERRIDE[r._id] || FIELD[r["التخصص"]],
     fieldAr: r["التخصص"],
     name: r["اسم البرنامج (الرسمي)"],
     university: r["الجامعة"],

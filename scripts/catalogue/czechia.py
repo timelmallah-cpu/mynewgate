@@ -82,6 +82,14 @@ add(BA, "pharm", "Pharmacy (in English)", "Charles University, Faculty of Pharma
     ("سكن الجامعة في هراديتس كرالوفيه 150 يورو شهرياً للسرير (اختياري)", "University halls in Hradec Králové: €150 per bed per month (optional)"),
     "https://www.faf.cuni.cz/en/admission/undergraduate/pharmacy/", "https://is.cuni.cz/studium/eng/prijimacky/index.php?do=info_fakulta&fak=11160")
 
+# ---------- Economics, added 2026-11-15 ----------
+add(BA, "econ", "Economics and Finance (BEF)", "Charles University, Faculty of Social Sciences (IES)", "Prague", BSC, ("3 سنوات", "3 years"),
+    ("7,000 يورو سنوياً حسب صفحة القبول (بعض صفحات الجامعة تذكر 6,000 - للتحقق)", "€7,000 per year per the admission page (some university pages say €6,000 - to verify)"),
+    ("رسوم التقديم الإلكتروني 940 كرونة تشيكية", "Online application fee CZK 940"), NP,
+    ("مستوى B2 على الأقل؛ لا يلزم إثبات لمن درس سنتين من الثانوية بالإنجليزية", "At least B2; no proof needed if you studied two years of secondary school in English"),
+    ("يحتاج مستوى ممتازاً في رياضيات الثانوية؛ يدرّس فيه أيضاً خبراء من البنك المركزي والبنوك", "Needs excellent secondary-school maths; also taught by professionals from the central bank and commercial banks"),
+    NOSTR, NP, NP, "https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_obor&id_obor=34307", "https://is.cuni.cz/studium/eng/prijimacky/index.php?do=detail_obor&id_obor=34307")
+
 write("التشيك", "Czechia", "czechia", BA, level="bachelor")
 if os.environ.get("BA_ONLY"):  # bachelor rows only: keep master ids in all_programmes.csv unchanged
     sys.exit()

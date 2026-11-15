@@ -133,4 +133,14 @@ hbo("eng", "Engineering Systems", "HAN University of Applied Sciences", "Arnhem"
     ("10,940 يورو سنوياً لغير الأوروبيين (2026-2027)", "€10,940 per year for non-EEA students (2026-2027)"), NP, NP,
     "https://www.hanuniversity.com/en/study-and-living/costs/tuition-fee/")
 
+# ---------- Economics, added 2026-11-15 ----------
+add("econ", "Economics and Business Economics", RUG, "Groningen", Y("14,400"), ("1 مايو 2027 للبدء في 1 سبتمبر 2027", "1 May 2027 to start on 1 September 2027"), NP,
+    ("كلية الاقتصاد وإدارة الأعمال؛ 3 سنوات بالإنجليزية", "Faculty of Economics and Business; 3 years in English"),
+    "https://www.rug.nl/bachelors/economics-and-business-economics/?lang=en")
+add("econ", "Economics", "Tilburg University", "Tilburg", Y("13,900"),
+    ("1 أبريل لغير الأوروبيين حسب كتيب الجامعة الدولي (للتحقق)", "1 April for non-EEA applicants per the university's international brochure (to verify)"), NP,
+    ("برنامج صغير يركز على الاقتصاد العالمي من السنة الأولى؛ رسوم طلب 100 يورو لحاملي الشهادات غير الهولندية؛ المعيشة في تيلبورخ 1,000 - 1,200 يورو شهرياً حسب الجامعة",
+     "A small-scale programme focused on the global economy from year one; €100 application fee for non-Dutch diplomas; living in Tilburg €1,000 - 1,200 a month per the university"),
+    "https://www.tilburguniversity.edu/education/bachelors-programs/economics", "https://www.tilburguniversity.edu/education/application-fee")
+
 write("هولندا", "Netherlands", "netherlands", R, level="bachelor")
