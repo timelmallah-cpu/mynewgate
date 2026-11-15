@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { LETTER_TEXT, LETTER_SRC, FIELDS, LETTER_REVIEWED } from "../lib/letterText";
+import LetterReview from "./LetterReview";
 
 const KEY = "mng-letter-notes";
 
@@ -69,6 +70,8 @@ export default function MotivationLetter({ lang }) {
           </>
         ) : <p className="note">{s.empty}</p>}
       </section>
+
+      <LetterReview lang={lang} />
 
       <h2>{s.checkTitle}</h2>
       <ul className="letter-check">
