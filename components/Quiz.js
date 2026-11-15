@@ -18,13 +18,14 @@ export default function Quiz({ lang }) {
   }, []);
   const e = ED[lang];
   const ba = a.level === "bachelor";
+  const phd = a.level === "doctorate"; // doctoral study in our countries is tuition-free and ~4 years: no budget or length step
   const STEPS = [
     { key: "level", q: t.qLevel, opts: LEVEL_IDS.map((id) => ({ id, label: t.levels[id] })) },
     { key: "countries", q: t.qCountries, opts: COUNTRY_IDS.map((id) => ({ id, label: t.countries[id] })), multi: true },
     { key: "field", q: t.qField, opts: [...(ba ? BA_FIELD_IDS : FIELD_IDS).map((id) => ({ id, label: t.fields[id] })), { id: "any", label: t.anyField }] },
     { key: "budget", q: t.qBudget, opts: BUDGETS.map((b) => ({ id: b.id, label: t.budgets[b.id] })) },
     { key: "duration", q: t.qDuration, opts: (ba ? BA_DURATIONS : DURATIONS).map((d) => ({ id: d.id, label: (ba ? t.baDurations : t.durations)[d.id] })) },
-  ];
+  ].filter((st) => !(phd && (st.key === "budget" || st.key === "duration")));
   const done = step >= STEPS.length;
   const results = useMemo(() => (done ? match(programmes, a).map((p) => view(p, lang)) : []), [done, a, lang]);
   const known = results.filter((p) => p.feePerYear !== null);

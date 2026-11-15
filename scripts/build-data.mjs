@@ -33,8 +33,14 @@ for (const c of BA_ORDER) {
   const f = `data/programmes_ba/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
 }
+// Doctoral programmes: one file per country, ids "d-<country>-<n>".
+const PHD_CODE = { finland: "fi" };
+for (const c of Object.keys(PHD_CODE)) {
+  const f = `data/programmes_phd/${c}.csv`;
+  if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "doctorate", _id: `d-${PHD_CODE[c]}-${r["#"]}` })));
+}
 
-const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it" };
+const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi" };
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine",
@@ -43,6 +49,7 @@ const FIELD = {
 // Years of study from the Arabic duration text.
 function years(d, level) {
   if (!d || d === NP) return null;
+  if (level === "doctorate") return /4 سنوات|240 ساعة/.test(d) ? 4 : null;
   if (level === "bachelor") {
     if (/3\.5 سنوات|210 ساعات|7 فصول/.test(d)) return 3.5;
     if (/6 سنوات|360 ساعة|12 فصلاً/.test(d)) return 6;
@@ -196,4 +203,4 @@ for (const lang of ["ar", "en"]) {
     return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly };
   })));
 }
-console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);
+console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's + ${out.filter((p) => p.level === "doctorate").length} doctoral, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);

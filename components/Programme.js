@@ -18,7 +18,7 @@ export function programmeMeta(id, lang) {
   const p = view(raw, lang);
   const ar = lang === "ar";
   const fee = raw.feePerYear === 0 ? (ar ? "بدون رسوم دراسية" : "No tuition fee") : raw.feePerYear ? (ar ? `الرسوم ${raw.feePerYear.toLocaleString("en-US")} يورو سنوياً` : `€${raw.feePerYear.toLocaleString("en-US")} a year`) : (ar ? "الرسوم غير منشورة" : "Fee not published");
-  const level = raw.level === "bachelor" ? (ar ? "بكالوريوس" : "Bachelor's") : (ar ? "ماجستير" : "Master's");
+  const level = { bachelor: ar ? "بكالوريوس" : "Bachelor's", doctorate: ar ? "دكتوراه" : "Doctorate" }[raw.level] || (ar ? "ماجستير" : "Master's");
   const description = ar
     ? `${level} بالإنجليزية في ${raw.university}، ${String(p.city).split(" (")[0]}، ${p.countryLabel}. ${fee}. المواعيد وشروط اللغة والمعيشة بالعربي مع رابط المصدر الرسمي.`
     : `${level} taught in English at ${raw.university}, ${p.city}, ${p.countryLabel}. ${fee}. Deadlines, language requirements and living costs with the official source.`;

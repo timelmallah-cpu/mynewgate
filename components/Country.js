@@ -22,7 +22,7 @@ const S = {
     facts: "معلومات أساسية",
     capital: "العاصمة", language: "اللغة الرسمية", currency: "العملة",
     onSite: "على موقعنا",
-    master: "برامج ماجستير بالإنجليزية", bachelor: "برامج بكالوريوس بالإنجليزية",
+    master: "برامج ماجستير بالإنجليزية", bachelor: "برامج بكالوريوس بالإنجليزية", doctorate: "برامج دكتوراه بالإنجليزية",
     cities: "المدن", fees: "الرسوم السنوية لغير الأوروبيين",
     feesRange: (a, b) => (a === b ? `${a} يورو` : `من ${a} إلى ${b} يورو`),
     free: (n) => `${n} برنامج بدون رسوم دراسية`,
@@ -41,7 +41,7 @@ const S = {
     facts: "Key facts",
     capital: "Capital", language: "Official language", currency: "Currency",
     onSite: "On our site",
-    master: "English-taught master's programmes", bachelor: "English-taught bachelor's programmes",
+    master: "English-taught master's programmes", bachelor: "English-taught bachelor's programmes", doctorate: "English-language doctoral programmes",
     cities: "Cities", fees: "Annual fees for non-EU students",
     feesRange: (a, b) => (a === b ? `€${a}` : `€${a} to €${b}`),
     free: (n) => `${n} tuition-free programme${n === 1 ? "" : "s"}`,
@@ -57,13 +57,13 @@ const S = {
 };
 
 export const countryTip = (code, lang) => S[lang].tip(T[lang].countries[code]);
-export const countryParams = () => [...COUNTRY_IDS, "fi"].map((code) => ({ code }));
+export const countryParams = () => [...new Set([...COUNTRY_IDS, "fi"])].map((code) => ({ code }));
 export const countryMeta = (code, lang) => {
   const name = T[lang].countries[code] || "";
   const n = programmes.filter((p) => p.country === code).length;
   const description = lang === "ar"
-    ? `الدراسة في ${name}${n ? `: ${n} برنامج بكالوريوس وماجستير بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
-    : `Studying in ${name}${n ? `: ${n} English-taught bachelor's and master's programmes at public universities` : ""}, visa proof of funds, certificate recognition and staying after graduation, with official sources.`;
+    ? `الدراسة في ${name}${n ? `: ${n} برنامج بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
+    : `Studying in ${name}${n ? `: ${n} English-taught programmes at public universities` : ""}, visa proof of funds, certificate recognition and staying after graduation, with official sources.`;
   return pageMeta(lang, { title: `${S[lang].title(name)} | ${T[lang].brand}`, description, path: `/country/${code}`, image: COUNTRY_INFO[code]?.photo[0] });
 };
 
@@ -129,7 +129,7 @@ export default function Country({ code, lang }) {
       {covered && <section className="country-sec">
         <h2>{s.onSite}</h2>
         <div className="country-levels">
-          {["bachelor", "master"].map((lv) => {
+          {["bachelor", "master", "doctorate"].map((lv) => {
             const d = level(lv);
             if (!d.count) return null;
             return (

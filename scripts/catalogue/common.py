@@ -28,7 +28,7 @@ def write(country_ar, country_en, slug, rows, level="master"):
 
     data = os.path.join(ROOT, "data")
     hdr = list(csv.reader(open(os.path.join(data, "programmes", "germany.csv"), encoding="utf-8-sig")))[0]
-    folder = "programmes" if level == "master" else "programmes_ba"
+    folder = {"master": "programmes", "bachelor": "programmes_ba", "doctorate": "programmes_phd"}[level]
     os.makedirs(os.path.join(data, folder), exist_ok=True)
     with open(os.path.join(data, folder, f"{slug}.csv"), "w", newline="", encoding="utf-8-sig") as f:
         w = csv.writer(f)
