@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
-import { VOC, VOC_NOT, VOC_TEXT } from "../lib/vocational";
+import { VOC, VOC_TEXT } from "../lib/vocational";
 
 export const vocParams = () => VOC.map((v) => ({ code: v.code }));
 export const vocMeta = (code, lang) => {
@@ -33,17 +33,6 @@ export default function Vocational({ lang }) {
           <span className="btn small">{s.deBtn}</span>
         </Link>
       ))}
-
-      <section className="country-sec">
-        <h2>{s.notTitle}</h2>
-        <ul>
-          {VOC_NOT.map((v) => (
-            <li key={v.code}>
-              <b><Flag code={v.code} size={18} /> {v.name[lang]}:</b> {v.why[lang]} <a href={v.src} target="_blank" rel="noopener noreferrer">{s.source} ↗</a>
-            </li>
-          ))}
-        </ul>
-      </section>
 
       <div className="notice">{s.note}</div>
     </>
