@@ -666,3 +666,10 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 /* Add-to-calendar buttons */
 .cal-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 0; }
 .cal-row .note { color: var(--muted); }
+
+/* German grade converter */
+.gpa-card { display: grid; gap: 16px; }
+.gpa-card .ec-field .note { font-weight: 400; }
+.gpa-result { display: grid; gap: 4px; justify-items: start; padding: 16px; border-radius: 12px; background: var(--sky); }
+.gpa-result strong { font-size: 2.4rem; line-height: 1.1; color: var(--navy); font-family: var(--display); }
+.gpa-eq { font-family: var(--display); font-weight: 600; color: var(--navy); }
