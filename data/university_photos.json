@@ -267,11 +267,11 @@
   null
  ],
  "Deggendorf Institute of Technology": [
-  "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/FH-Deggendorf-Campus.JPG/960px-FH-Deggendorf-Campus.JPG",
-  "https://commons.wikimedia.org/wiki/File:FH-Deggendorf-Campus.JPG",
-  "Technische Hochschule Deggendorf",
-  "CC BY 2.5",
-  "https://creativecommons.org/licenses/by/2.5"
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Hauptcampus_der_Technischen_Hochschule_Deggendorf_2018.jpg/960px-Hauptcampus_der_Technischen_Hochschule_Deggendorf_2018.jpg",
+  "https://commons.wikimedia.org/wiki/File:Hauptcampus_der_Technischen_Hochschule_Deggendorf_2018.jpg",
+  "Danube-Waidler",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
  ],
  "Charles III University of Madrid": [
   "https://upload.wikimedia.org/wikipedia/commons/2/28/Universidad-carlos3.jpg",
@@ -463,17 +463,283 @@
   "https://creativecommons.org/licenses/by-sa/4.0"
  ],
  "Vilnius University": [
-  "https://upload.wikimedia.org/wikipedia/commons/2/21/GreatCourtyard.jpg",
-  "https://commons.wikimedia.org/wiki/File:GreatCourtyard.jpg",
-  "Album Wileński (J. K. Wilczyński, 1850)",
-  "Public domain",
-  "https://commons.wikimedia.org/wiki/File:GreatCourtyard.jpg"
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/The_Grand_Courtyard_of_Vilnius_University.jpg/960px-The_Grand_Courtyard_of_Vilnius_University.jpg",
+  "https://commons.wikimedia.org/wiki/File:The_Grand_Courtyard_of_Vilnius_University.jpg",
+  "Vilnius University",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
  ],
  "University of Latvia": [
-  "https://upload.wikimedia.org/wikipedia/commons/d/df/Riga_polytechnikcum_university_of_latvia.jpg",
-  "https://commons.wikimedia.org/wiki/File:Riga_polytechnikcum_university_of_latvia.jpg",
-  "Unknown (early 20th century)",
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Universidad_de_Letonia%2C_Riga%2C_Letonia%2C_2012-08-07%2C_DD_01.JPG/960px-Universidad_de_Letonia%2C_Riga%2C_Letonia%2C_2012-08-07%2C_DD_01.JPG",
+  "https://commons.wikimedia.org/wiki/File:Universidad_de_Letonia,_Riga,_Letonia,_2012-08-07,_DD_01.JPG",
+  "Diego Delso",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Osnabrück University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Geb%C3%A4ude_Fakult%C3%A4t_WiSo%2C_Caprivistra%C3%9Fe.jpg/960px-Geb%C3%A4ude_Fakult%C3%A4t_WiSo%2C_Caprivistra%C3%9Fe.jpg",
+  "https://commons.wikimedia.org/wiki/File:Geb%C3%A4ude_Fakult%C3%A4t_WiSo,_Caprivistra%C3%9Fe.jpg",
+  "Hsstudi",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Rosenheim Technical University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Technische_Hochschule_Rosenheim_S-Bau_mit_Logo.jpg/960px-Technische_Hochschule_Rosenheim_S-Bau_mit_Logo.jpg",
+  "https://commons.wikimedia.org/wiki/File:Technische_Hochschule_Rosenheim_S-Bau_mit_Logo.jpg",
+  "HK-THRO",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Medical University of Silesia in Katowice": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/SUM_-_Medical_University_of_Silesia_in_Katowice%2C_main_campus_-_1.jpg/960px-SUM_-_Medical_University_of_Silesia_in_Katowice%2C_main_campus_-_1.jpg",
+  "https://commons.wikimedia.org/wiki/File:SUM_-_Medical_University_of_Silesia_in_Katowice,_main_campus_-_1.jpg",
+  "Paju",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Riga Technical University": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/R%C4%ABgas_tehnisk%C4%81s_universit%C4%81tes_zin%C4%81tnisk%C4%81_bibliot%C4%93ka._Scientific_library_of_R%C4%ABga_Technical_University._November%2C_2013_-_panoramio.jpg/960px-R%C4%ABgas_tehnisk%C4%81s_universit%C4%81tes_zin%C4%81tnisk%C4%81_bibliot%C4%93ka._Scientific_library_of_R%C4%ABga_Technical_University._November%2C_2013_-_panoramio.jpg",
+  "https://commons.wikimedia.org/wiki/File:R%C4%ABgas_tehnisk%C4%81s_universit%C4%81tes_zin%C4%81tnisk%C4%81_bibliot%C4%93ka._Scientific_library_of_R%C4%ABga_Technical_University._November,_2013_-_panoramio.jpg",
+  "Ivars Indāns",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Rīga Stradiņš University": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/R%C4%ABgas_Stradi%C5%86a_universit%C4%81te_01.JPG/960px-R%C4%ABgas_Stradi%C5%86a_universit%C4%81te_01.JPG",
+  "https://commons.wikimedia.org/wiki/File:R%C4%ABgas_Stradi%C5%86a_universit%C4%81te_01.JPG",
+  "AfroBrazilian",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Kaunas University of Technology": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/KTU_centriniai_r%C5%ABmai.jpg/960px-KTU_centriniai_r%C5%ABmai.jpg",
+  "https://commons.wikimedia.org/wiki/File:KTU_centriniai_r%C5%ABmai.jpg",
+  "Kauno technologijos universitetas",
+  "CC0",
+  "https://creativecommons.org/publicdomain/zero/1.0/"
+ ],
+ "Lithuanian University of Health Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Sveikatos_moksl%C5%B3_akademija.JPG/960px-Sveikatos_moksl%C5%B3_akademija.JPG",
+  "https://commons.wikimedia.org/wiki/File:Sveikatos_moksl%C5%B3_akademija.JPG",
+  "Vilensija",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Politecnico di Milano": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Politecnico_di_Milano.jpg/960px-Politecnico_di_Milano.jpg",
+  "https://commons.wikimedia.org/wiki/File:Politecnico_di_Milano.jpg",
+  "Marcuscalabresus",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Rhine-Waal University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Hochschule_Rhein_Waal_in_Kleve_-_Flickr_-_Maarten_Takens.jpg/960px-Hochschule_Rhein_Waal_in_Kleve_-_Flickr_-_Maarten_Takens.jpg",
+  "https://commons.wikimedia.org/wiki/File:Hochschule_Rhein_Waal_in_Kleve_-_Flickr_-_Maarten_Takens.jpg",
+  "Maarten Takens",
+  "CC BY-SA 2.0",
+  "https://creativecommons.org/licenses/by-sa/2.0"
+ ],
+ "Hanze University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Hanze_University_Groningen_Atrium.jpg/960px-Hanze_University_Groningen_Atrium.jpg",
+  "https://commons.wikimedia.org/wiki/File:Hanze_University_Groningen_Atrium.jpg",
+  "Theundutchable",
   "Public domain",
-  "https://creativecommons.org/publicdomain/mark/1.0/"
+  "https://commons.wikimedia.org/wiki/File:Hanze_University_Groningen_Atrium.jpg"
+ ],
+ "The Hague University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/The_Hague_University_of_Applied_Sciences_08.jpg/960px-The_Hague_University_of_Applied_Sciences_08.jpg",
+  "https://commons.wikimedia.org/wiki/File:The_Hague_University_of_Applied_Sciences_08.jpg",
+  "OSeveno",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Rotterdam University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Hogeschool_Rotterdam_Museumpark.JPG/960px-Hogeschool_Rotterdam_Museumpark.JPG",
+  "https://commons.wikimedia.org/wiki/File:Hogeschool_Rotterdam_Museumpark.JPG",
+  "D. van Deursen",
+  "CC BY 2.5",
+  "https://creativecommons.org/licenses/by/2.5"
+ ],
+ "Fontys University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Eindhoven_campus.jpg/960px-Eindhoven_campus.jpg",
+  "https://commons.wikimedia.org/wiki/File:Eindhoven_campus.jpg",
+  "Internationale Marketing",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Saxion University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Hogeschool_Saxion_-_stadscampus_Enschede.jpg/960px-Hogeschool_Saxion_-_stadscampus_Enschede.jpg",
+  "https://commons.wikimedia.org/wiki/File:Hogeschool_Saxion_-_stadscampus_Enschede.jpg",
+  "RozanneHarleman",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "HAN University of Applied Sciences": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Ruitenberglaan_31_side_view.jpg/960px-Ruitenberglaan_31_side_view.jpg",
+  "https://commons.wikimedia.org/wiki/File:Ruitenberglaan_31_side_view.jpg",
+  "Stolenmermaid",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Medical University of Gdańsk": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Atheneum_Gedanense_Novum_w_Gda%C5%84sku.JPG/960px-Atheneum_Gedanense_Novum_w_Gda%C5%84sku.JPG",
+  "https://commons.wikimedia.org/wiki/File:Atheneum_Gedanense_Novum_w_Gda%C5%84sku.JPG",
+  "Artur Andrzej",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Medical University of Warsaw": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Warszawski_Uniwersytet_Medyczny_2025.jpg/960px-Warszawski_Uniwersytet_Medyczny_2025.jpg",
+  "https://commons.wikimedia.org/wiki/File:Warszawski_Uniwersytet_Medyczny_2025.jpg",
+  "Adrian Grycuk",
+  "CC BY 3.0 pl",
+  "https://creativecommons.org/licenses/by/3.0/pl/deed.en"
+ ],
+ "Wroclaw Medical University": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/598777_Wroc%C5%82aw%2C_Collegium_Anatomicum._02.JPG/960px-598777_Wroc%C5%82aw%2C_Collegium_Anatomicum._02.JPG",
+  "https://commons.wikimedia.org/wiki/File:598777_Wroc%C5%82aw,_Collegium_Anatomicum._02.JPG",
+  "Dawid Galus",
+  "CC BY-SA 3.0 pl",
+  "https://creativecommons.org/licenses/by-sa/3.0/pl/deed.en"
+ ],
+ "Medical University of Bialystok": [
+  "https://upload.wikimedia.org/wikipedia/commons/0/0a/Library_of_Medical_University_of_Bialystok.jpg",
+  "https://commons.wikimedia.org/wiki/File:Library_of_Medical_University_of_Bialystok.jpg",
+  "Pharynx",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Pomeranian Medical University in Szczecin": [
+  "https://upload.wikimedia.org/wikipedia/commons/f/fd/Pomeranian_Medical_Academy_in_Szczecin.jpg",
+  "https://commons.wikimedia.org/wiki/File:Pomeranian_Medical_Academy_in_Szczecin.jpg",
+  "MMich",
+  "Public domain",
+  "https://commons.wikimedia.org/wiki/File:Pomeranian_Medical_Academy_in_Szczecin.jpg"
+ ],
+ "Medical University of Lodz": [
+  "https://upload.wikimedia.org/wikipedia/commons/1/16/Ckd1.jpg",
+  "https://commons.wikimedia.org/wiki/File:Ckd1.jpg",
+  "Rellik",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Medical University of Lublin": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Collegium_Anatomicum_in_Lublin.jpg/960px-Collegium_Anatomicum_in_Lublin.jpg",
+  "https://commons.wikimedia.org/wiki/File:Collegium_Anatomicum_in_Lublin.jpg",
+  "Tomasz Zugaj",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Lodz University of Technology": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Technical_University_of_%C5%81%C3%B3d%C5%BA%2C_Biotechnology_Faculty%2C_W%C3%B3lcza%C5%84ska_Street.jpg/960px-Technical_University_of_%C5%81%C3%B3d%C5%BA%2C_Biotechnology_Faculty%2C_W%C3%B3lcza%C5%84ska_Street.jpg",
+  "https://commons.wikimedia.org/wiki/File:Technical_University_of_%C5%81%C3%B3d%C5%BA,_Biotechnology_Faculty,_W%C3%B3lcza%C5%84ska_Street.jpg",
+  "Zorro2212",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Lublin University of Technology": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Politechnika_Lubelska_Rektorat_hdr_m_p.net.jpg/960px-Politechnika_Lubelska_Rektorat_hdr_m_p.net.jpg",
+  "https://commons.wikimedia.org/wiki/File:Politechnika_Lubelska_Rektorat_hdr_m_p.net.jpg",
+  "Jakub Szabelski",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Kielce University of Technology": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Wej%C5%9Bcie_g%C5%82%C3%B3wne_na_kampus_Politechniki_%C5%9Awi%C4%99tokrzyskiej.jpg/960px-Wej%C5%9Bcie_g%C5%82%C3%B3wne_na_kampus_Politechniki_%C5%9Awi%C4%99tokrzyskiej.jpg",
+  "https://commons.wikimedia.org/wiki/File:Wej%C5%9Bcie_g%C5%82%C3%B3wne_na_kampus_Politechniki_%C5%9Awi%C4%99tokrzyskiej.jpg",
+  "AnalogIgor",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "University of Lodz": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Collegium_Iuridicum_-_Paragraph_Building%2C_%C5%81%C3%B3d%C5%BA_Solidarno%C5%9Bci_Roundabout.jpg/960px-Collegium_Iuridicum_-_Paragraph_Building%2C_%C5%81%C3%B3d%C5%BA_Solidarno%C5%9Bci_Roundabout.jpg",
+  "https://commons.wikimedia.org/wiki/File:Collegium_Iuridicum_-_Paragraph_Building,_%C5%81%C3%B3d%C5%BA_Solidarno%C5%9Bci_Roundabout.jpg",
+  "Zorro2212",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Semmelweis University": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Elm%C3%A9leti_Orvostudom%C3%A1nyi_K%C3%B6zpont.jpg/960px-Elm%C3%A9leti_Orvostudom%C3%A1nyi_K%C3%B6zpont.jpg",
+  "https://commons.wikimedia.org/wiki/File:Elm%C3%A9leti_Orvostudom%C3%A1nyi_K%C3%B6zpont.jpg",
+  "D. Kiss Balázs",
+  "CC BY 3.0",
+  "https://creativecommons.org/licenses/by/3.0"
+ ],
+ "University of Pécs": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Janus_Pannonius_TE_P%C3%A9cs.JPG/960px-Janus_Pannonius_TE_P%C3%A9cs.JPG",
+  "https://commons.wikimedia.org/wiki/File:Janus_Pannonius_TE_P%C3%A9cs.JPG",
+  "Unknown (own work)",
+  "Public domain",
+  "https://commons.wikimedia.org/wiki/File:Janus_Pannonius_TE_P%C3%A9cs.JPG"
+ ],
+ "Carol Davila University of Medicine and Pharmacy": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/UMF_Carol_Davila_Facultatea_de_Medicin%C4%83_Vedere_laterala.jpg/960px-UMF_Carol_Davila_Facultatea_de_Medicin%C4%83_Vedere_laterala.jpg",
+  "https://commons.wikimedia.org/wiki/File:UMF_Carol_Davila_Facultatea_de_Medicin%C4%83_Vedere_laterala.jpg",
+  "MSClaudiu",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "Iuliu Hațieganu University of Medicine and Pharmacy": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5c/Cluj-Napoca-_UMF-IMG_1313.JPG/960px-Cluj-Napoca-_UMF-IMG_1313.JPG",
+  "https://commons.wikimedia.org/wiki/File:Cluj-Napoca-_UMF-IMG_1313.JPG",
+  "Ana Maria Catalina",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Grigore T. Popa University of Medicine and Pharmacy": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Grigore_T._Popa_University_of_Medicine_and_Pharmacy_Sector_A.jpg/960px-Grigore_T._Popa_University_of_Medicine_and_Pharmacy_Sector_A.jpg",
+  "https://commons.wikimedia.org/wiki/File:Grigore_T._Popa_University_of_Medicine_and_Pharmacy_Sector_A.jpg",
+  "O_mores",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "George Emil Palade University of Medicine, Pharmacy, Science and Technology of Târgu Mureș": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/University_of_Medicine_and_Pharmacy_of_T%C3%A2rgu-Mure%C5%9F.JPG/960px-University_of_Medicine_and_Pharmacy_of_T%C3%A2rgu-Mure%C5%9F.JPG",
+  "https://commons.wikimedia.org/wiki/File:University_of_Medicine_and_Pharmacy_of_T%C3%A2rgu-Mure%C5%9F.JPG",
+  "Dr. Székely János",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Victor Babeș University of Medicine and Pharmacy": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/UMF_Timi%C8%99oara_%282023_April%29_04.jpg/960px-UMF_Timi%C8%99oara_%282023_April%29_04.jpg",
+  "https://commons.wikimedia.org/wiki/File:UMF_Timi%C8%99oara_(2023_April)_04.jpg",
+  "Chainwit.",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "University of Medicine and Pharmacy of Craiova": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Craiova_-_Universitatea_de_Medicina_si_Farmacie.JPG/960px-Craiova_-_Universitatea_de_Medicina_si_Farmacie.JPG",
+  "https://commons.wikimedia.org/wiki/File:Craiova_-_Universitatea_de_Medicina_si_Farmacie.JPG",
+  "Mvelam",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "Ovidius University of Constanța": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Campus-Univ-Ovidius.jpg/960px-Campus-Univ-Ovidius.jpg",
+  "https://commons.wikimedia.org/wiki/File:Campus-Univ-Ovidius.jpg",
+  "Sîmbotin",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "University of Bologna": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Archiginnasio_ora_blu_Bologna.jpg/960px-Archiginnasio_ora_blu_Bologna.jpg",
+  "https://commons.wikimedia.org/wiki/File:Archiginnasio_ora_blu_Bologna.jpg",
+  "Wwikiwalter",
+  "CC BY-SA 4.0",
+  "https://creativecommons.org/licenses/by-sa/4.0"
+ ],
+ "University of Pavia": [
+  "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Aula_magna-University-Pavia-Italy.jpg/960px-Aula_magna-University-Pavia-Italy.jpg",
+  "https://commons.wikimedia.org/wiki/File:Aula_magna-University-Pavia-Italy.jpg",
+  "Giorgio Gonnella",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
+ ],
+ "University of Messina": [
+  "https://upload.wikimedia.org/wikipedia/commons/7/7a/Ripresa_notturna_della_Facolta_di_Ingegneria_Messina.jpg",
+  "https://commons.wikimedia.org/wiki/File:Ripresa_notturna_della_Facolta_di_Ingegneria_Messina.jpg",
+  "Ssj5gabry",
+  "CC BY-SA 3.0",
+  "https://creativecommons.org/licenses/by-sa/3.0"
  ]
 }
