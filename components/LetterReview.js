@@ -1,11 +1,15 @@
 "use client";
 import { useState } from "react";
-import { REVIEW_TEXT } from "../lib/reviewText";
+import { REVIEW_TEXT, CV_REVIEW_TEXT } from "../lib/reviewText";
 
 const ICON = { good: "✓", improve: "!", missing: "✗" };
 
-export default function LetterReview({ lang }) {
-  const s = REVIEW_TEXT[lang];
+// kind "letter" (motivation letter) or "cv": same review screen, different checks and endpoint.
+export default function LetterReview({ lang, kind = "letter" }) {
+  const base = REVIEW_TEXT[lang];
+  const cv = kind === "cv";
+  const s = cv ? { ...base, ...CV_REVIEW_TEXT[lang], errors: { ...base.errors, ...CV_REVIEW_TEXT[lang].errorsPatch } } : base;
+  const min = cv ? 300 : 400;
   const [letter, setLetter] = useState("");
   const [programme, setProgramme] = useState("");
   const [limit, setLimit] = useState("");
@@ -17,19 +21,19 @@ export default function LetterReview({ lang }) {
   const run = async (e) => {
     e.preventDefault();
     if (busy) return;
-    if (letter.trim().length < 400) { setErr(s.tooShort); return; }
+    if (letter.trim().length < min) { setErr(s.tooShort); return; }
     setErr(""); setBusy(true); setR(null);
     try {
-      const res = await fetch("/api/letter-review", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ letter, programme, wordLimit: limit || null, lang }) });
+      const res = await fetch(cv ? "/api/cv-review" : "/api/letter-review", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ letter, programme, wordLimit: limit || null, lang }) });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) setErr(s.errors[d.error] || s.errors.failed);
-      else { setR(d); setTimeout(() => document.getElementById("review-result")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }
+      else { setR(d); setTimeout(() => document.getElementById(`${kind}-review-result`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }
     } catch { setErr(s.errors.failed); }
     setBusy(false);
   };
 
   return (
-    <section className="card letter-review" id="review">
+    <section className="card letter-review" id={cv ? "cv-review" : "review"}>
       <h2>{s.title}</h2>
       <p>{s.lead}</p>
       <p className="note ask-privacy">{s.privacy}</p>
@@ -39,21 +43,21 @@ export default function LetterReview({ lang }) {
         </label>
         <div className="review-opts">
           <label>{s.programme}<input dir="auto" type="text" maxLength={200} value={programme} placeholder={s.programmePh} onChange={(e) => setProgramme(e.target.value)} /></label>
-          <label>{s.limit}<input type="number" inputMode="numeric" min={50} max={5000} value={limit} onChange={(e) => setLimit(e.target.value)} /></label>
+          {!cv && <label>{s.limit}<input type="number" inputMode="numeric" min={50} max={5000} value={limit} onChange={(e) => setLimit(e.target.value)} /></label>}
         </div>
         <button type="submit" className="btn gold" disabled={busy}>{busy ? s.busy : s.btn}</button>
       </form>
       {err && <p className="ask-err" role="alert">{err}</p>}
 
       {r && (
-        <div id="review-result" className="review-result" aria-live="polite">
+        <div id={`${kind}-review-result`} className="review-result" aria-live="polite">
           {!r.isLetter ? <p><strong>{s.notLetter}</strong> {r.summary}</p> : (
             <>
               <h3>{s.summary}</h3>
               <p>{r.summary}</p>
-              <p className={`review-len ${r.wordLimit && r.words > r.wordLimit ? "bad" : ""}`}>
+              {!cv && <p className={`review-len ${r.wordLimit && r.words > r.wordLimit ? "bad" : ""}`}>
                 {r.wordLimit ? (r.words > r.wordLimit ? s.over(r.words, r.wordLimit) : s.under(r.words, r.wordLimit)) : `${s.words(r.words)}. ${s.noLimit}`}
-              </p>
+              </p>}
               {r.topActions.length > 0 && (
                 <>
                   <h3>{s.actions}</h3>

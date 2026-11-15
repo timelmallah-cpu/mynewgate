@@ -82,6 +82,8 @@ export default function MotivationLetter({ lang }) {
       <ul>{s.cv.map((x) => <li key={x}>{x}</li>)}</ul>
       <p><a className="btn" href="https://europass.europa.eu/en/create-europass-cv" target="_blank" rel="noopener noreferrer">{s.cvBtn} ↗</a></p>
 
+      <LetterReview lang={lang} kind="cv" />
+
       <h2>{s.refsTitle}</h2>
       <p>{s.refs}</p>
 
