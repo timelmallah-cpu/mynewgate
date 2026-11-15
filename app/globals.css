@@ -614,3 +614,9 @@ html[lang="ar"] .local-cur { direction: rtl; text-align: right; }
 .visa-card h2 { margin-top: 0; }
 .visa-card h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--navy); }
 .visa-steps { padding-inline-start: 22px; display: grid; gap: 6px; }
+/* Local currency: readable on light and dark boxes */
+.local-cur { color: var(--navy-2); font-weight: 700; }
+.cc-out .local-cur { color: #fff; font-size: .95em; margin-top: 4px; }
+.cc-out .cc-big .local-cur { color: var(--gold); font-size: 1.15rem; }
+.cc-row .local-cur { white-space: nowrap; text-align: left; }
+html[lang="en"] .cc-row .local-cur { text-align: right; }
