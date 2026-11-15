@@ -141,6 +141,14 @@ export default function Quiz({ lang }) {
           </button>
         ))}
       </div>
+      {s.key === "field" && !ba && (
+        <p className="notice quiz-note">
+          {lang === "ar" ? "الطب وطب الأسنان والصيدلة تُدرس بعد الثانوية مباشرة (برنامج متكامل)، لذلك تظهر في مرحلة البكالوريوس. " : "Medicine, Dentistry and Pharmacy are studied straight after school (integrated programmes), so they are under Bachelor's. "}
+          <button className="linkbtn" onClick={() => setA({ countries: a.countries, level: "bachelor" })}>
+            {lang === "ar" ? "غيّر المرحلة إلى البكالوريوس" : "Switch to Bachelor's"}
+          </button>
+        </p>
+      )}
       <div className="quiz-actions">
         <button className="btn" disabled={!ready} onClick={() => setStep(step + 1)}>
           {step === STEPS.length - 1 ? t.showResults : t.next}

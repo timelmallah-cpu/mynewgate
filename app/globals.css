@@ -935,3 +935,6 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 /* One "ask" entry point per screen size: the header button on wide screens, the floating button on phones. */
 @media (min-width: 641px) { .ask-fab { display: none; } }
 @media (max-width: 640px) { .top-ask { display: none; } }
+
+.quiz-note { margin: 0 0 16px; }
+.quiz-note .linkbtn { font-weight: 600; }
