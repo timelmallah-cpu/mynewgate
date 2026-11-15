@@ -1,3 +1,4 @@
+import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
@@ -57,7 +58,14 @@ const S = {
 
 export const countryTip = (code, lang) => S[lang].tip(T[lang].countries[code]);
 export const countryParams = () => [...COUNTRY_IDS, "fi"].map((code) => ({ code }));
-export const countryMeta = (code, lang) => ({ title: `${S[lang].title(T[lang].countries[code] || "")} | ${T[lang].brand}` });
+export const countryMeta = (code, lang) => {
+  const name = T[lang].countries[code] || "";
+  const n = programmes.filter((p) => p.country === code).length;
+  const description = lang === "ar"
+    ? `الدراسة في ${name}${n ? `: ${n} برنامج بكالوريوس وماجستير بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
+    : `Studying in ${name}${n ? `: ${n} English-taught bachelor's and master's programmes at public universities` : ""}, visa proof of funds, certificate recognition and staying after graduation, with official sources.`;
+  return pageMeta(lang, { title: `${S[lang].title(name)} | ${T[lang].brand}`, description, path: `/country/${code}`, image: COUNTRY_INFO[code]?.photo[0] });
+};
 
 const n = (v) => Math.round(v).toLocaleString("en-US");
 

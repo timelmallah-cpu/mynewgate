@@ -1,3 +1,4 @@
+import { pageMeta } from "@/lib/site";
 import Subscribed from "@/components/Subscribed";
-export const metadata = { title: "Subscription confirmed | MyNewGate", robots: { index: false } };
+export const metadata = pageMeta("en", { title: "Subscription confirmed | MyNewGate", robots: { index: false }, path: "/subscribed" });
 export default function Page() { return <Subscribed fixed="en" />; }

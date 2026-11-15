@@ -1,3 +1,4 @@
+import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
@@ -7,7 +8,8 @@ import { VOC, VOC_TEXT } from "../lib/vocational";
 export const vocParams = () => VOC.map((v) => ({ code: v.code }));
 export const vocMeta = (code, lang) => {
   const v = VOC.find((x) => x.code === code);
-  return { title: `${v ? `${v.country[lang]}: ${v.name[lang]}` : VOC_TEXT[lang].title} | ${T[lang].brand}` };
+  if (!v) return { title: T[lang].brand };
+  return pageMeta(lang, { title: `${v.country[lang]}: ${v.name[lang]} | ${T[lang].brand}`, description: v.short[lang], path: `/vocational/${v.code}` });
 };
 
 export default function Vocational({ lang }) {

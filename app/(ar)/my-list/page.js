@@ -1,6 +1,7 @@
+import { pageMeta } from "@/lib/site";
 import MyList from "@/components/MyList";
 import { T } from "@/lib/i18n";
-export const metadata = { title: T.ar.my.metaTitle };
+export const metadata = pageMeta("ar", { title: T.ar.my.metaTitle, path: "/my-list" });
 export default function Page() {
   return <MyList lang="ar" />;
 }

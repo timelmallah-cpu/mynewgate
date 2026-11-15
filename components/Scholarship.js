@@ -1,3 +1,4 @@
+import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
@@ -10,7 +11,8 @@ import SaveButton from "./SaveButton";
 export const schParams = () => SCHOLARSHIPS.map((s) => ({ id: s.id }));
 export function schMeta(id, lang) {
   const s = SCHOLARSHIPS.find((x) => x.id === id);
-  return { title: s ? `${s.name[lang]} | ${T[lang].brand}` : T[lang].brand };
+  if (!s) return { title: T[lang].brand };
+  return pageMeta(lang, { title: `${s.name[lang]} | ${T[lang].brand}`, description: `${s.summary[lang]} ${s.funder[lang]}.`, path: `/scholarships/${s.id}` });
 }
 
 export default function Scholarship({ id, lang }) {

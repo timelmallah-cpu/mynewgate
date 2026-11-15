@@ -1,3 +1,4 @@
+import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
@@ -12,8 +13,16 @@ import CostCalc from "./CostCalc";
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
 export function programmeMeta(id, lang) {
-  const p = programmes.find((x) => String(x.id) === id);
-  return { title: p ? `${p.name} | ${T[lang].brand}` : T[lang].brand };
+  const raw = programmes.find((x) => String(x.id) === id);
+  if (!raw) return { title: T[lang].brand };
+  const p = view(raw, lang);
+  const ar = lang === "ar";
+  const fee = raw.feePerYear === 0 ? (ar ? "بدون رسوم دراسية" : "No tuition fee") : raw.feePerYear ? (ar ? `الرسوم ${raw.feePerYear.toLocaleString("en-US")} يورو سنوياً` : `€${raw.feePerYear.toLocaleString("en-US")} a year`) : (ar ? "الرسوم غير منشورة" : "Fee not published");
+  const level = raw.level === "bachelor" ? (ar ? "بكالوريوس" : "Bachelor's") : (ar ? "ماجستير" : "Master's");
+  const description = ar
+    ? `${level} بالإنجليزية في ${raw.university}، ${String(p.city).split(" (")[0]}، ${p.countryLabel}. ${fee}. المواعيد وشروط اللغة والمعيشة بالعربي مع رابط المصدر الرسمي.`
+    : `${level} taught in English at ${raw.university}, ${p.city}, ${p.countryLabel}. ${fee}. Deadlines, language requirements and living costs with the official source.`;
+  return pageMeta(lang, { title: `${raw.name} | ${T[lang].brand}`, description, path: `/programme/${raw.id}`, image: raw.photo?.src });
 }
 
 const KEYS = ["degree", "duration", "feeText", "adminFee", "deadline", "english", "other", "howToApply", "living", "housing"];
