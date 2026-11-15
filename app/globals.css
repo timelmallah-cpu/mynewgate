@@ -105,7 +105,7 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 @keyframes rise { from { clip-path: inset(100% 0 0 0 round 22px); } to { clip-path: inset(0 0 0 0 round 0); } }
 
 .countries {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px;
+  display: grid; grid-template-columns: repeat(4, max-content); justify-content: center; gap: 8px 20px;
   margin: 22px 0 6px; padding: 0; list-style: none;
 }
 .countries li { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--navy); }
@@ -686,3 +686,7 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .alt-null { background: var(--sky); color: var(--muted); }
 .alt-line { margin: 8px 0 0; font-size: .95rem; }
 .alt-line a { margin-inline-start: 6px; }
+
+@media (max-width: 480px) { .countries { grid-template-columns: repeat(4, max-content); gap: 8px 6px; font-size: .9rem; } .countries a { gap: 4px; padding: 2px; } .countries svg { width: 20px; height: auto; } }
+@media (max-width: 350px) { .countries { grid-template-columns: repeat(2, max-content); gap: 8px 16px; } }
+@media (max-width: 560px) { html[lang="en"] .countries { grid-template-columns: repeat(2, max-content); gap: 8px 24px; font-size: 1rem; } }
