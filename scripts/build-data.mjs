@@ -103,18 +103,44 @@ function monthlyLiving(t) {
 const SEK_PER_EUR = 10.98;
 // Czech koruna (ECB reference rate, 21 September 2026: 24.352).
 const CZK_PER_EUR = 24.35;
-function annualFee(t, y) {
-  if (!t || t.startsWith(NP)) return null;
-  if (/^لا توجد/.test(t)) return 0;
-  if (/فئة هذا البرنامج للتحقق|مثال من|يُحسب حسب البرنامج/.test(t)) return null;
-  const a = amounts(t);
-  if (!a.length) return null;
-  let v = a[0];
+// Converts one fee figure to euros per year (null when the text gives no usable amount).
+function toAnnual(v, t, y) {
   if (/كرونة تشيكية/.test(t)) v = v / CZK_PER_EUR; // Czech fees are in CZK
   else if (/كرونة/.test(t)) v = v / SEK_PER_EUR; // Swedish fees are in SEK
   if (/للفصل/.test(t)) v = v * 2;
   else if (/للبرنامج كاملاً/.test(t) && y) v = v / y;
   return Math.round(v);
+}
+function annualFee(t, y) {
+  if (!t || t.startsWith(NP)) return null;
+  if (/^لا توجد/.test(t)) return 0;
+  if (/فئة هذا البرنامج للتحقق|مثال من|يُحسب حسب البرنامج/.test(t)) return null;
+  // A published range ("800 - 3,000 يورو"): the lower figure here, the upper one in annualFeeMax.
+  const r = feeRangeLow(t);
+  if (r !== null) return toAnnual(r, t, y);
+  const a = amounts(t);
+  if (!a.length) return null;
+  return toAnnual(a[0], t, y);
+}
+const RANGE_RE = /(\d[\d,]*(?:\.\d+)?)\s*[-–]\s*(\d[\d,]*(?:\.\d+)?)\s*(?:يورو|دولار|زلوتي|كرونة)/;
+const num = (x) => parseFloat(x.replace(/,/g, ""));
+function feeRangeLow(t) {
+  const m = t.match(RANGE_RE);
+  return m && num(m[1]) >= 100 && num(m[2]) > num(m[1]) ? num(m[1]) : null;
+}
+function annualFeeMax(t, y) {
+  if (!t || t.startsWith(NP)) return null;
+  const m = t.match(RANGE_RE);
+  return m && num(m[1]) >= 100 && num(m[2]) > num(m[1]) ? toAnnual(num(m[2]), t, y) : null;
+}
+// What period the published fee covers. "year" also when the text names a single academic year
+// ("25,306 يورو (2026/27)"), counts 60 credits, or the programme lasts one year. null = not stated.
+function feePeriod(t, y) {
+  if (!t || t.startsWith(NP) || /^لا توجد/.test(t)) return null;
+  if (/للفصل/.test(t)) return "semester";
+  if (/للبرنامج كاملاً/.test(t)) return "programme";
+  if (/سنوي|للسنة|للسنتين|السنة|سنة|لكل 60|ساعة معتمدة|\(20\d\d\/\d\d/.test(t) || (y && y <= 1)) return "year";
+  return null;
 }
 
 // Deadline dates from the English deadline text. A range "1 April - 31 May" counts by its end date.
@@ -164,6 +190,8 @@ const out = rows.map((r) => {
     years: y,
     feeText,
     feePerYear: annualFee(feeText, y),
+    feePerYearMax: annualFeeMax(feeText, y),
+    feePeriod: feePeriod(feeText, y),
     feeNeedsCheck: /للتحقق|غير رسمي/.test(feeText),
     adminFee: r["رسوم الفصل الإدارية"],
     deadline: r["موعد التقديم لغير الأوروبيين"],

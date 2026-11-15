@@ -7,24 +7,15 @@ import { POST_STUDY, PS_TEXT } from "../lib/postStudy";
 import { STUDY_WORK } from "../lib/studyWork";
 import CountriesTable from "./CountriesTable";
 import { CC_TEXT } from "../lib/countriesText";
-
-const median = (a) => {
-  const s = [...a].sort((x, y) => x - y);
-  const m = Math.floor(s.length / 2);
-  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
-};
+import { feeStats } from "../lib/feeStats";
 
 export function countryRows() {
   return COUNTRY_IDS.map((c) => {
-    const ma = programmes.filter((p) => p.country === c && p.level === "master");
-    const fees = ma.map((p) => p.feePerYear).filter((f) => f !== null && f > 0);
+    const fee = Object.fromEntries(["master", "bachelor"].map((lv) => [lv, feeStats(programmes.filter((p) => p.country === c && p.level === lv))]));
     const living = programmes.filter((p) => p.country === c && p.livingMonthly).map((p) => p.livingMonthly);
     return {
       c,
-      feeMin: fees.length ? Math.min(...fees) : null,
-      feeMax: fees.length ? Math.max(...fees) : null,
-      feeMed: fees.length ? median(fees) : null,
-      free: ma.filter((p) => p.feePerYear === 0).length,
+      fee,
       living: living.length ? Math.round(living.reduce((a, b) => a + b, 0) / living.length / 10) * 10 : null,
       proof: COSTS[c]?.proofMonthly ?? null,
       proofCheck: !!COSTS[c]?.proofCheck,

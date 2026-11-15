@@ -22,7 +22,7 @@ export function programmeMeta(id, lang) {
   if (!raw) return { title: T[lang].brand };
   const p = view(raw, lang);
   const ar = lang === "ar";
-  const fee = raw.feePerYear === 0 ? (ar ? "بدون رسوم دراسية" : "No tuition fee") : raw.feePerYear ? (ar ? `الرسوم ${raw.feePerYear.toLocaleString("en-US")} يورو سنوياً` : `€${raw.feePerYear.toLocaleString("en-US")} a year`) : (ar ? "الرسوم غير منشورة" : "Fee not published");
+  const fee = feeLabel(raw, lang);
   const level = { bachelor: ar ? "بكالوريوس" : "Bachelor's", doctorate: ar ? "دكتوراه" : "Doctorate" }[raw.level] || (ar ? "ماجستير" : "Master's");
   const description = ar
     ? `${level} بالإنجليزية في ${raw.university}، ${String(p.city).split(" (")[0]}، ${p.countryLabel}. ${fee}. المواعيد وشروط اللغة والمعيشة بالعربي مع رابط المصدر الرسمي.`
@@ -38,7 +38,7 @@ export default function Programme({ id, lang }) {
   if (!raw) notFound();
   const p = view(raw, lang);
   const url = p.source.split(" ")[0];
-  const known = p.feePerYear !== null && p.feePerYear > 0;
+  const known = p.feePerYear !== null && p.feePerYear > 0 && !!raw.feePeriod && !raw.feePerYearMax;
   return (
     <>
       <Link className="back" href={`${t.base}/quiz`}>{t.backToQuiz}</Link>
