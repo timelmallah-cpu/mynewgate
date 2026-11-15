@@ -705,3 +705,4 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .inst-tag.ad { background: #fff4d6; color: #7a5600; border: 1px solid #e9b949; }
 .inst-ad { border: 1px dashed #e9b949; }
 .inst-adv h2 { margin-top: 0; }
+.inst-adv a[dir="ltr"] { word-break: normal; white-space: nowrap; display: inline-block; }

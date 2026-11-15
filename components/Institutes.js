@@ -46,7 +46,7 @@ export default function Institutes({ lang }) {
       <div className="notice inst-adv">
         <h2>{s.advTitle}</h2>
         <p>{s.advText}</p>
-        <Link className="btn gold" href={`${t.base}/contact?topic=ads`}>{s.advBtn}</Link>
+        <Link className="btn gold" href={`${t.base}/advertise`}>{s.advBtn}</Link>
       </div>
 
       <h2>{s.policyTitle}</h2>
