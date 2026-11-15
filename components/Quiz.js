@@ -11,10 +11,15 @@ export default function Quiz({ lang }) {
   const [step, setStep] = useState(0);
   const [a, setA] = useState({ countries: [] });
   const [editing, setEditing] = useState(false);
-  // ?country=ee (from a country page) pre-selects that country.
+  // ?country=ee (from a country page) pre-selects that country; ?level=bachelor also skips the answered steps.
   useEffect(() => {
-    const c = new URLSearchParams(window.location.search).get("country");
-    if (c && COUNTRY_IDS.includes(c)) setA((x) => ({ ...x, countries: [c] }));
+    const q = new URLSearchParams(window.location.search);
+    const c = q.get("country");
+    const l = q.get("level");
+    const hasC = c && COUNTRY_IDS.includes(c);
+    const hasL = l && LEVEL_IDS.includes(l);
+    if (hasC || hasL) setA((x) => ({ ...x, ...(hasC ? { countries: [c] } : {}), ...(hasL ? { level: l } : {}) }));
+    if (hasL) setStep(hasC ? 2 : 1);
   }, []);
   const e = ED[lang];
   const ba = a.level === "bachelor";
@@ -103,10 +108,13 @@ export default function Quiz({ lang }) {
   const s = STEPS[step];
   const val = a[s.key];
   const chosen = (id) => (s.multi ? val.includes(id) : val === id);
-  const pick = (id) =>
+  const pick = (id) => {
     setA(s.key === "level" && id !== a.level
       ? { countries: a.countries, level: id } // field and duration options depend on the level
       : { ...a, [s.key]: s.multi ? (val.includes(id) ? val.filter((x) => x !== id) : [...val, id]) : id });
+    // One-answer questions move on by themselves (short pause so the tick shows); not while editing an answer.
+    if (!s.multi && !editing) setTimeout(() => setStep((n) => (n === step ? n + 1 : n)), 250);
+  };
   const ready = s.multi ? val.length > 0 : val !== undefined;
   const allReady = STEPS.every((st) => (st.multi ? a[st.key].length > 0 : a[st.key] !== undefined));
 
