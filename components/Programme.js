@@ -1,5 +1,6 @@
 import { pageMeta } from "../lib/site";
 import Link from "next/link";
+import { cityOf } from "../lib/cities";
 import WhatsApp from "./WhatsApp";
 import AddToCalendar from "./AddToCalendar";
 import { altFor, ALT_TEXT } from "../lib/englishAlt";
@@ -46,7 +47,7 @@ export default function Programme({ id, lang }) {
         <h1 className="ltr">{p.name}</h1>
         <div className="where">
           <span className="ltr">{p.university}</span>
-          <span>{t.city} {p.city}</span>
+          <span>{t.city} {cityOf(raw.en.city).length ? cityOf(raw.en.city).map((c, i) => <span key={c.slug}>{i ? " / " : ""}<Link href={`${t.base}/city/${c.slug}`}>{lang === "ar" ? c.ar : c.en}</Link></span>) : p.city}</span>
           <span><Flag code={p.country} size={18} /> {p.countryLabel}</span>
           <span>{p.fieldLabel}</span>
         </div>

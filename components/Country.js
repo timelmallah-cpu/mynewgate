@@ -15,6 +15,7 @@ import { GUIDE_TEXT } from "../lib/guide";
 import { AUSB } from "../lib/ausbildung";
 import { VOC_TEXT, VOC } from "../lib/vocational";
 import WhatsApp from "./WhatsApp";
+import { CITIES } from "../lib/cities";
 
 const S = {
   ar: {
@@ -95,7 +96,6 @@ export default function Country({ code, lang }) {
     };
   };
   const cityName = (p) => String(view(p, lang).city).split(" (")[0].trim();
-  const cities = [...new Set(list.map(cityName))];
 
   return (
     <>
@@ -169,7 +169,7 @@ export default function Country({ code, lang }) {
             );
           })}
         </div>
-        <p><b>{s.cities}:</b> {cities.join(lang === "ar" ? "، " : ", ")}</p>
+        <p className="city-chips"><b>{s.cities}:</b> {CITIES.filter((c) => c.country === code).map((c) => <Link key={c.slug} href={`${t.base}/city/${c.slug}`}>{lang === "ar" ? c.ar : c.en}</Link>)}</p>
       </section>}
 
       {cost && (

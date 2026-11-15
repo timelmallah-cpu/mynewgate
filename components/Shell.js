@@ -26,7 +26,7 @@ function Mark() {
 const FOOT_GROUPS = [
   { ar: "ابحث وقارن", en: "Search and compare", links: [
     ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/study", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
-    ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/my-list", "قائمتي", "My list"],
+    ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"],
   ] },
   { ar: "أدوات", en: "Tools", links: [
     ["/english-check", "هل درجتك تكفي؟", "English score check"], ["/without-ielts", "من غير IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
