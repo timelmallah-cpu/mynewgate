@@ -508,3 +508,4 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .crumb a::before { content: "← "; }
 [dir="rtl"] .crumb a::before { content: "→ "; }
 .sch-promo b .flag { vertical-align: -3px; }
+.sch-promo .ps-tag { display: inline-block; margin-top: 6px; font-size: .82rem; }
