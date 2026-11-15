@@ -27,20 +27,20 @@ const read = (f) => parse(readFileSync(f, "utf8").replace(/^\uFEFF/, ""), { colu
 // Master's: one concatenated file, numeric ids (kept stable for existing URLs).
 const rows = read("data/programmes/all_programmes.csv").map((r) => ({ ...r, _level: "master", _id: Number(r["#"]) }));
 // Bachelor's (incl. long-cycle medicine): one file per country, ids "b-<country>-<n>".
-const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy"];
-const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it" };
+const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy", "bulgaria"];
+const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it", bulgaria: "bg" };
 for (const c of BA_ORDER) {
   const f = `data/programmes_ba/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
 }
 // Doctoral programmes: one file per country, ids "d-<country>-<n>".
-const PHD_CODE = { finland: "fi" };
+const PHD_CODE = { finland: "fi", sweden: "se" };
 for (const c of Object.keys(PHD_CODE)) {
   const f = `data/programmes_phd/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "doctorate", _id: `d-${PHD_CODE[c]}-${r["#"]}` })));
 }
 
-const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi" };
+const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se" };
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine",
@@ -94,6 +94,8 @@ function monthlyLiving(t) {
   return Math.round(v / 10) * 10;
 }
 
+// Approximate rate used only to compare Swedish fees (ECB reference rate, 30 October 2026: 10.98).
+const SEK_PER_EUR = 10.98;
 function annualFee(t, y) {
   if (!t || t.startsWith(NP)) return null;
   if (/^لا توجد/.test(t)) return 0;
@@ -101,6 +103,7 @@ function annualFee(t, y) {
   const a = amounts(t);
   if (!a.length) return null;
   let v = a[0];
+  if (/كرونة/.test(t)) v = v / SEK_PER_EUR; // Swedish fees are in SEK
   if (/للفصل/.test(t)) v = v * 2;
   else if (/للبرنامج كاملاً/.test(t) && y) v = v / y;
   return Math.round(v);
