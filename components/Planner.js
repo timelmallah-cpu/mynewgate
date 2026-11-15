@@ -158,6 +158,7 @@ export default function Planner({ lang }) {
                       <time dateTime={x.date}>{fmtDate(x.date, lang)}</time>
                       <b>{s.steps[x.key][0]}{past ? ` (${s.past})` : ""}</b>
                       <small>{s.steps[x.key][1]}</small>
+                      {x.key === "visa" && prog && <Link className="ctx-link" href={`${t.base}/visa?to=${prog.country}`}>{lang === "ar" ? "تقدم فين وإزاي؟" : "Where and how to apply?"}</Link>}
                     </li>
                   );
                 })}

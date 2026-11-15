@@ -609,3 +609,8 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .cur-pick select { font: inherit; padding: 6px 10px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; max-width: 100%; }
 .local-cur { display: block; font-size: .85em; font-weight: 600; color: var(--muted); unicode-bidi: isolate; }
 html[lang="ar"] .local-cur { direction: rtl; text-align: right; }
+
+/* Visa guide */
+.visa-card h2 { margin-top: 0; }
+.visa-card h3 { margin: 18px 0 6px; font-size: 1.05rem; color: var(--navy); }
+.visa-steps { padding-inline-start: 22px; display: grid; gap: 6px; }
