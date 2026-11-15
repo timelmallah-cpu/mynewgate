@@ -630,3 +630,9 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .k-extra { background: #fde8e6; color: #8a2a1d; }
 .k-uni { background: var(--sky); color: var(--navy); }
 .ec-tests.card { padding: 14px 16px; }
+
+/* Study landing pages */
+.study-list small { display: block; color: var(--muted); }
+.study-related { list-style: none; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.study-related a { display: block; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--navy); font-weight: 600; text-decoration: none; }
+.study-related a:hover { border-color: var(--navy); }

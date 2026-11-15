@@ -3,15 +3,17 @@ import { SCHOLARSHIPS } from "@/lib/scholarships";
 import { COUNTRY_IDS } from "@/lib/options";
 import { VOC } from "@/lib/vocational";
 import { SITE_URL } from "@/lib/site";
+import { LANDINGS } from "@/lib/landings";
 
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
   const paths = [
-    "/", "/quiz", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
+    "/", "/quiz", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
     ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
     ...programmes.map((p) => `/programme/${p.id}`),
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
     ...VOC.map((v) => `/vocational/${v.code}`),
+    ...LANDINGS.map((l) => `/study/${l.slug}`),
   ];
   const en = (p) => `/en${p === "/" ? "" : p}`;
   const now = new Date();
