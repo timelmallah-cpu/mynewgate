@@ -26,7 +26,7 @@ export function programmeMeta(id, lang) {
   const description = ar
     ? `${level} بالإنجليزية في ${raw.university}، ${String(p.city).split(" (")[0]}، ${p.countryLabel}. ${fee}. المواعيد وشروط اللغة والمعيشة بالعربي مع رابط المصدر الرسمي.`
     : `${level} taught in English at ${raw.university}, ${p.city}, ${p.countryLabel}. ${fee}. Deadlines, language requirements and living costs with the official source.`;
-  return pageMeta(lang, { title: `${raw.name} | ${T[lang].brand}`, description, path: `/programme/${raw.id}`, image: raw.photo?.src });
+  return pageMeta(lang, { title: `${raw.name} - ${raw.university} | ${T[lang].brand}`, description, path: `/programme/${raw.id}`, image: raw.photo?.src });
 }
 
 const KEYS = ["degree", "duration", "feeText", "adminFee", "deadline", "english", "other", "howToApply", "living", "housing"];

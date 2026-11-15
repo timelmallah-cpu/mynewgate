@@ -11,6 +11,7 @@ const S = {
     tuitionNone: "الرسوم غير منشورة، أدخل الرقم من الجامعة",
     living: "المعيشة شاملة السكن في الشهر",
     livingFrom: "حسب صفحة البرنامج:",
+    livingRaised: "رفعناها لـ {n} يورو لأن ده أقل مبلغ شهري بتطلبه التأشيرة.",
     livingFloor: "لا يوجد رقم منشور للمدينة، فوضعنا الحد الأدنى الذي تطلبه السفارة. التكلفة الفعلية غالباً أعلى.",
     insurance: "التأمين الصحي في الشهر",
     insuranceNone: "أدخل سعر التأمين الذي ستشتريه",
@@ -21,6 +22,7 @@ const S = {
     perYear: "التكلفة في السنة",
     firstYear: "السنة الأولى مع رسوم البداية",
     total: "التكلفة الكاملة للبرنامج",
+    noTuition: "الرقم ده من غير الرسوم الدراسية، لأنها مش منشورة. اكتبها فوق من موقع الجامعة عشان يبقى الحساب كامل.",
     proofTitle: "ما تطلبه السفارة لإثبات القدرة المالية",
     proofYear: "حوالي {n} يورو للسنة الأولى",
     proofPlusHousing: "بالإضافة إلى تكلفة السكن",
@@ -39,6 +41,7 @@ const S = {
     tuitionNone: "Fee not published; enter the figure from the university",
     living: "Living costs incl. housing, per month",
     livingFrom: "Programme page says:",
+    livingRaised: "We raised it to €{n}, the minimum a month the visa requires.",
     livingFloor: "No published figure for this city, so we used the embassy's minimum. Real costs are usually higher.",
     insurance: "Health insurance per month",
     insuranceNone: "Enter the price of the insurance you will buy",
@@ -49,6 +52,7 @@ const S = {
     perYear: "Cost per year",
     firstYear: "First year incl. one-off costs",
     total: "Full programme cost",
+    noTuition: "This total leaves out tuition because the fee is not published. Enter it above from the university's website for a complete figure.",
     proofTitle: "What the embassy asks you to prove",
     proofYear: "About €{n} for the first year",
     proofPlusHousing: "plus your housing cost",
@@ -72,7 +76,7 @@ export default function CostCalc({ p, lang }) {
   const floor = c.proofExcludesHousing ? null : c.proofMonthly;
   const [v, setV] = useState({
     tuition: p.feePerYear ?? "",
-    living: p.livingMonthly ?? floor ?? "",
+    living: p.livingMonthly != null && floor ? Math.max(p.livingMonthly, floor) : p.livingMonthly ?? floor ?? "",
     insurance: c.insurance ? c.insurance.eur : "",
     other: "",
     oneTime: knownFees || "",
@@ -98,7 +102,8 @@ export default function CostCalc({ p, lang }) {
     </label>
   );
 
-  const livingHint = p.livingMonthly != null ? `${s.livingFrom} ${p.living}` : floor ? s.livingFloor : p.living;
+  const raised = p.livingMonthly != null && floor && p.livingMonthly < floor;
+  const livingHint = p.livingMonthly != null ? `${s.livingFrom} ${p.living}${raised ? ` ${s.livingRaised.replace("{n}", fmt(floor))}` : ""}` : floor ? s.livingFloor : p.living;
 
   return (
     <section className="costcalc" id="cost">
@@ -123,6 +128,7 @@ export default function CostCalc({ p, lang }) {
           </div>
           <div className="cc-row"><span>{s.perYear}</span><b dir="ltr">€{fmt(perYear)}<Local eur={perYear} lang={lang} /></b></div>
           <div className="cc-row"><span>{s.firstYear}</span><b dir="ltr">€{fmt(perYear + once)}<Local eur={perYear + once} lang={lang} /></b></div>
+          {v.tuition === "" && <p className="cc-warn">{s.noTuition}</p>}
           {low && <p className="cc-warn">{s.belowProof.replace("{n}", fmt(c.proofMonthly))}</p>}
         </div>
       </div>

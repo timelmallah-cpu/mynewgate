@@ -706,3 +706,4 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .inst-ad { border: 1px dashed #e9b949; }
 .inst-adv h2 { margin-top: 0; }
 .inst-adv a[dir="ltr"] { word-break: normal; white-space: nowrap; display: inline-block; }
+h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; }

@@ -57,7 +57,7 @@ export default function Quiz({ lang }) {
   if (done) {
     return (
       <>
-        <h2>{results.length === 0 ? e.noneTitle : t.found(results.length)}</h2>
+        <h1>{results.length === 0 ? e.noneTitle : t.found(results.length)}</h1>
         {results.length > 0 && <p className="meta">{t.sortNote}</p>}
         {results.length > 0 && (
           <p className="tool-strip">
@@ -124,7 +124,7 @@ export default function Quiz({ lang }) {
         {STEPS.map((_, i) => <span key={i} className={i < step ? "on" : i === step ? "now" : ""} />)}
       </div>
       <p className="meta">{t.step(step + 1, STEPS.length)}</p>
-      <h2>{s.q}</h2>
+      <h1 className="quiz-q">{s.q}</h1>
       <div className={s.opts.length > 4 ? "options two" : "options"}>
         {s.opts.map((o) => (
           <button key={o.id} className="opt" aria-pressed={chosen(o.id)} onClick={() => pick(o.id)}>

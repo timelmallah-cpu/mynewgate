@@ -87,11 +87,14 @@ function monthlyLiving(t) {
   if (paren && /\d/.test(paren[1]) && /(يورو|شهرياً)/.test(paren[1]) && /(زلوتي|دولار|سنوياً)/.test(part)) part = paren[1];
   const nums = (part.match(/\d[\d,]*/g) || []).map((n) => Number(n.replace(/,/g, ""))).filter((n) => n >= 100);
   if (!nums.length) return null;
-  let v = /\d\s*-\s*\d/.test(part) && nums.length > 1 ? (nums[0] + nums[1]) / 2 : nums[0];
+  const range = /\d\s*-\s*\d/.test(part) && nums.length > 1;
+  let v = range ? (nums[0] + nums[1]) / 2 : nums[0];
+  const converted = /زلوتي|دولار|سنوياً/.test(part);
   if (/زلوتي/.test(part)) v /= 4.4;
   if (/دولار/.test(part)) v /= 1.11;
   if (/سنوياً/.test(part)) v /= 12;
-  return Math.round(v / 10) * 10;
+  // Keep a single published euro figure exact (e.g. a visa minimum of 992); round averages and conversions.
+  return range || converted ? Math.round(v / 10) * 10 : Math.round(v);
 }
 
 // Approximate rate used only to compare Swedish fees (ECB reference rate, 30 October 2026: 10.98).
