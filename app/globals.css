@@ -411,3 +411,22 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .privacy h2 { font-size: 1.15rem; margin-bottom: 4px; }
 .subscribed { display: grid; gap: 18px; }
 .subscribed section { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
+
+/* after graduation */
+.ps-name { font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+.ps-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 10px; }
+.ps-tag { background: #eef1f7; border-radius: 999px; padding: 3px 12px; font-size: .92rem; font-weight: 600; }
+.ps-tag.yes { background: #e3f3e8; color: #1d5e33; }
+.ps-tag.no { background: #fbe9e6; color: #8a2c1d; }
+.ps-dl { display: grid; gap: 8px; margin: 0 0 8px; }
+.ps-dl div { display: grid; grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr); gap: 10px; }
+.ps-dl dt { color: var(--muted); font-weight: 600; }
+.ps-dl dd { margin: 0; overflow-wrap: anywhere; }
+.ps-src { font-size: .92rem; margin: 0 0 10px; }
+.ps-table { border: 1px solid #d9dee8; border-radius: 14px; overflow: hidden; margin: 18px 0 6px; background: var(--card); }
+.ps-row { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 8px; padding: 10px 14px; border-top: 1px solid #e6e9f0; text-decoration: none; color: inherit; align-items: center; }
+.ps-row:hover { background: #fff; }
+.ps-head { border-top: 0; font-weight: 700; color: var(--navy); background: #eef1f7; }
+.ps-card { margin: 16px 0; }
+.ps-card h2 a { text-decoration: none; color: inherit; }
+@media (max-width: 560px) { .ps-dl div { grid-template-columns: minmax(0, 1fr); gap: 2px; } .ps-row { font-size: .9rem; padding: 9px 10px; } }

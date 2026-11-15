@@ -7,6 +7,8 @@ import { COUNTRY_IDS } from "../lib/options";
 import { COUNTRY_INFO } from "../lib/countryInfo";
 import { COSTS } from "../lib/costs";
 import { SCHOLARSHIPS } from "../lib/scholarships";
+import { PostStudyFacts } from "./AfterGrad";
+import { PS_TEXT } from "../lib/postStudy";
 
 const S = {
   ar: {
@@ -128,6 +130,12 @@ export default function Country({ code, lang }) {
           <p>{cost.proof[lang]}{cost.proofCheck ? t.toCheck : ""} · <a href={cost.proofSrc} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></p>
         </section>
       )}
+
+      <section className="country-sec">
+        <h2>{PS_TEXT[lang].title}</h2>
+        <PostStudyFacts code={code} lang={lang} />
+        <Link className="btn ghost small" href={`${t.base}/after-graduation`}>{PS_TEXT[lang].compare}</Link>
+      </section>
 
       {sch.length > 0 && (
         <section className="country-sec prog-sch">
