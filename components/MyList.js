@@ -135,7 +135,7 @@ export default function MyList({ lang }) {
               <input id="share-link" readOnly value={link} dir="ltr" onFocus={(e) => e.target.select()} aria-label={m.shareTitle} />
               <button className="btn small" onClick={copy}>{copied ? m.copied : m.copy}</button>
             </div>
-            <WhatsApp lang={lang} full={link} text={lang === "ar" ? "دي البرامج والمنح اللي حفظتها على بوابتي الجديدة:" : "Programmes and scholarships I saved on MyNewGate:"} />
+            <WhatsApp lang={lang} full={link} text={lang === "ar" ? "هذه البرامج والمنح التي حفظتها على بوابتي الجديدة:" : "Programmes and scholarships I saved on MyNewGate:"} />
           </div>
           <ol className="mylist">
             {list.map((it) => {

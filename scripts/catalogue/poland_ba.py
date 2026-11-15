@@ -39,7 +39,7 @@ add("med", "Medicine, English Division (MD)", "Medical University of Gdańsk", "
 add("med", "Medicine, English Division (MD)", "Medical University of Warsaw", "Warsaw", MD, MED,
     ("الرسوم في الملحق 2 لقرار رئيس الجامعة 58/2026 (لم نطّلع على الرقم)", "Fees are in Appendix 2 of Rector's Order 58/2026 (we have not read the figure)"),
     ("رسوم طلب حوالي 20 يورو؛ رسوم تأكيد المقعد 1,000 يورو (جزء من الرسوم، غير مستردة)", "Application fee about €20; seat confirmation fee €1,000 (part of tuition, non-refundable)"),
-    NP, NP, ("التقديم ممكن قبل التخرج من الثانوية؛ الدفع بالتحويل البنكي باليورو فقط", "You can apply before finishing secondary school; payment by bank transfer in EUR only"),
+    NP, NP, ("يمكن التقديم قبل التخرج من الثانوية؛ الدفع بالتحويل البنكي باليورو فقط", "You can apply before finishing secondary school; payment by bank transfer in EUR only"),
     ("أرسل المستندات إلى مكتب القبول بالبريد الإلكتروني أولاً ثم افتح طلباً على نظام ORS", "Send documents to the admissions office by email first, then open an ORS application"),
     "https://ed.wum.edu.pl/node/1043", "https://ed.wum.edu.pl/high-school-graduates")
 add("med", "Medicine in English (MD)", "Medical University of Silesia in Katowice", "Katowice", MD, MED,
@@ -120,7 +120,7 @@ for f, n, fee, src in [("bus", "Global Business, Finance and Governance", SEM("2
 # ---------- Other technical universities ----------
 add("cs", "Computer Science", "Lublin University of Technology", "Lublin", BENG, S7,
     ("2,000 يورو للفصل (14,000 يورو للبرنامج كاملاً)", "€2,000 per semester (€14,000 for the whole programme)"), NP,
-    ("مواعيد 2027/2028 لسه ما اتنشرتش. في 2026/2027 كان التسجيل من مايو لحد 17 يوليو مع امتحان رياضيات أونلاين، والمتوقع نفس الفترة (للتحقق)", "For 2026/2027: registration from May to 17 July 2026, plus an online maths exam (2027 to verify)"),
+    ("مواعيد 2027/2028 لم تُنشر بعد. في 2026/2027 كان التسجيل من مايو إلى 17 يوليو مع امتحان رياضيات إلكتروني، والمتوقع الفترة نفسها (للتحقق)", "For 2026/2027: registration from May to 17 July 2026, plus an online maths exam (2027 to verify)"),
     NP, ("كلية الهندسة الكهربائية وعلوم الحاسب", "Faculty of Electrical Engineering and Computer Science"), IRK,
     "https://bkm.pollub.pl/en/admission/programs/2026-2027", "https://bkm.pollub.pl/en/admission/programs/2026-2027")
 add("cs", "Computer Science (in English)", "Kielce University of Technology", "Kielce", BENG, NP, SEM("1,200"), NP,

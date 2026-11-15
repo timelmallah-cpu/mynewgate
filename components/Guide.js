@@ -33,7 +33,7 @@ export default function Guide({ lang }) {
     <>
       <h1>{s.title}</h1>
       <p className="lead">{s.lead}</p>
-      <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "في كلمة مش فاهمها؟ شوف قاموس الكلمات الغريبة" : "A word you don't understand? See the glossary"}</Link></p>
+      <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "هل هناك مصطلح غير واضح؟ راجع قاموس المصطلحات" : "A word you don't understand? See the glossary"}</Link></p>
       <nav className="guide-jump">
         <a href="#recognition">{s.recTitle}</a>
         <a href="#documents">{s.docsTitle}</a>
@@ -55,7 +55,7 @@ export default function Guide({ lang }) {
         <h2>{s.docsTitle}</h2>
         <p>{s.docsLead}</p>
         <DocsChecklist lang={lang} countries={COUNTRY_IDS.map((c) => [c, t.countries[c]])} />
-        <p className="note"><Link href={`${t.base}/legalisation`}>{lang === "ar" ? "إزاي تصدق وتترجم أوراقك المصرية خطوة بخطوة" : "How to legalise and translate your Egyptian documents, step by step"}</Link></p>
+        <p className="note"><Link href={`${t.base}/legalisation`}>{lang === "ar" ? "كيف تصدّق أوراقك المصرية وتترجمها خطوة بخطوة" : "How to legalise and translate your Egyptian documents, step by step"}</Link></p>
       </section>
 
       <Link className="sch-promo" href={`${t.base}/compare`}>

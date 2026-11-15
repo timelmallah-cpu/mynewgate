@@ -57,7 +57,7 @@ export async function POST(req) {
       turns.push({ role: h.role, parts: [{ text: h.text }] });
     }
     if (turns.length && turns[turns.length - 1].role === "user") turns.pop();
-    turns.push({ role: "user", parts: [{ text: `${contextBlock(docs, overviewText(lang), lang)}\n\nQUESTION (${lang === "ar" ? "answer in Egyptian Arabic unless it is written in English" : "answer in English"}):\n${message}` }] });
+    turns.push({ role: "user", parts: [{ text: `${contextBlock(docs, overviewText(lang), lang)}\n\nQUESTION (${lang === "ar" ? "answer in the same Arabic dialect the user writes in, or in simple Modern Standard Arabic if unclear; in English if the question is in English" : "answer in the language of the question, English by default"}):\n${message}` }] });
     try {
       out = await ask({ system: SYSTEM, contents: turns, signal: AbortSignal.timeout(25000) });
     } catch (e) {

@@ -2,7 +2,7 @@
 // path: a site path such as /programme/12; full: an absolute URL (used when the link is built in the browser).
 import { SITE_URL } from "../lib/site";
 
-const LABEL = { ar: "ابعت على واتساب", en: "Send on WhatsApp" };
+const LABEL = { ar: "أرسل عبر واتساب", en: "Send on WhatsApp" };
 
 export default function WhatsApp({ lang, text, path, full, small = true }) {
   const url = full || `${SITE_URL}${path || ""}`;

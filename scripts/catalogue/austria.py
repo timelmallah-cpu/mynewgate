@@ -18,19 +18,19 @@ FEE_SRC = "https://studienabteilung.uni-graz.at/en/tuition-fee/tuition-fee-reimb
 MSC = ("ماجستير (Dipl.-Ing. / MSc)", "Master's degree (Dipl.-Ing. / MSc)")
 MSC2 = ("ماجستير علوم (MSc)", "Master of Science (MSc)")
 BSC = ("بكالوريوس علوم (BSc)", "Bachelor of Science (BSc)")
-TU_DL = ("لغير الأوروبيين موعد خاص في التقويم الأكاديمي لـ TU Wien، والملف لازم يكون كامل بكل الأوراق والتصديقات قبله (للتحقق من الموعد)", "Non-EU applicants have a separate deadline in TU Wien's academic calendar; the file must be complete with all documents and certifications by then (check the date)")
+TU_DL = ("لغير الأوروبيين موعد خاص في التقويم الأكاديمي لـ TU Wien، ويجب أن يكون الملف كاملاً بكل الأوراق والتصديقات قبله (للتحقق من الموعد)", "Non-EU applicants have a separate deadline in TU Wien's academic calendar; the file must be complete with all documents and certifications by then (check the date)")
 TU_EN = ("إنجليزي B2 على الأقل", "English at least B2 (CEFR)")
 TU_HOW = ("التقديم أونلاين لمكتب القبول في TU Wien", "Apply online to TU Wien's Admission Office")
 TU_CAL = "https://www.tuwien.at/en/studies/admission/academic-calendar"
 
 add(MA, "ds", "Data Science", "TU Wien", "Vienna", MSC, ("سنتان (120 ECTS)", "2 years (120 ECTS)"), FEE, NP, TU_DL, TU_EN,
-    ("بالإنجليزي بس", "Offered only in English"), TU_HOW, NP, NP,
+    ("بالإنجليزية فقط", "Offered only in English"), TU_HOW, NP, NP,
     "https://www.tuwien.at/en/studies/studies/master-programmes/computer-science", TU_CAL, ("التقويم الأكاديمي والمواعيد", "Academic calendar and deadlines"))
 add(MA, "cs", "Logic and Computation", "TU Wien", "Vienna", MSC, ("سنتان (120 ECTS)", "2 years (120 ECTS)"), FEE, NP, TU_DL, TU_EN,
-    ("بالإنجليزي بس", "Offered only in English"), TU_HOW, NP, NP,
+    ("بالإنجليزية فقط", "Offered only in English"), TU_HOW, NP, NP,
     "https://www.tuwien.at/en/studies/studies/master-programmes/computer-science", TU_CAL, ("التقويم الأكاديمي والمواعيد", "Academic calendar and deadlines"))
 add(MA, "cs", "Artificial Intelligence", "Johannes Kepler University Linz (JKU)", "Linz", MSC2, ("4 فصول دراسية (120 ECTS)", "4 semesters (120 ECTS)"), FEE, NP, NP,
-    ("إنجليزي B2", "English B2"), ("لازم بكالوريوس قريب من بكالوريوس الذكاء الاصطناعي في JKU، والفرق بيتعوض بمواد إضافية", "You need a bachelor's close to JKU's AI bachelor; gaps are covered by extra courses"),
+    ("إنجليزي B2", "English B2"), ("يُشترط بكالوريوس قريب من بكالوريوس الذكاء الاصطناعي في JKU، ويُعوَّض الفرق بمواد إضافية", "You need a bachelor's close to JKU's AI bachelor; gaps are covered by extra courses"),
     ("التقديم أونلاين بحساب المتقدمين في JKU", "Apply online with a JKU applicant account"), NP, NP,
     "https://www.jku.at/fileadmin/marketing/01_STUDIEN/MA-Artificial-Intelligence.pdf", "https://studienhandbuch.jku.at/text/933", ("لائحة البرنامج", "Programme curriculum"))
 add(MA, "ds", "Data Science", "University of Vienna", "Vienna", MSC2, ("سنتان حسب بوابة Studyportals (للتحقق)", "2 years per Studyportals (to verify)"), FEE, NP,
@@ -40,7 +40,7 @@ add(MA, "ds", "Data Science", "University of Vienna", "Vienna", MSC2, ("سنتا
     "https://datascience.univie.ac.at/master25", "https://studieren.univie.ac.at/en/admission/master-programmes/data-science/")
 
 add(BA, "cs", "Artificial Intelligence", "Johannes Kepler University Linz (JKU)", "Linz", BSC, ("6 فصول دراسية (3 سنوات)", "6 semesters (3 years)"), FEE, NP, NP,
-    ("إنجليزي B2", "English B2"), ("لغير الأوروبيين لازم ثانويتك تكون مؤهلة لنفس التخصص في بلدك (للتحقق)", "Non-EU applicants also need their certificate to give access to the same field at home (to verify)"),
+    ("إنجليزي B2", "English B2"), ("لغير الأوروبيين يجب أن تكون شهادتك الثانوية مؤهلة للتخصص نفسه في بلدك (للتحقق)", "Non-EU applicants also need their certificate to give access to the same field at home (to verify)"),
     ("التقديم أونلاين بحساب المتقدمين في JKU", "Apply online with a JKU applicant account"), NP, NP,
     "https://jku.at/en/centre-for-distance-studies-austria/distance-studies-jku/artificial-intelligence", "https://www.jku.at/en/")
 

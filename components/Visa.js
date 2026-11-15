@@ -23,7 +23,7 @@ export default function Visa({ lang }) {
     <>
       <h1>{s.title}</h1>
       <p className="lead">{s.lead}</p>
-      <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "في كلمة مش فاهمها؟ شوف قاموس الكلمات الغريبة" : "A word you don't understand? See the glossary"}</Link></p>
+      <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "هل هناك مصطلح غير واضح؟ راجع قاموس المصطلحات" : "A word you don't understand? See the glossary"}</Link></p>
       <div className="card ec-form">
         <label className="ec-field"><span>{s.from}</span>
           <select value={from} onChange={(e) => setFrom(e.target.value)}>

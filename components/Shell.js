@@ -28,21 +28,21 @@ function Mark() {
 // Footer links, grouped so the list stays readable on phones.
 const FOOT_GROUPS = [
   { ar: "ابحث وقارن", en: "Search and compare", links: [
-    ["/quiz", "دوّر على برنامج", "Find a programme"], ["/study", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
+    ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/study", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
     ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"],
   ] },
   { ar: "أدوات", en: "Tools", links: [
-    ["/ask", "اسأل المساعد", "Ask the assistant"], ["/english-check", "درجتك في الإنجليزي تكفي؟", "English score check"], ["/without-ielts", "من غير IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
-    ["/institutes", "معاهد اللغة", "Language institutes"], ["/gpa", "حوّل تقديرك للألماني", "German grade converter"], ["/planner", "خطط مواعيدك", "Plan your dates"],
+    ["/ask", "اسأل المساعد", "Ask the assistant"], ["/english-check", "هل درجتك في الإنجليزية كافية؟", "English score check"], ["/without-ielts", "الدراسة بدون IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
+    ["/institutes", "معاهد اللغة", "Language institutes"], ["/gpa", "حوّل معدلك إلى النظام الألماني", "German grade converter"], ["/planner", "خطط مواعيدك", "Plan your dates"],
     ["/tools", "كل الأدوات", "All tools"],
   ] },
   { ar: "أدلة", en: "Guides", links: [
-    ["/guide", "دليل التقديم", "Application guide"], ["/motivation-letter", "خطاب الدافع والـ CV", "Motivation letter & CV"], ["/legalisation", "تصديق الأوراق", "Legalising documents"], ["/visa", "التأشيرة", "Student visa"], ["/school-certificate", "شهادة الثانوية", "School certificate"],
+    ["/guide", "دليل التقديم", "Application guide"], ["/motivation-letter", "خطاب الدافع والسيرة الذاتية", "Motivation letter & CV"], ["/legalisation", "تصديق الأوراق", "Legalising documents"], ["/visa", "التأشيرة", "Student visa"], ["/school-certificate", "شهادة الثانوية", "School certificate"],
     ["/housing", "دليل السكن", "Housing guide"], ["/after-graduation", "بعد التخرج", "After graduation"], ["/vocational", "التدريب المهني", "Vocational training"],
     ["/glossary", "قاموس الكلمات", "Glossary"],
   ] },
   { ar: "عن الموقع", en: "About", links: [
-    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "اعلن معانا", "Advertise"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
+    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "أعلن معنا", "Advertise"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
   ] },
 ];
 

@@ -40,22 +40,22 @@ BO_LM = ("ماجستير (Laurea Magistrale)", "Master's degree (Laurea Magistra
 add(MA, "cs", "Artificial Intelligence", BO, "Bologna", BO_LM, MSC2, BO_FEE, NP,
     ("تقديم غير الأوروبيين المقيمين بالخارج لعام 2026/2027 قفل. مواعيد 2027/2028 هتتنشر في إعلان القبول (Call for admissions) على صفحة البرنامج (للتحقق)",
      "Applications from non-EU citizens living abroad for 2026/2027 have closed. 2027/2028 dates will appear in the call for admissions on the programme page (to verify)"),
-    ("B2 (مثلاً IELTS 5.5 أو TOEFL iBT 80 أو PTE Academic 51)، والشهادة مش أقدم من 3 سنين؛ شهادة إن دراستك كانت بالإنجليزي (MOI) مش مقبولة",
+    ("B2 (مثلاً IELTS 5.5 أو TOEFL iBT 80 أو PTE Academic 51)، على ألا تكون الشهادة أقدم من 3 سنوات؛ شهادة لغة الدراسة بالإنجليزية (MOI) غير مقبولة",
      "B2 (e.g. IELTS 5.5, TOEFL iBT 80 or PTE Academic 51), certificate no older than three years; Medium of Instruction letters are not accepted"),
-    ("بكالوريوس 3 سنين (180 ECTS) في علوم الحاسب أو هندسة الحاسب أو الرياضيات أو الفيزياء أو الإحصاء أو مجال قريب. القبول بلجنة اختيار، والمعدل لازم يكون 26 من 30 مع 18 ساعة معتمدة في علوم الحاسب على الأقل (أو 25.5 من 30 مع 48 ساعة)",
+    ("بكالوريوس 3 سنوات (180 ECTS) في علوم الحاسب أو هندسة الحاسب أو الرياضيات أو الفيزياء أو الإحصاء أو مجال قريب. القبول عبر لجنة اختيار، ويجب أن يكون المعدل 26 من 30 مع 18 ساعة معتمدة في علوم الحاسب على الأقل (أو 25.5 من 30 مع 48 ساعة)",
      "A 3-year bachelor's (180 ECTS) in computer science, computer engineering, mathematics, physics, statistics or a related field. Selection by committee; you need an average of 26/30 with at least 18 credits in computer science (or 25.5/30 with 48 credits)"),
     "https://corsi.unibo.it/2cycle/artificial-intelligence/how-to-enrol", BO_FEES)
 add(MA, "eng", "Aerospace Engineering", BO, "Forlì", BO_LM, MSC2, BO_FEE, NP,
-    ("لغير الأوروبيين المقيمين بالخارج (Intake I): في 2026/2027 كان التقديم 12 ديسمبر 2025 - 3 فبراير 2026 والنتيجة 27 فبراير. المتوقع نفس الفترة لـ 2027/2028: من ديسمبر لحد 3 فبراير تقريباً (للتحقق)",
+    ("لغير الأوروبيين المقيمين بالخارج (Intake I): في 2026/2027 كان التقديم 12 ديسمبر 2025 - 3 فبراير 2026 والنتيجة 27 فبراير. المتوقع الفترة نفسها لعام 2027/2028: من ديسمبر إلى 3 فبراير تقريباً (للتحقق)",
      "Non-EU citizens living abroad (Intake I): for 2026/2027 applications ran 12 December 2025 - 3 February 2026, results on 27 February 2026. The same window is expected for 2027/2028, from December to around 3 February (to verify)"),
-    ("B2: IELTS 5.5 أو TOEFL iBT 80 على الأقل، أو FCE أو Trinity ISE II، والشهادة من 1 يناير 2023 أو بعدها؛ اللي دارس بكالوريوس بالإنجليزي معفي",
+    ("B2: IELTS 5.5 أو TOEFL iBT 80 على الأقل، أو FCE أو Trinity ISE II، والشهادة من 1 يناير 2023 أو بعدها؛ من درس البكالوريوس بالإنجليزية معفى",
      "B2: at least IELTS 5.5 or TOEFL iBT 80, or FCE or Trinity ISE II, obtained from 1 January 2023; holders of an English-taught degree are exempt"),
     ("15 مقعد لغير الأوروبيين المقيمين بالخارج (2026/2027). بكالوريوس في الهندسة الصناعية أو هندسة المعلومات أو الهندسة المدنية أو الفيزياء أو علوم الحاسب أو الرياضيات، أو ما يعادلها",
      "15 places for non-EU citizens living abroad (2026/2027). A bachelor's in industrial, information or civil engineering, physics, computer science or mathematics, or an equivalent"),
     "https://corsi.unibo.it/s/3427/p/en/programme-enrolment-new/bando-lm-mae-26-27_eng.pdf/@@download/file/Bando%20LM%20MAE%2026-27_ENG.pdf", BO_FEES)
 
 # ---------- Medicine in English via IMAT ----------
-IMAT_DL = ("اختبار IMAT الوطني عبر Universitaly مع ما قبل التسجيل لغير الأوروبيين. مواعيد 2027 لسه ما اتنشرتش؛ اختبار 2026 كان في 30 سبتمبر حسب مصادر غير رسمية، والمتوقع في الخريف (للتحقق)",
+IMAT_DL = ("اختبار IMAT الوطني عبر Universitaly مع التسجيل المسبق لغير الأوروبيين. مواعيد 2027 لم تُنشر بعد؛ اختبار 2026 كان في 30 سبتمبر حسب مصادر غير رسمية، والمتوقع في الخريف (للتحقق)",
            "The national IMAT test via Universitaly, plus pre-registration for non-EU applicants. 2027 dates not published yet; the 2026 test was on 30 September according to unofficial sources, and an autumn date is expected (to verify)")
 IMAT_OTHER = ("مقاعد منفصلة لغير الأوروبيين المقيمين بالخارج، ويكفيهم الحصول على درجة أعلى من صفر في IMAT للدخول في الترتيب", "Separate places for non-EU applicants living abroad, who only need an IMAT score above zero to be ranked")
 FLAT = ("الرسوم تعتمد على نظام الرسوم الثابتة (Flat Rate) حسب تصنيف بلد الجنسية؛ المبالغ في لائحة رسوم الجامعة", "Fees follow the Flat Rate brackets by country of citizenship; amounts are in the university's fee regulation")
