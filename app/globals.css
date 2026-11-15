@@ -673,3 +673,16 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .gpa-result { display: grid; gap: 4px; justify-items: start; padding: 16px; border-radius: 12px; background: var(--sky); }
 .gpa-result strong { font-size: 2.4rem; line-height: 1.1; color: var(--navy); font-family: var(--display); }
 .gpa-eq { font-family: var(--display); font-weight: 600; color: var(--navy); }
+
+/* Without IELTS */
+.alt-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.alt-card h3 { margin-top: 0; display: flex; gap: 8px; align-items: center; }
+.alt-table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.alt-table th, .alt-table td { padding: 6px 4px; border-bottom: 1px solid var(--line); text-align: start; }
+.alt-st { display: inline-block; padding: 2px 10px; border-radius: 999px; font-weight: 600; font-size: .85rem; }
+.alt-yes { background: #e3f4e8; color: #1d5c32; }
+.alt-no { background: #fbe7e4; color: #8a2a1c; }
+.alt-case { background: var(--warn-soft); color: var(--warn); }
+.alt-null { background: var(--sky); color: var(--muted); }
+.alt-line { margin: 8px 0 0; font-size: .95rem; }
+.alt-line a { margin-inline-start: 6px; }

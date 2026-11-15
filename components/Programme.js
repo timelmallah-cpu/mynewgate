@@ -2,6 +2,7 @@ import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import WhatsApp from "./WhatsApp";
 import AddToCalendar from "./AddToCalendar";
+import { altFor, ALT_TEXT } from "../lib/englishAlt";
 import { Local } from "./Currency";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
@@ -57,7 +58,7 @@ export default function Programme({ id, lang }) {
         </div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>
-        <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link></dd></div>
+        <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link><AltLine p={raw} lang={lang} t={t} /></dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
       <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <WhatsApp lang={lang} path={`${t.base}/programme/${raw.id}`} text={`${raw.name} | ${raw.university} (${p.countryLabel})\n${lang === "ar" ? "الرسوم" : "Fee"}: ${known ? `€${p.feePerYear.toLocaleString("en-US")}` : feeLabel(p, lang)}\n${t.keyDeadline}: ${p.deadline}`} /></div>
@@ -176,4 +177,14 @@ function ProgScholarships({ raw, t, lang }) {
       <Link className="btn ghost small" href={`${t.base}/scholarships`}>{st.allSch}</Link>
     </section>
   );
+}
+
+// One line under the English requirement: Duolingo / degree-in-English acceptance at this university, when published.
+function AltLine({ p, lang, t }) {
+  const a = altFor(p.university, p.level);
+  if (!a) return null;
+  const s = ALT_TEXT[lang];
+  const d = `${s.duo}: ${s.st[a.duo ?? "null"]}${a.duo === "yes" && a.duoMin ? ` (${s.min(a.duoMin)})` : ""}`;
+  const m = `${s.moi}: ${s.st[a.moi ?? "null"]}`;
+  return <p className="alt-line"><strong>{s.progLine}:</strong> {d} · {m} <a href={a.src} target="_blank" rel="noopener noreferrer">{s.src} ↗</a> <Link href={`${t.base}/without-ielts`}>{s.more}</Link></p>;
 }

@@ -61,6 +61,7 @@ export default function EnglishCheck({ lang }) {
     <>
       <h1>{s.title}</h1>
       <p className="lead">{s.lead}</p>
+      <Link className="ctx-link" href={`${t.base}/without-ielts`}>{lang === "ar" ? "مش معاك IELTS؟ شوف الجامعات اللي بتقبل Duolingo أو شهادة بالإنجليزي" : "No IELTS? See universities that accept Duolingo or a degree taught in English"}</Link>
       <form className="card ec-form" onSubmit={(e) => e.preventDefault()}>
         <fieldset className="ec-tests">
           <legend>{s.test}</legend>
