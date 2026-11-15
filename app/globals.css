@@ -636,3 +636,16 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .study-related { list-style: none; padding: 0; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .study-related a { display: block; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; color: var(--navy); font-weight: 600; text-decoration: none; }
 .study-related a:hover { border-color: var(--navy); }
+
+/* Housing guide */
+.hs-links { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; }
+.hs-links li { display: flex; flex-direction: column; gap: 2px; }
+.hs-links a { font-weight: 600; }
+.hs-cities { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 14px; margin-bottom: 18px; }
+.hs-city h3 { margin: 0 0 8px; }
+.hs-city ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.hs-city li p { margin: 4px 0; }
+.hs-city li + li { border-top: 1px solid var(--line); padding-top: 12px; }
+.hs-scam { border-inline-start: 5px solid #c0392b; }
+.hs-scam ul { padding-inline-start: 20px; display: grid; gap: 6px; }
+.hs-prov { margin: 0 0 10px; padding: 8px 12px; background: var(--soft, #f3f5f9); border-radius: 8px; }

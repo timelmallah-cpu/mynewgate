@@ -80,7 +80,7 @@ export default function Programme({ id, lang }) {
           {KEYS.map((k) => (
             <div key={k}>
               <dt>{t.fieldsDetail[k]}</dt>
-              <dd>{p[k]}</dd>
+              <dd>{p[k]}{k === "housing" && <Link className="ctx-link" href={`${t.base}/housing?country=${raw.country}&city=${encodeURIComponent(raw.en.city.split(" (")[0])}`}>{lang === "ar" ? "سكن الطلاب الرسمي في المدينة وتحذير من النصب" : "Official student housing in this city, and scam warnings"}</Link>}</dd>
             </div>
           ))}
         </dl>
