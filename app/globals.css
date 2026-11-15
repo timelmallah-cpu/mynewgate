@@ -662,3 +662,7 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .gl-item dt { display: flex; flex-direction: column; gap: 2px; }
 .gl-item dt small { font-weight: 500; font-size: .85rem; display: block; }
 .in-steps { padding-inline-start: 22px; display: grid; gap: 8px; margin: 0 0 8px; }
+
+/* Add-to-calendar buttons */
+.cal-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 0; }
+.cal-row .note { color: var(--muted); }

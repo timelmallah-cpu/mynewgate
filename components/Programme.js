@@ -1,6 +1,7 @@
 import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import WhatsApp from "./WhatsApp";
+import AddToCalendar from "./AddToCalendar";
 import { Local } from "./Currency";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
@@ -60,6 +61,7 @@ export default function Programme({ id, lang }) {
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
       <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <WhatsApp lang={lang} path={`${t.base}/programme/${raw.id}`} text={`${raw.name} | ${raw.university} (${p.countryLabel})\n${lang === "ar" ? "الرسوم" : "Fee"}: ${known ? `€${p.feePerYear.toLocaleString("en-US")}` : feeLabel(p, lang)}\n${t.keyDeadline}: ${p.deadline}`} /></div>
+      <AddToCalendar k={`p-${raw.id}`} lang={lang} />
 
       <section className="apply">
         <h2>{t.linksTitle}</h2>
