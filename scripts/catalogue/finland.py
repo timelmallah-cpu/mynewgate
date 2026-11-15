@@ -127,7 +127,7 @@ add(PHD, "ph", "International Doctoral Programme in Epidemiology and Public Heal
     ("إقامة 10 أشهر في تامبيري خلال سنة المقررات، ويُنصح بتأمين تمويل خارجي", "A 10-month residency in Tampere during the coursework year; you are encouraged to secure outside funding"),
     ("طلب أونلاين على Studyinfo.fi", "Online application on Studyinfo.fi"), "https://sites.tuni.fi/ippe/call-for-applications/", STUDYINFO)
 add(PHD, "ph", "Doctoral Programme in Health Sciences (DPHS)", TAU, "Tampere", PHD_DEG, DUR4, FREE, NP,
-    ("مرتان في السنة (أبريل وأكتوبر)؛ فترة أكتوبر 2026 كانت من 1 حتى 30 أكتوبر", "Twice a year (April and October); the October 2026 period ran 1 - 30 October 2026"), NP, SUPER,
+    ("مرتين في السنة (أبريل وأكتوبر). فترة أكتوبر 2026 خلصت، والفترة الجاية في أبريل 2027 (في 2026 كانت من 1 لحد 30 أبريل؛ للتحقق)", "Twice a year (April and October); the October 2026 period ran 1 - 30 October 2026"), NP, SUPER,
     ("طلب أونلاين على Studyinfo.fi", "Online application on Studyinfo.fi"), TAU_PHD, TAU_PHD)
 add(PHD, "bus", "Doctoral degree programme in economics and business administration", OU, "Oulu", PHD_DEG, DUR4C, FREE, NP,
     ("فترتان كل سنة: من 1 يناير حتى 30 أبريل، ومن 1 يوليو حتى 31 أكتوبر", "Two periods every year: 1 January - 30 April and 1 July - 31 October"), NP, SUPER,

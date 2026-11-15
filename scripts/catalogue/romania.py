@@ -14,7 +14,7 @@ UPB = "National University of Science and Technology POLITEHNICA Bucharest"
 UPB_P = "https://international.upb.ro/admission/study-offers/program/"
 UPB_APPLY = "https://international.upb.ro/admission/applying/students-from-non-eu-countries"
 UPB_FEES = "https://www.international.upb.ro/assets/docs/2026/regulations/POLITEHNICA_Bucharest_tuition_fees.pdf"
-UPB_DL = ("للعام 2026/2027 كان التسجيل على منصة apply.upb.ro حتى 31 يوليو 2026؛ والوزارة تحتاج 30 - 60 يوماً على الأقل لإصدار خطاب القبول (مواعيد 2027 للتحقق)",
+UPB_DL = ("مواعيد 2027 لسه ما اتنشرتش. في 2026/2027 كان التسجيل على apply.upb.ro لحد 31 يوليو، والمتوقع نفس الميعاد (للتحقق). قدّم بدري لأن الوزارة بتحتاج من 30 لـ 60 يوم على الأقل لإصدار خطاب القبول",
           "For 2026/2027 registration on apply.upb.ro ran until 31 July 2026; the Ministry needs at least 30 - 60 days to issue the Letter of Acceptance (2027 dates to verify)")
 UPB_TECH = ("2,700 يورو سنوياً لغير الأوروبيين (9 أشهر) للبرامج التقنية", "€2,700 per year for non-EU students (9 months) for technology programmes")
 UPB_ECON = ("2,700 يورو سنوياً للبرامج التقنية أو 2,200 يورو للبرامج الاقتصادية؛ فئة هذا البرنامج للتحقق", "€2,700 per year for technology programmes or €2,200 for economics programmes; this programme's category is to be verified")
@@ -42,7 +42,7 @@ upb("bus", "Digital Transformation in Business", "digital-transformation-in-busi
 # ---------- Babeș-Bolyai University ----------
 UBB = "Babeș-Bolyai University"
 UBB_URL = "https://cci.ubbcluj.ro/admission-international-students/candidates-from-other-countries/master-degree/"
-UBB_DL = ("للعام 2026/2027 كان التسجيل 1 أبريل - 31 يوليو 2026 (مواعيد 2027 للتحقق)", "For 2026/2027 registration ran 1 April - 31 July 2026 (2027 dates to verify)")
+UBB_DL = ("مواعيد 2027 لسه ما اتنشرتش. في 2026/2027 كان التسجيل 1 أبريل - 31 يوليو، والمتوقع نفس الفترة (للتحقق)", "For 2026/2027 registration ran 1 April - 31 July 2026 (2027 dates to verify)")
 UBB_EN = ("شهادة إنجليزية معتمدة إلا في حالات الإعفاء", "An accepted English certificate unless an exemption applies")
 UBB_HOW = ("منصة القبول الدولية للجامعة؛ وبعد دفع الرسوم (خلال 21 يوماً) تصدر الجامعة تأكيد الدفع والسكن", "University international admission platform; after paying the fee (within 21 days) the university issues confirmation of payment and accommodation")
 UBB_HOUSE = ("نعم: تصدر الجامعة تأكيد السكن في الحرم بعد دفع الرسوم", "Yes: the university issues on-campus accommodation confirmation after the fee is paid")

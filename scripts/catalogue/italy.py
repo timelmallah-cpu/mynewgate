@@ -36,7 +36,7 @@ add(MA, "cs", "Computer Science and Engineering", PM, "Milan", ("ماجستير 
 add(MA, "bus", "Management Engineering", PM, "Milan", ("ماجستير العلوم (Laurea Magistrale)", "Master of Science (Laurea Magistrale)"), MSC2, PM_FEE, ("ضريبة إقليمية 190 يورو (الحد الأقصى لهذه الفئة)", "Regional tax of €190 (maximum for this category)"), PM_DL, NP, NP, PM_SRC, "https://www.polimi.it/en/prospective-students")
 
 # ---------- Medicine in English via IMAT ----------
-IMAT_DL = ("اختبار IMAT الوطني عبر Universitaly (اختبار 2026 كان 30 سبتمبر 2026 حسب مصادر غير رسمية) مع ما قبل التسجيل لغير الأوروبيين؛ مواعيد 2027 للتحقق",
+IMAT_DL = ("اختبار IMAT الوطني عبر Universitaly مع ما قبل التسجيل لغير الأوروبيين. مواعيد 2027 لسه ما اتنشرتش؛ اختبار 2026 كان في 30 سبتمبر حسب مصادر غير رسمية، والمتوقع في الخريف (للتحقق)",
            "National IMAT test via Universitaly (the 2026 test was on 30 September 2026 per unofficial sources) plus non-EU pre-enrolment; 2027 dates to verify")
 IMAT_OTHER = ("مقاعد منفصلة لغير الأوروبيين المقيمين بالخارج، ويكفيهم الحصول على درجة أعلى من صفر في IMAT للدخول في الترتيب", "Separate places for non-EU applicants living abroad, who only need an IMAT score above zero to be ranked")
 FLAT = ("الرسوم تعتمد على نظام الرسوم الثابتة (Flat Rate) حسب تصنيف بلد الجنسية؛ المبالغ في لائحة رسوم الجامعة", "Fees follow the Flat Rate brackets by country of citizenship; amounts are in the university's fee regulation")

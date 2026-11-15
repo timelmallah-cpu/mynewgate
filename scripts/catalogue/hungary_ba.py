@@ -116,7 +116,7 @@ add("med", "General Medicine in English (MD)", SZ, "Szeged", MD, MED, SEM("7,900
     NP, NP, NP, SZ_FEES, SZ_FEES)
 add("cs", "Computer Science BSc", SZ, "Szeged", BSC, NP, SEM("3,200"),
     ("رسوم طلب 79 يورو + رسوم امتحان قبول 100 يورو (غير مستردة)", "€79 application fee + €100 entrance exam fee (non-refundable)"),
-    ("لدفعة سبتمبر 2026 كان التقديم 1 يناير - 15 مايو 2026 عبر DreamApply (2027 للتحقق)", "For September 2026 applications ran 1 January - 15 May 2026 in DreamApply (2027 to verify)"),
+    ("لدفعة سبتمبر 2027: التقديم على DreamApply. في 2026 كان من 1 يناير لحد 15 مايو، والمتوقع نفس الفترة (للتحقق)", "For September 2026 applications ran 1 January - 15 May 2026 in DreamApply (2027 to verify)"),
     ("شهادة لغة إنجليزية، مع إعفاء لمواطني بعض الدول الناطقة بالإنجليزية", "An English certificate, with exemption for natives of some English-speaking countries"),
     ("رسوم الفصلين الأول والثاني تُدفع مقدماً بعد القبول", "Fees for the first and second semester are paid in advance after admission"),
     ("DreamApply ثم امتحان قبول", "DreamApply, then an entrance exam"), NP, NP,

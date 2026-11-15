@@ -120,7 +120,7 @@ for f, n, fee, src in [("bus", "Global Business, Finance and Governance", SEM("2
 # ---------- Other technical universities ----------
 add("cs", "Computer Science", "Lublin University of Technology", "Lublin", BENG, S7,
     ("2,000 يورو للفصل (14,000 يورو للبرنامج كاملاً)", "€2,000 per semester (€14,000 for the whole programme)"), NP,
-    ("لدفعة 2026/2027: التسجيل من مايو حتى 17 يوليو 2026، وامتحان رياضيات عبر الإنترنت (2027 للتحقق)", "For 2026/2027: registration from May to 17 July 2026, plus an online maths exam (2027 to verify)"),
+    ("مواعيد 2027/2028 لسه ما اتنشرتش. في 2026/2027 كان التسجيل من مايو لحد 17 يوليو مع امتحان رياضيات أونلاين، والمتوقع نفس الفترة (للتحقق)", "For 2026/2027: registration from May to 17 July 2026, plus an online maths exam (2027 to verify)"),
     NP, ("كلية الهندسة الكهربائية وعلوم الحاسب", "Faculty of Electrical Engineering and Computer Science"), IRK,
     "https://bkm.pollub.pl/en/admission/programs/2026-2027", "https://bkm.pollub.pl/en/admission/programs/2026-2027")
 add("cs", "Computer Science (in English)", "Kielce University of Technology", "Kielce", BENG, NP, SEM("1,200"), NP,

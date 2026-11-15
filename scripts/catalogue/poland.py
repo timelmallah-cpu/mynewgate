@@ -21,7 +21,7 @@ R = []
 WUT = "Warsaw University of Technology (WUT)"
 WUT_OFFER = "https://www.students.pw.edu.pl/Studies-Offer/M.Sc.-offer"
 WUT_APPLY = "https://www.students.pw.edu.pl/How-to-Apply/Admission-to-M.Sc"
-WUT_DL = ("لدفعة أكتوبر 2026 كان آخر موعد لإنشاء الطلب 21 يوليو 2026؛ ولدفعة فبراير يكون التسجيل عادة من نوفمبر حتى أوائل ديسمبر (مواعيد 2027 للتحقق)",
+WUT_DL = ("لو البرنامج ليه دفعة فبراير 2027: التسجيل بيبقى في نوفمبر وآخر موعد لإنشاء الطلب حوالي 8 ديسمبر (من مصدر غير رسمي؛ في دفعة فبراير 2026 كان 9 ديسمبر 2025، للتحقق). لدفعة أكتوبر 2027: المواعيد لسه ما اتنشرتش، وفي 2026 كان آخر موعد 21 يوليو (للتحقق)",
           "For the October 2026 intake the last day to create an application was 21 July 2026; for the February intake registration usually runs from November to early December (2027 dates to verify)")
 WUT_ADM = ("رسوم طلب 85 زلوتي (للتحقق لغير الأوروبيين)", "PLN 85 application fee (to verify for non-EU applicants)")
 WUT_EN = ("شهادة لغة إنجليزية بمستوى B2 على الأقل من قائمة الجامعة، أو دراسة سابقة بالإنجليزية", "English certificate at B2 or higher from the university's list, or previous studies in English")
@@ -75,7 +75,7 @@ uw("ds", "Data Science and Business Analytics", "https://irk.uw.edu.pl/en-gb/off
 SGH = "SGH Warsaw School of Economics"
 SGH_FEES = "https://www.sgh.waw.pl/en/fees-graduate-studies"
 SGH_STEPS = "https://www.sgh.waw.pl/en/admissions-step-step-graduate-studies-international-applicants"
-SGH_DL = ("دفعة واحدة في السنة؛ للعام 2026 كان التسجيل للدوليين 9 يونيو - 23 يوليو 2026 (مواعيد 2027 تُنشر لاحقاً)",
+SGH_DL = ("دفعة واحدة في السنة (أكتوبر). مواعيد 2027 لسه ما اتنشرتش؛ في 2026 كان تسجيل الدوليين 9 يونيو - 23 يوليو، والمتوقع نفس الفترة تقريباً (للتحقق)",
           "One intake per year; in 2026 international registration ran 9 June - 23 July 2026 (2027 dates published later)")
 SGH_FEE = ("2,400 يورو للفصل الدراسي (2026/2027)", "€2,400 per semester (2026/2027)")
 SGH_EN = ("شهادة من قائمة SGH (مثل IELTS 5.5 أو TOEFL iBT 72 أو Cambridge FCE) أو مقابلة عبر الإنترنت", "A certificate from SGH's list (e.g. IELTS 5.5, TOEFL iBT 72 or Cambridge FCE) or an online interview")
@@ -141,7 +141,7 @@ agh("bus", "International Management", "3,500", dur=MSC2)
 PWR = "Wrocław University of Science and Technology"
 PWR_FEES = "https://rekrutacja.pwr.edu.pl/en/for-foreigners/fee-paying-basis-of-studies-and-scholarship-holders/after-admission/payments/"
 PWR_ADMIT = "https://rekrutacja.pwr.edu.pl/en/for-foreigners/fee-paying-basis-of-studies-and-scholarship-holders/admission/master-studies"
-PWR_DL = ("لدفعة أكتوبر 2026 كان التسجيل 1 يونيو - 21 يوليو 2026؛ ولدفعة فبراير 2027 كان 15 أكتوبر - 13 نوفمبر 2026 (مواعيد أكتوبر 2027 للتحقق)",
+PWR_DL = ("لدفعة أكتوبر 2027: المواعيد لسه ما اتنشرتش؛ في 2026 كان التسجيل 1 يونيو - 21 يوليو، والمتوقع نفس الفترة (للتحقق). دفعة فبراير 2027 خلصت للمتقدمين من برة بولندا (كانت 15 أكتوبر - 13 نوفمبر 2026)",
           "For the October 2026 intake registration ran 1 June - 21 July 2026; for February 2027 it ran 15 October - 13 November 2026 (October 2027 dates to verify)")
 PWR_ADM = ("رسوم طلب 85 زلوتي لكل برنامج (حتى 6 برامج)", "PLN 85 application fee per programme (up to six programmes)")
 PWR_EN = ("مستوى B2 في المهارات الأربع: مثل IELTS 5.5 أو TOEFL iBT 72 أو PTE 59", "B2 in all four skills: e.g. IELTS 5.5, TOEFL iBT 72 or PTE 59")

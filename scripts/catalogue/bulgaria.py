@@ -19,7 +19,7 @@ VISA = ("بعد القبول ترسل الجامعة ملفك لوزارة ال�
 
 add(BA, "med", "Medicine (in English)", "Medical University of Sofia", "Sofia", MD, MED6,
     ("9,950 يورو سنوياً حسب مصادر غير رسمية تنقل عن الجامعة لعام 2026/2027 (للتحقق من صفحة الرسوم)", "€9,950 per year per unofficial sources quoting the university for 2026/2027 (check the fees page)"),
-    NP, ("مواعيد امتحانات 2027/2028 غير منشورة في المصدر بعد؛ الدراسة في 2026/2027 بدأت 19 أكتوبر 2026", "2027/2028 exam dates not published yet; the 2026/2027 year started on 19 October 2026"),
+    NP, ("مواعيد امتحانات القبول لـ 2027/2028 لسه ما اتنشرتش في المصدر. الدراسة في 2026/2027 بدأت في أكتوبر؛ راجع صفحة القبول في الجامعة من أوائل 2027", "2027/2028 exam dates not published yet; the 2026/2027 year started on 19 October 2026"),
     ("امتحان إنجليزي ضمن القبول، وفيه سنة تحضيرية للإنجليزية لمن يحتاجها", "An English test is part of admission; there is a preparatory English year for those who need it"),
     ("امتحانات قبول في الأحياء والكيمياء بالإنجليزية لغير الأوروبيين (حسب مصادر غير رسمية، للتحقق)", "Entrance exams in Biology and Chemistry in English for non-EU applicants (per unofficial sources, to verify)"),
     VISA, NP, NP, "https://mu-sofia.bg/en/admissions/", "https://mu-sofia.bg/en/admissions/")

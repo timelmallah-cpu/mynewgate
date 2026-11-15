@@ -35,7 +35,7 @@ MU_SRC = "https://www.muni.cz/en/admissions/bachelors-and-masters-studies/tuitio
 MU_EN = ("حسب بوابة Studyportals: IELTS 6.5 أو TOEFL iBT 85 أو Duolingo 115 (للتحقق من صفحة البرنامج)", "Per Studyportals: IELTS 6.5, TOEFL iBT 85 or Duolingo 115 (check the programme page)")
 add(MA, "cs", "Computer Systems, Communication, and Security", "Masaryk University", "Brno", MSC, ("سنتان", "2 years"), MU_FEE,
     ("رسوم تقديم (القيمة على صفحة الكلية)", "Application fee (amount on the faculty page)"),
-    ("لدفعة سبتمبر 2026 كان آخر موعد 15 أبريل 2026، ولدفعة فبراير 2027 آخر موعد 15 أكتوبر 2026 (بوابة Study in Czechia)؛ مواعيد 2027 غير منشورة بعد", "For the September 2026 intake the deadline was 15 April 2026, and for February 2027 it was 15 October 2026 (Study in Czechia portal); 2027 dates not published yet"),
+    ("مواعيد ثابتة كل سنة حسب صفحة كلية المعلوماتية: دفعة سبتمبر التقديم من 15 ديسمبر لحد 15 أبريل، ودفعة فبراير من 15 يونيو لحد 15 أكتوبر", "For the September 2026 intake the deadline was 15 April 2026, and for February 2027 it was 15 October 2026 (Study in Czechia portal); 2027 dates not published yet"),
     MU_EN, NP, ("التقديم أونلاين على نظام جامعة ماساريك", "Apply online through Masaryk University's system"), NP, NP, MU_SRC,
     "https://portal.studyin.cz/en/study-programme/computer-systems--communication--and-security-ft-master-degree-fi-muni/information-and-communication-technologies--icts-/20251223053549-hN1",
     ("صفحة البرنامج على بوابة Study in Czechia", "Programme page on the Study in Czechia portal"))
@@ -53,14 +53,14 @@ add(BA, "cs", "Informatics (Bachelor's, in English)", "Czech Technical Universit
 add(BA, "med", "General Medicine (in English)", "Charles University, First Faculty of Medicine", "Prague", MD, MED6,
     ("24,250 يورو سنوياً (لمن يبدأ في 2026/2027)", "€24,250 per year (for studies starting in 2026/2027)"),
     ("رسوم التقديم 285 يورو", "Application fee €285"),
-    ("لعام 2026/2027 كان آخر موعد 5 سبتمبر 2026، وقبل كل امتحان بـ 14 يوم على الأقل؛ مواعيد 2027/2028 غير منشورة بعد", "For 2026/2027 the deadline was 5 September 2026, at least 14 days before each exam date; 2027/2028 dates not published yet"),
+    ("لعام 2027/2028: التقديم من 1 نوفمبر 2026 لحد 30 أبريل 2027 (حسب صفحة الكلية)، والطلب لازم يوصل قبل ميعاد الامتحان بـ 14 يوم على الأقل", "For 2026/2027 the deadline was 5 September 2026, at least 14 days before each exam date; 2027/2028 dates not published yet"),
     ("لعام 2026/2027 مكانش مطلوب شهادة إنجليزي، الامتحان هو الأساس", "For 2026/2027 no English certificate was required; the entrance exam is what counts"),
     ("امتحان قبول هو الشرط الأساسي", "The entrance exam is the main admission requirement"), NOSTR, NP, NP,
     "https://en.lf1.cuni.cz/admission-20262027", "https://en.lf1.cuni.cz/admission-20262027")
 add(BA, "med", "General Medicine (in English)", "Charles University, Second Faculty of Medicine", "Prague", MD, MED6,
     ("420,000 كرونة تشيكية سنوياً (2026/2027)", "CZK 420,000 per year (2026/2027)"),
     ("رسوم التقديم 2,500 كرونة تشيكية", "Application fee CZK 2,500"),
-    ("لعام 2026/2027 كان التقديم من 1 نوفمبر 2025 حتى 30 أبريل 2026؛ مواعيد 2027/2028 غير منشورة في المصدر بعد", "For 2026/2027 applications ran from 1 November 2025 to 30 April 2026; 2027/2028 dates not published in the source yet"),
+    ("مواعيد 2027/2028 لسه ما اتنشرتش في المصدر. في 2026/2027 كان التقديم من 1 نوفمبر لحد 30 أبريل، والمتوقع نفس الفترة (للتحقق)", "For 2026/2027 applications ran from 1 November 2025 to 30 April 2026; 2027/2028 dates not published in the source yet"),
     NP, ("امتحان قبول", "Entrance exam"), NOSTR, NP, NP,
     "https://www.lf2.cuni.cz/en/applicants/how-to-apply/apply-online", "https://www.lf2.cuni.cz/en/applicants/how-to-apply/apply-online")
 add(BA, "med", "General Medicine (in English)", "Charles University, Faculty of Medicine in Hradec Králové", "Hradec Kralove", MD, MED6,
