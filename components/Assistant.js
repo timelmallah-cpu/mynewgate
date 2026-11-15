@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { ASK_TEXT } from "../lib/assistantText";
@@ -25,6 +25,19 @@ export default function Assistant({ lang }) {
   };
   const vote = (i, v) => { setMsg(i, { vote: v, fb: v === "down" ? "ask" : "done" }); feedback(i, v); };
   const report = (i, yes) => { setMsg(i, { fb: yes ? "sent" : "done" }); if (yes) feedback(i, "down", true); };
+
+  // A question typed on the home page arrives as ?q=...; ask it once, then clean the address.
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q && q.trim().length >= 2) {
+      window.history.replaceState(null, "", window.location.pathname);
+      send(q.slice(0, 600));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const send = async (text) => {
     const q = (text ?? input).trim();

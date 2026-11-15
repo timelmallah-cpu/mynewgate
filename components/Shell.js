@@ -4,6 +4,8 @@ import { T } from "../lib/i18n";
 import LangSwitch from "./LangSwitch";
 import PwaRegister from "./PwaRegister";
 import AskFab from "./AskFab";
+import SiteMenu from "./SiteMenu";
+import { MENU } from "../lib/homeText";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
@@ -50,20 +52,29 @@ export default function Shell({ lang, children }) {
     <html lang={lang} dir={t.dir}>
       <body>
         <header className="top">
-          <Link href={t.base || "/"} className="brand"><Mark />{t.brand}</Link>
-          <nav className="topnav">
-            <Link className="toplink tools" href={`${t.base}/tools`}>{t.base ? "Tools" : "الأدوات"}</Link>
-            <Link className="toplink" href={`${t.base}/my-list`}>{t.myLink}</Link>
-            <Link className="toplink" href={`${t.base}/scholarships`}>{t.schLink}</Link>
-            <Link className="toplink" href={`${t.base}/vocational`}>{t.base ? "Vocational training" : "التدريب المهني"}</Link>
-            <Link className="toplink contact" href={`${t.base}/contact`}>{t.contactLink}</Link>
-            <span className="tag">{t.beta}</span>
-          </nav>
-          <LangSwitch lang={lang} label={t.switchLabel} />
+          <div className="top-in">
+            <Link href={t.base || "/"} className="brand"><Mark />{t.brand}</Link>
+            <nav className="topnav" aria-label={t.base ? "Main" : "الرئيسية"}>
+              <Link className="toplink" href={`${t.base}/quiz`}>{MENU[lang].programmes}</Link>
+              <Link className="toplink" href={`${t.base}/scholarships`}>{MENU[lang].scholarships}</Link>
+              <Link className="toplink" href={`${t.base}/countries`}>{MENU[lang].countries}</Link>
+            </nav>
+            <div className="top-end">
+              <SiteMenu lang={lang} base={t.base} />
+              <Link className="top-ask" href={`${t.base}/ask`}>
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5h16v11H9l-5 4z" /><path d="M9 9h6M9 12h4" /></svg>
+                <span>{MENU[lang].ask}</span>
+              </Link>
+              <Link className="top-list" href={`${t.base}/my-list`} aria-label={MENU[lang].list} title={MENU[lang].list}>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 3h10v18l-5-4-5 4z" /></svg>
+              </Link>
+              <LangSwitch lang={lang} label={t.switchLabel} />
+            </div>
+          </div>
         </header>
         <main>{children}</main>
         <footer className="foot">
-          <p>{t.footer}</p>
+          <p>{t.footer} <span className="tag">{t.beta}</span></p>
           <nav className="foot-cols" aria-label={t.base ? "Site links" : "روابط الموقع"}>
             {FOOT_GROUPS.map((g) => (
               <div key={g.ar}>
