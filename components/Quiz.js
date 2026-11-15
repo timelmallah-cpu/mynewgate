@@ -142,6 +142,11 @@ export default function Quiz({ lang }) {
           </button>
         ))}
       </div>
+      {s.key === "level" && (
+        <p className="meta quiz-note">
+          <Link href={`${t.base}/ausbildung`}>{lang === "ar" ? "تبحث عن تدريب مهني براتب بدل الجامعة؟ اقرأ دليل التدريب المهني" : "Looking for paid vocational training instead of university? Read the vocational training guide"}</Link>
+        </p>
+      )}
       {s.key === "field" && !ba && (
         <p className="notice quiz-note">
           {lang === "ar" ? "الطب وطب الأسنان والصيدلة تُدرس بعد الثانوية مباشرة (برنامج متكامل)، لذلك تظهر في مرحلة البكالوريوس. " : "Medicine, Dentistry and Pharmacy are studied straight after school (integrated programmes), so they are under Bachelor's. "}

@@ -7,6 +7,7 @@ import { COUNTRY_INFO } from "../lib/countryInfo";
 import Newsletter from "./Newsletter";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS } from "../lib/journey";
+import { SECTORS } from "../lib/ausbildungGuide";
 import { HOME } from "../lib/homeText";
 
 // A smaller Wikimedia thumbnail for the photo strip (only where a larger thumbnail of the same file is used).
@@ -54,6 +55,15 @@ export default function Landing({ lang }) {
           <li key={id}><Icon d={PROMISE_ICONS[id]} /><div><b>{title}</b><span>{text}</span></div></li>
         ))}
       </ul>
+
+      <section className="voc-home card" aria-labelledby="voc-h">
+        <h2 id="voc-h" className="land-h">{h.vocTitle}</h2>
+        <p>{h.vocText}</p>
+        <ul className="voc-chips">
+          {SECTORS.map((x) => <li key={x.slug}><Link className="chip" href={`${t.base}/ausbildung/${x.slug}`}><span aria-hidden="true">{x.icon}</span> {x[lang].name}</Link></li>)}
+        </ul>
+        <Link className="btn gold" href={`${t.base}/ausbildung`}>{h.vocBtn}</Link>
+      </section>
 
       <section className="journey" aria-labelledby="journey-h">
         <h2 id="journey-h" className="land-h">{h.journeyTitle}</h2>

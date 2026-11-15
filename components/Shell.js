@@ -58,6 +58,7 @@ export default function Shell({ lang, children }) {
               <Link className="toplink" href={`${t.base}/quiz`}>{MENU[lang].programmes}</Link>
               <Link className="toplink" href={`${t.base}/scholarships`}>{MENU[lang].scholarships}</Link>
               <Link className="toplink" href={`${t.base}/countries`}>{MENU[lang].countries}</Link>
+              <Link className="toplink voc" href={`${t.base}/ausbildung`}>{MENU[lang].voc}</Link>
             </nav>
             <div className="top-end">
               <SiteMenu lang={lang} base={t.base} />

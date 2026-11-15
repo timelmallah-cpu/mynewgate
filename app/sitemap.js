@@ -2,6 +2,7 @@ import programmes from "@/lib/programmes.json";
 import { SCHOLARSHIPS } from "@/lib/scholarships";
 import { COUNTRY_IDS } from "@/lib/options";
 import { VOC } from "@/lib/vocational";
+import { SECTORS } from "@/lib/ausbildungGuide";
 import { SITE_URL } from "@/lib/site";
 import { LANDINGS } from "@/lib/landings";
 import { CITIES } from "@/lib/cities";
@@ -14,6 +15,7 @@ export default function sitemap() {
     ...programmes.map((p) => `/programme/${p.id}`),
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
     ...VOC.map((v) => `/vocational/${v.code}`),
+    ...SECTORS.map((x) => `/ausbildung/${x.slug}`),
     ...LANDINGS.map((l) => `/study/${l.slug}`),
     ...CITIES.map((c) => `/city/${c.slug}`),
   ];

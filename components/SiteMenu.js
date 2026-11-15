@@ -42,6 +42,7 @@ export default function SiteMenu({ lang, base }) {
             <li><Link href={`${base}/quiz`}>{m.programmes}</Link></li>
             <li><Link href={`${base}/scholarships`}>{m.scholarships}</Link></li>
             <li><Link href={`${base}/countries`}>{m.countries}</Link></li>
+            <li><Link href={`${base}/ausbildung`}>{m.voc}</Link></li>
             <li><Link href={`${base}/my-list`}>{m.list}</Link></li>
           </ul>
           <div className="menu-groups">

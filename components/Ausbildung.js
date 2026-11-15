@@ -3,6 +3,8 @@ import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { AUSB, AUSB_SRC } from "../lib/ausbildung";
 import { VOC_TEXT } from "../lib/vocational";
+import { GUIDE_TEXT } from "../lib/ausbildungGuide";
+import { SectorGrid, Steps, Boards, Programmes, CairoDocs } from "./AusbildungParts";
 
 const Src = ({ href, s }) => <p className="ps-src"><a href={href} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></p>;
 const Dl = ({ rows }) => (
@@ -12,16 +14,51 @@ const Dl = ({ rows }) => (
 export default function Ausbildung({ lang }) {
   const t = T[lang];
   const s = AUSB[lang];
+  const g = GUIDE_TEXT[lang];
+  const nav = lang === "ar"
+    ? [["sectors", "المجالات والرواتب"], ["apply", "خطوات التقديم"], ["find", "أين تجد مكاناً"], ["programmes", "برامج للعرب"], ["cairo", "أوراق السفارة"], ["visa", "التأشيرة"]]
+    : [["sectors", "Sectors and pay"], ["apply", "How to apply"], ["find", "Where to find a place"], ["programmes", "Programmes for Arabs"], ["cairo", "Embassy documents"], ["visa", "Visa"]];
   return (
     <>
       <p className="crumb"><Link href={`${t.base}/vocational`}>{VOC_TEXT[lang].back}</Link></p>
       <h1><Flag code="de" size={30} /> {s.title}</h1>
       <p className="lead">{s.lead}</p>
+      <nav className="tool-jump" aria-label={lang === "ar" ? "محتوى الصفحة" : "On this page"}>
+        {nav.map(([id, label]) => <a key={id} className="chip" href={`#${id}`}>{label}</a>)}
+      </nav>
+
+      <section className="country-sec" id="sectors">
+        <h2>{g.sectorsTitle}</h2>
+        <p>{g.sectorsLead}</p>
+        <SectorGrid lang={lang} base={t.base} />
+      </section>
 
       <section className="country-sec">
         <h2>{s.whatTitle}</h2>
         <ul>{s.what.map((x) => <li key={x}>{x}</li>)}</ul>
         <Src href={AUSB_SRC.ba} s={s} />
+      </section>
+
+      <section className="country-sec" id="apply">
+        <h2>{g.stepsTitle}</h2>
+        <Steps lang={lang} />
+      </section>
+
+      <section className="country-sec" id="find">
+        <h2>{g.boardsTitle}</h2>
+        <p>{g.boardsLead}</p>
+        <Boards lang={lang} />
+        <div className="notice">{g.warn}</div>
+      </section>
+
+      <section className="country-sec" id="programmes">
+        <h2>{g.progTitle}</h2>
+        <Programmes lang={lang} />
+      </section>
+
+      <section className="country-sec card ps-card" id="cairo">
+        <h2>{g.cairoTitle}</h2>
+        <CairoDocs lang={lang} />
       </section>
 
       <section className="country-sec">
@@ -36,7 +73,7 @@ export default function Ausbildung({ lang }) {
         </p>
       </section>
 
-      <section className="country-sec card ps-card">
+      <section className="country-sec card ps-card" id="visa">
         <h2>{s.visaTitle}</h2>
         <Dl rows={s.visa} />
         <Src href={AUSB_SRC.visa} s={s} />
@@ -56,14 +93,7 @@ export default function Ausbildung({ lang }) {
         </p>
       </section>
 
-      <section className="country-sec">
-        <h2>{s.findTitle}</h2>
-        <p>{s.find}</p>
-        <div className="cmp-actions">
-          <a className="btn gold" href={AUSB_SRC.find} target="_blank" rel="noopener noreferrer">{s.findBtn} ↗</a>
-          <Link className="btn ghost small" href={`${t.base}/country/de`}>{s.country}</Link>
-        </div>
-      </section>
+      <p className="cmp-actions"><Link className="btn ghost small" href={`${t.base}/country/de`}>{s.country}</Link></p>
 
       <div className="notice">{s.note}</div>
     </>

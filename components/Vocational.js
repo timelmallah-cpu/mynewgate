@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { VOC, VOC_TEXT } from "../lib/vocational";
+import { SectorGrid } from "./AusbildungParts";
 
 export const vocParams = () => VOC.map((v) => ({ code: v.code }));
 export const vocMeta = (code, lang) => {
@@ -24,7 +25,10 @@ export default function Vocational({ lang }) {
         <span><b><Flag code="de" size={22} /> {s.deTitle}</b>{s.deText}</span>
         <span className="btn small">{s.deBtn}</span>
       </Link>
+      <h2>{lang === "ar" ? "مجالات التدريب في ألمانيا" : "Training sectors in Germany"}</h2>
+      <SectorGrid lang={lang} base={t.base} />
 
+      <h2>{lang === "ar" ? "دول أخرى" : "Other countries"}</h2>
       {VOC.map((v) => (
         <Link key={v.code} className="sch-promo" href={`${t.base}/vocational/${v.code}`}>
           <span>
