@@ -76,7 +76,7 @@ export default function CostCalc({ p, lang }) {
     other: "",
     oneTime: knownFees || "",
     travel: "",
-    years: p.years || 1,
+    years: p.years ?? "",
   });
   const set = (k) => (e) => setV({ ...v, [k]: e.target.value });
 
