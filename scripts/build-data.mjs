@@ -188,10 +188,11 @@ const bad = out.filter((p) => !p.country || !p.field);
 if (bad.length) throw new Error("Unmapped country/field in rows: " + bad.map((b) => b.id));
 writeFileSync("lib/programmes.json", JSON.stringify(out, null, 1));
 // Slim list for "My list" and calendar export (client side).
-writeFileSync("lib/deadlines.json", JSON.stringify(out.map((p) => ({
+const DL = out.map((p) => ({
   id: p.id, level: p.level, country: p.country, name: p.name, university: p.university,
   ar: p.deadline, en: p.en.deadline, dates: deadlineDates(p.en.deadline),
-}))));
+}));
+writeFileSync("lib/deadlines.json", JSON.stringify(DL));
 console.log(`deadlines.json: ${out.filter((p) => deadlineDates(p.en.deadline).length).length} programmes with a parsed deadline date`);
 
 // English test minimums parsed from the English requirement text (first number after the test name = overall score).
@@ -207,6 +208,7 @@ function englishReq(t) {
 // Slim per-language data for the comparison page, fetched by the browser only when it is opened.
 import { mkdirSync } from "node:fs";
 mkdirSync("public/data", { recursive: true });
+writeFileSync("public/data/deadlines.json", JSON.stringify(DL)); // fetched by the planner page
 for (const lang of ["ar", "en"]) {
   writeFileSync(`public/data/compare-${lang}.json`, JSON.stringify(out.map((p) => {
     const v = lang === "ar" ? p : { ...p, ...p.en };

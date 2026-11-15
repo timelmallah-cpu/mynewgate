@@ -554,3 +554,18 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .ec-list { margin-top: 8px; }
 .ec-list small { display: block; }
 .ec-res details { margin-top: 12px; }
+
+/* Application planner */
+.pl-pick { display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.pl-pick small { display: block; color: var(--muted); }
+.pl-head p { margin: 0 0 10px; }
+.pl-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0 0; }
+.pl-steps { list-style: none; padding: 0; margin: 12px 0; border-inline-start: 3px solid var(--line); }
+.pl-steps li { position: relative; padding: 4px 18px 16px; display: grid; gap: 2px; }
+.pl-steps li::before { content: ""; position: absolute; inset-inline-start: -8px; top: 9px; width: 13px; height: 13px; border-radius: 50%; background: #fff; border: 3px solid var(--navy); }
+.pl-steps li.key::before { background: var(--gold); border-color: var(--gold-ink); }
+.pl-steps li.key b { color: var(--gold-ink); }
+.pl-steps li.past { opacity: .55; }
+.pl-steps time { font-weight: 700; color: var(--navy); font-size: .92rem; }
+.pl-steps small { color: var(--muted); }
+@media print { .top, .foot, .pl-actions, .ec-form, .topnav { display: none !important; } }

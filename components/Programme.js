@@ -56,7 +56,7 @@ export default function Programme({ id, lang }) {
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}</dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
-      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link></div>
+      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <Link className="btn ghost small" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link></div>
 
       <section className="apply">
         <h2>{t.linksTitle}</h2>
