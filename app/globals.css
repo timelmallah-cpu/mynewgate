@@ -602,3 +602,10 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .btn.wa { background: #1f7a4d; color: #fff; display: inline-flex; align-items: center; gap: 8px; }
 .btn.wa:hover { background: #17603c; }
 .share-box .btn.wa { margin-top: 10px; }
+
+/* Local currency */
+.cur-pick { display: grid; gap: 4px; margin: 10px 0 14px; }
+.cur-pick label { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-weight: 600; }
+.cur-pick select { font: inherit; padding: 6px 10px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; max-width: 100%; }
+.local-cur { display: block; font-size: .85em; font-weight: 600; color: var(--muted); unicode-bidi: isolate; }
+html[lang="ar"] .local-cur { direction: rtl; text-align: right; }

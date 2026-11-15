@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { COSTS } from "../lib/costs";
+import { Local, CurrencyPicker } from "./Currency";
 
 const S = {
   ar: {
@@ -103,6 +104,7 @@ export default function CostCalc({ p, lang }) {
     <section className="costcalc" id="cost">
       <h2>{s.title}</h2>
       <p className="note">{s.intro}</p>
+      <CurrencyPicker lang={lang} />
       <div className="cc-grid">
         <div className="cc-inputs">
           {field("tuition", s.tuition, p.feePerYear == null ? s.tuitionNone : null, 100)}
@@ -117,9 +119,10 @@ export default function CostCalc({ p, lang }) {
           <div className="cc-big">
             <span>{s.total}</span>
             <b dir="ltr">€{fmt(perYear * yrs + once)}</b>
+            <Local eur={perYear * yrs + once} lang={lang} />
           </div>
-          <div className="cc-row"><span>{s.perYear}</span><b dir="ltr">€{fmt(perYear)}</b></div>
-          <div className="cc-row"><span>{s.firstYear}</span><b dir="ltr">€{fmt(perYear + once)}</b></div>
+          <div className="cc-row"><span>{s.perYear}</span><b dir="ltr">€{fmt(perYear)}<Local eur={perYear} lang={lang} /></b></div>
+          <div className="cc-row"><span>{s.firstYear}</span><b dir="ltr">€{fmt(perYear + once)}<Local eur={perYear + once} lang={lang} /></b></div>
           {low && <p className="cc-warn">{s.belowProof.replace("{n}", fmt(c.proofMonthly))}</p>}
         </div>
       </div>

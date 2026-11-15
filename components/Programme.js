@@ -1,6 +1,7 @@
 import { pageMeta } from "../lib/site";
 import Link from "next/link";
 import WhatsApp from "./WhatsApp";
+import { Local } from "./Currency";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
 import { T, view } from "../lib/i18n";
@@ -51,7 +52,7 @@ export default function Programme({ id, lang }) {
       <dl className="prog-key">
         <div>
           <dt>{t.keyFee}</dt>
-          <dd>{known ? <span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
+          <dd>{known ? <><span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span><Local eur={p.feePerYear} lang={lang} /></> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
         </div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>

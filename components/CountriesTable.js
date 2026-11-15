@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Flag from "../lib/Flag";
 import { CC_TEXT } from "../lib/countriesText";
+import { Local, CurrencyPicker } from "./Currency";
 
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 // Column -> value used for sorting, and whether bigger is better (sorted first).
@@ -37,6 +38,8 @@ export default function CountriesTable({ lang, rows, names }) {
     </th>
   );
   return (
+    <>
+    <CurrencyPicker lang={lang} />
     <div className="cc-scroll" aria-label={s.title}>
       <div className="cc-mobsort">
         <span>{s.sortBy}:</span>
@@ -56,11 +59,11 @@ export default function CountriesTable({ lang, rows, names }) {
             <tr key={r.c}>
               <th scope="row"><Link href={`${base}/country/${r.c}`}><Flag code={r.c} size={18} /> {names[r.c]}</Link></th>
               <td data-label={s.fee}>
-                {r.feeMin === null ? s.na : <>{s.range(fmt(r.feeMin), fmt(r.feeMax))}<small>{s.median(fmt(r.feeMed))}</small></>}
+                {r.feeMin === null ? s.na : <>{s.range(fmt(r.feeMin), fmt(r.feeMax))}<small>{s.median(fmt(r.feeMed))}<Local eur={r.feeMed} lang={lang} /></small></>}
                 {r.free > 0 && <small>{s.free(r.free)}</small>}
               </td>
-              <td data-label={s.living}>{r.living === null ? s.na : s.eur(fmt(r.living))}</td>
-              <td data-label={s.proof}>{r.proof === null ? s.na : s.eur(fmt(r.proof))}{r.proofCheck ? chk : ""}</td>
+              <td data-label={s.living}><span>{r.living === null ? s.na : <>{s.eur(fmt(r.living))}<Local eur={r.living} lang={lang} /></>}</span></td>
+              <td data-label={s.proof}><span>{r.proof === null ? s.na : <>{s.eur(fmt(r.proof))}<Local eur={r.proof} lang={lang} /></>}{r.proofCheck ? chk : ""}</span></td>
               <td data-label={s.work}><span><a href={`#cc-${r.c}`}>{s.hours(r.hours)}</a>{r.workCheck ? chk : ""}</span></td>
               <td data-label={s.after}>{r.months === null ? s.na : s.months(r.months)}{r.afterCheck ? chk : ""}</td>
             </tr>
@@ -69,5 +72,6 @@ export default function CountriesTable({ lang, rows, names }) {
       </table>
       <p className="meta cc-star">{lang === "en" ? "* to verify" : "* للتحقق"}</p>
     </div>
+    </>
   );
 }
