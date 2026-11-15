@@ -54,6 +54,14 @@ export default function Quiz({ lang }) {
       <>
         <h2>{results.length === 0 ? e.noneTitle : t.found(results.length)}</h2>
         {results.length > 0 && <p className="meta">{t.sortNote}</p>}
+        {results.length > 0 && (
+          <p className="tool-strip">
+            <span>{lang === "ar" ? "قبل ما تقدم:" : "Before you apply:"}</span>
+            <Link href={`${t.base}/english-check${a.countries?.length === 1 ? `?country=${a.countries[0]}&level=${a.level}` : `?level=${a.level}`}`}>{lang === "ar" ? "هل درجتك في الإنجليزية تكفي؟" : "Is your English score enough?"}</Link>
+            <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
+            <Link href={`${t.base}/countries`}>{lang === "ar" ? "قارن الدول" : "Compare countries"}</Link>
+          </p>
+        )}
         {results.length === 0 && <div className="notice">{e.none}</div>}
         {tries.length > 0 && (
           <div className="tries">

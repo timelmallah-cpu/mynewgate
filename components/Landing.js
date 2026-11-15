@@ -6,6 +6,8 @@ import { COUNTRY_IDS } from "../lib/options";
 import { COUNTRY_INFO } from "../lib/countryInfo";
 import { countryTip } from "./Country";
 import Newsletter from "./Newsletter";
+import { ToolTiles } from "./Tools";
+import { TOOLS_TEXT } from "../lib/tools";
 
 const ICONS = {
   sch: <path d="M3 9l9-5 9 5-9 5-9-5zm4 2.5V16c0 1.7 2.2 3 5 3s5-1.3 5-3v-4.5M21 9v6" />,
@@ -48,6 +50,10 @@ export default function Landing({ lang }) {
         </ul>
         <Link className="btn gold" href={`${t.base}/quiz`}>{t.start}</Link>
       </section>
+
+      <h2 className="land-h">{TOOLS_TEXT[lang].homeTitle}</h2>
+      <ToolTiles lang={lang} homeOnly />
+      <p className="tools-all"><Link href={`${t.base}/tools`}>{TOOLS_TEXT[lang].all}</Link></p>
 
       <ul className="countries" aria-label={t.coverage}>
         {COUNTRY_IDS.map((id) => (

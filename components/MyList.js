@@ -157,6 +157,7 @@ export default function MyList({ lang }) {
                     <span className="txt">{it.text}</span>
                     <span className="acts">
                       {it.dates.length > 0 && <button className="linkbtn" onClick={() => download([it], lang, "deadline.ics")}>{m.addOne}</button>}
+                      {it.k.startsWith("p:") && <Link className="linkbtn" href={`${T[lang].base}/planner?id=${it.k.slice(2)}`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>}
                       <button className="linkbtn" onClick={() => removeSaved(it.k)}>{m.remove}</button>
                     </span>
                   </div>

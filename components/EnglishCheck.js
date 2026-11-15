@@ -23,6 +23,8 @@ export default function EnglishCheck({ lang }) {
     const q = new URLSearchParams(window.location.search);
     if (q.get("test") === "toefl") setTest("toefl");
     if (q.get("score")) setScore(q.get("score"));
+    if (COUNTRY_IDS.includes(q.get("country"))) setCountry(q.get("country"));
+    if (LEVEL_IDS.includes(q.get("level"))) setLevel(q.get("level"));
   }, [lang]);
 
   const [lo, hi, step] = RANGE[test];

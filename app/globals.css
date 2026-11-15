@@ -585,3 +585,15 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
   .cc-table tbody tr td:last-child { border-bottom: 0; }
   .cc-star { margin: 8px 0; }
 }
+
+/* Tools: landing link, contextual links, tool strips */
+.tools-all { margin: 10px 0 0; font-weight: 700; }
+.tools-all a { color: var(--navy); }
+.ctx-link { display: block; margin-top: 6px; font-size: .88rem; font-weight: 700; color: var(--navy-2); }
+.tool-strip { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin: 12px 0; font-size: .92rem; }
+.tool-strip span { font-weight: 700; color: var(--muted); }
+.tool-strip a { display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--sky); color: var(--navy); font-weight: 700; text-decoration: none; }
+.tool-strip a:hover { text-decoration: underline; }
+.toplink.tools { color: var(--gold-ink); }
+.ec-field { min-width: 0; }
+.ec-field input[type="month"], .ec-field input[type="date"] { -webkit-appearance: none; appearance: none; min-width: 0; max-width: 100%; min-height: 46px; display: block; text-align: start; }

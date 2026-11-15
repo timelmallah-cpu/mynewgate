@@ -53,10 +53,11 @@ export default function Programme({ id, lang }) {
           <dd>{known ? <span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
         </div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
-        <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}</dd></div>
+        <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>
+        <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link></dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
-      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <Link className="btn ghost small" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link></div>
+      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link></div>
 
       <section className="apply">
         <h2>{t.linksTitle}</h2>

@@ -110,6 +110,13 @@ export default function Country({ code, lang }) {
       </p>
 
       {covered && <Link className="btn gold" href={`${t.base}/quiz?country=${code}`}>{s.search(name)}</Link>}
+      {covered && (
+        <p className="tool-strip">
+          <Link href={`${t.base}/countries`}>{lang === "ar" ? `قارن ${name} بباقي الدول` : `Compare ${name} with the other countries`}</Link>
+          <Link href={`${t.base}/english-check?country=${code}`}>{lang === "ar" ? "هل درجتك في الإنجليزية تكفي؟" : "Is your English score enough?"}</Link>
+          <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
+        </p>
+      )}
       {voc && (
         <Link className="sch-promo" href={`${t.base}/vocational/${code}`}>
           <span><b>{voc.country[lang]}: {voc.name[lang]}</b>{voc.short[lang]}</span>
