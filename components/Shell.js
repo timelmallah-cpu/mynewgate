@@ -38,7 +38,7 @@ export default function Shell({ lang, children }) {
         <main>{children}</main>
         <footer className="foot">
           <p>{t.footer}</p>
-          <p><Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link></p>
+          <p><Link href={`${t.base}/my-list`}>{t.myLink}</Link> · <Link href={`${t.base}/scholarships`}>{t.schLink}</Link> · <Link href={`${t.base}/contact`}>{t.contactLink}</Link> · <Link href={`${t.base}/privacy`}>{t.base ? "Privacy" : "الخصوصية"}</Link></p>
         </footer>
       </body>
     </html>

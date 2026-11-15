@@ -1,0 +1,73 @@
+import Link from "next/link";
+
+export const PRIVACY_UPDATED = "2026-11-15";
+
+const S = {
+  ar: {
+    meta: "سياسة الخصوصية | بوابتي الجديدة",
+    title: "سياسة الخصوصية",
+    updated: "آخر تحديث:",
+    sections: [
+      ["من نحن", "بوابتي الجديدة (MyNewGate) موقع يرتب المعلومات الرسمية عن الدراسة في أوروبا باللغة العربية، ويتبع لعلامة «مع حاتم». للتواصل في أي شيء يخص بياناتك: business@withhatem.com"],
+      ["ما الذي لا نجمعه", "لا تحتاج إلى حساب لاستخدام الموقع. الأسئلة التي تجيب عنها للبحث عن البرامج لا تُرسل إلى أي خادم، ولا نستخدم أدوات تتبع إعلانية أو تحليلات تعتمد على ملفات تعريف الارتباط (الكوكيز)."],
+      ["قائمتي", "البرامج والمنح التي تحفظها في «قائمتي» محفوظة في متصفحك فقط على جهازك. رابط القائمة الذي تنسخه يحمل أرقام البرامج فقط، ولا يُرسل إلينا. تستطيع حذفها بحذف العناصر من القائمة أو بمسح بيانات المتصفح."],
+      ["النشرة الشهرية", "إذا اشتركت في النشرة نحفظ بريدك الإلكتروني فقط لنرسل لك النشرة. الأساس القانوني هو موافقتك، ولا يبدأ الاشتراك إلا بعد أن تضغط رابط التأكيد في رسالة نرسلها لك. نستخدم خدمة Kit (kit.com) لإدارة القائمة وإرسال الرسائل، وقد تُحفظ البيانات على خوادمها خارج المملكة المتحدة. في كل رسالة رابط لإلغاء الاشتراك، وعند الإلغاء نتوقف عن مراسلتك. لا نبيع بريدك ولا نعطيه لأي جهة أخرى."],
+      ["نموذج التواصل", "إذا راسلتنا عبر صفحة «تواصل معنا» نستلم الاسم والبريد والرسالة التي تكتبها عبر خدمة Web3Forms، ونستخدمها فقط للرد عليك."],
+      ["محتوى من مواقع أخرى", "خرائط المدن تُعرض من OpenStreetMap، والصور من Wikimedia Commons. عند فتح صفحة فيها خريطة أو صورة، يتصل متصفحك بهذه المواقع مباشرة، فتصلها بيانات تقنية مثل عنوان IP، حسب سياسات الخصوصية الخاصة بها."],
+      ["حقوقك", "يحق لك أن تطلب نسخة من بياناتك أو تصحيحها أو حذفها، وأن تسحب موافقتك في أي وقت. راسلنا على business@withhatem.com. وإذا لم يعجبك ردنا، يحق لك تقديم شكوى إلى مكتب مفوض المعلومات في المملكة المتحدة (ICO) على ico.org.uk."],
+      ["تغيير هذه السياسة", "إذا غيّرنا هذه السياسة سنحدّث التاريخ في أعلى الصفحة، وإذا كان التغيير يخص النشرة سنخبر المشتركين بالبريد."],
+    ],
+  },
+  en: {
+    meta: "Privacy policy | MyNewGate",
+    title: "Privacy policy",
+    updated: "Last updated:",
+    sections: [
+      ["Who we are", "MyNewGate (بوابتي الجديدة) organises official information about studying in Europe in Arabic. It is part of the \"With Hatem\" brand. For anything about your data, contact business@withhatem.com"],
+      ["What we don't collect", "You don't need an account to use the site. The answers you give in the programme finder are not sent to any server, and we don't use advertising trackers or cookie-based analytics."],
+      ["My list", "Programmes and scholarships you save to \"My list\" are stored only in your browser on your device. The list link you copy only holds programme numbers and is not sent to us. You can delete it by removing items or clearing your browser data."],
+      ["Monthly newsletter", "If you subscribe, we keep only your email address, to send you the newsletter. The legal basis is your consent, and your subscription only starts after you click the link in the confirmation email we send you. We use Kit (kit.com) to manage the list and send emails, and the data may be stored on its servers outside the United Kingdom. Every email has an unsubscribe link, and we stop emailing you when you unsubscribe. We never sell or give your email to anyone else."],
+      ["Contact form", "If you write to us through the Contact page, we receive the name, email and message you enter through the Web3Forms service, and use them only to reply to you."],
+      ["Content from other sites", "City maps come from OpenStreetMap and photos from Wikimedia Commons. When you open a page with a map or photo, your browser connects to those sites directly, so they receive technical data such as your IP address, under their own privacy policies."],
+      ["Your rights", "You can ask for a copy of your data, to correct it or to delete it, and you can withdraw consent at any time. Email business@withhatem.com. If you are not happy with our answer, you can complain to the UK Information Commissioner's Office (ICO) at ico.org.uk."],
+      ["Changes", "If we change this policy we will update the date at the top, and if the change affects the newsletter we will tell subscribers by email."],
+    ],
+  },
+};
+
+export const privacyMeta = (lang) => ({ title: S[lang].meta });
+
+export default function Privacy({ lang }) {
+  const s = S[lang];
+  return (
+    <article className="privacy">
+      <h1>{s.title}</h1>
+      <p className="meta">{s.updated} {PRIVACY_UPDATED}</p>
+      {s.sections.map(([h, p]) => (
+        <section key={h}>
+          <h2>{h}</h2>
+          <p>{p}</p>
+        </section>
+      ))}
+    </article>
+  );
+}
+
+export const SUBSCRIBED = { ar: ["تم تأكيد اشتراكك", "شكراً! ستصلك النشرة الشهرية على بريدك. وفي أي رسالة تقدر تلغي الاشتراك بضغطة واحدة."], en: ["Your subscription is confirmed", "Thanks! The monthly newsletter will arrive in your inbox, and every email has a one-click unsubscribe link."] };
+
+export function Subscribed() {
+  return (
+    <div className="subscribed">
+      {["ar", "en"].map((l) => (
+        <section key={l} lang={l} dir={l === "ar" ? "rtl" : "ltr"}>
+          <h1>{SUBSCRIBED[l][0]}</h1>
+          <p>{SUBSCRIBED[l][1]}</p>
+          <p className="row">
+            <Link className="btn gold small" href={l === "ar" ? "/quiz" : "/en/quiz"}>{l === "ar" ? "ابحث عن برنامج" : "Find a programme"}</Link>
+            <Link className="btn ghost small" href={l === "ar" ? "/scholarships" : "/en/scholarships"}>{l === "ar" ? "المنح" : "Scholarships"}</Link>
+          </p>
+        </section>
+      ))}
+    </div>
+  );
+}

@@ -395,3 +395,19 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .share-row input { flex: 1 1 200px; min-width: 0; font: inherit; font-size: .85rem; padding: 8px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--muted); }
 .share-in { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; background: var(--warn-soft); border-radius: 16px; padding: 14px 18px; margin: 0 0 18px; }
 .share-in p { margin: 0; flex: 1 1 240px; font-weight: 600; }
+
+/* Newsletter */
+.newsletter { background: var(--sky); border-radius: 20px; padding: 20px 22px; margin: 22px 0; }
+.newsletter h2 { margin: 0 0 4px; }
+.newsletter > p { margin: 0 0 12px; }
+.nl-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.nl-row input { flex: 1 1 220px; min-width: 0; font: inherit; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.nl-row input:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px #fff; }
+.nl-consent { display: flex; gap: 8px; align-items: flex-start; margin-top: 10px; font-size: .92rem; cursor: pointer; }
+.nl-consent input { margin-top: 6px; accent-color: var(--navy); width: 16px; height: 16px; flex: none; }
+.nl-ok { background: #fff; border-radius: 12px; padding: 12px 14px; font-weight: 600; margin: 0; }
+.nl-err { color: var(--warn); font-weight: 600; margin: 8px 0 0; }
+.privacy section { margin: 18px 0; }
+.privacy h2 { font-size: 1.15rem; margin-bottom: 4px; }
+.subscribed { display: grid; gap: 18px; }
+.subscribed section { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }

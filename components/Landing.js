@@ -4,6 +4,7 @@ import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { countryTip } from "./Country";
+import Newsletter from "./Newsletter";
 
 export default function Landing({ lang }) {
   const t = T[lang];
@@ -41,6 +42,8 @@ export default function Landing({ lang }) {
         </span>
         <span className="btn small">{t.sch.landingBtn}</span>
       </Link>
+
+      <Newsletter lang={lang} />
 
       <div className="how">
         <h2>{t.howTitle}</h2>
