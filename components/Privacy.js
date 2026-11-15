@@ -55,19 +55,3 @@ export default function Privacy({ lang }) {
 
 export const SUBSCRIBED = { ar: ["تم تأكيد اشتراكك", "شكراً! ستصلك النشرة الشهرية على بريدك. وفي أي رسالة تقدر تلغي الاشتراك بضغطة واحدة."], en: ["Your subscription is confirmed", "Thanks! The monthly newsletter will arrive in your inbox, and every email has a one-click unsubscribe link."] };
 
-export function Subscribed() {
-  return (
-    <div className="subscribed">
-      {["ar", "en"].map((l) => (
-        <section key={l} lang={l} dir={l === "ar" ? "rtl" : "ltr"}>
-          <h1>{SUBSCRIBED[l][0]}</h1>
-          <p>{SUBSCRIBED[l][1]}</p>
-          <p className="row">
-            <Link className="btn gold small" href={l === "ar" ? "/quiz" : "/en/quiz"}>{l === "ar" ? "ابحث عن برنامج" : "Find a programme"}</Link>
-            <Link className="btn ghost small" href={l === "ar" ? "/scholarships" : "/en/scholarships"}>{l === "ar" ? "المنح" : "Scholarships"}</Link>
-          </p>
-        </section>
-      ))}
-    </div>
-  );
-}

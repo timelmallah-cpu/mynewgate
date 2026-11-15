@@ -50,7 +50,9 @@ export default function Newsletter({ lang }) {
       fd.append("email_address", f.email.value.trim());
       const r = await fetch(`https://app.kit.com/forms/${FORM_ID}/subscriptions`, { method: "POST", body: fd, headers: { Accept: "application/json" } });
       const j = await r.json().catch(() => ({}));
-      if (j.status === "success" || j.status === "quarantined") { setState("done"); setMsg(s.ok); f.reset(); }
+      if (j.status === "success" || j.status === "quarantined") {
+        try { localStorage.setItem("mng-nl-lang", lang); } catch {}
+        setState("done"); setMsg(s.ok); f.reset(); }
       else if (j.errors?.fields?.includes("email_address")) { setState("error"); setMsg(s.bad); }
       else { setState("error"); setMsg(s.err); }
     } catch { setState("error"); setMsg(s.err); }
