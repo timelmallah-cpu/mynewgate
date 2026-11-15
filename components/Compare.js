@@ -99,6 +99,7 @@ export default function Compare({ lang }) {
     <>
       <h1>{s.title}</h1>
       <p className="lead">{s.lead}</p>
+      <p><Link className="btn ghost small" href={`${t.base}/countries`}>{lang === "en" ? "Compare countries instead" : "قارن الدول بدل البرامج"}</Link></p>
       {!data && <p className="meta">{s.loading}</p>}
 
       {data && (

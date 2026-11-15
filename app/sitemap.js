@@ -7,8 +7,8 @@ import { SITE_URL } from "@/lib/site";
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
   const paths = [
-    "/", "/quiz", "/scholarships", "/guide", "/compare", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
-    ...[...COUNTRY_IDS, "fi"].map((c) => `/country/${c}`),
+    "/", "/quiz", "/scholarships", "/guide", "/compare", "/countries", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
+    ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
     ...programmes.map((p) => `/programme/${p.id}`),
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
     ...VOC.map((v) => `/vocational/${v.code}`),
