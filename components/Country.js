@@ -28,6 +28,7 @@ const S = {
     money: "إثبات القدرة المالية للتأشيرة",
     sch: "منح ممولة بالكامل متاحة للعرب",
     portal: "البوابة الرسمية للدراسة",
+    showAll: "اعرض كل البرامج", noFee: "بدون رسوم", feeNA: "الرسوم غير منشورة",
     search: (n) => `ابحث في برامج ${n}`,
     photoBy: "صورة:", source: "المصدر",
     note: "العاصمة واللغة والعملة معلومات عامة. أما الأرقام فمن بيانات البرامج على موقعنا ومن الجهات الرسمية المذكورة مع كل رقم.",
@@ -46,6 +47,7 @@ const S = {
     money: "Proof of funds for the visa",
     sch: "Fully funded scholarships open to Arab students",
     portal: "Official study portal",
+    showAll: "Show all programmes", noFee: "No tuition fee", feeNA: "Fee not published",
     search: (n) => `Search programmes in ${n}`,
     photoBy: "Photo:", source: "Source",
     note: "Capital, language and currency are general facts. Figures come from our programme data and from the official bodies linked next to each one.",
@@ -80,7 +82,8 @@ export default function Country({ code, lang }) {
       max: fees.length ? Math.max(...fees) : null,
     };
   };
-  const cities = [...new Set(list.map((p) => view(p, lang).city))];
+  const cityName = (p) => String(view(p, lang).city).split(" (")[0].trim();
+  const cities = [...new Set(list.map(cityName))];
 
   return (
     <>
@@ -113,14 +116,25 @@ export default function Country({ code, lang }) {
             const d = level(lv);
             if (!d.count) return null;
             return (
-              <div key={lv} className="card">
-                <b className="big">{d.count}</b> {s[lv]}
-                <ul>
-                  {d.min !== null && <li>{s.fees}: {s.feesRange(n(d.min), n(d.max))}</li>}
-                  {d.free > 0 && <li>{s.free(d.free)}</li>}
-                  {d.unknown > 0 && <li>{s.unknownFee(d.unknown)}</li>}
+              <details key={lv} className="card level-acc">
+                <summary>
+                  <span className="level-head"><b className="big">{d.count}</b> {s[lv]}</span>
+                  <ul>
+                    {d.min !== null && <li>{s.fees}: {s.feesRange(n(d.min), n(d.max))}</li>}
+                    {d.free > 0 && <li>{s.free(d.free)}</li>}
+                    {d.unknown > 0 && <li>{s.unknownFee(d.unknown)}</li>}
+                  </ul>
+                  <span className="level-more">{s.showAll}</span>
+                </summary>
+                <ul className="level-list">
+                  {list.filter((p) => p.level === lv).sort((a, b) => a.name.localeCompare(b.name)).map((p) => (
+                    <li key={p.id}>
+                      <Link href={`${t.base}/programme/${p.id}`}><b><bdi>{p.name}</bdi></b></Link>
+                      <small><bdi>{p.university}</bdi> · {cityName(p)} · {p.feePerYear === 0 ? s.noFee : p.feePerYear ? s.feesRange(n(p.feePerYear), n(p.feePerYear)) : s.feeNA}</small>
+                    </li>
+                  ))}
                 </ul>
-              </div>
+              </details>
             );
           })}
         </div>

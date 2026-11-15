@@ -466,3 +466,14 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .ausb-pay span { display: block; color: var(--muted); font-size: .9rem; }
 .ausb-pay b { font-family: var(--display); color: var(--navy); font-size: 1.25rem; }
 @media (max-width: 560px) { .ausb-pay { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.country-levels { align-items: start; }
+.level-acc summary { cursor: pointer; list-style: none; }
+.level-acc summary::-webkit-details-marker { display: none; }
+.level-more { display: inline-block; margin-top: 10px; font-weight: 700; color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+.level-more::after { content: " ▾"; text-decoration: none; }
+.level-acc[open] .level-more::after { content: " ▴"; }
+.country-levels .level-list { list-style: none; padding: 0; margin: 12px 0 0; border-top: 1px solid #e6e9f0; }
+.level-list li { padding: 10px 0; border-bottom: 1px solid #eef0f5; }
+.level-list a { color: var(--navy); }
+.level-list b { display: block; overflow-wrap: anywhere; }
+.level-list small { color: var(--muted); }
