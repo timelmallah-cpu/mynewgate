@@ -186,4 +186,14 @@ writeFileSync("lib/deadlines.json", JSON.stringify(out.map((p) => ({
   ar: p.deadline, en: p.en.deadline, dates: deadlineDates(p.en.deadline),
 }))));
 console.log(`deadlines.json: ${out.filter((p) => deadlineDates(p.en.deadline).length).length} programmes with a parsed deadline date`);
+
+// Slim per-language data for the comparison page, fetched by the browser only when it is opened.
+import { mkdirSync } from "node:fs";
+mkdirSync("public/data", { recursive: true });
+for (const lang of ["ar", "en"]) {
+  writeFileSync(`public/data/compare-${lang}.json`, JSON.stringify(out.map((p) => {
+    const v = lang === "ar" ? p : { ...p, ...p.en };
+    return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly };
+  })));
+}
 console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);

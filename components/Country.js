@@ -9,6 +9,8 @@ import { COSTS } from "../lib/costs";
 import { SCHOLARSHIPS } from "../lib/scholarships";
 import { PostStudyFacts } from "./AfterGrad";
 import { PS_TEXT } from "../lib/postStudy";
+import { RecognitionFacts } from "./Guide";
+import { GUIDE_TEXT } from "../lib/guide";
 
 const S = {
   ar: {
@@ -130,6 +132,12 @@ export default function Country({ code, lang }) {
           <p>{cost.proof[lang]}{cost.proofCheck ? t.toCheck : ""} · <a href={cost.proofSrc} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></p>
         </section>
       )}
+
+      <section className="country-sec">
+        <h2>{GUIDE_TEXT[lang].recTitle}</h2>
+        <RecognitionFacts code={code} lang={lang} />
+        <Link className="btn ghost small" href={`${t.base}/guide?country=${code}#documents`}>{GUIDE_TEXT[lang].docsTitle}</Link>
+      </section>
 
       <section className="country-sec">
         <h2>{PS_TEXT[lang].title}</h2>

@@ -1,4 +1,5 @@
 import { PS_TEXT } from "../lib/postStudy";
+import { GUIDE_TEXT } from "../lib/guide";
 import Link from "next/link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
@@ -36,6 +37,10 @@ export default function Landing({ lang }) {
       </ul>
       <p className="meta count">{t.count(programmes.filter((p) => p.level === "master").length, programmes.filter((p) => p.level === "bachelor").length)}</p>
 
+      <Link className="sch-promo" href={`${t.base}/guide`}>
+        <span><b>{GUIDE_TEXT[lang].title}</b>{GUIDE_TEXT[lang].lead}</span>
+        <span className="btn small">{lang === "ar" ? "افتح الدليل" : "Open the guide"}</span>
+      </Link>
       <Link className="sch-promo" href={`${t.base}/after-graduation`}>
         <span><b>{PS_TEXT[lang].landingTitle}</b>{PS_TEXT[lang].landingText}</span>
         <span className="btn small">{PS_TEXT[lang].landingBtn}</span>
