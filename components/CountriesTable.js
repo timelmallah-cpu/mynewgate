@@ -37,7 +37,13 @@ export default function CountriesTable({ lang, rows, names }) {
     </th>
   );
   return (
-    <div className="cc-scroll" tabIndex={0} aria-label={s.title}>
+    <div className="cc-scroll" aria-label={s.title}>
+      <div className="cc-mobsort">
+        <span>{s.sortBy}:</span>
+        {COLS.map((c) => (
+          <button key={c.key} type="button" className={`chip${sort === c.key ? " on" : ""}`} onClick={() => setSort(sort === c.key ? null : c.key)}>{s[c.key]}</button>
+        ))}
+      </div>
       <table className="cc-table">
         <thead>
           <tr>
@@ -49,14 +55,14 @@ export default function CountriesTable({ lang, rows, names }) {
           {list.map((r) => (
             <tr key={r.c}>
               <th scope="row"><Link href={`${base}/country/${r.c}`}><Flag code={r.c} size={18} /> {names[r.c]}</Link></th>
-              <td>
+              <td data-label={s.fee}>
                 {r.feeMin === null ? s.na : <>{s.range(fmt(r.feeMin), fmt(r.feeMax))}<small>{s.median(fmt(r.feeMed))}</small></>}
                 {r.free > 0 && <small>{s.free(r.free)}</small>}
               </td>
-              <td>{r.living === null ? s.na : s.eur(fmt(r.living))}</td>
-              <td>{r.proof === null ? s.na : s.eur(fmt(r.proof))}{r.proofCheck ? chk : ""}</td>
-              <td><a href={`#cc-${r.c}`}>{s.hours(r.hours)}</a>{r.workCheck ? chk : ""}</td>
-              <td>{r.months === null ? s.na : s.months(r.months)}{r.afterCheck ? chk : ""}</td>
+              <td data-label={s.living}>{r.living === null ? s.na : s.eur(fmt(r.living))}</td>
+              <td data-label={s.proof}>{r.proof === null ? s.na : s.eur(fmt(r.proof))}{r.proofCheck ? chk : ""}</td>
+              <td data-label={s.work}><span><a href={`#cc-${r.c}`}>{s.hours(r.hours)}</a>{r.workCheck ? chk : ""}</span></td>
+              <td data-label={s.after}>{r.months === null ? s.na : s.months(r.months)}{r.afterCheck ? chk : ""}</td>
             </tr>
           ))}
         </tbody>
