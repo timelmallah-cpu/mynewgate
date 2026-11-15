@@ -116,6 +116,7 @@ export default function Country({ code, lang }) {
           <Link href={`${t.base}/countries`}>{lang === "ar" ? `قارن ${name} بباقي الدول` : `Compare ${name} with the other countries`}</Link>
           <Link href={`${t.base}/english-check?country=${code}`}>{lang === "ar" ? "هل درجتك في الإنجليزية تكفي؟" : "Is your English score enough?"}</Link>
           <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
+          <Link href={`${t.base}/school-certificate#cert-${code}`}>{lang === "ar" ? `ثانويتك تكفي في ${name}؟` : `Is your school certificate enough for ${name}?`}</Link>
           <Link href={`${t.base}/visa?to=${code}`}>{lang === "ar" ? `تأشيرة ${name} من بلدك` : `${name} student visa from your country`}</Link>
         </p>
       )}

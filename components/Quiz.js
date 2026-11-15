@@ -60,6 +60,7 @@ export default function Quiz({ lang }) {
             <Link href={`${t.base}/english-check${a.countries?.length === 1 ? `?country=${a.countries[0]}&level=${a.level}` : `?level=${a.level}`}`}>{lang === "ar" ? "هل درجتك في الإنجليزية تكفي؟" : "Is your English score enough?"}</Link>
             <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
             <Link href={`${t.base}/countries`}>{lang === "ar" ? "قارن الدول" : "Compare countries"}</Link>
+            {a.level === "bachelor" && <Link href={`${t.base}/school-certificate`}>{lang === "ar" ? "ثانويتك تكفي؟" : "Is your school certificate enough?"}</Link>}
           </p>
         )}
         {results.length === 0 && <div className="notice">{e.none}</div>}

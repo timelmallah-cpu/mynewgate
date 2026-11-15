@@ -620,3 +620,13 @@ html[lang="ar"] .local-cur { direction: rtl; text-align: right; }
 .cc-out .cc-big .local-cur { color: var(--gold); font-size: 1.15rem; }
 .cc-row .local-cur { white-space: nowrap; text-align: left; }
 html[lang="en"] .cc-row .local-cur { text-align: right; }
+
+/* School certificate page */
+.cert-list { display: grid; gap: 12px; margin-top: 14px; }
+.cert-card h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.cert-kind { display: inline-block; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: .88rem; }
+.k-direct { background: #e3f4ea; color: #17603c; }
+.k-recog { background: #fff4d6; color: var(--gold-ink); }
+.k-extra { background: #fde8e6; color: #8a2a1d; }
+.k-uni { background: var(--sky); color: var(--navy); }
+.ec-tests.card { padding: 14px 16px; }
