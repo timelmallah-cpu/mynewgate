@@ -66,5 +66,9 @@ add(BA, "pharm", "Pharmacy (integrated studies)", LSMU, "Kaunas", ("دراسة �
     ("5,600 يورو سنوياً للسنوات 1-3، و5,700 للسنتين 4-5 (2026/2027)", "€5,600 per year for years 1-3 and €5,700 for years 4-5 (2026/2027)"), LSMU_ADM, NP, ("إجادة الإنجليزية مطلوبة", "English proficiency required"), LSMU_OTHER, LSMU_HOW,
     "https://lsmu.lt/en/admission/integrated-studies/pharmacy/", "https://lsmu.lt/en/admission/admission-process/")
 
+add(BA, "nurs", "Nursing", LSMU, "Kaunas", ("بكالوريوس علوم الصحة، ممرض/ة ممارسة عامة", "BSc in Health Sciences, General Practice Nurse"), ("4 سنوات (240 ساعة معتمدة)", "4 years (240 credits)"),
+    Y("4,300"), ("رسوم طلب 150 يورو (غير مستردة)", "€150 application fee (non-refundable)"), NP, NP, NP, LSMU_HOW,
+    "https://lsmu.lt/en/admission/undergraduate-studies/nursing/", "https://lsmu.lt/en/admission/admission-process/")
+
 write("ليتوانيا", "Lithuania", "lithuania", BA, level="bachelor")
 write("ليتوانيا", "Lithuania", "lithuania", MA, level="master")

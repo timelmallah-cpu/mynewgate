@@ -93,4 +93,12 @@ add("pharm", "Pharmacy (English)", "Grigore T. Popa University of Medicine and P
     ("رسوم 2026-2027 غير منشورة فيما راجعناه؛ ملحق الرسوم الرسمي لعام 2025-2026: 7,500 يورو سنوياً (للتحقق)", "2026-2027 fee not published in what we reviewed; the official 2025-2026 fee annex: €7,500 per year (to verify)"),
     IASI_ADM, NP, NP, (IASI_OTHER[0] + "؛ 50 مقعداً بالإنجليزية في 2026-2027", IASI_OTHER[1] + "; 50 English places in 2026-2027"), IASI)
 
+add("nurs", "Nursing (English)", "Iuliu Hațieganu University of Medicine and Pharmacy", "Cluj-Napoca", ("بكالوريوس التمريض العام", "Bachelor's in General Nursing"), ("4 سنوات (240 ساعة معتمدة)", "4 years (240 credits)"),
+    ("رسوم غير الأوروبيين لبرنامج التمريض بالإنجليزية غير واضحة في جدول الرسوم 2026-2027 (للتحقق)", "The non-EU fee for English-taught Nursing is not clear in the 2026-2027 fee table (to verify)"),
+    ("رسوم معالجة الملف 300 يورو، ورسوم تأكيد = 50% من رسوم السنة (غير مستردة)", "€300 processing fee and a confirmation fee of 50% of the yearly tuition (non-refundable)"),
+    ("في 2026 مُدّ التقديم للتمريض حتى 12 أغسطس 2026؛ مواعيد 2027 غير منشورة بعد", "In 2026 Nursing applications were extended to 12 August 2026; 2027 dates not published yet"),
+    ("شهادة B2 على الأقل، إلا لمن درس الثانوية كاملة بالإنجليزية", "At least a B2 certificate, unless your whole secondary school was in English"),
+    ("قبول بتقييم الملف؛ 50 مقعداً بالإنجليزية؛ لغير الأوروبيين تُدفع رسوم السنة الأولى كاملة قبل التأشيرة", "Admission by file evaluation; 50 English places; non-EU students pay the full first-year fee before the visa"),
+    CLUJ)
+
 write("رومانيا", "Romania", "romania", R, level="bachelor")

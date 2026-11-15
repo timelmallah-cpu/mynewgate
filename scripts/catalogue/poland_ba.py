@@ -141,4 +141,9 @@ add("pharm", "Pharmacy, English Division", "Medical University of Gdańsk", "Gda
     PLNS("4,740", "20,850"), NP, NP, NP, ("من قرار رئيس الجامعة رقم 41/2026 لرسوم 2026/2027", "From Rector's Order No. 41/2026 on 2026/2027 fees"), IRK,
     "https://admission.mug.edu.pl/attachment/attachment/115883/ENG_z4126_oplaty_za_ksztalcenie_w_roku_akademickim_26_27.pdf", "https://admission.mug.edu.pl/1453.html")
 
+add("nurs", "Nursing in English", "Wroclaw Medical University", "Wrocław", ("بكالوريوس التمريض (licencjat)", "Bachelor of Nursing (licencjat)"), NP,
+    ("حوالي 7,430 يورو سنوياً (32,700 زلوتي سنوياً لعام 2026/2027؛ التحويل تقريبي)", "About €7,430 per year (PLN 32,700 per year for 2026/2027; approximate conversion)"),
+    NP, NP, NP, ("من صفحة رسوم الجامعة للبرامج بالإنجليزية", "From the university's fee page for English-taught programmes"), IRK,
+    "https://admission.umw.edu.pl/tuition-fee/", "https://admission.umw.edu.pl/tuition-fee/")
+
 write("بولندا", "Poland", "poland", R, level="bachelor")

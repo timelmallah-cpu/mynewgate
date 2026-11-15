@@ -173,4 +173,16 @@ add("pharm", "Pharmacy in English", PTE, "Pécs", PHD_, S10,
     ("حوالي 8,400 يورو سنوياً (4,400 يورو في الخريف و4,000 في الربيع؛ السنة الدراسية غير مذكورة في الجدول - للتحقق)", "About €8,400 per year (€4,400 in autumn and €4,000 in spring; the academic year is not stated in the table - to verify)"),
     ("رسوم امتحان القبول 250 دولار", "$250 entrance exam fee"), NP, NP, PTE_OTHER, NP, NP, NP, PTE_FEES, PTE_FEES)
 
+# ---------- Nursing BSc in English, added 2026-11-15 ----------
+NBSC = ("بكالوريوس التمريض (BSc)", "Bachelor of Science in Nursing (BSc)")
+add("nurs", "Nursing BSc", SEM_U, "Budapest", NBSC, S8, SEM("4,050"),
+    ("رسوم تسجيل 230 يورو تُدفع مع رسوم الفصل الأول", "€230 enrolment fee paid with the first semester's fee"), NP, NP,
+    ("كلية العلوم الصحية؛ السنة الرابعة تدريب ميداني ومشروع تخرج؛ التأمين الصحي مشمول في الرسوم", "Faculty of Health Sciences; year 4 is field practice and the thesis; health insurance is included in the fee"),
+    ("التقديم الإلكتروني على صفحة القبول", "Online application on the admission page"), LIV_BUD, NP,
+    "https://semmelweis.hu/admission/programs/nursing/", "https://semmelweis.hu/admission/programs/nursing/")
+add("nurs", "Nursing and Patient Care (Nurse) BSc", DEB, "Nyíregyháza", NBSC, S8, USDY("6,760", "7,500"), DEB_ADM, DEB_DL,
+    ("مستوى B2 في الإنجليزية، يُقيّم في مقابلة القبول", "B2 English, assessed in the entrance interview"),
+    ("حرم نيريجهازا التابع لجامعة دبرتسن؛ امتحان كتابي في الأحياء ومقابلة؛ أكثر من نصف البرنامج تدريب عملي", "University of Debrecen's Nyíregyháza campus; written Biology exam and an interview; over half the programme is practical training"),
+    DEB_HOW, NP, NP, "https://edu.unideb.hu/p/nursing-and-patient-care-nurse-bsc", DEB_APPLY)
+
 write("المجر", "Hungary", "hungary", R, level="bachelor")
