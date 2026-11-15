@@ -2,6 +2,7 @@ import Link from "next/link";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { POST_STUDY, PS_TEXT } from "../lib/postStudy";
+import { COUNTRY_IDS } from "../lib/options";
 
 const workLabel = (w, s) => (w === true ? s.workYes : w === false ? s.workNo : s.workUnknown);
 
@@ -34,7 +35,7 @@ export function PostStudyFacts({ code, lang, heading = true }) {
 export default function AfterGrad({ lang }) {
   const t = T[lang];
   const s = PS_TEXT[lang];
-  const codes = Object.keys(POST_STUDY).sort((a, b) => POST_STUDY[b].months - POST_STUDY[a].months);
+  const codes = COUNTRY_IDS.filter((c) => POST_STUDY[c]).sort((a, b) => POST_STUDY[b].months - POST_STUDY[a].months);
   return (
     <>
       <h1>{s.pageTitle}</h1>

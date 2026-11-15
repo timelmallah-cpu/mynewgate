@@ -12,6 +12,7 @@ import { PS_TEXT } from "../lib/postStudy";
 import { RecognitionFacts } from "./Guide";
 import { GUIDE_TEXT } from "../lib/guide";
 import { AUSB } from "../lib/ausbildung";
+import { VOC_TEXT, VOC } from "../lib/vocational";
 
 const S = {
   ar: {
@@ -55,7 +56,7 @@ const S = {
 };
 
 export const countryTip = (code, lang) => S[lang].tip(T[lang].countries[code]);
-export const countryParams = () => COUNTRY_IDS.map((code) => ({ code }));
+export const countryParams = () => [...COUNTRY_IDS, "fi"].map((code) => ({ code }));
 export const countryMeta = (code, lang) => ({ title: `${S[lang].title(T[lang].countries[code] || "")} | ${T[lang].brand}` });
 
 const n = (v) => Math.round(v).toLocaleString("en-US");
@@ -66,6 +67,8 @@ export default function Country({ code, lang }) {
   const t = T[lang];
   const s = S[lang];
   const name = t.countries[code];
+  const covered = COUNTRY_IDS.includes(code);
+  const voc = VOC.find((v) => v.code === code);
   const list = programmes.filter((p) => p.country === code);
   const cost = COSTS[code];
   const sch = SCHOLARSHIPS.filter((x) => x.hosts.includes(code));
@@ -98,7 +101,13 @@ export default function Country({ code, lang }) {
         {s.photoBy} <a href={page} target="_blank" rel="noopener noreferrer" className="ltr">{author}</a> · <a href={licUrl} target="_blank" rel="noopener noreferrer" className="ltr">{lic}</a> · Wikimedia Commons
       </p>
 
-      <Link className="btn gold" href={`${t.base}/quiz?country=${code}`}>{s.search(name)}</Link>
+      {covered && <Link className="btn gold" href={`${t.base}/quiz?country=${code}`}>{s.search(name)}</Link>}
+      {voc && (
+        <Link className="sch-promo" href={`${t.base}/vocational/${code}`}>
+          <span><b>{voc.country[lang]}: {voc.name[lang]}</b>{voc.short[lang]}</span>
+          <span className="btn small">{VOC_TEXT[lang].deBtn}</span>
+        </Link>
+      )}
 
       <section className="country-sec">
         <h2>{s.facts}</h2>
@@ -109,7 +118,7 @@ export default function Country({ code, lang }) {
         </dl>
       </section>
 
-      <section className="country-sec">
+      {covered && <section className="country-sec">
         <h2>{s.onSite}</h2>
         <div className="country-levels">
           {["bachelor", "master"].map((lv) => {
@@ -139,7 +148,7 @@ export default function Country({ code, lang }) {
           })}
         </div>
         <p><b>{s.cities}:</b> {cities.join(lang === "ar" ? "، " : ", ")}</p>
-      </section>
+      </section>}
 
       {cost && (
         <section className="country-sec">
@@ -151,13 +160,13 @@ export default function Country({ code, lang }) {
       <section className="country-sec">
         <h2>{GUIDE_TEXT[lang].recTitle}</h2>
         <RecognitionFacts code={code} lang={lang} />
-        <Link className="btn ghost small" href={`${t.base}/guide?country=${code}#documents`}>{GUIDE_TEXT[lang].docsTitle}</Link>
+        {covered && <Link className="btn ghost small" href={`${t.base}/guide?country=${code}#documents`}>{GUIDE_TEXT[lang].docsTitle}</Link>}
       </section>
 
       <section className="country-sec">
         <h2>{PS_TEXT[lang].title}</h2>
         <PostStudyFacts code={code} lang={lang} />
-        <Link className="btn ghost small" href={`${t.base}/after-graduation`}>{PS_TEXT[lang].compare}</Link>
+        {covered && <Link className="btn ghost small" href={`${t.base}/after-graduation`}>{PS_TEXT[lang].compare}</Link>}
       </section>
 
       {code === "de" && (
