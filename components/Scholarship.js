@@ -7,6 +7,7 @@ import { Hosts, fmtDate, KindTag } from "./ScholarshipParts";
 import { ScamBox } from "./Scholarships";
 import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
+import WhatsApp from "./WhatsApp";
 
 export const schParams = () => SCHOLARSHIPS.map((s) => ({ id: s.id }));
 export function schMeta(id, lang) {
@@ -34,7 +35,7 @@ export default function Scholarship({ id, lang }) {
         </div>
       </header>
       <div className="sch-sum">{s.summary[lang]}</div>
-      <div className="save-row"><SaveButton k={`s:${s.id}`} lang={lang} /></div>
+      <div className="save-row"><SaveButton k={`s:${s.id}`} lang={lang} /> <WhatsApp lang={lang} path={`${t.base}/scholarships/${s.id}`} text={`${s.name[lang]} | ${s.funder[lang]}`} /></div>
 
       <section className="apply">
         <h2>{st.official}</h2>

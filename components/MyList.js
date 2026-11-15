@@ -6,6 +6,7 @@ import { T } from "../lib/i18n";
 import { SCHOLARSHIPS } from "../lib/scholarships";
 import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved } from "../lib/saved";
 import { fmtDate } from "./ScholarshipParts";
+import WhatsApp from "./WhatsApp";
 
 const today = () => new Date().toISOString().slice(0, 10);
 const daysLeft = (iso) => Math.round((new Date(iso + "T12:00:00Z") - new Date(today() + "T12:00:00Z")) / 864e5);
@@ -134,6 +135,7 @@ export default function MyList({ lang }) {
               <input id="share-link" readOnly value={link} dir="ltr" onFocus={(e) => e.target.select()} aria-label={m.shareTitle} />
               <button className="btn small" onClick={copy}>{copied ? m.copied : m.copy}</button>
             </div>
+            <WhatsApp lang={lang} full={link} text={lang === "ar" ? "دي البرامج والمنح اللي حفظتها على بوابتي الجديدة:" : "Programmes and scholarships I saved on MyNewGate:"} />
           </div>
           <ol className="mylist">
             {list.map((it) => {

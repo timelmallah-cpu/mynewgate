@@ -14,6 +14,7 @@ import { RecognitionFacts } from "./Guide";
 import { GUIDE_TEXT } from "../lib/guide";
 import { AUSB } from "../lib/ausbildung";
 import { VOC_TEXT, VOC } from "../lib/vocational";
+import WhatsApp from "./WhatsApp";
 
 const S = {
   ar: {
@@ -117,6 +118,7 @@ export default function Country({ code, lang }) {
           <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
         </p>
       )}
+      <p><WhatsApp lang={lang} path={`${t.base}/country/${code}`} text={s.title(name)} /></p>
       {voc && (
         <Link className="sch-promo" href={`${t.base}/vocational/${code}`}>
           <span><b>{voc.country[lang]}: {voc.name[lang]}</b>{voc.short[lang]}</span>
