@@ -477,3 +477,29 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .level-list a { color: var(--navy); }
 .level-list b { display: block; overflow-wrap: anywhere; }
 .level-list small { color: var(--muted); }
+
+/* landing v2 */
+.gate .lead { max-width: 46ch; }
+.gate-stats { list-style: none; padding: 0; margin: -8px auto 28px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; max-width: 560px; position: relative; }
+.gate-stats li { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 4px; border-top: 1px solid rgba(233,185,73,.35); }
+.gate-stats b { font-family: var(--display); color: var(--gold); font-size: clamp(1.7rem, 6vw, 2.4rem); line-height: 1.1; }
+.gate-stats span { color: #c9d3ea; font-size: .88rem; line-height: 1.35; }
+.countries { margin-bottom: 28px; }
+.land-h { font-size: 1.25rem; margin: 30px 0 12px; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tile { display: flex; flex-direction: column; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.tile svg { color: var(--navy); background: var(--sky); border-radius: 12px; padding: 6px; box-sizing: content-box; }
+.tile b { font-family: var(--display); color: var(--navy); font-size: 1.05rem; line-height: 1.35; }
+.tile span { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+.tile:hover, .tile:focus-visible { border-color: var(--navy); transform: translateY(-2px); }
+.photo-strip { list-style: none; padding: 0 0 8px; margin: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 210px); gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; }
+.photo-strip li { scroll-snap-align: start; }
+.photo-strip a { position: relative; display: block; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--navy); }
+.photo-strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.photo-strip a:hover img { transform: scale(1.04); }
+.photo-strip span { position: absolute; inset: auto 0 0 0; padding: 30px 10px 10px; background: linear-gradient(transparent, rgba(19,35,75,.9)); color: #fff; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+.credit { margin-bottom: 30px; }
+@media (max-width: 420px) { .tiles { gap: 10px; } .tile { padding: 13px; } .gate-stats span { font-size: .8rem; } }
+@media (prefers-reduced-motion: reduce) { .tile, .photo-strip img { transition: none; } }
+.photo-credits summary { cursor: pointer; }
+.photo-credits ul { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 2px; }
