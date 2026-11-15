@@ -45,9 +45,9 @@ export default function Visa({ lang }) {
               <p>{eg.where[lang]}</p>
               <h3>{s.steps}</h3>
               <ol className="visa-steps">{eg.steps[lang].map((x) => <li key={x}>{x}</li>)}</ol>
-              <div className="notice"><b>{s.note}:</b> {eg.note[lang]}</div>
+              {eg.note && <div className="notice"><b>{s.note}:</b> {eg.note[lang]}</div>}
               <p className="pl-actions">
-                <a className="btn gold small" href={eg.book} target="_blank" rel="noopener noreferrer">{s.book} ↗</a>
+                {eg.book && <a className="btn gold small" href={eg.book} target="_blank" rel="noopener noreferrer">{s.book} ↗</a>}
                 <a className="btn ghost small" href={eg.src} target="_blank" rel="noopener noreferrer">{s.source} ↗</a>
               </p>
               <h3>{s.general}</h3>
