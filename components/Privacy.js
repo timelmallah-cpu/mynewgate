@@ -8,7 +8,7 @@ const S = {
     title: "سياسة الخصوصية",
     updated: "آخر تحديث:",
     sections: [
-      ["من نحن", "بوابة السفر (Bawabat Alsafar) موقع يرتب المعلومات الرسمية عن الدراسة في أوروبا باللغة العربية، ويتبع لعلامة «مع حاتم». للتواصل في أي شيء يخص بياناتك: business@withhatem.com"],
+      ["من نحن", "بوابة السفر (Bawabat AlSafar) موقع يرتب المعلومات الرسمية عن الدراسة في أوروبا باللغة العربية، ويتبع لعلامة «مع حاتم». للتواصل في أي شيء يخص بياناتك: business@withhatem.com"],
       ["ما الذي لا نجمعه", "لا تحتاج إلى حساب لاستخدام الموقع، فالحساب اختياري. الأسئلة التي تجيب عنها للبحث عن البرامج لا تُرسل إلى أي خادم. لا نستخدم أدوات تتبع إعلانية، ولا نضع ملفات تعريف الارتباط (الكوكيز) إلا كوكيز الدخول الضرورية إذا سجّلت الدخول بنفسك، وتجد تفاصيلها في فقرة «الحساب»."],
       ["إحصاءات الزيارات", "نستخدم Vercel Web Analytics لنعرف عدد الزيارات والصفحات الأكثر قراءة. لا تضع أي كوكيز ولا تحفظ بيانات تعرّف بك، وتميّز الزائر ببصمة مؤقتة محسوبة من الطلب تتغير كل يوم، فلا يمكن تتبعك بين الأيام أو بين المواقع. نرى أرقاماً مجمعة فقط، مثل عدد الزيارات والدولة ونوع الجهاز."],
       ["قائمتي", "البرامج والمنح التي تحفظها في «قائمتي» محفوظة في متصفحك على جهازك. إذا لم تسجّل الدخول، لا تُرسل القائمة إلينا أبداً. إذا سجّلت الدخول، تُحفظ نسخة منها في حسابك لتظهر على كل أجهزتك. رابط القائمة الذي تنسخه يحمل أرقام البرامج فقط، ولا يُرسل إلينا. تستطيع حذف القائمة بحذف العناصر منها أو بمسح بيانات المتصفح، وتُحذف نسختها من حسابك مع حذف الحساب."],
@@ -26,11 +26,11 @@ const S = {
     ],
   },
   en: {
-    meta: "Privacy policy | Bawabat Alsafar",
+    meta: "Privacy policy | Bawabat AlSafar",
     title: "Privacy policy",
     updated: "Last updated:",
     sections: [
-      ["Who we are", "Bawabat Alsafar (بوابة السفر) organises official information about studying in Europe in Arabic. It is part of the \"With Hatem\" brand. For anything about your data, contact business@withhatem.com"],
+      ["Who we are", "Bawabat AlSafar (بوابة السفر) organises official information about studying in Europe in Arabic. It is part of the \"With Hatem\" brand. For anything about your data, contact business@withhatem.com"],
       ["What we don't collect", "You don't need an account to use the site; accounts are optional. The answers you give in the programme finder are not sent to any server. We don't use advertising trackers, and we set no cookies except the essential sign-in cookies if you choose to sign in, described under \"Accounts\"."],
       ["Visit statistics", "We use Vercel Web Analytics to see how many visits we get and which pages are read most. It sets no cookies and stores no data that identifies you; it tells visitors apart with a temporary hash of the request that resets every day, so you cannot be tracked across days or across websites. We only see aggregated figures such as visit counts, country and device type."],
       ["My list", "Programmes and scholarships you save to \"My list\" are stored in your browser on your device. If you are not signed in, the list is never sent to us. If you sign in, a copy is kept in your account so it shows on all your devices. The list link you copy only holds programme numbers and is not sent to us. You can delete the list by removing items or clearing your browser data, and the copy in your account is deleted with the account."],

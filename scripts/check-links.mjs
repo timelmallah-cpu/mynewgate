@@ -22,7 +22,7 @@ for (const f of files) {
   }
 }
 const urls = [...where.keys()];
-const UA = "Mozilla/5.0 (compatible; Bawabat Alsafar link checker; +https://bawabatalsafar.com)";
+const UA = "Mozilla/5.0 (compatible; Bawabat AlSafar link checker; +https://bawabatalsafar.com)";
 
 async function check(u) {
   for (const method of ["HEAD", "GET"]) {

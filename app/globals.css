@@ -1,4 +1,4 @@
-/* Bawabat Alsafar — "the gate" identity.
+/* Bawabat AlSafar — "the gate" identity.
    Navy = the passport/official-document world. Gold = the keystone, used only
    for the one thing that matters on each screen (primary action, selection, focus). */
 :root {
@@ -1060,3 +1060,10 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .review-form select { font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; width: 100%; background: var(--card); }
 .email-ph { display: inline-block; margin: 2px 4px; padding: 1px 8px; border-radius: 8px; background: var(--sky); font-family: inherit; }
 @media (max-width: 560px) { .review-opts.even { grid-template-columns: 1fr; } }
+
+/* Footer brand lockup: name, tagline, Powered by WithHatem */
+.foot-brand { margin: 0 0 18px; }
+.foot-brand p { margin: 0; }
+.foot-name { display: flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--navy); }
+.foot-tagline { margin-top: 4px !important; color: var(--ink); }
+.foot-powered { margin-top: 6px !important; font-size: .85rem; color: var(--muted); letter-spacing: .02em; }

@@ -1,4 +1,4 @@
-// Bawabat Alsafar service worker: pages work offline once visited, and the app opens without a connection.
+// Bawabat AlSafar service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
 const V = "mng-v5";
 // The study site is served under /study (basePath).

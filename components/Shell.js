@@ -79,6 +79,11 @@ export default function Shell({ lang, children }) {
         </header>
         <main>{children}</main>
         <footer className="foot">
+          <div className="foot-brand">
+            <p className="foot-name"><Mark />{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</p>
+            <p className="foot-tagline">{t.tagline}</p>
+            <p className="foot-powered"><bdi>{t.poweredBy}</bdi></p>
+          </div>
           <p>{t.footer} <span className="tag">{t.beta}</span></p>
           <nav className="foot-cols" aria-label={t.base ? "Site links" : "روابط الموقع"}>
             {FOOT_GROUPS.map((g) => (

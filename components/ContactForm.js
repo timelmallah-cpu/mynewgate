@@ -43,7 +43,7 @@ export default function ContactForm({ lang }) {
         body: JSON.stringify({
           access_key: KEY,
           subject: `${c.subject}: ${data.topic}`,
-          from_name: "Bawabat Alsafar",
+          from_name: "Bawabat AlSafar",
           name: data.name,
           email: data.email,
           replyto: data.email,
