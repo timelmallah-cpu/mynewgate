@@ -1028,3 +1028,6 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .top-acc { display: inline-flex; align-items: center; color: var(--navy); padding: 6px; border-radius: 10px; }
 .top-acc:hover { background: var(--sky); }
 .mylist-sync { color: var(--muted); font-size: .95rem; }
+.acc-form .acc-google { justify-self: stretch; gap: 10px; }
+.acc-google.is-off { opacity: .55; cursor: not-allowed; }
+.acc-or { border: 0; border-top: 1px solid var(--line); width: 100%; margin: 6px 0; }
