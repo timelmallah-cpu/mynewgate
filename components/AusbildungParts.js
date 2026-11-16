@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SECTORS, BOARDS, PROGRAMMES, STEPS, CAIRO, GUIDE_TEXT, SRC } from "../lib/ausbildungGuide";
+import { SECTORS, BOARDS, PROGRAMMES, STEPS, CAIRO, GUIDE_TEXT, SRC, jobSearchUrl } from "../lib/ausbildungGuide";
 
 const fmt = (n) => n.toLocaleString("en-US");
 const Src = ({ href, label }) => <a className="ps-src-link" href={href} target="_blank" rel="noopener noreferrer">{label} ↗</a>;
@@ -36,7 +36,7 @@ export function PayTable({ jobs, lang }) {
         <tbody>
           {jobs.map((j) => (
             <tr key={j.de + j.area}>
-              <th scope="row"><b>{j[lang]}</b><small className="ltr">{j.de}</small><small>{g.area[j.area]}</small></th>
+              <th scope="row"><b>{j[lang]}</b><small className="ltr">{j.de}</small><small>{g.area[j.area]}</small><a className="ausb-find" href={jobSearchUrl(j.de)} target="_blank" rel="noopener noreferrer">{g.findPlaces} ↗</a></th>
               <td data-label={g.length}>{g.months(j.months)}</td>
               {Array.from({ length: years }, (_, i) => (
                 <td key={i} data-label={g.y(i)}>{j.pay[i] ? (lang === "ar" ? `${fmt(j.pay[i])} يورو` : `€${fmt(j.pay[i])}`) : "-"}</td>
@@ -46,6 +46,7 @@ export function PayTable({ jobs, lang }) {
         </tbody>
       </table>
       <p className="meta">{g.payNote} <Src href={SRC.bibb} label={`${g.source} (BIBB)`} /></p>
+      <p className="meta">{g.findNote}</p>
     </div>
   );
 }
