@@ -52,6 +52,102 @@ add(MA, "bus", "MSc in Management (Strategy)", "DCU Business School, Dublin City
     ("التقديم أونلاين على موقع DCU، ومنحة كلية الأعمال تُحتسب تلقائياً لغير الأوروبيين", "Apply online on DCU's website; non-EU applicants are considered for the Business School scholarship automatically"), NP, NP,
     "https://www.dcu.ie/fees/postgraduate-fees-2027-28", DCU_MGT)
 
+
+# ---------- More master's (added 2026-11-16) ----------
+TUD_FEES = "https://www.tudublin.ie/media/website/for-students/student-services-and-support/registration-and-fees/documents/postgraduate_fees_26-27_Updated_310826.pdf"
+TUD_APPLY = "https://www.tudublin.ie/study/international/how-to-apply/postgraduate-courses/"
+TUD_DL = ("لدفعة خريف 2026 كان آخر موعد لغير الأوروبيين 26 يونيو 2026 (موعد 2027 للتحقق)", "For autumn 2026 the non-EU closing date was 26 June 2026 (2027 date to verify)")
+TUD_EN = ("IELTS 6.5 لمعظم البرامج، والشرط الدقيق في صفحة البرنامج", "IELTS 6.5 for most programmes; the exact requirement is on the programme page")
+TUD_HOW = ("التقديم أونلاين من رابط غير الأوروبيين في صفحة البرنامج، ورسوم الطلب غير مستردة", "Apply online through the non-EU link on the programme page; the application fee is not refundable")
+def tud(field, name, fee, other, src, dur=Y1, deg=MSC):
+    add(MA, field, name, "Technological University Dublin (TU Dublin)", "Dublin", deg, dur,
+        (f"{fee} يورو للبرنامج كاملاً لغير الأوروبيين (2026/2027)", f"€{fee} for the full programme for non-EU students (2026/2027)"), NP,
+        TUD_DL, TUD_EN, other, TUD_HOW, NP, NP, src, TUD_APPLY)
+
+ME = ("ماجستير الهندسة (ME)", "Master of Engineering (ME)")
+tud("ds", "MSc in Computer Science (Data Science)", "21,750",
+    ("يُشترط بكالوريوس (مع مرتبة الشرف) في علوم الحاسب أو الرياضيات أو تخصص عددي فيه مكوّن حاسب كبير", "Requires an honours BSc in Computer Science, Mathematics or a numerate discipline with a significant computing component"),
+    "https://www.tudublin.ie/study/postgraduate/courses/computing-data-science/", dur=("سنة إلى سنة ونصف دوام كامل", "1 to 1.5 years full-time"))
+tud("cs", "MSc in Computer Science (Advanced Software Development)", "21,750",
+    ("يُشترط بكالوريوس (مع مرتبة الشرف) في علوم الحاسب أو هندسة الحاسب بتقدير 2.1، أو 2.2 مع خبرة عمل سنتين", "Requires an honours BSc in Computer Science or Computer Engineering at 2.1, or 2.2 with two years of relevant work experience"),
+    "https://tudublin.ie/study/postgraduate/courses/computing-advanced-software-development-tu059/", dur=("سنة إلى سنة ونصف دوام كامل", "1 to 1.5 years full-time"))
+tud("ds", "MSc Data Analytics", "21,750",
+    ("بتقدير 2.1 على الأقل في الحاسب أو العلوم أو تخصص قريب؛ يصلح كبرنامج تحويلي لغير دارسي الحاسب", "At least a 2.1 honours degree in Computing, Science or a related area; also works as a conversion programme for non-computing graduates"),
+    "https://www.tudublin.ie/study/postgraduate/courses/data-analytics-ft/")
+tud("cs", "MSc in Computing in Applied Cyber Security", "14,500",
+    ("موجّه لحملة بكالوريوس في الحاسب أو تقنية المعلومات", "Aimed at holders of a primary degree in computing or IT"),
+    "https://www.tudublin.ie/study/postgraduate/courses/applied-cyber-security/")
+tud("bus", "MSc in Management", "15,000",
+    ("برنامج تحويلي لخريجي التخصصات غير التجارية، وله دفعتان في يناير وسبتمبر", "A conversion programme for non-business graduates, with January and September intakes"),
+    "https://www.tudublin.ie/study/postgraduate/courses/management-tu421-fulltime/")
+tud("bus", "MSc in Logistics and Supply Chain Management", "14,500", NP,
+    "https://www.tudublin.ie/study/postgraduate/courses/logistics-supply-chain-management/")
+tud("bus", "MSc in Finance", "13,500", NP, "https://www.tudublin.ie/study/postgraduate/business/")
+tud("bus", "MSc in Marketing", "13,500",
+    ("برنامج تحويلي لخريجي التخصصات غير التجارية", "A conversion programme for non-business graduates"), "https://www.tudublin.ie/study/postgraduate/business/")
+tud("bus", "MSc in Strategic Management", "13,500", NP, "https://www.tudublin.ie/explore/faculties-and-schools/business/graduate-business-school/full-time-learners/")
+tud("eng", "Master of Engineering in Mechanical Engineering", "14,500",
+    ("يُشترط بكالوريوس (مع مرتبة الشرف) بتقدير 2.2 على الأقل في الهندسة الميكانيكية أو تخصص هندسي قريب", "Requires at least a 2.2 honours degree in Mechanical Engineering or a closely related engineering discipline"),
+    "https://www.tudublin.ie/study/postgraduate/courses/mechanical-engineering/", deg=ME)
+tud("eng", "Master of Engineering in Civil Engineering (Sustainable Infrastructure)", "14,500",
+    ("لخريجي الهندسة المدنية والإنشائية والبيئية والتخصصات القريبة", "For graduates in civil, structural and environmental engineering and closely related disciplines"),
+    "https://www.tudublin.ie/study/postgraduate/courses/sustainable-infrastructure/", deg=ME)
+tud("eng", "MSc in Energy Management", "14,500", NP, "https://www.tudublin.ie/study/postgraduate/engineering/")
+tud("eng", "Master of Engineering in Sustainable Electrical Energy Systems", "14,500", NP, "https://www.tudublin.ie/study/postgraduate/engineering/", deg=ME)
+tud("eng", "MSc in Electronic and Communications Engineering", "14,500", NP, "https://www.tudublin.ie/study/postgraduate/engineering/")
+tud("arch", "Master of Architecture", "21,750",
+    ("برنامج مهني لخريجي العمارة (للتحقق من الشروط في صفحة البرنامج)", "A professional programme for architecture graduates (check the conditions on the programme page)"),
+    TUD_FEES, dur=("سنة ونصف دوام كامل", "1.5 years full-time"))
+
+# Trinity College Dublin
+TCD_EN = ("IELTS أكاديمي 6.5 إجمالي، أو TOEFL iBT 88", "IELTS Academic 6.5 overall, or TOEFL iBT 88")
+TCD_OTHER = ("يُشترط بكالوريوس بتقدير 2.1 (Upper Second) أو ما يعادله", "Requires at least a 2.1 honours degree or international equivalent")
+TCD_HOW = ("التقديم أونلاين على بوابة my.tcd.ie، والرسوم تُدفع على قسطين", "Apply online on the my.tcd.ie portal; fees can be paid in two instalments")
+TCD_APPLY = "https://tcd.ie/study/postgraduate/apply"
+def tcd(field, name, fee, src, other=TCD_OTHER, dl=NP):
+    add(MA, field, name, "Trinity College Dublin (TCD)", "Dublin", MSC, Y1,
+        (f"{fee} يورو سنوياً لغير الأوروبيين (2026/2027)", f"€{fee} a year for non-EU students (2026/2027)") if fee else NP, NP,
+        dl, TCD_EN, other, TCD_HOW, NP, NP, src, TCD_APPLY)
+
+tcd("bus", "MSc in Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-management/fees",
+    ("لخريجي التخصصات غير التجارية فقط، ويُشترط تقدير 2.1", "Only for non-business graduates; requires a 2.1 honours degree"))
+tcd("bus", "MSc in Marketing", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-marketing/fees")
+tcd("bus", "MSc in Digital Marketing Strategy", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-digital-marketing-strategy/fees")
+tcd("bus", "MSc in International Management", "24,500", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-international-management/fees/",
+    ("الرسوم تشمل أسبوعاً دراسياً في الخارج (السفر والسكن). يُشترط تقدير 2.1", "The fee includes an International Week Abroad (travel and accommodation). Requires a 2.1 honours degree"))
+tcd("bus", "MSc in Finance", "27,300", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-finance/fees/")
+tcd("bus", "MSc in Operations and Supply Chain Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-operations-and-supply-chain-management/fees/")
+tcd("bus", "MSc in Human Resource Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-human-resource-management/fees/")
+tcd("bus", "MSc in Entrepreneurship and Innovation", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-entrepreneurship-and-innovation/fees/")
+tcd("bus", "MSc in Accounting and Analytics", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-accounting-and-analytics-/fees/")
+tcd("cs", "MSc in Computer Science (Intelligent Systems)", None, "https://www.tcd.ie/scss/courses/postgraduate/computer-science/application-requirements/",
+    ("في الذكاء الاصطناعي وتعلم الآلة؛ يُشترط تقدير 2.1 في الحاسب أو تخصص قريب جداً", "AI and machine learning; requires a 2.1 honours degree in computing or a strongly related discipline"),
+    ("لدفعة 2026/2027 فتح التقديم 1 نوفمبر 2025 وأُغلق 30 يونيو 2026 (مواعيد 2027 للتحقق)", "For 2026/2027 applications opened on 1 November 2025 and closed on 30 June 2026 (2027 dates to verify)"))
+
+# University of Galway
+GAL_FEES = "https://universityofgalway.ie/student-fees/how-much/postgraduate-fees/"
+GAL_HOW = ("التقديم أونلاين على بوابة جامعة غالواي للدراسات العليا، ونصف رسوم غير الأوروبيين يُدفع قبل التسجيل", "Apply online on the University of Galway postgraduate portal; half of the non-EU fee is paid before registration")
+def gal(field, name, fee, year, deg=MSC, other=NP):
+    add(MA, field, name, "University of Galway", "Galway", deg, Y1,
+        (f"{fee} يورو سنوياً لغير الأوروبيين ({year})", f"€{fee} a year for non-EU students ({year})"), NP,
+        NP, NP, other, GAL_HOW, NP, NP, GAL_FEES, GAL_FEES)
+
+gal("bus", "MSc Business Analytics", "21,640", "2026/2027")
+gal("bus", "MSc International Management", "21,640", "2026/2027")
+gal("bus", "MSc Digital Marketing", "20,890", "2026/2027")
+gal("bus", "MSc Corporate Finance", "21,640", "2026/2027")
+gal("bus", "MSc Information Systems Management", "21,640", "2026/2027")
+gal("econ", "MSc Health Economics", "20,540", "2026/2027")
+gal("ds", "MSc Computer Science (Data Analytics)", "29,450", "2027/2028")
+gal("cs", "MSc Computer Science (Artificial Intelligence)", "29,450", "2027/2028")
+gal("cs", "MSc Software Design & Development", "19,150", "2027/2028",
+    other=("برنامج تحويلي للبرمجة لخريجي التخصصات الأخرى (للتحقق من الشروط)", "A software conversion programme for graduates of other disciplines (check the conditions)"))
+gal("ds", "MSc Health Data Science", "28,350", "2027/2028")
+gal("eng", "ME Civil Engineering", "29,450", "2027/2028", deg=ME)
+gal("eng", "ME Mechanical Engineering", "29,450", "2027/2028", deg=ME)
+gal("eng", "ME Biomedical Engineering", "29,450", "2027/2028", deg=ME)
+gal("eng", "ME Energy Systems Engineering", "29,450", "2027/2028", deg=ME)
+
 # ---------- Bachelor's ----------
 DCU_BSC = "https://www.dcu.ie/DC121"
 add(BA, "cs", "BSc in Computer Science", "Dublin City University (DCU)", "Dublin", BSC,
@@ -69,11 +165,20 @@ write("أيرلندا", "Ireland", "ireland", MA, level="master")
 
 ap = os.path.join(ROOT, "data", "programmes", "all_programmes.csv")
 rows = list(csv.reader(open(ap, encoding="utf-8-sig")))
-hdr, body = rows[0], [r for r in rows[1:] if r and r[1] != "أيرلندا"]
-nxt = max(int(r[0]) for r in body) + 1
+hdr, body = rows[0], rows[1:]
+# Keep the ids of Irish programmes already published (saved lists point to them); new ones get the next free ids.
+old_ids = {(r[3], r[4]): r[0] for r in body if r and r[1] == "أيرلندا"}
+body = [r for r in body if r and r[1] != "أيرلندا"]
+nxt = max(int(r[0]) for r in body + [[i] for i in old_ids.values()]) + 1
 ie = list(csv.reader(open(os.path.join(ROOT, "data", "programmes", "ireland.csv"), encoding="utf-8-sig")))[1:]
-for i, r in enumerate(ie):
-    body.append([str(nxt + i)] + r[1:])
+for r in ie:
+    key = (r[3], r[4])
+    if key in old_ids:
+        rid = old_ids[key]
+    else:
+        rid, nxt = str(nxt), nxt + 1
+    body.append([rid] + r[1:])
+body.sort(key=lambda r: int(r[0]))
 with open(ap, "w", newline="", encoding="utf-8-sig") as f:
     csv.writer(f).writerows([hdr] + body)
-print("all_programmes.csv:", len(body), "rows; Ireland ids", nxt, "-", nxt + len(ie) - 1)
+print("all_programmes.csv:", len(body), "rows; Ireland", len(ie), "programmes")
