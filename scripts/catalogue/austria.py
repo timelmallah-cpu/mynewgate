@@ -35,7 +35,7 @@ add(MA, "cs", "Artificial Intelligence", "Johannes Kepler University Linz (JKU)"
     "https://www.jku.at/fileadmin/marketing/01_STUDIEN/MA-Artificial-Intelligence.pdf", "https://studienhandbuch.jku.at/text/933", ("لائحة البرنامج", "Programme curriculum"))
 add(MA, "ds", "Data Science", "University of Vienna", "Vienna", MSC2, ("سنتان حسب بوابة Studyportals (للتحقق)", "2 years per Studyportals (to verify)"), FEE, NP,
     ("التقديم مرة واحدة في السنة؛ مواعيد 2027/2028 غير منشورة في المصدر بعد", "One application round a year; 2027/2028 dates not published in the source yet"),
-    NP, ("فيه اختيار تنافسي، و40 مكان في السنة، ونتيجة GRE مطلوبة", "Competitive selection, 40 places a year, and GRE results are required"),
+    NP, ("يوجد اختيار تنافسي، و40 مقعداً في السنة، ونتيجة GRE مطلوبة", "Competitive selection, 40 places a year, and GRE results are required"),
     ("التقديم أونلاين لجامعة فيينا", "Apply online to the University of Vienna"), NP, NP,
     "https://datascience.univie.ac.at/master25", "https://studieren.univie.ac.at/en/find-your-degree-programme/masters-programmes/data-science-masters-programme")
 

@@ -23,17 +23,17 @@ FEP_DL = ("لسنة 2026/2027 الدورة الأولى كانت من 7 يناي
 FEP_SRC = "https://sigarra.up.pt/fep/en/NOTICIAS_GERAL.VER_NOTICIA?p_nr=52531"
 add(MA, "bus", "Master in Finance", "University of Porto, School of Economics and Management (FEP)", "Porto", MSC,
     ("سنتان (للتحقق)", "2 years (to verify)"), FEP_FEE, NP, FEP_DL, NP,
-    ("بالإنجليزية بالكامل، والمحتوى معترف بيه من معهد CFA (حسب وصف البرنامج، للتحقق)", "Fully taught in English, with content recognised by the CFA Institute (per the programme description, to verify)"),
+    ("بالإنجليزية بالكامل، والمحتوى معترف به من معهد CFA (حسب وصف البرنامج، للتحقق)", "Fully taught in English, with content recognised by the CFA Institute (per the programme description, to verify)"),
     ("التقديم أونلاين على بوابة sigarra بعد قراءة إعلان القبول", "Apply online on the sigarra portal after reading the call notice"), NP, NP, FEP_SRC, FEP_SRC)
 add(MA, "econ", "Master in Economics (English track)", "University of Porto, School of Economics and Management (FEP)", "Porto", MSC,
     ("4 فصول دراسية (سنتان، للتحقق)", "4 semesters (2 years, to verify)"), FEP_FEE, NP, FEP_DL, NP,
-    ("فيه مسار بالإنجليزية جنب المسار البرتغالي (للتحقق من صفحة البرامج الإنجليزية)", "Has an English track besides the Portuguese one (check the English-taught programmes page)"),
+    ("يوجد مسار بالإنجليزية إلى جانب المسار البرتغالي (للتحقق من صفحة البرامج الإنجليزية)", "Has an English track besides the Portuguese one (check the English-taught programmes page)"),
     ("التقديم أونلاين على بوابة sigarra بعد قراءة إعلان القبول", "Apply online on the sigarra portal after reading the call notice"), NP, NP, FEP_SRC, FEP_SRC)
 add(MA, "ds", "Master's in Data Science and Advanced Analytics (Data Science specialization)", "NOVA IMS, Universidade NOVA de Lisboa", "Lisbon", MSC,
     ("4 فصول دراسية (سنتان، 120 ساعة معتمدة)", "4 semesters (2 years, 120 credits)"),
-    ("8,000 يورو للبرنامج كاملاً لغير الأوروبيين (5,300 السنة الأولى و2,700 التانية)", "€8,000 for the full programme for non-EU applicants (€5,300 in year 1 and €2,700 in year 2)"),
+    ("8,000 يورو للبرنامج كاملاً لغير الأوروبيين (5,300 للسنة الأولى و2,700 للسنة الثانية)", "€8,000 for the full programme for non-EU applicants (€5,300 in year 1 and €2,700 in year 2)"),
     ("رسوم التقديم 51 يورو", "Application fee €51"),
-    ("التقديم لسنة 2027/2028 بيفتح في يناير 2027", "Applications for 2027/2028 open in January 2027"),
+    ("التقديم لسنة 2027/2028 يفتح في يناير 2027", "Applications for 2027/2028 open in January 2027"),
     ("إجادة الإنجليزية كتابة وكلام", "Proficiency in written and spoken English"),
     ("كل المحاضرات بالإنجليزية", "All classes are taught in English"),
     ("التقديم أونلاين على بوابة NOVA IMS ودفع رسوم التقديم", "Apply online on the NOVA IMS portal and pay the application fee"), NP, NP,
@@ -61,8 +61,8 @@ add(MA, "eng", "MSc Electrical and Computer Engineering", "Instituto Superior T�
 
 # ---------- Bachelor's ----------
 SBE_FEE = ("7,500 يورو سنوياً لغير الأوروبيين", "€7,500 per year for non-EU students")
-SBE_ADM = ("رسوم تقديم 70 يورو، ورسوم قيد 750 يورو غير مستردة بتتخصم من الرسوم", "€70 application fee and a non-refundable €750 enrolment fee deducted from the tuition")
-SBE_OTHER = ("السنة الأولى مشتركة بين الاقتصاد والإدارة؛ اللي مش مستوفي الشروط بيقدّم عن طريق برنامج SUPERNOVA التأسيسي", "The first year is common to Economics and Management; applicants who don't meet the criteria apply via the SUPERNOVA Foundation Programme")
+SBE_ADM = ("رسوم تقديم 70 يورو، ورسوم قيد 750 يورو غير مستردة تُخصم من الرسوم", "€70 application fee and a non-refundable €750 enrolment fee deducted from the tuition")
+SBE_OTHER = ("السنة الأولى مشتركة بين الاقتصاد والإدارة؛ ومن لا يستوفي الشروط يقدّم عن طريق برنامج SUPERNOVA التأسيسي", "The first year is common to Economics and Management; applicants who don't meet the criteria apply via the SUPERNOVA Foundation Programme")
 SBE_HOW = ("التقديم مباشرة لـ Nova SBE كطالب دولي، والرد خلال 8 أسابيع كحد أقصى، وممكن مقابلة", "Apply directly to Nova SBE as an international student; a decision within eight weeks at most, and an interview may be required")
 SBE_SRC = "https://www.novasbe.unl.pt/en/programs/apply/bachelors/international-students"
 add(BA, "bus", "Bachelor in Management", "Nova School of Business and Economics (Nova SBE)", "Lisbon", BSC,

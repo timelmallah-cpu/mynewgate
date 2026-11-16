@@ -27,7 +27,7 @@ add(BA, "bus", "Economics and Finance (CLEF)", BO, "Bologna", ("بكالوريو
 
 # ---------- Politecnico di Milano ----------
 PM = "Politecnico di Milano"
-PM_FEE = ("الحد الأقصى للرسوم لغير الأوروبيين الحاصلين على بكالوريوس أجنبي وبدون منحة، حتى لو قدموا ISEE معادل؛ حوالي 3,943 يورو سنوياً حسب مصادر تنقل جدول 2026/2027 (للتحقق)",
+PM_FEE = ("الحد الأقصى للرسوم لغير الأوروبيين الحاصلين على بكالوريوس أجنبي وبدون منحة، حتى إذا قدموا ISEE معادل؛ حوالي 3,943 يورو سنوياً حسب مصادر تنقل جدول 2026/2027 (للتحقق)",
           "Non-EU students with a foreign bachelor's and no scholarship pay the maximum amount, even with an equivalent ISEE; about €3,943 a year per sources quoting the 2026/2027 table (to verify)")
 PM_SRC = "https://www.polimi.it/en/prospective-students/how-much-does-it-cost/laurea-laurea-magistrale-and-single-cycle-programmes"
 PM_DL = ("عدة جولات تقديم سنوياً لغير الأوروبيين؛ المواعيد غير منشورة في المصدر الذي راجعناه", "Several application rounds a year for non-EU applicants; dates not published in the source we checked")
@@ -38,7 +38,7 @@ add(MA, "bus", "Management Engineering", PM, "Milan", ("ماجستير العل�
 # Master's at Bologna (official pages checked 2026-11-15). Fee: BO_FEE (reduced fixed fee for non-OECD nationals).
 BO_LM = ("ماجستير (Laurea Magistrale)", "Master's degree (Laurea Magistrale)")
 add(MA, "cs", "Artificial Intelligence", BO, "Bologna", BO_LM, MSC2, BO_FEE, NP,
-    ("تقديم غير الأوروبيين المقيمين بالخارج لعام 2026/2027 قفل. مواعيد 2027/2028 هتتنشر في إعلان القبول (Call for admissions) على صفحة البرنامج (للتحقق)",
+    ("تقديم غير الأوروبيين المقيمين بالخارج لعام 2026/2027 أُغلق. ستُنشر مواعيد 2027/2028 في إعلان القبول (Call for admissions) على صفحة البرنامج (للتحقق)",
      "Applications from non-EU citizens living abroad for 2026/2027 have closed. 2027/2028 dates will appear in the call for admissions on the programme page (to verify)"),
     ("B2 (مثلاً IELTS 5.5 أو TOEFL iBT 80 أو PTE Academic 51)، على ألا تكون الشهادة أقدم من 3 سنوات؛ شهادة لغة الدراسة بالإنجليزية (MOI) غير مقبولة",
      "B2 (e.g. IELTS 5.5, TOEFL iBT 80 or PTE Academic 51), certificate no older than three years; Medium of Instruction letters are not accepted"),

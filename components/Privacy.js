@@ -65,5 +65,5 @@ export default function Privacy({ lang }) {
   );
 }
 
-export const SUBSCRIBED = { ar: ["تم تأكيد اشتراكك", "شكراً! ستصلك النشرة الشهرية على بريدك. وفي أي رسالة تقدر تلغي الاشتراك بضغطة واحدة."], en: ["Your subscription is confirmed", "Thanks! The monthly newsletter will arrive in your inbox, and every email has a one-click unsubscribe link."] };
+export const SUBSCRIBED = { ar: ["تم تأكيد اشتراكك", "شكراً! ستصلك النشرة الشهرية على بريدك. ويمكنك إلغاء الاشتراك من أي رسالة بضغطة واحدة."], en: ["Your subscription is confirmed", "Thanks! The monthly newsletter will arrive in your inbox, and every email has a one-click unsubscribe link."] };
 

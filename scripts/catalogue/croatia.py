@@ -19,7 +19,7 @@ RECOG = ("يجب الاعتراف بشهادة الثانوية الأجنبية
 
 ZG = "https://mse.mef.unizg.hr/admission-requirements/"
 add(BA, "med", "Medical Studies in English", "University of Zagreb School of Medicine", "Zagreb", MD, MED6,
-    ("12,000 يورو سنوياً لو دُفعت مرة واحدة، أو 12,200 يورو على قسطين", "€12,000 per year if paid at once, or €12,200 in two instalments"),
+    ("12,000 يورو سنوياً إذا دُفعت مرة واحدة، أو 12,200 يورو على قسطين", "€12,000 per year if paid at once, or €12,200 in two instalments"),
     ("عرض القبول المشروط يتأكد بدفع أول قسط 2,500 يورو", "The conditional offer is confirmed by paying a first instalment of €2,500"),
     ("لدفعة 2026/2027 كانت الامتحانات أونلاين من 12 يناير حتى 31 أغسطس 2026 (آخرها التقديم حتى 20 أغسطس)؛ مواعيد دفعة 2027/2028 غير منشورة بعد في المصدر", "For 2026/2027 the online exams ran from 12 January to 31 August 2026 (the last with applications by 20 August); 2027/2028 dates are not yet published in the source"),
     ("IELTS 6 أو TOEFL iBT 60 على الأقل لغير المتحدثين بالإنجليزية", "At least IELTS 6 or TOEFL iBT 60 for non-native speakers"),
@@ -32,7 +32,7 @@ add(BA, "med", "Medical Studies in English", "University of Split School of Medi
     ("12,000 يورو سنوياً، تُدفع كاملة خلال أسبوع من خطاب القبول (للتحقق من سنة الرسوم)", "€12,000 per year, paid in full within a week of the acceptance letter (check which year the fee applies to)"),
     ("رسوم تقديم 200 يورو غير مستردة", "Non-refundable €200 application fee"),
     ("التقديم مغلق حالياً، والدورة القادمة متوقع تفتح في مارس 2027", "Applications are closed now; the next round is expected to open in March 2027"),
-    ("إثبات إجادة الإنجليزية لو مطلوب", "Proof of English proficiency where applicable"),
+    ("إثبات إجادة الإنجليزية إذا طُلب", "Proof of English proficiency where applicable"),
     ("يُشترط 12 سنة دراسة قبل الجامعة على الأقل؛ 70 مكاناً لعام 2026/2027. " + RECOG[0], "At least 12 years of prior schooling; 70 places for 2026/2027. " + RECOG[1]),
     ("أرسل طلبك بالإيميل لمكتب الطلاب مع السيرة الذاتية وخطاب الدافع وإثبات دفع رسوم التقديم", "Email your application to the student office with your CV, motivation letter and proof of the application fee"), NP, NP,
     ST, ST)

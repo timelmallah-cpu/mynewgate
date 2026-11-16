@@ -119,7 +119,7 @@ AGH_FEES = "https://www.international.agh.edu.pl/en/studies/fees"
 AGH_RULES = "https://www.international.agh.edu.pl/en/studies/recruitment/recruitment-rules-master"
 AGH_DL = ("التقديم الصيفي عادة من يونيو حتى سبتمبر لدفعة أكتوبر، والشتوي يناير - فبراير لدفعة مارس؛ تقويم 2027/2028 يُنشر في مايو 2027",
           "Summer recruitment usually June - September for the October start, winter recruitment January - February for the March start; the 2027/2028 calendar is published in May 2027")
-AGH_ADM = ("رسوم طلب 85 زلوتي لكل تخصص (100 زلوتي إذا كان فيه امتحان قبول)", "PLN 85 application fee per programme (PLN 100 if there is an entrance exam)")
+AGH_ADM = ("رسوم طلب 85 زلوتي لكل تخصص (100 زلوتي إذا كان هناك امتحان قبول)", "PLN 85 application fee per programme (PLN 100 if there is an entrance exam)")
 AGH_EN = ("مستوى B2 في المهارات الأربع بشهادة من قائمة الجامعة", "B2 in all four skills with a certificate from the university's list")
 AGH_HOW = ("نظام التسجيل الإلكتروني e-Rekrutacja في الجامعة", "University e-Rekrutacja online system")
 AGH_PAY = ("رسوم الفصل الأول تُدفع حتى 15 أكتوبر (أو 15 مارس لدفعة الربيع)", "First-semester fee due by 15 October (or 15 March for the spring intake)")
