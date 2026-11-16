@@ -45,7 +45,7 @@ export default function City({ slug, lang }) {
   const h = HOUSING[c.country];
   const providers = (h?.links || []).filter((l) => l.cities?.includes(c.en));
   const others = CITIES.filter((x) => x.country === c.country && x.slug !== c.slug);
-  const fee = (p) => (p.feePerYear === 0 ? s.noFee : p.feePerYear && p.feePeriod ? s.fee(n(p.feePerYear) + (p.feePerYearMax ? ` - ${n(p.feePerYearMax)}` : "")) : p.feePerYear ? feeLabel(p, lang) : s.feeNA);
+  const fee = (p) => (p.feePerYear === 0 ? s.noFee : p.feePerYear && p.feePeriod ? s.fee(n(p.feePerYear) + (p.feePerYearMax ? ` - ${n(p.feePerYearMax)}` : "")) : p.feePerYear || /للبرنامج كاملاً/.test(p.feeText || "") ? feeLabel(p, lang) : s.feeNA);
 
   return (
     <>

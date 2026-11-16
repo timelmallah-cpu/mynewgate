@@ -11,16 +11,26 @@ export default function HousingView({ lang, cities }) {
   const s = HOUSING_TEXT[lang];
   const [country, setCountry] = useState("de");
   const [city, setCity] = useState("");
+  const [jump, setJump] = useState(null);
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const c = q.get("country");
     if (COUNTRY_IDS.includes(c)) {
       setCountry(c);
       const k = q.get("city");
-      if (k && cities[c].some((x) => x.key === k)) setCity(k);
+      const hasCity = k && cities[c].some((x) => x.key === k);
+      if (hasCity) setCity(k);
+      setJump("hs-country");
     }
   }, [cities]);
-  const pick = (c) => { setCountry(c); setCity(""); };
+  // Coming from a country, city or programme page (or picking a country here): go straight to that country's guide.
+  useEffect(() => {
+    if (!jump) return;
+    const el = document.getElementById(jump);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setJump(null);
+  }, [jump, country, city]);
+  const pick = (c) => { setCountry(c); setCity(""); setJump("hs-country"); };
   const d = HOUSING[country];
   const list = cities[country].filter((x) => !city || x.key === city);
   return (
@@ -40,7 +50,7 @@ export default function HousingView({ lang, cities }) {
         ))}
       </fieldset>
 
-      <section className="card">
+      <section className="card hs-country" id="hs-country">
         <h2><Flag code={country} size={22} /> {t.countries[country]}</h2>
         <h3>{s.how}</h3>
         <p>{d.how[lang]}</p>
