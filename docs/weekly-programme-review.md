@@ -21,12 +21,13 @@ Two parts keep the programme catalogue current:
    If it is older than 3 days or failed, start it (`gh workflow run programme-check.yml`), wait until it finishes, then
    `gh run download <id> -n programme-check -D /tmp/pc`. If downloading artifacts is blocked, read the same report from the log: `gh run view <id> --log` (the line starting `FLAGGED_JSON` lists every flagged programme).
 3. Work list, at most 50 programmes:
-   - every `fee_missing`, `broken` and `moved` programme (programmes sharing one source page are checked together);
+   - every `fee_missing`, `broken` and `moved` programme (`unreachable` means the site did not answer this time; skip it unless it appears two weeks running) (programmes sharing one source page are checked together);
    - then up to 10 `unreadable` ones, oldest `reviewed` first;
    - then the 10 programmes with the oldest `reviewed` date in `lib/programmes.json` (full check: fee, deadline, English requirement, other conditions).
 4. For each programme open the official page (WebFetch; find the official fee or admissions page if the source has no fee) and compare it with the site's text (`lib/programmes.json`). Then use `scripts/update-programme.py`:
    - nothing changed: `python3 scripts/update-programme.py ID --reviewed`
    - a value changed: `python3 scripts/update-programme.py ID --field fee --ar "..." --en "..."` (fields: fee, admin, deadline, english, other, how, duration, source). Keep the style of the existing texts.
+   - the fee is right but published on another official page (fee table, PDF): add `--fee-url URL` so next week's check reads that page too and stops flagging it
    - page moved and the new official page is right: `--field source --ar NEW_URL`
    - the university says the programme closed or no longer takes non-EU students: `--retire --reason "..." --source URL`
    - could not verify (page blocked, unclear): change nothing and list it in the summary.

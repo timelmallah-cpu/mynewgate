@@ -7,7 +7,11 @@
 // which then reads only the flagged programmes. See docs/weekly-programme-review.md.
 import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
+import { existsSync } from "node:fs";
 const progs = JSON.parse(readFileSync("lib/programmes.json", "utf8"));
+// Some programmes publish the fee on another official page (a fee table or PDF): id -> url.
+const FEE_URLS = existsSync("data/checks/fee_urls.json") ? JSON.parse(readFileSync("data/checks/fee_urls.json", "utf8")) : {};
+const urlOf = (s) => (s && s.match(/https?:\/\/[^\s)]+/)?.[0]) || null;
 const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 MyNewGate-programme-check";
 
 let pdfText = null;
@@ -53,7 +57,7 @@ async function fetchPage(u) {
 // Same address apart from http/https, www, trailing slash, query or fragment.
 const key = (u) => u.replace(/^https?:\/\/(www\.)?/, "").replace(/[?#].*$/, "").replace(/\/+$/, "").toLowerCase();
 
-const urls = [...new Set(progs.map((p) => p.source).filter(Boolean))];
+const urls = [...new Set([...progs.map((p) => urlOf(p.source)), ...Object.values(FEE_URLS)].filter(Boolean))];
 const byHost = {};
 for (const u of urls) (byHost[new URL(u).host] ||= []).push(u);
 const pages = new Map();
@@ -62,23 +66,33 @@ let h = 0;
 // One request at a time per university site, eight sites in parallel.
 await Promise.all(Array.from({ length: 8 }, async () => {
   while (h < hosts.length) {
-    for (const u of hosts[h++]) { pages.set(u, await fetchPage(u)); await new Promise((r) => setTimeout(r, 700)); }
+    const list = hosts[h++];
+    // DAAD blocks fast repeated requests.
+    const gap = /daad\.de/.test(list[0]) ? 4000 : 700;
+    for (const u of list) {
+      let pg = await fetchPage(u);
+      if (pg.status === 0 || pg.status >= 500) { await new Promise((r) => setTimeout(r, 8000)); pg = await fetchPage(u); }
+      pages.set(u, pg);
+      await new Promise((r) => setTimeout(r, gap));
+    }
   }
 }));
 
 const items = [];
 for (const p of progs) {
   const base = { id: p.id, name: p.name, university: p.university, country: p.country, source: p.source, fee: p.feeText, reviewed: p.reviewed };
-  if (!p.source) { items.push({ ...base, issue: "no_source" }); continue; }
-  const pg = pages.get(p.source);
-  if (pg.status === 0 || pg.status === 404 || pg.status === 410 || pg.status >= 500) {
-    items.push({ ...base, issue: "broken", detail: pg.error || `HTTP ${pg.status}` }); continue;
-  }
+  const src = urlOf(p.source);
+  if (!src) { items.push({ ...base, issue: "no_source" }); continue; }
+  const pg = pages.get(src);
+  if (pg.status === 404 || pg.status === 410) { items.push({ ...base, issue: "broken", detail: `HTTP ${pg.status}` }); continue; }
+  // Timeouts, resets, TLS errors and 5xx are usually temporary: checked again next week.
+  if (pg.status === 0 || pg.status >= 500) { items.push({ ...base, issue: "unreachable", detail: pg.error || `HTTP ${pg.status}` }); continue; }
   if (pg.status === 401 || pg.status === 403 || pg.status === 429) { items.push({ ...base, issue: "unreadable", detail: `blocked by the site (HTTP ${pg.status})` }); continue; }
-  const moved = pg.final && key(pg.final) !== key(p.source) ? pg.final : undefined;
+  const moved = pg.final && key(pg.final) !== key(src) ? pg.final : undefined;
   if (pg.text.length < 400) { items.push({ ...base, issue: "unreadable", detail: "page text could not be read (script-built page or PDF)", moved }); continue; }
   const nums = feeNumbers(p.feeText);
-  const page = norm(pg.text);
+  const feePg = FEE_URLS[String(p.id)] && pages.get(FEE_URLS[String(p.id)]);
+  const page = norm(pg.text + " " + (feePg?.text || ""));
   const found = nums.filter((n) => new RegExp(`(^|\\D)${n}(\\D|$)`).test(page));
   if (nums.length && !found.length) { items.push({ ...base, issue: "fee_missing", detail: `none of ${nums.join(", ")} is on the page`, moved }); continue; }
   if (moved) { items.push({ ...base, issue: "moved", detail: moved }); continue; }
@@ -89,7 +103,7 @@ const count = (k) => items.filter((i) => i.issue === k).length;
 const flagged = items.filter((i) => !["ok"].includes(i.issue));
 const report = {
   checkedAt: new Date().toISOString(), programmes: items.length, pages: urls.length,
-  summary: { ok: count("ok"), feeChecked: items.filter((i) => i.feeChecked).length, fee_missing: count("fee_missing"), broken: count("broken"), moved: count("moved"), unreadable: count("unreadable"), no_source: count("no_source") },
+  summary: { ok: count("ok"), feeChecked: items.filter((i) => i.feeChecked).length, fee_missing: count("fee_missing"), broken: count("broken"), moved: count("moved"), unreachable: count("unreachable"), unreadable: count("unreadable"), no_source: count("no_source") },
   flagged,
 };
 writeFileSync("programme-check.json", JSON.stringify(report, null, 1));
@@ -98,12 +112,14 @@ const md = [
   `# Programme check: ${items.length} programmes, ${urls.length} source pages`,
   `- OK: ${report.summary.ok} (fee confirmed on the page: ${report.summary.feeChecked})`,
   `- Fee not found on the page: ${report.summary.fee_missing}`,
-  `- Page broken: ${report.summary.broken}`, `- Page moved: ${report.summary.moved}`,
+  `- Page broken (404/410): ${report.summary.broken}`, `- Page moved: ${report.summary.moved}`,
+  `- Site did not answer this time (timeout, 5xx): ${report.summary.unreachable}`,
   `- Could not read (blocked, script-built or PDF): ${report.summary.unreadable}`,
   "", "## Fee not found", ...flagged.filter((i) => i.issue === "fee_missing").map(line),
   "", "## Broken", ...flagged.filter((i) => i.issue === "broken").map(line),
   "", "## Moved", ...flagged.filter((i) => i.issue === "moved").map(line),
   "", "## Could not read", ...flagged.filter((i) => i.issue === "unreadable").map(line),
+  "", "## Did not answer", ...flagged.filter((i) => i.issue === "unreachable").map(line),
 ].join("\n");
 writeFileSync("programme-check.md", md);
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + "\n");

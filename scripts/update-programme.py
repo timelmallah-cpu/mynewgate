@@ -3,6 +3,7 @@
 
   python3 scripts/update-programme.py ID --field fee --ar "النص العربي" --en "English text"
   python3 scripts/update-programme.py ID --reviewed            # checked, nothing changed
+  python3 scripts/update-programme.py ID --reviewed --fee-url URL   # fee is on another official page
   python3 scripts/update-programme.py ID --retire --reason "..." --source URL
 
 Fields: fee, admin, deadline, english, other, how, duration, source (source takes --ar only: the URL).
@@ -62,6 +63,7 @@ def main():
     a.add_argument("--retire", action="store_true")
     a.add_argument("--reason")
     a.add_argument("--source")
+    a.add_argument("--fee-url", help="official page or PDF where the fee is published, when it is not on the source page")
     o = a.parse_args()
     p = programme(o.id)
     rev_path = J("data", "checks", "reviewed.json")
@@ -113,6 +115,12 @@ def main():
                 print(f"  NOTE: the old text is shared by {count} entries in {', '.join(os.path.relpath(f, ROOT) for f, _ in hits)}; "
                       "update that script by hand if the change applies to all of them, or the next rerun brings the old text back.")
         print(f"Updated {o.id} {o.field}")
+
+    if o.fee_url:
+        fu = load_json(J("data", "checks", "fee_urls.json"))
+        fu[o.id] = o.fee_url
+        save_json(J("data", "checks", "fee_urls.json"), dict(sorted(fu.items())))
+        print(f"Fee page for {o.id}: {o.fee_url}")
 
     rev = load_json(rev_path)
     rev[o.id] = TODAY
