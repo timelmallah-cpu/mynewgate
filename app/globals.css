@@ -1041,3 +1041,4 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .as-extra { background: var(--warn-soft); border-radius: 10px; padding: 8px 10px; }
 .as-extra dt { color: var(--warn); }
 .as-progs h3 { font-size: 1.05rem; margin: 14px 0 4px; }
+.dl-passed { display: block; margin-top: 6px; color: var(--warn); background: var(--warn-soft); padding: 6px 10px; border-radius: 8px; font-size: .92rem; }

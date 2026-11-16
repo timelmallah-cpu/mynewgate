@@ -45,7 +45,7 @@ export default function Login({ lang }) {
         <form className="acc-box acc-form" onSubmit={submit} noValidate>
           <label className="acc-check">
             <input type="checkbox" checked={consent} onChange={(e) => { setConsent(e.target.checked); if (e.target.checked && state.s === "err") setState({ s: "idle" }); }} />
-            <span>{a.consentA}<Link href={`${base}/privacy`}>{a.consentLink}</Link>{a.consentB}</span>
+            <span>{a.consentA}<Link href={`${base}/privacy`}>{a.consentLink}</Link>{a.consentMid}<Link href={`${base}/terms`}>{a.termsLink}</Link>{a.consentB}</span>
           </label>
           <a className={`btn ghost acc-google${consent ? "" : " is-off"}`} href={consent ? googleHref : undefined} aria-disabled={!consent}
             onClick={(e) => { if (!consent) { e.preventDefault(); setState({ s: "err", m: a.errConsent }); } }}>

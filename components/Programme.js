@@ -7,6 +7,7 @@ import { altFor, ALT_TEXT } from "../lib/englishAlt";
 import { Local } from "./Currency";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
+import deadlines from "../lib/deadlines.json";
 import { T, view } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { feeLabel } from "../lib/options";
@@ -14,6 +15,22 @@ import { scholarshipsFor } from "../lib/scholarships";
 import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
 import CostCalc from "./CostCalc";
+
+// Where the data came from, in words for visitors (the stored status is an internal note).
+function sourceNote(status, lang) {
+  const s = String(status || "");
+  const ar = lang === "ar";
+  if (/DAAD/.test(s)) return ar ? "قاعدة بيانات DAAD الرسمية. تأكد من صفحة الجامعة قبل التقديم." : "The official DAAD database. Check the university's page before you apply.";
+  if (/Study in NL/.test(s)) return ar ? "بوابة Study in NL الرسمية وموقع الجامعة. تأكد من صفحة البرنامج قبل التقديم." : "The official Study in NL portal and the university's website. Check the programme page before you apply.";
+  return ar ? "موقع الجامعة الرسمي. تأكد من صفحة البرنامج قبل التقديم." : "The university's official website. Check the programme page before you apply.";
+}
+
+// True when we have dates for this programme and every one of them has passed.
+function allPassed(id) {
+  const d = deadlines.find((x) => String(x.id) === String(id));
+  const today = new Date().toISOString().slice(0, 10);
+  return Boolean(d && d.dates.length && !d.dates.some((x) => x.d >= today));
+}
 
 export const staticParams = () => programmes.map((p) => ({ id: String(p.id) }));
 
@@ -58,7 +75,7 @@ export default function Programme({ id, lang }) {
           <dd>{known ? <><span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span><Local eur={p.feePerYear} lang={lang} /></> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
         </div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
-        <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>
+        <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}{allPassed(raw.id) && <span className="dl-passed">{lang === "ar" ? "كل المواعيد المنشورة انتهت، ومواعيد الدورة الجاية لم تُنشر بعد في المصدر. راجع صفحة البرنامج الرسمية." : "All published dates have passed, and the next cycle's dates are not published in the source yet. Check the official programme page."}</span>}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>
         <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link><AltLine p={raw} lang={lang} t={t} /></dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
@@ -92,7 +109,7 @@ export default function Programme({ id, lang }) {
       <div className="notice">
         {t.source} <a className="ltr" href={url} target="_blank" rel="noopener noreferrer">{url}</a>
         <br />
-        {t.reviewed} {p.reviewed} · {t.statusLabel} {p.status}
+        {t.reviewed} {p.reviewed} · {lang === "ar" ? "مصدر البيانات:" : "Data source:"} {sourceNote(raw.status, lang)}
       </div>
       <ReportLink lang={lang} what={`${raw.name} | ${raw.university}`} path={`${t.base}/programme/${raw.id}`} />
     </>

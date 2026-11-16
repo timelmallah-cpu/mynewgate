@@ -43,7 +43,7 @@ const FOOT_GROUPS = [
     ["/glossary", "قاموس الكلمات", "Glossary"],
   ] },
   { ar: "عن الموقع", en: "About", links: [
-    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "أعلن معنا", "Advertise"], ["/account", "حسابي", "My account"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
+    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "أعلن معنا", "Advertise"], ["/account", "حسابي", "My account"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"], ["/terms", "شروط الاستخدام", "Terms of use"],
   ] },
 ];
 
