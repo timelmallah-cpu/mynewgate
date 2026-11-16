@@ -37,7 +37,7 @@ add(MA, "ds", "Data Science", "University of Vienna", "Vienna", MSC2, ("سنتا
     ("التقديم مرة واحدة في السنة؛ مواعيد 2027/2028 غير منشورة في المصدر بعد", "One application round a year; 2027/2028 dates not published in the source yet"),
     NP, ("فيه اختيار تنافسي، و40 مكان في السنة، ونتيجة GRE مطلوبة", "Competitive selection, 40 places a year, and GRE results are required"),
     ("التقديم أونلاين لجامعة فيينا", "Apply online to the University of Vienna"), NP, NP,
-    "https://datascience.univie.ac.at/master25", "https://studieren.univie.ac.at/en/admission/master-programmes/data-science/")
+    "https://datascience.univie.ac.at/master25", "https://studieren.univie.ac.at/en/find-your-degree-programme/masters-programmes/data-science-masters-programme")
 
 add(BA, "cs", "Artificial Intelligence", "Johannes Kepler University Linz (JKU)", "Linz", BSC, ("6 فصول دراسية (3 سنوات)", "6 semesters (3 years)"), FEE, NP, NP,
     ("إنجليزي B2", "English B2"), ("لغير الأوروبيين يجب أن تكون شهادتك الثانوية مؤهلة للتخصص نفسه في بلدك (للتحقق)", "Non-EU applicants also need their certificate to give access to the same field at home (to verify)"),

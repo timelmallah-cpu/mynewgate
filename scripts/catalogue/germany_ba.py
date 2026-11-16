@@ -20,7 +20,7 @@ FREE = ("لا توجد رسوم دراسية؛ مساهمة فصلية 365.10 ي
 HSRW_DL = ("15 يوليو للدراسة في الفصل الشتوي التالي", "15 July for the following winter semester")
 HSRW_ADM = ("التقديم عبر uni-assist: 75 يورو للطلب الأول و30 يورو لكل طلب إضافي", "Via uni-assist: €75 for the first application and €30 for each additional one")
 HSRW_HOW = ("عبر uni-assist حسب تعليمات الجامعة", "Through uni-assist as the university instructs")
-HSRW_SRC = "https://www.hochschule-rhein-waal.de/en/node/473"
+HSRW_SRC = "https://www.hochschule-rhein-waal.de/en/study/before-starting-university/application-process/guide-for-international-applicants"
 HSRW_APPLY = "https://www.hochschule-rhein-waal.de/en/academics/prospective-students/current-application-period/bachelors-programmes"
 HSRW_NOTE = ("جامعة علوم تطبيقية حكومية؛ تدريب عملي 8 أسابيع جزء من البرنامج", "Public university of applied sciences; an 8-week internship is part of the programme")
 for f, n, city in [("bus", "International Business Administration, B.A.", "Kamp-Lintfort"), ("eng", "Infotronic Systems Engineering, B.Sc.", "Kamp-Lintfort"),

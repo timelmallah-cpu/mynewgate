@@ -126,8 +126,8 @@ hbo("cs", "ICT (English-taught)", "Fontys University of Applied Sciences", "Eind
     ("13,080 يورو سنوياً لغير الأوروبيين (2026-2027، فئة الهندسة وتقنية المعلومات)", "€13,080 per year for non-EEA students (2026-2027, engineering and ICT band)"), NP, NP,
     "https://www.fontys.nl/en/Download-4/Tuition-Fees-Regulations-2026-2027.htm")
 hbo("bus", "International Business", "Saxion University of Applied Sciences", "Enschede",
-    ("9,031 يورو سنوياً لغير الأوروبيين (2025-2026 حسب بوابة دراسة؛ رسوم 2026-2027 للتحقق)", "€9,031 per year for non-EEA students (2025-2026 per a study portal; 2026-2027 fee to verify)"),
-    ("1 يونيو لغير الأوروبيين", "1 June for non-EU/EEA applicants"), NP, "https://www.studyinnl.org/dutch-education/studies/international-business-1701-saxion-university-of-applied-sciences",
+    ("9,360 يورو سنوياً لغير الأوروبيين (حسب صفحة البرنامج)", "€9,360 per year for non-EU students (per the programme page)"),
+    ("1 يونيو لغير الأوروبيين", "1 June for non-EU/EEA applicants"), NP, "https://www.saxion.edu/programmes/bachelor/international-business",
     other=("في دفنتر وإنسخيده؛ منح من الجامعة 2,500 أو 5,000 يورو للمتفوقين؛ " + HBO[0], "In Deventer and Enschede; university scholarships of €2,500 or €5,000 for top applicants; " + HBO[1]))
 hbo("eng", "Engineering Systems", "HAN University of Applied Sciences", "Arnhem",
     ("10,940 يورو سنوياً لغير الأوروبيين (2026-2027)", "€10,940 per year for non-EEA students (2026-2027)"), NP, NP,

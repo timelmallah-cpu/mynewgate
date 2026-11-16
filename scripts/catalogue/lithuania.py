@@ -16,19 +16,25 @@ Y = lambda v: (f"{v} يورو سنوياً لغير الأوروبيين (2026/2
 
 # ---------- Vilnius University (VU) ----------
 VU = "Vilnius University"
-VU_FEES = "https://www.vu.lt/site_files/Vertimai/EN_Translation_U%C5%BEsienio_student%C5%B3_pri%C4%97mimas_20262027_kainos.pdf"
 VU_DL = ("1 مايو لغير الأوروبيين (1 يوليو لمن يدخل ليتوانيا بدون تأشيرة)؛ والتقديم لعام 2027/2028 يفتح 1 ديسمبر 2026", "1 May for non-EU applicants (1 July for visa-free nationals); applications for 2027/2028 open on 1 December 2026")
 VU_HOW = ("بوابة apply.vu.lt", "apply.vu.lt portal")
 VU_GAP = ("لغير الأوروبيين: يجب ألا تزيد المدة منذ آخر شهادة عن 5 سنوات", "For non-EU applicants: no more than five years since your last qualification")
 VU_APPLY = "https://apply.vu.lt/"
-for f, n, fee in [("cs", "Software Engineering", "4,560"), ("cs", "Information Systems and Cyber Security", "5,000"), ("ds", "Business Data Analytics", "4,500"), ("bus", "International Business", "4,350")]:
-    add(BA, f, n, VU, "Vilnius", ("بكالوريوس", "Bachelor's degree"), NP, Y(fee), NP, VU_DL, NP, VU_GAP, VU_HOW, VU_FEES, VU_APPLY)
+# The VU 2026/27 fee table PDF was taken down; each row now cites its own programme page.
+for f, n, fee, city, src, dur in [("cs", "Software Engineering", "4,560", "Vilnius", "https://www.vu.lt/en/studies/bachelor-studies/software-engineering", NP),
+                             ("cs", "Information Systems and Cyber Security", "5,000", "Kaunas", "https://apply.vu.lt/courses/course/74-information-systems-and-cyber-security", ("3 سنوات ونصف (210 ساعة معتمدة)", "3.5 years (210 credits)")),
+                             ("ds", "Business Data Analytics", "4,500", "Vilnius", "https://admissions.vu.lt/studies/bachelor-studies/business-data-analytics", ("3 سنوات (180 ساعة معتمدة)", "3 years (180 credits)")),
+                             ("bus", "International Business", "4,350", "Vilnius", "https://www.vu.lt/en/studies/bachelor-studies/international-business", NP)]:
+    add(BA, f, n, VU, city, ("بكالوريوس", "Bachelor's degree"), dur, Y(fee), NP, VU_DL, NP, VU_GAP, VU_HOW, src, VU_APPLY)
 add(BA, "med", "Medicine (integrated studies)", VU, "Vilnius", ("دراسة متكاملة (بكالوريوس + ماجستير) في الطب", "Integrated studies (bachelor + master) in Medicine"), MED6, Y("14,100"), NP, VU_DL, NP,
-    ("لا توجد مقاعد ممولة من الدولة في الطب؛ " + VU_GAP[0], "No state-funded places in Medicine; " + VU_GAP[1]), VU_HOW, VU_FEES, VU_APPLY)
-for f, n, fee in [("ds", "Data Science", "6,000"), ("cs", "Software Engineering", "6,000"), ("bus", "Global Business and Economics", "5,460"), ("bus", "International Business Management", "5,500")]:
-    add(MA, f, n, VU, "Vilnius", ("ماجستير", "Master's degree"), NP, Y(fee), NP, VU_DL, NP,
+    ("لا توجد مقاعد ممولة من الدولة في الطب؛ " + VU_GAP[0], "No state-funded places in Medicine; " + VU_GAP[1]), VU_HOW, "https://apply.vu.lt/courses/course/8-medicine", VU_APPLY)
+for f, n, fee, city, src, dur in [("ds", "Data Science", "6,000", "Vilnius", "https://apply.vu.lt/courses/course/36-data-science", ("سنة ونصف (90 ساعة معتمدة)", "1.5 years (90 credits)")),
+                             ("cs", "Software Engineering", "6,000", "Vilnius", "https://www.vu.lt/en/studies/master-studies/software-engineering-1", ("سنتان (120 ساعة معتمدة)", "2 years (120 credits)")),
+                             ("bus", "Global Business and Economics", "5,460", "Vilnius", "https://apply.vu.lt/courses/course/12-global-business-and-economics", ("سنتان (120 ساعة معتمدة)", "2 years (120 credits)")),
+                             ("bus", "International Business Management", "5,500", "Kaunas", "https://apply.vu.lt/courses/course/82-international-business-management", ("سنتان (120 ساعة معتمدة)", "2 years (120 credits)"))]:
+    add(MA, f, n, VU, city, ("ماجستير", "Master's degree"), dur, Y(fee), NP, VU_DL, NP,
         ("لغير الأوروبيين: يجب ألا تزيد المدة منذ البكالوريوس عن 5 سنوات؛ وتوجد 5 إعفاءات كاملة من الرسوم لغير الأوروبيين في ماجستير الإنجليزية", "For non-EU applicants: no more than five years since the bachelor's; five full tuition waivers for non-EU students on English-taught master's"),
-        VU_HOW, VU_FEES, VU_APPLY)
+        VU_HOW, src, VU_APPLY)
 
 # ---------- Kaunas University of Technology (KTU) ----------
 KTU = "Kaunas University of Technology"

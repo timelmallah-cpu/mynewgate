@@ -66,7 +66,7 @@ add("med", "Medicine (MD)", "Medical University of Lodz", "Łódź", MD, MED,
 add("med", "Medicine, 6-year MD Program", "Poznan University of Medical Sciences", "Poznań", MD, MED,
     ("الرسوم على موقع مركز التعليم الطبي بالإنجليزية (لم نطّلع على رقم 2026/2027)", "Fees are on the Center for Medical Education in English website (we have not read the 2026/2027 figure)"),
     NP, NP, NP, ("أول جامعة حكومية في بولندا قدّمت دراسة كاملة بالإنجليزية؛ كل المدفوعات بالزلوتي", "The first public university in Poland to offer full-time studies in English; all payments in PLN"), IRK,
-    "https://pums.ump.edu.pl/admissions/9-admissions.html", "https://pums.ump.edu.pl/admissions/9-admissions.html")
+    "https://pums.ump.edu.pl/programs/adv-md-program/admission/", "https://pums.ump.edu.pl/programs/adv-md-program/admission/")
 add("med", "Medicine (MD)", "Medical University of Lublin", "Lublin", MD, MED,
     ("الرسوم في جدول الدفع للمقبولين منذ 2026/2027 على صفحة رسوم الطب (لم نطّلع على الرقم)", "Fees are in the payment schedule for students admitted from 2026/2027 on the medicine fees page (we have not read the figure)"),
     NP, NP, NP, ("برنامج 6 سنوات و360 ساعة معتمدة بالإنجليزية", "6-year, 360-credit programme in English"), IRK,
@@ -76,11 +76,11 @@ add("med", "Medicine (MD)", "Medical University of Lublin", "Lublin", MD, MED,
 WUT = "Warsaw University of Technology (WUT)"
 WUT_FEES = "https://eng.pw.edu.pl/index.php/content/download/6121/51090/file/131_2026_cudz_2026_ENG.pdf"
 WUT_OTHER = ("من قرار رئيس الجامعة 131/2026 لرسوم الأجانب 2026/2027 (عمود الدراسة بالإنجليزية)", "From Rector's Decision 131/2026 on 2026/2027 fees for foreigners (English-taught column)")
-add("cs", "Computer Science", WUT, "Warsaw", BENG, NP, SEM("5,520"), NP, NP, NP, ("كلية الإلكترونيات وتقنية المعلومات؛ " + WUT_OTHER[0], "Faculty of Electronics and Information Technology; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://www.pw.edu.pl/engpw/Admission")
+add("cs", "Computer Science", WUT, "Warsaw", BENG, NP, SEM("5,520"), NP, NP, NP, ("كلية الإلكترونيات وتقنية المعلومات؛ " + WUT_OTHER[0], "Faculty of Electronics and Information Technology; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://eng.pw.edu.pl/Admissions/Undergraduate-level")
 add("cs", "Computer Science and Information Systems", WUT, "Warsaw", BENG, S7, SEM("5,700"), NP,
     ("حوالي يوليو حسب مصدر غير رسمي (للتحقق)", "Around July per an unofficial source (to verify)"), NP,
-    ("كلية الرياضيات وعلوم المعلومات؛ " + WUT_OTHER[0], "Faculty of Mathematics and Information Science; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://www.pw.edu.pl/engpw/Admission")
-add("eng", "Electrical Engineering", WUT, "Warsaw", BENG, NP, SEM("4,500"), NP, NP, NP, ("كلية الهندسة الكهربائية؛ " + WUT_OTHER[0], "Faculty of Electrical Engineering; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://www.pw.edu.pl/engpw/Admission")
+    ("كلية الرياضيات وعلوم المعلومات؛ " + WUT_OTHER[0], "Faculty of Mathematics and Information Science; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://eng.pw.edu.pl/Admissions/Undergraduate-level")
+add("eng", "Electrical Engineering", WUT, "Warsaw", BENG, NP, SEM("4,500"), NP, NP, NP, ("كلية الهندسة الكهربائية؛ " + WUT_OTHER[0], "Faculty of Electrical Engineering; " + WUT_OTHER[1]), IRK, WUT_FEES, "https://eng.pw.edu.pl/Admissions/Undergraduate-level")
 
 # ---------- AGH University of Krakow ----------
 AGH = "AGH University of Krakow"
