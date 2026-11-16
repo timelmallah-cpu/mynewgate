@@ -1,6 +1,6 @@
-// MyNewGate service worker: pages work offline once visited, and the app opens without a connection.
+// Bawabat Alsafar service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
-const V = "mng-v3";
+const V = "mng-v4";
 const OFFLINE = "/offline.html";
 
 self.addEventListener("install", (e) => {

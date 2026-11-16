@@ -19,7 +19,7 @@ function defaultStart(dl) {
 function icsFile(events, title) {
   const esc = (s) => String(s).replace(/\\/g, "\\\\").replace(/[,;]/g, (m) => "\\" + m).replace(/\n/g, "\\n");
   const stamp = new Date().toISOString().replace(/[-:]/g, "").slice(0, 15) + "Z";
-  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//MyNewGate//Planner//EN", "CALSCALE:GREGORIAN"];
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//BawabatAlsafar//Planner//EN", "CALSCALE:GREGORIAN"];
   for (const e of events) {
     const day = e.date.replace(/-/g, "");
     const end = new Date(e.date + "T12:00:00Z"); end.setUTCDate(end.getUTCDate() + 1);
@@ -85,12 +85,12 @@ export default function Planner({ lang }) {
       .map((x) => ({ ...x, date: minusWeeks(x.from === "deadline" ? dl : st, x.weeks) }));
   }, [dl, start]);
 
-  const url = prog ? `https://mynewgate.vercel.app${t.base}/programme/${prog.id}` : "";
+  const url = prog ? `https://bawabatalsafar.com${t.base}/programme/${prog.id}` : "";
   const download = () => {
     const ev = steps.filter((x) => x.date >= todayIso()).map((x) => ({ key: x.key, date: x.date, title: s.steps[x.key][0], note: `${prog?.name || ""} - ${prog?.university || ""}\n${s.steps[x.key][1]}`, url }));
     const blob = new Blob([icsFile(ev, s.icsTitle)], { type: "text/calendar;charset=utf-8" });
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = "mynewgate-plan.ics"; a.click();
+    a.href = URL.createObjectURL(blob); a.download = "bawabatalsafar-plan.ics"; a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   };
 

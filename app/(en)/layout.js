@@ -2,7 +2,7 @@ import Shell from "@/components/Shell";
 import { T } from "@/lib/i18n";
 import { SITE_URL, pageMeta } from "@/lib/site";
 
-export const metadata = { metadataBase: new URL(SITE_URL), appleWebApp: { capable: true, title: "MyNewGate", statusBarStyle: "default" }, title: T.en.title, ...noAlt(pageMeta("en", { path: "/" })) };
+export const metadata = { metadataBase: new URL(SITE_URL), appleWebApp: { capable: true, title: "Bawabat Alsafar", statusBarStyle: "default" }, title: T.en.title, ...noAlt(pageMeta("en", { path: "/" })) };
 function noAlt({ alternates, ...m }) { return m; }
 
 export const viewport = { themeColor: "#13234b" };

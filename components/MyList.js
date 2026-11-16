@@ -43,7 +43,7 @@ function ics(list, lang) {
       "BEGIN:VEVENT", `UID:${it.k}-${day}@mynewgate`, `DTSTAMP:${stamp}`,
       `DTSTART;VALUE=DATE:${day}`, `DTEND;VALUE=DATE:${end.toISOString().slice(0, 10).replace(/-/g, "")}`,
       `SUMMARY:${esc(`${t.icsTitle}: ${it.title}`)}`,
-      `DESCRIPTION:${esc(`${it.sub}\n${it.text}\n${d.est ? t.estNote + "\n" : ""}https://mynewgate.vercel.app${it.href}`)}`,
+      `DESCRIPTION:${esc(`${it.sub}\n${it.text}\n${d.est ? t.estNote + "\n" : ""}https://bawabatalsafar.com${it.href}`)}`,
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P14D", "END:VALARM",
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P3D", "END:VALARM",
       "END:VEVENT",
@@ -60,7 +60,7 @@ function ics(list, lang) {
     out.push(cur);
     return out.join("\r\n");
   };
-  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//MyNewGate//Deadlines//EN", "CALSCALE:GREGORIAN", ...ev, "END:VCALENDAR"].join("\r\n").split("\r\n").map(fold).join("\r\n");
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//BawabatAlsafar//Deadlines//EN", "CALSCALE:GREGORIAN", ...ev, "END:VCALENDAR"].join("\r\n").split("\r\n").map(fold).join("\r\n");
 }
 function download(list, lang, name) {
   const blob = new Blob([ics(list, lang)], { type: "text/calendar;charset=utf-8" });
@@ -130,7 +130,7 @@ export default function MyList({ lang }) {
           {withDates.length > 0 && (
             <div className="cal-box">
               <p>{m.calNote}</p>
-              <button className="btn gold small" onClick={() => download(withDates, lang, "mynewgate-deadlines.ics")}>{m.downloadAll}</button>
+              <button className="btn gold small" onClick={() => download(withDates, lang, "bawabatalsafar-deadlines.ics")}>{m.downloadAll}</button>
             </div>
           )}
           <div className="share-box">
@@ -139,7 +139,7 @@ export default function MyList({ lang }) {
               <input id="share-link" readOnly value={link} dir="ltr" onFocus={(e) => e.target.select()} aria-label={m.shareTitle} />
               <button className="btn small" onClick={copy}>{copied ? m.copied : m.copy}</button>
             </div>
-            <WhatsApp lang={lang} full={link} text={lang === "ar" ? "هذه البرامج والمنح التي حفظتها على بوابتي الجديدة:" : "Programmes and scholarships I saved on MyNewGate:"} />
+            <WhatsApp lang={lang} full={link} text={lang === "ar" ? "هذه البرامج والمنح التي حفظتها على بوابة السفر:" : "Programmes and scholarships I saved on Bawabat Alsafar:"} />
           </div>
           <ol className="mylist">
             {list.map((it) => {

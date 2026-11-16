@@ -12,7 +12,7 @@ const progs = JSON.parse(readFileSync("lib/programmes.json", "utf8"));
 // Some programmes publish the fee on another official page (a fee table or PDF): id -> url.
 const FEE_URLS = existsSync("data/checks/fee_urls.json") ? JSON.parse(readFileSync("data/checks/fee_urls.json", "utf8")) : {};
 const urlOf = (s) => (s && s.match(/https?:\/\/[^\s)]+/)?.[0]) || null;
-const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 MyNewGate-programme-check";
+const UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36 BawabatAlsafar-programme-check";
 
 let pdfText = null;
 try { pdfText = (await import("unpdf")).extractText; } catch { /* PDFs are then reported as unreadable */ }
