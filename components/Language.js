@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EgyptOnlyNote } from "./Origin";
 import programmes from "../lib/programmes.json";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
@@ -15,6 +16,7 @@ export default function Language({ lang }) {
   return (
     <>
       <h1>{s.title}</h1>
+      <EgyptOnlyNote lang={lang} what={{ ar: "مراكز الاختبار وأسعارها في هذه الصفحة", en: "The test centres and prices on this page" }} />
       <p className="lead">{s.lead}</p>
 
       <h2>{s.testsTitle}</h2>

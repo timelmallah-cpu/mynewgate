@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { COSTS } from "../lib/costs";
 import { Local, CurrencyPicker } from "./Currency";
+import { useOrigin } from "./Origin";
 
 const S = {
   ar: {
@@ -72,7 +73,10 @@ const fmt = (n) => Math.round(n).toLocaleString("en-US");
 export default function CostCalc({ p, lang }) {
   const s = S[lang];
   const c = COSTS[p.country] || { fees: [], proof: null };
-  const knownFees = c.fees.reduce((a, f) => a + (f.eur || 0), 0);
+  const [origin] = useOrigin();
+  // Some fee lines apply only when applying from Egypt.
+  const fees = c.fees.filter((f) => !f.only || f.only === (origin || "eg"));
+  const knownFees = fees.reduce((a, f) => a + (f.eur || 0), 0);
   const floor = c.proofExcludesHousing ? null : c.proofMonthly;
   const [v, setV] = useState({
     tuition: p.feePerYear ?? "",
@@ -143,7 +147,7 @@ export default function CostCalc({ p, lang }) {
           </p>
           <h3>{s.feesTitle}</h3>
           <ul>
-            {c.fees.map((f, i) => (
+            {fees.map((f, i) => (
               <li key={i}>
                 {f[lang]}: <b>{f.eur != null ? <span dir="ltr">€{fmt(f.eur)}</span> : s.unknown}</b>
                 {f.check ? ` (${s.check})` : ""}

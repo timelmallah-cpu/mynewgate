@@ -22,7 +22,7 @@ export default function Visa({ lang }) {
   }, []);
   // Start from the visitor's saved country unless the link names one.
   useEffect(() => { if (loaded && origin && !fromUrl.current) setFrom(origin); }, [loaded, origin]);
-  useEffect(() => { window.history.replaceState(null, "", `?from=${from}&to=${to}`); }, [from, to]);
+  useEffect(() => { window.history.replaceState(null, "", from === (origin || "eg") ? `?to=${to}` : `?from=${from}&to=${to}`); }, [from, to, origin]);
   const pickFrom = (v) => { setFrom(v); fromUrl.current = false; setOrigin(v); };
   const v = VISA[to];
   const r = hasVisaRoute(to, from) ? v[from] : null;

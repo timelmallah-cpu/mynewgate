@@ -1419,12 +1419,10 @@
  "فترة التقديم للماجستير من يناير إلى مايو حسب صفحة المنح (للتحقق من مواعيد 2027)": "The master's application period runs January to May per the scholarships page (2027 dates to verify)",
  "TOEFL iBT 100 أو TOEIC 750 أو IELTS 6.5": "TOEFL iBT 100, TOEIC 750 or IELTS 6.5",
  "برنامج تنافسي؛ لازم بكالوريوس 3 سنين للبرنامج الكامل، و4 سنين للدخول على السنة التانية مباشرة": "Competitive; a 3-year bachelor's for the full programme, or 4 years for direct entry to the second year",
- "قدّم على الجامعة، وكمان لازم تعمل ملف على منصة Études en France وتعدّي مقابلة Campus France مصر قبل التأشيرة": "Apply to the university; you also need an Études en France file and the Campus France Egypt interview before the visa",
  "سكن CROUS الجامعي متاح بالتقديم، والأماكن محدودة": "CROUS student housing is available on application; places are limited",
  "5,500 يورو سنوياً للمقبولين في 2026/2027 (نفس الرسوم في السنتين)": "€5,500 per year for students starting in 2026/2027 (the same fee in both years)",
  "اللجنة بتجتمع كل شهر، والرد خلال شهرين من اكتمال الملف على eCandidat": "The committee meets every month; expect a reply within two months of your eCandidat file being complete",
  "محتاج خلفية قوية في الرياضيات وعلوم الحاسب": "A strong background in mathematics and computer science is essential",
- "التقديم على منصة eCandidat إلزامي، وكمان Études en France لو بلدك ضمن الإجراء (مصر منها)": "Applying on eCandidat is mandatory, plus Études en France if your country uses it (Egypt does)",
  "سنتان (60 ساعة معتمدة لكل سنة، للتحقق)": "2 years (60 credits a year, to verify)",
  "5,650 يورو سنوياً لغير الأوروبيين (1,700 رسوم دراسية + 3,950 رسوم تسجيل مختلفة) لدفعة 2027/2028، والرقم الرسمي هيتأكد للسنة دي": "€5,650 a year for non-EU students (€1,700 tuition + €3,950 differentiated registration fee) for the 2027/2028 intake; the official rate is still to be confirmed for that year",
  "التقديم لسنة 2026/2027 فتح في ديسمبر 2025 (للتحقق من 2027/2028)": "Applications for 2026/2027 opened in December 2025 (2027/2028 to verify)",
@@ -1574,5 +1572,7 @@
  "دوام كامل وأغلبه دراسة مقررات؛ يشترط بكالوريوس تجارة أو اقتصاد بتقدير Second Class Honours أو ما يعادله، وقد تُطلب مقررات تكميلية حتى 12 ساعة معتمدة": "Full-time and mainly taught; requires a commerce or economics bachelor's with at least Second Class Honours or equivalent, and supplementary units of up to 12 ECTS may be required",
  "التقديم أونلاين على بوابة جامعة مالطا، ومكتب الطلاب الدوليين يساعد في التأشيرة والسكن بعد القبول": "Apply online on the University of Malta portal; the International Office helps with the visa and housing after an offer",
  "13,400 يورو للبرنامج كاملاً لغير الأوروبيين (2026/2027)، وقد تُضاف رسوم معامل": "€13,400 for the full programme for non-EU students (2026/2027); bench fees may apply",
- "ماجستير بحثي (رسالة 80 ساعة معتمدة)؛ يشترط بكالوريوس فيه مكوّن قوي في تقنية المعلومات بتقدير Second Class Honours (Upper) على الأقل، وقد تكون هناك مقابلة": "A research master's (an 80-ECTS dissertation); requires a bachelor's with a strong ICT component and at least Second Class Honours (Upper Division), and there may be an interview"
+ "ماجستير بحثي (رسالة 80 ساعة معتمدة)؛ يشترط بكالوريوس فيه مكوّن قوي في تقنية المعلومات بتقدير Second Class Honours (Upper) على الأقل، وقد تكون هناك مقابلة": "A research master's (an 80-ECTS dissertation); requires a bachelor's with a strong ICT component and at least Second Class Honours (Upper Division), and there may be an interview",
+ "قدّم على الجامعة، ثم أنشئ ملفاً على منصة Études en France واجتز مقابلة Campus France في بلدك قبل التأشيرة": "Apply to the university, then create an Études en France file and pass the Campus France interview in your country before the visa",
+ "التقديم على منصة eCandidat إلزامي، وكذلك Études en France إذا كان بلدك ضمن الإجراء (مثل مصر والسعودية)": "Applying on eCandidat is mandatory, plus Études en France if your country uses it (Egypt and Saudi Arabia do)"
 }

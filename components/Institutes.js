@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EgyptOnlyNote } from "./Origin";
 import { T } from "../lib/i18n";
 import { OFFICIAL, LANGS, INST_TEXT, activeAds } from "../lib/institutes";
 
@@ -10,6 +11,7 @@ export default function Institutes({ lang }) {
   return (
     <>
       <h1>{s.title}</h1>
+      <EgyptOnlyNote lang={lang} what={{ ar: "المعاهد ومراكز الاختبار في هذه الصفحة", en: "The institutes and test centres on this page" }} />
       <p className="lead">{s.lead}</p>
       {groups.map((l) => {
         const off = OFFICIAL.filter((o) => o.lang === l);

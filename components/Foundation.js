@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EgyptOnlyNote } from "./Origin";
 import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { COURSES, KOLLEGS, OTHERS, FOUND_TEXT, FOUND_SRC } from "../lib/foundation";
@@ -26,6 +27,7 @@ export default function Foundation({ lang }) {
   return (
     <>
       <h1>{s.title}</h1>
+      <EgyptOnlyNote lang={lang} what={{ ar: "قسم السنة التحضيرية في مصر", en: "The foundation-year section for Egypt" }} />
       <p className="lead">{s.lead}</p>
 
       <section className="card">

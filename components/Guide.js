@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EgyptOnlyNote } from "./Origin";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { COUNTRY_IDS } from "../lib/options";
@@ -32,6 +33,7 @@ export default function Guide({ lang }) {
   return (
     <>
       <h1>{s.title}</h1>
+      <EgyptOnlyNote lang={lang} what={{ ar: "خطوات التصديق والأوراق في هذه الصفحة", en: "The legalisation steps and documents on this page" }} />
       <p className="lead">{s.lead}</p>
       <p><Link className="ctx-link" href={`${T[lang].base}/glossary`}>{lang === "ar" ? "هل هناك مصطلح غير واضح؟ راجع قاموس المصطلحات" : "A word you don't understand? See the glossary"}</Link></p>
       <nav className="guide-jump">

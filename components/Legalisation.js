@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EgyptOnlyNote } from "./Origin";
 import { T } from "../lib/i18n";
 import { LEGAL_TEXT, LEGAL_SRC, LEGAL_REVIEWED, OFFICES_URL } from "../lib/legalisationText";
 
@@ -8,6 +9,7 @@ export default function Legalisation({ lang }) {
   return (
     <>
       <h1>{s.title}</h1>
+      <EgyptOnlyNote lang={lang} />
       <p className="lead">{s.lead}</p>
 
       <section className="card legal-apostille">

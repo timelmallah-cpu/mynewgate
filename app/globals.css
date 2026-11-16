@@ -1053,3 +1053,4 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .dl-passed { display: block; margin-top: 6px; color: var(--warn); background: var(--warn-soft); padding: 6px 10px; border-radius: 8px; font-size: .92rem; }
 
 .hs-country { scroll-margin-top: 90px; }
+.origin-note { margin: 10px 0 16px; }

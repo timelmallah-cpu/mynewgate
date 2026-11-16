@@ -18,7 +18,7 @@ def add(lst, field, name, uni, city, deg, dur, fee, adm, dl, en, other, how, liv
 
 MSC = ("ماجستير (Master)", "Master's degree")
 BSC = ("بكالوريوس علوم (Bachelor of Science)", "Bachelor of Science")
-CF = ("قدّم على الجامعة، وكمان لازم تعمل ملف على منصة Études en France وتعدّي مقابلة Campus France مصر قبل التأشيرة", "Apply to the university; you also need an Études en France file and the Campus France Egypt interview before the visa")
+CF = ("قدّم على الجامعة، ثم أنشئ ملفاً على منصة Études en France واجتز مقابلة Campus France في بلدك قبل التأشيرة", "Apply to the university; you also need an Études en France file and the Campus France Egypt interview before the visa")
 CROUS = ("سكن CROUS الجامعي متاح بالتقديم، والأماكن محدودة", "CROUS student housing is available on application; places are limited")
 
 # ---------- Master's ----------
@@ -38,7 +38,7 @@ add(MA, "ds", "MSc Data Science and Artificial Intelligence", "Université Côte
     NP,
     ("اللجنة بتجتمع كل شهر، والرد خلال شهرين من اكتمال الملف على eCandidat", "The committee meets every month; expect a reply within two months of your eCandidat file being complete"),
     NP, ("محتاج خلفية قوية في الرياضيات وعلوم الحاسب", "A strong background in mathematics and computer science is essential"),
-    ("التقديم على منصة eCandidat إلزامي، وكمان Études en France لو بلدك ضمن الإجراء (مصر منها)", "Applying on eCandidat is mandatory, plus Études en France if your country uses it (Egypt does)"),
+    ("التقديم على منصة eCandidat إلزامي، وكذلك Études en France إذا كان بلدك ضمن الإجراء (مثل مصر والسعودية)", "Applying on eCandidat is mandatory, plus Études en France if your country uses it (Egypt does)"),
     NP, NP, "https://univ-cotedazur.eu/msc/msc-data-science-and-artificial-intelligence/application-process/how-to-apply",
     "https://univ-cotedazur.eu/msc/msc-data-science-and-artificial-intelligence/application-process/how-to-apply")
 add(MA, "ph", "Master of Public Health (MPH)", "EHESP School of Public Health", "Rennes", MSC,
