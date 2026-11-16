@@ -6,6 +6,7 @@ import { COUNTRY_IDS } from "../lib/options";
 import { ACC, LEVEL_LABELS } from "../lib/accountText";
 import { getSaved } from "../lib/saved";
 import { BASE } from "../lib/site";
+import PlanBox from "./PlanBox";
 
 const YEARS = [2026, 2027, 2028, 2029, 2030];
 
@@ -63,6 +64,8 @@ export default function Account({ lang }) {
       <h1>{a.accTitle}</h1>
       <p className="acc-who">{a.signedAs} <bdi dir="ltr">{user.email}</bdi></p>
 
+      <PlanBox lang={lang} user={user} />
+
       <section className="acc-box">
         <h2>{a.listTitle}</h2>
         <p>{a.listText(listCount)}</p>
@@ -105,6 +108,7 @@ export default function Account({ lang }) {
         {del && (
           <div className="acc-confirm" role="alertdialog" aria-label={a.del}>
             <p>{a.delSure}</p>
+            {user.plus && <p><b>{lang === "ar" ? "حذف الحساب يلغي اشتراكك في Study Plus فوراً، وتتوقف مميزاته في الحال." : "Deleting your account cancels your Study Plus subscription immediately, and its features stop at once."}</b></p>}
             <div className="acc-actions">
               <button className="btn acc-danger-solid" onClick={remove}>{a.delYes}</button>
               <button className="btn ghost" onClick={() => setDel(false)}>{a.cancel}</button>

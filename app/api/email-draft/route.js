@@ -1,7 +1,8 @@
 // University email assistant. The notes are sent to the Gemini API (paid tier) to draft the email and are not stored by us.
 // The student's name never leaves the browser: the draft is signed with {{NAME}} and the page fills it in.
 import { ask, geminiConfigured } from "@/lib/assistant/gemini";
-import { takeQuestion, limitsConfigured } from "@/lib/assistant/limit";
+import { limitsConfigured } from "@/lib/assistant/limit";
+import { useQuota, limitBody } from "@/lib/assistant/usage";
 import { EMAIL_SCHEMA, emailSystem, PURPOSES, EMAIL_LANGS } from "@/lib/assistant/emailDraft";
 
 export const runtime = "nodejs";
@@ -29,13 +30,12 @@ export async function POST(req) {
 
   const mock = process.env.ASK_MOCK === "1";
   if (!mock && (!geminiConfigured() || !limitsConfigured())) return res({ error: "not_configured" }, 503);
-  let left = null;
+  let left = null, per = null;
   if (!mock) {
-    const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || req.headers.get("x-real-ip") || "unknown";
     try {
-      const r = await takeQuestion(ip, "email");
-      if (!r.ok) return res({ error: r.reason === "total" ? "busy" : "limit" }, 429);
-      left = r.left;
+      const r = await useQuota(req, "email");
+      if (!r.ok) return res(limitBody(r), 429);
+      left = r.left; per = r.per;
     } catch { return res({ error: "failed" }, 502); }
   }
 
@@ -66,5 +66,6 @@ export async function POST(req) {
     placeholders: (Array.isArray(d.placeholders) ? d.placeholders : []).slice(0, 8).map(String),
     tips: (Array.isArray(d.tips) ? d.tips : []).slice(0, 4).map(String),
     left,
+    per,
   });
 }

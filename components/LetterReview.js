@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { REVIEW_TEXT, CV_REVIEW_TEXT } from "../lib/reviewText";
 import { BASE } from "../lib/site";
+import Upgrade, { leftText } from "./Upgrade";
 
 const ICON = { good: "✓", improve: "!", missing: "✗" };
 
@@ -17,17 +18,18 @@ export default function LetterReview({ lang, kind = "letter" }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [r, setR] = useState(null);
+  const [up, setUp] = useState(null);
   const count = (letter.trim().match(/\S+/g) || []).length;
 
   const run = async (e) => {
     e.preventDefault();
     if (busy) return;
     if (letter.trim().length < min) { setErr(s.tooShort); return; }
-    setErr(""); setBusy(true); setR(null);
+    setErr(""); setUp(null); setBusy(true); setR(null);
     try {
       const res = await fetch(`${BASE}${cv ? "/api/cv-review" : "/api/letter-review"}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ letter, programme, wordLimit: limit || null, lang }) });
       const d = await res.json().catch(() => ({}));
-      if (!res.ok) setErr(s.errors[d.error] || s.errors.failed);
+      if (!res.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); }
       else { setR(d); setTimeout(() => document.getElementById(`${kind}-review-result`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }
     } catch { setErr(s.errors.failed); }
     setBusy(false);
@@ -49,6 +51,7 @@ export default function LetterReview({ lang, kind = "letter" }) {
         <button type="submit" className="btn gold" disabled={busy}>{busy ? s.busy : s.btn}</button>
       </form>
       {err && <p className="ask-err" role="alert">{err}</p>}
+      {up && <Upgrade lang={lang} kind={cv ? "cv" : "review"} plus={up.plus} per={up.per} />}
 
       {r && (
         <div id={`${kind}-review-result`} className="review-result" aria-live="polite">
@@ -88,7 +91,7 @@ export default function LetterReview({ lang, kind = "letter" }) {
               )}
             </>
           )}
-          <p className="note">{typeof r.left === "number" && <>{s.left(r.left)} · </>}{s.disclaimer}</p>
+          <p className="note">{typeof r.left === "number" && <>{leftText(lang, r.left, r.per)} · </>}{s.disclaimer}</p>
         </div>
       )}
     </section>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { T } from "../lib/i18n";
 import { EMAIL_TEXT } from "../lib/emailText";
 import { BASE } from "../lib/site";
+import Upgrade, { leftText } from "./Upgrade";
 
 const PURPOSES = ["question", "eligibility", "fees", "followup", "extension", "offer_accept", "offer_decline"];
 const LANGS = ["en", "de", "fr", "es", "it", "nl"];
@@ -20,6 +21,7 @@ export default function UniversityEmail({ lang }) {
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [copied, setCopied] = useState(false);
+  const [up, setUp] = useState(null);
 
   useEffect(() => { try { setName(localStorage.getItem(NAME_KEY) || ""); } catch {} }, []);
   const set = (k) => (e) => setF({ ...f, [k]: e.target.value });
@@ -36,11 +38,11 @@ export default function UniversityEmail({ lang }) {
     e.preventDefault();
     if (busy) return;
     if (f.notes.trim().length < 15 || !f.university.trim()) { setErr(s.tooShort); return; }
-    setErr(""); setBusy(true); setR(null);
+    setErr(""); setUp(null); setBusy(true); setR(null);
     try {
       const res = await fetch(`${BASE}/api/email-draft`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang }) });
       const d = await res.json().catch(() => ({}));
-      if (!res.ok) setErr(s.errors[d.error] || s.errors.failed);
+      if (!res.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); }
       else {
         setR(d);
         if (d.ok) { setSubject(d.subject); setBody(sign(d.body, name)); }
@@ -89,6 +91,7 @@ export default function UniversityEmail({ lang }) {
           <button type="submit" className="btn gold" disabled={busy}>{busy ? s.busy : s.btn}</button>
         </form>
         {err && <p className="ask-err" role="alert">{err}</p>}
+        {up && <Upgrade lang={lang} kind="email" plus={up.plus} per={up.per} />}
 
         {r && (
           <div id="email-result" className="review-result" aria-live="polite">
@@ -113,7 +116,7 @@ export default function UniversityEmail({ lang }) {
                 )}
               </div>
             )}
-            <p className="note">{typeof r.left === "number" && <>{s.left(r.left)} · </>}{s.disclaimer}</p>
+            <p className="note">{typeof r.left === "number" && <>{leftText(lang, r.left, r.per)} · </>}{s.disclaimer}</p>
           </div>
         )}
       </section>

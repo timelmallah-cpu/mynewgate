@@ -3,10 +3,11 @@
 import { useEffect } from "react";
 import { getSaved, replaceSaved, onSavedChange, signedIn } from "../lib/saved";
 import { BASE } from "../lib/site";
+import { setPlus } from "../lib/plan";
 
 export default function AccountSync() {
   useEffect(() => {
-    if (!signedIn()) return;
+    if (!signedIn()) { setPlus(false); return; }
     let stop = () => {};
     let timer = null;
     let last = "";
@@ -21,6 +22,7 @@ export default function AccountSync() {
     };
     fetch(`${BASE}/api/account`, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => {
       if (!d?.user) return;
+      setPlus(Boolean(d.user.plus));
       const server = d.user.list || [];
       const local = getSaved();
       const merged = [...server, ...local.filter((k) => !server.includes(k))];

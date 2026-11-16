@@ -4,7 +4,8 @@ import { retrieve, overviewText } from "@/lib/assistant/retrieve";
 import { DOCS } from "@/lib/assistant/knowledge";
 import { SYSTEM, contextBlock } from "@/lib/assistant/prompt";
 import { ask, geminiConfigured } from "@/lib/assistant/gemini";
-import { takeQuestion, limitsConfigured, PER_USER } from "@/lib/assistant/limit";
+import { limitsConfigured } from "@/lib/assistant/limit";
+import { useQuota, limitBody } from "@/lib/assistant/usage";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,13 +33,12 @@ export async function POST(req) {
   if (!mock && !geminiConfigured()) return bad("not_configured", 503);
   if (!mock && !limitsConfigured()) return bad("not_configured", 503);
 
-  let left = PER_USER();
+  let left = null, per = null;
   if (!mock) {
-    const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || req.headers.get("x-real-ip") || "unknown";
     try {
-      const r = await takeQuestion(ip);
-      if (!r.ok) return bad(r.reason === "total" ? "busy" : "limit", 429);
-      left = r.left;
+      const r = await useQuota(req, "ask");
+      if (!r.ok) return Response.json(limitBody(r), { status: 429, headers: { "Cache-Control": "no-store" } });
+      left = r.left; per = r.per;
     } catch { return bad("failed", 502); }
   }
 
@@ -68,5 +68,5 @@ export async function POST(req) {
 
   const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => allowed.has(u)).slice(0, 5)
     .map((url) => ({ url, title: (TITLES.get(url) || { ar: url, en: url })[lang] }));
-  return Response.json({ answer: out.answer, sources, found: out.found, left }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ answer: out.answer, sources, found: out.found, left, per }, { headers: { "Cache-Control": "no-store" } });
 }

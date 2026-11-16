@@ -4,6 +4,7 @@ import Link from "next/link";
 import { T } from "../lib/i18n";
 import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";
+import Upgrade, { leftText } from "./Upgrade";
 
 export default function Assistant({ lang }) {
   const t = T[lang];
@@ -13,6 +14,8 @@ export default function Assistant({ lang }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState("");
   const [left, setLeft] = useState(null);
+  const [per, setPer] = useState(null);
+  const [up, setUp] = useState(null);
   const endRef = useRef(null);
 
   const setMsg = (i, patch) => setMsgs((m) => m.map((x, j) => (j === i ? { ...x, ...patch } : x)));
@@ -43,16 +46,16 @@ export default function Assistant({ lang }) {
   const send = async (text) => {
     const q = (text ?? input).trim();
     if (!q || busy) return;
-    setErr(""); setBusy(true); setInput("");
+    setErr(""); setUp(null); setBusy(true); setInput("");
     const history = msgs.map((m) => ({ role: m.role, text: m.text }));
     setMsgs((m) => [...m, { role: "user", text: q }]);
     try {
       const r = await fetch(`${BASE}/api/ask`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q, history, lang }) });
       const d = await r.json().catch(() => ({}));
-      if (!r.ok) { setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
+      if (!r.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
       else {
         setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [] }]);
-        if (typeof d.left === "number") setLeft(d.left);
+        if (typeof d.left === "number") { setLeft(d.left); setPer(d.per); }
       }
     } catch { setErr(s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
     setBusy(false);
@@ -112,6 +115,7 @@ export default function Assistant({ lang }) {
       </div>
 
       {err && <p className="ask-err" role="alert">{err}</p>}
+      {up && <Upgrade lang={lang} kind="ask" plus={up.plus} per={up.per} />}
 
       <form className="ask-form" onSubmit={(e) => { e.preventDefault(); send(); }}>
         <textarea dir="auto" rows={2} maxLength={600} value={input} placeholder={s.placeholder} aria-label={s.placeholder}
@@ -120,7 +124,7 @@ export default function Assistant({ lang }) {
         <button type="submit" className="btn gold" disabled={busy || input.trim().length < 2}>{busy ? "..." : s.send}</button>
       </form>
       <p className="note ask-foot">
-        {left !== null && <span>{s.left(left)} · </span>}
+        {left !== null && <span>{leftText(lang, left, per)} · </span>}
         {s.warn}
         {msgs.length > 0 && <> · <button type="button" className="linkish" onClick={() => { setMsgs([]); setErr(""); }}>{s.reset}</button></>}
       </p>
