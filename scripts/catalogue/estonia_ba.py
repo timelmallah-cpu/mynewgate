@@ -36,4 +36,12 @@ add("eng", "Science and Technology (BSc)", UT, "Tartu", ("بكالوريوس ا�
     "https://ut.ee/en/content/frequently-asked-questions")
 add("med", "Medicine (integrated)", UT, "Tartu", ("طبيب - برنامج متكامل", "Physician - integrated programme"), MED, UT_FEE("13,200"), UT_DL, NP,
     ("برنامج الطب المتكامل بالإنجليزية؛ " + UT_OTHER[0], "Integrated English-taught Medicine programme; " + UT_OTHER[1]), "https://ut.ee/en/content/frequently-asked-questions")
+
+# ---------- Law (added 2026-11-16) ----------
+add("law", "Law (BA)", TT, "Tallinn", ("بكالوريوس الآداب في العلوم الاجتماعية (BA)", "Bachelor of Arts in Social Sciences (BA)"), BA3,
+    ("5,000 يورو سنوياً (للأوروبيين وغير الأوروبيين)", "€5,000 per year (EU and non-EU citizens)"), TT_DL, TT_EN,
+    ("قانون كلاسيكي مع قانون التكنولوجيا والمجتمع الرقمي وقانون الاتحاد الأوروبي والقانون الدولي (الأمن السيبراني، حماية البيانات)؛ مدرسة الأعمال والحوكمة: الرسوم يدفعها كل الطلاب؛ يدفع غير الأوروبيين رسوم السنة الأولى كاملة قبل التسجيل",
+     "Classical law with technology law, the digital society, and EU and international law (cyber security, data protection); School of Business and Governance: all students pay fees; non-EU students pay the full first-year fee before matriculation"),
+    "https://taltech.ee/en/bachelors-programmes/law")
+
 write("إستونيا", "Estonia", "estonia", R, level="bachelor")

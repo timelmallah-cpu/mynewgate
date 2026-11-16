@@ -185,4 +185,12 @@ add("nurs", "Nursing and Patient Care (Nurse) BSc", DEB, "Nyíregyháza", NBSC, 
     ("حرم نيريجهازا التابع لجامعة دبرتسن؛ امتحان كتابي في الأحياء ومقابلة؛ أكثر من نصف البرنامج تدريب عملي", "University of Debrecen's Nyíregyháza campus; written Biology exam and an interview; over half the programme is practical training"),
     DEB_HOW, NP, NP, "https://edu.unideb.hu/p/nursing-and-patient-care-nurse-bsc", DEB_APPLY)
 
+
+# ---------- Architecture (added 2026-11-16) ----------
+add("arch", "Architectural Engineering (Single-cycle MSc)", BME, "Budapest", ("ماجستير متكامل (One-Tier Master) في الهندسة المعمارية", "Single-cycle (one-tier) MSc in Architectural Engineering"),
+    ("10 فصول دراسية (300 ساعة معتمدة)", "10 semesters (300 credits)"), SEM("3,200"), BME_ADM, BME_DL, BME_EN,
+    ("يُدرس بعد الثانوية مباشرة ويؤدي إلى ماجستير في العمارة؛ امتحان قبول (اختبارات القبول حسب البرنامج)؛ يُنصح بالرياضيات و/أو الفيزياء في الثانوية؛ تخصصات: التطوير العقاري، العمارة المستدامة، التصميم العمراني",
+     "Entered straight after secondary school and leads to an MSc in Architecture; admission tests apply; mathematics and/or physics at school are recommended; specialisations: real estate development, sustainable architecture, urban design"),
+    BME_HOW, NP, NP, "https://xplore.bme.hu/programme/integrated-msc-program-in-architectural-engineering/", BME_FEES)
+
 write("المجر", "Hungary", "hungary", R, level="bachelor")

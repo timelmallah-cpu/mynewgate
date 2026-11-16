@@ -45,7 +45,7 @@ const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا"
 const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
-  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics",
+  "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics", "العمارة": "architecture", "القانون": "law",
 };
 
 // Years of study from the Arabic duration text.

@@ -143,4 +143,13 @@ add("econ", "Economics", "Tilburg University", "Tilburg", Y("13,900"),
      "A small-scale programme focused on the global economy from year one; €100 application fee for non-Dutch diplomas; living in Tilburg €1,000 - 1,200 a month per the university"),
     "https://www.tilburguniversity.edu/education/bachelors-programs/economics", "https://www.tilburguniversity.edu/education/application-fee")
 
+
+# ---------- Law (added 2026-11-16) ----------
+add("law", "Global Law (LLB)", "Tilburg University", "Tilburg", Y("13,900"),
+    ("1 أبريل لغير الأوروبيين لدفعة سبتمبر", "1 April for non-EEA applicants (September intake)"),
+    ("مستوى C1 في الإنجليزية (مثل Cambridge Advanced)", "C1 English (e.g. Cambridge Advanced)"),
+    ("بكالوريوس قانون دولي بالإنجليزية (القانون في سياق عالمي، صفقات وقضايا عابرة للحدود)؛ رسوم طلب 100 يورو لحاملي الشهادات غير الهولندية", "An English-taught international law bachelor's (law in a global context, cross-border deals and cases); €100 application fee for non-Dutch diplomas"),
+    "https://www.studyinnl.org/dutch-education/studies/global-law-1447-tilburg-university", "https://www.tilburguniversity.edu/node/1170",
+    deg=("بكالوريوس القانون (LLB)", "Bachelor of Laws (LLB)"))
+
 write("هولندا", "Netherlands", "netherlands", R, level="bachelor")
