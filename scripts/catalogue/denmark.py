@@ -23,8 +23,8 @@ DTU_DATES = "https://dtu.dk/english/education/graduate/admission-and-deadlines/a
 add(MA, "cs", "MSc Computer Science and Engineering", "Technical University of Denmark (DTU)", "Kongens Lyngby", MSC, Y2,
     ("7,500 يورو للفصل الدراسي (30,000 يورو للبرنامج كاملاً)؛ ودفعة الفصل الأول قبل 1 مايو بدون تقسيط", "€7,500 per semester (€30,000 for the full programme); the first semester is due by 1 May with no instalments"),
     ("رسوم تقديم 100 يورو تُخصم من أول دفعة لو قُبلت، وتكفي لبرنامجين", "€100 application fee, deducted from your first payment if admitted; it covers up to two programmes"),
-    DL_AR, ("لازم تستوفي شرط اللغة الإنجليزية قبل 15 يناير", "You must meet the English requirement by 15 January"),
-    ("DTU تمنح عدداً محدوداً جداً من الإعفاءات الكاملة من الرسوم للسنتين حسب التفوق، ولازم ترفق خطاب منفصل تطلب فيه الإعفاء مع طلبك", "DTU awards a very limited number of full two-year tuition waivers on merit; you must attach a separate personal statement requesting the waiver with your application"),
+    DL_AR, ("يجب أن تستوفي شرط اللغة الإنجليزية قبل 15 يناير", "You must meet the English requirement by 15 January"),
+    ("DTU تمنح عدداً محدوداً جداً من الإعفاءات الكاملة من الرسوم للسنتين حسب التفوق، ويجب أن ترفق خطاب منفصل تطلب فيه الإعفاء مع طلبك", "DTU awards a very limited number of full two-year tuition waivers on merit; you must attach a separate personal statement requesting the waiver with your application"),
     ("التقديم أونلاين على بوابة DTU (تفتح 1 ديسمبر) ودفع رسوم التقديم", "Apply online on the DTU portal (opens 1 December) and pay the application fee"), NP, NP,
     DTU_FEES, DTU_DATES)
 

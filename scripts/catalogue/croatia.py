@@ -15,7 +15,7 @@ def add(lst, field, name, uni, city, deg, dur, fee, adm, dl, en, other, how, liv
 
 
 MD = ("طب بشري (دكتور في الطب، دراسة متكاملة)", "Medicine (Doctor of Medicine, integrated study)")
-RECOG = ("لازم الاعتراف بشهادة الثانوية الأجنبية في كرواتيا عن طريق منصة Postani student ووكالة العلوم والتعليم العالي (AZVO) قبل القيد", "Your foreign school certificate must be recognised in Croatia through the Postani student platform and the Agency for Science and Higher Education (AZVO) before enrolment")
+RECOG = ("يجب الاعتراف بشهادة الثانوية الأجنبية في كرواتيا عن طريق منصة Postani student ووكالة العلوم والتعليم العالي (AZVO) قبل القيد", "Your foreign school certificate must be recognised in Croatia through the Postani student platform and the Agency for Science and Higher Education (AZVO) before enrolment")
 
 ZG = "https://mse.mef.unizg.hr/admission-requirements/"
 add(BA, "med", "Medical Studies in English", "University of Zagreb School of Medicine", "Zagreb", MD, MED6,
@@ -33,8 +33,8 @@ add(BA, "med", "Medical Studies in English", "University of Split School of Medi
     ("رسوم تقديم 200 يورو غير مستردة", "Non-refundable €200 application fee"),
     ("التقديم مغلق حالياً، والدورة القادمة متوقع تفتح في مارس 2027", "Applications are closed now; the next round is expected to open in March 2027"),
     ("إثبات إجادة الإنجليزية لو مطلوب", "Proof of English proficiency where applicable"),
-    ("لازم 12 سنة دراسة قبل الجامعة على الأقل؛ 70 مكاناً لعام 2026/2027. " + RECOG[0], "At least 12 years of prior schooling; 70 places for 2026/2027. " + RECOG[1]),
-    ("ابعت طلبك بالإيميل لمكتب الطلاب مع السيرة الذاتية وخطاب الدافع وإثبات دفع رسوم التقديم", "Email your application to the student office with your CV, motivation letter and proof of the application fee"), NP, NP,
+    ("يُشترط 12 سنة دراسة قبل الجامعة على الأقل؛ 70 مكاناً لعام 2026/2027. " + RECOG[0], "At least 12 years of prior schooling; 70 places for 2026/2027. " + RECOG[1]),
+    ("أرسل طلبك بالإيميل لمكتب الطلاب مع السيرة الذاتية وخطاب الدافع وإثبات دفع رسوم التقديم", "Email your application to the student office with your CV, motivation letter and proof of the application fee"), NP, NP,
     ST, ST)
 
 write("كرواتيا", "Croatia", "croatia", BA, level="bachelor")

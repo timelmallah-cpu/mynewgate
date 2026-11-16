@@ -23,7 +23,7 @@ add(MA, "ds", "MSc Data Science and Analytics", "University College Cork (UCC)",
     ("29,614 يورو لغير الأوروبيين (دفعة سبتمبر 2027)", "€29,614 for non-EU students (September 2027 intake)"), NP,
     ("التقديم مفتوح حتى اكتمال الأماكن، وآخر موعد لغير الأوروبيين 15 يونيو 2027", "Rolling until places are filled, and no later than 15 June 2027 for non-EU applicants"),
     ("حسب متطلبات اللغة الإنجليزية المعتمدة في UCC للدراسات العليا (الدرجة غير منشورة في صفحة البرنامج)", "UCC's approved postgraduate English requirements (the score is not stated on the programme page)"),
-    ("لازم بكالوريوس بتقدير Second Class Honours Grade I في علوم الحاسب، أو تخصص قريب نصف ساعاته على الأقل في الحاسب وتقنية المعلومات (معادلة التقدير المصري للتحقق مع الجامعة). الدراسة تبدأ في سبتمبر 2027", "Requires a Second Class Honours Grade I degree in Computer Science, or a related degree with at least 50% of credits in computing and IT (check how your Egyptian grade compares with the university). Starts in September 2027"),
+    ("يُشترط بكالوريوس بتقدير Second Class Honours Grade I في علوم الحاسب، أو تخصص قريب نصف ساعاته على الأقل في الحاسب وتقنية المعلومات (معادلة التقدير المصري للتحقق مع الجامعة). الدراسة تبدأ في سبتمبر 2027", "Requires a Second Class Honours Grade I degree in Computer Science, or a related degree with at least 50% of credits in computing and IT (check how your Egyptian grade compares with the university). Starts in September 2027"),
     ("التقديم أونلاين على بوابة UCC للدراسات العليا، والتقديم المبكر أفضل", "Apply online on UCC's postgraduate portal; early application is advised"), NP, NP, UCC_DSA, UCC_DSA)
 
 UL_SRC = "https://www.ul.ie/study/postgraduate/data-science-and-statistical-learning-msc/fees"
@@ -40,8 +40,8 @@ add(MA, "cs", "MSc in Computing (with Major Options)", "Dublin City University (
     ("25,000 يورو لغير الأوروبيين (2027-2028)؛ منحة الكلية تخصم 4,400 يورو لمن يحصل عليها", "€25,000 for non-EU students (2027-2028); the faculty scholarship takes €4,400 off for recipients"), NP,
     ("دفعة سبتمبر 2027: آخر موعد لغير الأوروبيين 1 يوليو 2027؛ ودفعة يناير حتى 4 ديسمبر أو اكتمال الأماكن (للتحقق، الصفحة فيها تعارض)", "September 2027 intake: non-EU deadline 1 July 2027; January intake until 4 December or until full (to verify, the page is inconsistent)"),
     ("حسب متطلبات DCU للغة الإنجليزية", "DCU's English language requirements"),
-    ("لازم بكالوريوس بتقدير 2.1 أو أعلى في علوم الحاسب أو تخصص قريب", "Requires a 2.1 honours degree or higher in Computer Science, Computing or a related discipline"),
-    ("التقديم أونلاين على موقع DCU، ومنحة الكلية بتتحسب تلقائياً لغير الأوروبيين", "Apply online on DCU's website; non-EU applicants are considered for the faculty scholarship automatically"), NP, NP,
+    ("يُشترط بكالوريوس بتقدير 2.1 أو أعلى في علوم الحاسب أو تخصص قريب", "Requires a 2.1 honours degree or higher in Computer Science, Computing or a related discipline"),
+    ("التقديم أونلاين على موقع DCU، ومنحة الكلية تُحتسب تلقائياً لغير الأوروبيين", "Apply online on DCU's website; non-EU applicants are considered for the faculty scholarship automatically"), NP, NP,
     DCU_CMP, DCU_CMP)
 
 DCU_MGT = "https://www.dcu.ie/courses/postgraduate/business-school/msc-management-strategy"
@@ -49,7 +49,7 @@ add(MA, "bus", "MSc in Management (Strategy)", "DCU Business School, Dublin City
     ("23,500 يورو لغير الأوروبيين (2027-2028)؛ منحة كلية الأعمال تخصم 2,000 يورو لمن يحصل عليها", "€23,500 for non-EU students (2027-2028); the Business School scholarship takes €2,000 off for recipients"), NP,
     NP, ("حسب متطلبات DCU للغة الإنجليزية", "DCU's English language requirements"),
     ("موجّه لخريجي التجارة وإدارة الأعمال", "Aimed at graduates with a business degree"),
-    ("التقديم أونلاين على موقع DCU، ومنحة كلية الأعمال بتتحسب تلقائياً لغير الأوروبيين", "Apply online on DCU's website; non-EU applicants are considered for the Business School scholarship automatically"), NP, NP,
+    ("التقديم أونلاين على موقع DCU، ومنحة كلية الأعمال تُحتسب تلقائياً لغير الأوروبيين", "Apply online on DCU's website; non-EU applicants are considered for the Business School scholarship automatically"), NP, NP,
     "https://www.dcu.ie/fees/postgraduate-fees-2027-28", DCU_MGT)
 
 # ---------- Bachelor's ----------
@@ -58,7 +58,7 @@ add(BA, "cs", "BSc in Computer Science", "Dublin City University (DCU)", "Dublin
     ("4 سنوات، فيها تدريب عملي INTRA لمدة 6 شهور", "4 years, including a six-month INTRA work placement"),
     ("23,800 يورو سنوياً لغير الأوروبيين (2027-2028)", "€23,800 per year for non-EU students (2027-2028)"), NP, NP,
     ("حسب متطلبات DCU للغة الإنجليزية", "DCU's English language requirements"),
-    ("لازم مؤهلات تعادل الثانوية الأيرلندية مع حد أدنى في الرياضيات؛ الثانوية العامة المصرية وحدها غالباً لا تكفي في الجامعات الأيرلندية (للتحقق مع DCU)", "Requires qualifications equivalent to the Irish Leaving Certificate with a minimum in Mathematics; the Egyptian Thanaweya Amma alone is often not enough at Irish universities (check with DCU)"),
+    ("تُشترط مؤهلات تعادل الثانوية الأيرلندية مع حد أدنى في الرياضيات؛ الثانوية العامة المصرية وحدها غالباً لا تكفي في الجامعات الأيرلندية (للتحقق مع DCU)", "Requires qualifications equivalent to the Irish Leaving Certificate with a minimum in Mathematics; the Egyptian Thanaweya Amma alone is often not enough at Irish universities (check with DCU)"),
     ("غير الأوروبيين يقدّمون مباشرة لـ DCU وليس عبر CAO (للتحقق من الطريقة)", "Non-EU applicants apply directly to DCU rather than through the CAO (check the route)"), NP, NP,
     "https://www.dcu.ie/fees/undergraduate-fees-2026-2027", DCU_BSC)
 
