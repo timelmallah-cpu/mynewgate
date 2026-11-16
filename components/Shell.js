@@ -37,7 +37,7 @@ const FOOT_GROUPS = [
     ["/tools", "كل الأدوات", "All tools"],
   ] },
   { ar: "أدلة", en: "Guides", links: [
-    ["/guide", "دليل التقديم", "Application guide"], ["/motivation-letter", "خطاب الدافع والسيرة الذاتية", "Motivation letter & CV"], ["/legalisation", "تصديق الأوراق", "Legalising documents"], ["/visa", "التأشيرة", "Student visa"], ["/school-certificate", "شهادة الثانوية", "School certificate"],
+    ["/guide", "دليل التقديم", "Application guide"], ["/motivation-letter", "خطاب الدافع والسيرة الذاتية", "Motivation letter & CV"], ["/legalisation", "تصديق الأوراق", "Legalising documents"], ["/visa", "التأشيرة", "Student visa"], ["/school-certificate", "شهادة الثانوية", "School certificate"], ["/foundation", "السنة التحضيرية", "Foundation year"],
     ["/housing", "دليل السكن", "Housing guide"], ["/after-graduation", "بعد التخرج", "After graduation"], ["/vocational", "التدريب المهني", "Vocational training"],
     ["/glossary", "قاموس الكلمات", "Glossary"],
   ] },

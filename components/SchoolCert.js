@@ -42,6 +42,7 @@ export default function SchoolCert({ lang }) {
               <p className="pl-actions">
                 <a className="linkbtn" href={d.src} target="_blank" rel="noopener noreferrer">{s.source} ↗</a>
                 {d.tool && <a className="linkbtn" href={d.tool} target="_blank" rel="noopener noreferrer">{s.check} ↗</a>}
+                {c === "de" && <Link className="linkbtn" href={`${t.base}/foundation`}>{lang === "ar" ? "دليل السنة التحضيرية" : "Foundation year guide"}</Link>}
                 <Link className="linkbtn" href={`${t.base}/quiz?level=bachelor&country=${c}`}>{s.programmes}</Link>
               </p>
             </section>
