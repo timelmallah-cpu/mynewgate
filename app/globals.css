@@ -1054,3 +1054,9 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 
 .hs-country { scroll-margin-top: 90px; }
 .origin-note { margin: 10px 0 16px; }
+
+/* University email assistant */
+.review-opts.even { grid-template-columns: 1fr 1fr; }
+.review-form select { font: inherit; font-weight: 400; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; width: 100%; background: var(--card); }
+.email-ph { display: inline-block; margin: 2px 4px; padding: 1px 8px; border-radius: 8px; background: var(--sky); font-family: inherit; }
+@media (max-width: 560px) { .review-opts.even { grid-template-columns: 1fr; } }

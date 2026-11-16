@@ -88,6 +88,7 @@ export default function MotivationLetter({ lang }) {
       <p>{s.refs}</p>
 
       <p className="tool-strip">
+        <Link href={`${t.base}/university-email`}>{lang === "ar" ? "اكتب إيميلاً للجامعة" : "Write an email to a university"}</Link>
         <Link href={`${t.base}/guide#documents`}>{lang === "ar" ? "قائمة الأوراق لكل دولة" : "Document checklist per country"}</Link>
         <Link href={`${t.base}/language`}>{lang === "ar" ? "أي اختبار إنجليزي؟" : "Which English test?"}</Link>
       </p>
