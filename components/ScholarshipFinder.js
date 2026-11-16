@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, eligibility } from "../lib/scholarships";
 import { COUNTRY_IDS } from "../lib/options";
 import { Hosts, nextDeadline, fmtDate, KindTag } from "./ScholarshipParts";
+import { useOrigin, setOrigin } from "./Origin";
 
 export default function ScholarshipFinder({ lang }) {
   const t = T[lang];
@@ -12,6 +13,9 @@ export default function ScholarshipFinder({ lang }) {
   const [nat, setNat] = useState("");
   const [level, setLevel] = useState("");
   const [host, setHost] = useState("");
+  const [origin, loaded] = useOrigin();
+  // Start from the visitor's saved country.
+  useEffect(() => { if (loaded && origin) setNat(origin); }, [loaded, origin]);
 
   const base = SCHOLARSHIPS.filter((s) => (!level || s.levels.includes(level)) && (!host || s.hosts.includes(host)));
   const rank = { yes: 0, any: 0, check: 1 };
@@ -26,7 +30,7 @@ export default function ScholarshipFinder({ lang }) {
       <div className="sch-filters">
         <div className="field">
           <label htmlFor="nat">{st.nat}</label>
-          <select id="nat" value={nat} onChange={(e) => setNat(e.target.value)}>
+          <select id="nat" value={nat} onChange={(e) => { setNat(e.target.value); if (e.target.value) setOrigin(e.target.value); }}>
             <option value="">{st.natAny}</option>
             {(lang === "ar" ? ARAB_IDS : [...ARAB_IDS].sort((a, b) => ARAB[a].en.localeCompare(ARAB[b].en))).map((c) => (
               <option key={c} value={c}>{ARAB[c][lang]}</option>

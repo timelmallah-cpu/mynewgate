@@ -632,6 +632,13 @@ html[lang="en"] .cc-row .local-cur { text-align: right; }
 .k-extra { background: #fde8e6; color: #8a2a1d; }
 .k-uni { background: var(--sky); color: var(--navy); }
 .ec-tests.card { padding: 14px 16px; }
+.k-none { background: #eef0f3; color: var(--muted); font-weight: 600; }
+
+/* Visitor's country */
+.origin-home { margin: 14px 0; padding: 14px 18px; }
+.origin-pick label { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; font-weight: 700; color: var(--navy); }
+.origin-pick select { font: inherit; padding: 8px 12px; border: 1.5px solid var(--line); border-radius: 10px; background: #fff; min-width: 200px; max-width: 100%; }
+.origin-pick .meta { margin: 6px 0 0; }
 
 /* Study landing pages */
 .study-list small { display: block; color: var(--muted); }

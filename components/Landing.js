@@ -5,6 +5,7 @@ import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { COUNTRY_INFO } from "../lib/countryInfo";
 import Newsletter from "./Newsletter";
+import { OriginPicker } from "./Origin";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS } from "../lib/journey";
 import { SECTORS } from "../lib/ausbildungGuide";
@@ -48,6 +49,10 @@ export default function Landing({ lang }) {
             <li key={label}><b>{n(v)}</b><span>{label}</span></li>
           ))}
         </ul>
+      </section>
+
+      <section className="card origin-home" aria-label={lang === "ar" ? "بلدك" : "Your country"}>
+        <OriginPicker lang={lang} />
       </section>
 
       <ul className="promises">
