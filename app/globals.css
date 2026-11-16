@@ -993,3 +993,8 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .fd-table th a { font-weight: 600; }
 .fd-other h3 { margin-top: 0; }
 @media (max-width: 640px) { .fd-table { display: block; overflow-x: auto; } }
+.a30-list li { margin: 8px 0; }
+.a30-list small { display: block; color: var(--muted); }
+.a30-rules { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 10px 0 18px; }
+.a30-rule h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.a30-rule p { margin: 4px 0; }

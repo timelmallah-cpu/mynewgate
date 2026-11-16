@@ -10,7 +10,7 @@ import { CITIES } from "@/lib/cities";
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
   const paths = [
-    "/", "/quiz", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
+    "/", "/quiz", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy",
     ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
     ...programmes.map((p) => `/programme/${p.id}`),
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
