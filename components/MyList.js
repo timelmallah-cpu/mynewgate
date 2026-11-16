@@ -8,6 +8,7 @@ import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved, s
 import { ACC } from "../lib/accountText";
 import { fmtDate } from "./ScholarshipParts";
 import WhatsApp from "./WhatsApp";
+import { SITE_URL } from "../lib/site";
 
 const today = () => new Date().toISOString().slice(0, 10);
 const daysLeft = (iso) => Math.round((new Date(iso + "T12:00:00Z") - new Date(today() + "T12:00:00Z")) / 864e5);
@@ -43,7 +44,7 @@ function ics(list, lang) {
       "BEGIN:VEVENT", `UID:${it.k}-${day}@mynewgate`, `DTSTAMP:${stamp}`,
       `DTSTART;VALUE=DATE:${day}`, `DTEND;VALUE=DATE:${end.toISOString().slice(0, 10).replace(/-/g, "")}`,
       `SUMMARY:${esc(`${t.icsTitle}: ${it.title}`)}`,
-      `DESCRIPTION:${esc(`${it.sub}\n${it.text}\n${d.est ? t.estNote + "\n" : ""}https://bawabatalsafar.com${it.href}`)}`,
+      `DESCRIPTION:${esc(`${it.sub}\n${it.text}\n${d.est ? t.estNote + "\n" : ""}${SITE_URL}${it.href}`)}`,
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P14D", "END:VALARM",
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P3D", "END:VALARM",
       "END:VEVENT",

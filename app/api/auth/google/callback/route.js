@@ -4,6 +4,7 @@ import { T } from "@/lib/i18n";
 import { baseUrl, setSession } from "@/lib/account/http";
 import { accountsConfigured, normEmail, signInEmail, createSession } from "@/lib/account/store";
 import { googleConfigured, finish, GCOOKIE } from "@/lib/account/google";
+import { BASE } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,7 +15,7 @@ export async function GET(req) {
   const jar = await cookies();
   let st = null;
   try { st = JSON.parse(jar.get(GCOOKIE)?.value || "null"); } catch {}
-  jar.delete({ name: GCOOKIE, path: "/api/auth/google" });
+  jar.delete({ name: GCOOKIE, path: `${BASE}/api/auth/google` });
   const lang = st?.lang === "en" ? "en" : "ar";
   const back = (err) => Response.redirect(`${base}${T[lang].base}/login?err=${err}`, 303);
   if (!accountsConfigured() || !googleConfigured()) return back("off");

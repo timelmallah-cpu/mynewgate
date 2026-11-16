@@ -1,10 +1,12 @@
 // Bawabat Alsafar service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
-const V = "mng-v4";
-const OFFLINE = "/offline.html";
+const V = "mng-v5";
+// The study site is served under /study (basePath).
+const B = "/study";
+const OFFLINE = B + "/offline.html";
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, "/", "/icon-192.png?v=2"])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, B, B + "/icon-192.png?v=2"])).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", (e) => {
@@ -15,9 +17,9 @@ self.addEventListener("fetch", (e) => {
   const req = e.request;
   if (req.method !== "GET") return;
   const url = new URL(req.url);
-  if (url.origin !== self.location.origin || url.pathname.startsWith("/api/") || url.pathname.startsWith("/_vercel/")) return;
+  if (url.origin !== self.location.origin || url.pathname.startsWith(B + "/api/") || url.pathname.startsWith("/_vercel/")) return;
 
-  if (url.pathname.startsWith("/_next/static/") || (/\.(png|jpg|svg|woff2?)$/.test(url.pathname) && !/icon/.test(url.pathname))) {
+  if (url.pathname.startsWith(B + "/_next/static/") || (/\.(png|jpg|svg|woff2?)$/.test(url.pathname) && !/icon/.test(url.pathname))) {
     e.respondWith(caches.match(req).then((hit) => hit || fetch(req).then((res) => {
       if (res.ok) { const copy = res.clone(); caches.open(V).then((c) => c.put(req, copy)); }
       return res;
@@ -26,7 +28,7 @@ self.addEventListener("fetch", (e) => {
   }
 
   e.respondWith(fetch(req).then((res) => {
-    if (res.ok && (req.mode === "navigate" || url.pathname.startsWith("/data/"))) {
+    if (res.ok && (req.mode === "navigate" || url.pathname.startsWith(B + "/data/"))) {
       const copy = res.clone(); caches.open(V).then((c) => c.put(req, copy));
     }
     return res;

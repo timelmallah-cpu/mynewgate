@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { EMAIL_TEXT } from "../lib/emailText";
+import { BASE } from "../lib/site";
 
 const PURPOSES = ["question", "eligibility", "fees", "followup", "extension", "offer_accept", "offer_decline"];
 const LANGS = ["en", "de", "fr", "es", "it", "nl"];
@@ -37,7 +38,7 @@ export default function UniversityEmail({ lang }) {
     if (f.notes.trim().length < 15 || !f.university.trim()) { setErr(s.tooShort); return; }
     setErr(""); setBusy(true); setR(null);
     try {
-      const res = await fetch("/api/email-draft", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang }) });
+      const res = await fetch(`${BASE}/api/email-draft`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...f, lang }) });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) setErr(s.errors[d.error] || s.errors.failed);
       else {

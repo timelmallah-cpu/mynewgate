@@ -16,16 +16,17 @@ export default function sitemap() {
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
     ...VOC.map((v) => `/vocational/${v.code}`),
     ...SECTORS.map((x) => `/ausbildung/${x.slug}`),
-    ...LANDINGS.map((l) => `/study/${l.slug}`),
+    ...LANDINGS.map((l) => `/search/${l.slug}`),
     ...CITIES.map((c) => `/city/${c.slug}`),
   ];
   const en = (p) => `/en${p === "/" ? "" : p}`;
   const now = new Date();
+  const ar = (p) => (p === "/" ? "" : p);
   return paths.flatMap((p) => {
-    const languages = { ar: SITE_URL + p, en: SITE_URL + en(p) };
+    const languages = { ar: SITE_URL + ar(p), en: SITE_URL + en(p) };
     const priority = p === "/" ? 1 : p.startsWith("/programme/") ? 0.6 : 0.8;
     return [
-      { url: SITE_URL + p, lastModified: now, changeFrequency: "weekly", priority, alternates: { languages } },
+      { url: SITE_URL + ar(p), lastModified: now, changeFrequency: "weekly", priority, alternates: { languages } },
       { url: SITE_URL + en(p), lastModified: now, changeFrequency: "weekly", priority: priority - 0.1, alternates: { languages } },
     ];
   });

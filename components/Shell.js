@@ -29,7 +29,7 @@ function Mark() {
 // Footer links, grouped so the list stays readable on phones.
 const FOOT_GROUPS = [
   { ar: "ابحث وقارن", en: "Search and compare", links: [
-    ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/study", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
+    ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/search", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
     ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"],
   ] },
   { ar: "أدوات", en: "Tools", links: [

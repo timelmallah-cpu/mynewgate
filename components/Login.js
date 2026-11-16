@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { ACC } from "../lib/accountText";
+import { BASE } from "../lib/site";
 
 export default function Login({ lang }) {
   const a = ACC[lang];
@@ -17,14 +18,14 @@ export default function Login({ lang }) {
     const err = { consent: a.errConsent, off: a.errOff, limit: a.errLimit, fail: a.errFail, google: a.errGoogle, cancel: a.errCancel }[q.get("err")];
     if (err) setState({ s: "err", m: err });
   }, [a]);
-  const googleHref = `/api/auth/google/start?lang=${lang}&consent=1${next ? `&next=${encodeURIComponent(next)}` : ""}`;
+  const googleHref = `${BASE}/api/auth/google/start?lang=${lang}&consent=1${next ? `&next=${encodeURIComponent(next)}` : ""}`;
 
   async function submit(e) {
     e.preventDefault();
     if (!consent) return setState({ s: "err", m: a.errConsent });
     setState({ s: "busy" });
     try {
-      const r = await fetch("/api/auth/request", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, lang, next: next || undefined }) });
+      const r = await fetch(`${BASE}/api/auth/request`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, lang, next: next || undefined }) });
       const d = await r.json().catch(() => ({}));
       if (r.ok) return setState({ s: "sent", dev: d.devLink });
       const m = { email: a.errEmail, consent: a.errConsent, limit: a.errLimit, not_configured: a.errOff }[d.error] || a.errFail;

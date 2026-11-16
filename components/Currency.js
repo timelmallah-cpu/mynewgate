@@ -2,11 +2,12 @@
 // Shows euro amounts in the visitor's chosen currency. The choice is kept in this browser only.
 import { useEffect, useState } from "react";
 import { CURRENCIES } from "../lib/currency";
+import { BASE } from "../lib/site";
 
 const KEY = "mng-currency";
 const EVT = "mng-currency-change";
 let ratesPromise = null;
-const getRates = () => (ratesPromise ||= fetch("/api/rates").then((r) => (r.ok ? r.json() : null)).catch(() => null));
+const getRates = () => (ratesPromise ||= fetch(`${BASE}/api/rates`).then((r) => (r.ok ? r.json() : null)).catch(() => null));
 const readChoice = () => { try { return localStorage.getItem(KEY) || ""; } catch { return ""; } };
 
 function useCurrency() {

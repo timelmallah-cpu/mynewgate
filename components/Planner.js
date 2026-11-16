@@ -5,6 +5,7 @@ import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { PLAN_STEPS, PL_TEXT } from "../lib/plannerText";
 import { fmtDate } from "./ScholarshipParts";
+import { BASE, SITE_URL } from "../lib/site";
 
 const iso = (d) => d.toISOString().slice(0, 10);
 const minusWeeks = (isoDate, w) => { const d = new Date(isoDate + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() - w * 7); return iso(d); };
@@ -53,7 +54,7 @@ export default function Planner({ lang }) {
   const [start, setStart] = useState("");
 
   useEffect(() => {
-    fetch("/data/deadlines.json").then((r) => r.json()).then((d) => {
+    fetch(`${BASE}/data/deadlines.json`).then((r) => r.json()).then((d) => {
       setData(d);
       const pid = new URLSearchParams(window.location.search).get("id");
       if (pid && d.some((x) => String(x.id) === pid)) setId(pid);
@@ -85,7 +86,7 @@ export default function Planner({ lang }) {
       .map((x) => ({ ...x, date: minusWeeks(x.from === "deadline" ? dl : st, x.weeks) }));
   }, [dl, start]);
 
-  const url = prog ? `https://bawabatalsafar.com${t.base}/programme/${prog.id}` : "";
+  const url = prog ? `${SITE_URL}${t.base}/programme/${prog.id}` : "";
   const download = () => {
     const ev = steps.filter((x) => x.date >= todayIso()).map((x) => ({ key: x.key, date: x.date, title: s.steps[x.key][0], note: `${prog?.name || ""} - ${prog?.university || ""}\n${s.steps[x.key][1]}`, url }));
     const blob = new Blob([icsFile(ev, s.icsTitle)], { type: "text/calendar;charset=utf-8" });

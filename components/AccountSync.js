@@ -2,6 +2,7 @@
 // Keeps "My list" in this browser and in the account the same, for signed-in visitors only.
 import { useEffect } from "react";
 import { getSaved, replaceSaved, onSavedChange, signedIn } from "../lib/saved";
+import { BASE } from "../lib/site";
 
 export default function AccountSync() {
   useEffect(() => {
@@ -14,11 +15,11 @@ export default function AccountSync() {
       if (s === last) return;
       clearTimeout(timer);
       timer = setTimeout(() => {
-        fetch("/api/account", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ list }) })
+        fetch(`${BASE}/api/account`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ list }) })
           .then((r) => { if (r.ok) last = s; }).catch(() => {});
       }, 1200);
     };
-    fetch("/api/account", { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => {
+    fetch(`${BASE}/api/account`, { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => {
       if (!d?.user) return;
       const server = d.user.list || [];
       const local = getSaved();

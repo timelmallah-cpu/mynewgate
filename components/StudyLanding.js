@@ -21,7 +21,7 @@ export function landingMeta(slug, lang) {
   return pageMeta(lang, {
     title: `${s.titleN(l.title[lang], l.list.length)} | ${T[lang].brand}`,
     description: s.intro(l.list.length, c, fs.min !== null ? fmt(fs.min) : null, fs.min !== null ? fmt(fs.max) : null, fs.free),
-    path: `/study/${slug}`,
+    path: `/search/${slug}`,
   });
 }
 
@@ -61,7 +61,7 @@ export default function StudyLanding({ slug, lang }) {
         <>
           <h2>{s.related}</h2>
           <ul className="study-related">
-            {related.map((x) => <li key={x.slug}><Link href={`${t.base}/study/${x.slug}`}>{s.titleN(x.title[lang], x.list.length)}</Link></li>)}
+            {related.map((x) => <li key={x.slug}><Link href={`${t.base}/search/${x.slug}`}>{s.titleN(x.title[lang], x.list.length)}</Link></li>)}
           </ul>
         </>
       )}
@@ -79,7 +79,7 @@ export function StudyHub({ lang }) {
       <h1>{s.hub}</h1>
       <p className="lead">{s.hubLead}</p>
       <ul className="study-related">
-        {LANDINGS.map((x) => <li key={x.slug}><Link href={`${t.base}/study/${x.slug}`}>{s.titleN(x.title[lang], x.list.length)}</Link></li>)}
+        {LANDINGS.map((x) => <li key={x.slug}><Link href={`${t.base}/search/${x.slug}`}>{s.titleN(x.title[lang], x.list.length)}</Link></li>)}
       </ul>
     </>
   );

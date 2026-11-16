@@ -5,6 +5,7 @@ import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { COUNTRY_IDS, LEVEL_IDS } from "../lib/options";
 import { EC_TEXT } from "../lib/englishText";
+import { BASE } from "../lib/site";
 
 const RANGE = { ielts: [4, 9, 0.5], toefl: [30, 120, 1] };
 
@@ -19,7 +20,7 @@ export default function EnglishCheck({ lang }) {
   const [country, setCountry] = useState("any");
 
   useEffect(() => {
-    fetch(`/data/compare-${lang}.json`).then((r) => r.json()).then(setData).catch(() => setErr(true));
+    fetch(`${BASE}/data/compare-${lang}.json`).then((r) => r.json()).then(setData).catch(() => setErr(true));
     const q = new URLSearchParams(window.location.search);
     if (q.get("test") === "toefl") setTest("toefl");
     if (q.get("score")) setScore(q.get("score"));

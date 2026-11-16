@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { ACC } from "../lib/accountText";
+import { BASE } from "../lib/site";
 
 // The sign-in link opens this page with the token after "#". Signing in needs a button press,
 // so email link scanners that open the link don't use it up.
@@ -20,9 +21,9 @@ export default function LoginConfirm({ lang }) {
   async function go() {
     setState("busy");
     try {
-      const r = await fetch("/api/auth/confirm", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ t: tok }) });
+      const r = await fetch(`${BASE}/api/auth/confirm`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ t: tok }) });
       const d = await r.json().catch(() => ({}));
-      if (r.ok) { window.location.replace(d.next || `${base}/account`); return; }
+      if (r.ok) { window.location.replace(BASE + (d.next || `${base}/account`)); return; }
       setState(d.error === "not_configured" ? "off" : d.error === "limit" ? "limit" : "bad");
     } catch { setState("fail"); }
   }

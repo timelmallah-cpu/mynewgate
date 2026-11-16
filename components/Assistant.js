@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { T } from "../lib/i18n";
 import { ASK_TEXT } from "../lib/assistantText";
+import { BASE } from "../lib/site";
 
 export default function Assistant({ lang }) {
   const t = T[lang];
@@ -18,7 +19,7 @@ export default function Assistant({ lang }) {
   const feedback = (i, vote, report = false) => {
     const m = msgs[i];
     const question = msgs.slice(0, i).reverse().find((x) => x.role === "user")?.text || "";
-    fetch("/api/ask/feedback", {
+    fetch(`${BASE}/api/ask/feedback`, {
       method: "POST", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ vote, report, lang, ...(report ? { question, answer: m.text, sources: (m.sources || []).map((x) => x.url) } : {}) }),
     }).catch(() => {});
@@ -46,7 +47,7 @@ export default function Assistant({ lang }) {
     const history = msgs.map((m) => ({ role: m.role, text: m.text }));
     setMsgs((m) => [...m, { role: "user", text: q }]);
     try {
-      const r = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q, history, lang }) });
+      const r = await fetch(`${BASE}/api/ask`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q, history, lang }) });
       const d = await r.json().catch(() => ({}));
       if (!r.ok) { setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
       else {

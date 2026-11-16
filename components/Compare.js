@@ -6,6 +6,7 @@ import Flag from "../lib/Flag";
 import { getSaved } from "../lib/saved";
 import { POST_STUDY, PS_TEXT } from "../lib/postStudy";
 import { COSTS } from "../lib/costs";
+import { BASE } from "../lib/site";
 
 const S = {
   ar: {
@@ -47,7 +48,7 @@ export default function Compare({ lang }) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    fetch(`/data/compare-${lang}.json`).then((r) => r.json()).then(setData).catch(() => setErr(true));
+    fetch(`${BASE}/data/compare-${lang}.json`).then((r) => r.json()).then(setData).catch(() => setErr(true));
     const ids = getSaved().filter((k) => k.startsWith("p:")).map((k) => Number(k.slice(2)));
     setSaved(ids);
     const m = window.location.search.match(/[?&]ids=([\d,]+)/);

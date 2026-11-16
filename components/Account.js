@@ -5,6 +5,7 @@ import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { ACC, LEVEL_LABELS } from "../lib/accountText";
 import { getSaved } from "../lib/saved";
+import { BASE } from "../lib/site";
 
 const YEARS = [2026, 2027, 2028, 2029, 2030];
 
@@ -19,7 +20,7 @@ export default function Account({ lang }) {
   const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    fetch("/api/account", { cache: "no-store" }).then(async (r) => {
+    fetch(`${BASE}/api/account`, { cache: "no-store" }).then(async (r) => {
       const d = await r.json().catch(() => ({}));
       if (r.ok) { setUser(d.user); setP(d.user.profile || {}); }
       else { setUser(null); if (d.error === "not_configured") setErr(a.errOff); }
@@ -29,15 +30,15 @@ export default function Account({ lang }) {
   async function saveProfile(e) {
     e.preventDefault();
     setSaveState("busy");
-    const r = await fetch("/api/account", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile: p, lang }) }).catch(() => null);
+    const r = await fetch(`${BASE}/api/account`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ profile: p, lang }) }).catch(() => null);
     if (r?.ok) { const d = await r.json(); setP(d.user.profile); setSaveState("ok"); } else setSaveState("err");
   }
   async function logout() {
-    await fetch("/api/auth/logout", { method: "POST" }).catch(() => {});
-    window.location.replace(t.base || "/");
+    await fetch(`${BASE}/api/auth/logout`, { method: "POST" }).catch(() => {});
+    window.location.replace(BASE + (t.base || "/"));
   }
   async function remove() {
-    const r = await fetch("/api/account", { method: "DELETE" }).catch(() => null);
+    const r = await fetch(`${BASE}/api/account`, { method: "DELETE" }).catch(() => null);
     if (r?.ok) { setGone(true); setUser(null); } else setErr(a.errFail);
   }
   const toggleCountry = (c) => setP((x) => {
@@ -98,7 +99,7 @@ export default function Account({ lang }) {
         <h2>{a.dataTitle}</h2>
         <p>{a.dataLead}</p>
         <div className="acc-actions">
-          <a className="btn ghost" href="/api/account/export" download>{a.export}</a>
+          <a className="btn ghost" href={`${BASE}/api/account/export`} download>{a.export}</a>
           {!del && <button className="btn ghost acc-danger" onClick={() => setDel(true)}>{a.del}</button>}
         </div>
         {del && (

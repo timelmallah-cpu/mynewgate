@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { REVIEW_TEXT, CV_REVIEW_TEXT } from "../lib/reviewText";
+import { BASE } from "../lib/site";
 
 const ICON = { good: "✓", improve: "!", missing: "✗" };
 
@@ -24,7 +25,7 @@ export default function LetterReview({ lang, kind = "letter" }) {
     if (letter.trim().length < min) { setErr(s.tooShort); return; }
     setErr(""); setBusy(true); setR(null);
     try {
-      const res = await fetch(cv ? "/api/cv-review" : "/api/letter-review", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ letter, programme, wordLimit: limit || null, lang }) });
+      const res = await fetch(`${BASE}${cv ? "/api/cv-review" : "/api/letter-review"}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ letter, programme, wordLimit: limit || null, lang }) });
       const d = await res.json().catch(() => ({}));
       if (!res.ok) setErr(s.errors[d.error] || s.errors.failed);
       else { setR(d); setTimeout(() => document.getElementById(`${kind}-review-result`)?.scrollIntoView({ behavior: "smooth", block: "start" }), 50); }
