@@ -116,6 +116,8 @@ function toAnnual(v, t, y) {
 }
 function annualFee(t, y) {
   if (!t || t.startsWith(NP)) return null;
+  // A whole-programme fee with no published duration cannot be turned into a yearly figure.
+  if (/للبرنامج كاملاً/.test(t) && !y) return null;
   if (/^لا توجد/.test(t)) return 0;
   if (/فئة هذا البرنامج للتحقق|مثال من|يُحسب حسب البرنامج/.test(t)) return null;
   // A published range ("800 - 3,000 يورو"): the lower figure here, the upper one in annualFeeMax.
@@ -141,7 +143,7 @@ function annualFeeMax(t, y) {
 function feePeriod(t, y) {
   if (!t || t.startsWith(NP) || /^لا توجد/.test(t)) return null;
   if (/للفصل/.test(t)) return "semester";
-  if (/للبرنامج كاملاً/.test(t)) return "programme";
+  if (/للبرنامج كاملاً/.test(t)) return y ? "programme" : null;
   if (/سنوي|للسنة|للسنتين|السنة|سنة|لكل 60|ساعة معتمدة|\(20\d\d\/\d\d/.test(t) || (y && y <= 1)) return "year";
   return null;
 }

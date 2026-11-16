@@ -71,7 +71,7 @@ export default function Programme({ id, lang }) {
       </header>
       <dl className="prog-key">
         <div>
-          <dt>{t.keyFee}</dt>
+          <dt>{p.feePerYear === null && /للبرنامج كاملاً/.test(raw.feeText || "") ? (lang === "ar" ? "الرسوم" : "Fees") : t.keyFee}</dt>
           <dd>{known ? <><span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span><Local eur={p.feePerYear} lang={lang} /></> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
         </div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
