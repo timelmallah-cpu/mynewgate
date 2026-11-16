@@ -24,6 +24,18 @@ function Mark() {
   );
 }
 
+// The study section's mark: the same gate with an open book inside.
+function StudyMark() {
+  return (
+    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+      <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
+      <rect x="10" y="-1" width="6" height="6" rx="1" transform="rotate(45 13 2)" fill="#e9b949" />
+      <path d="M6.2 26.5V19c2.4-1.3 4.8-1.3 6.8 0 2-1.3 4.4-1.3 6.8 0v7.5c-2.4-1.3-4.8-1.3-6.8 0-2-1.3-4.4-1.3-6.8 0z" fill="#e9b949" />
+      <path d="M13 19v7.5" stroke="#13234b" strokeWidth="1.2" />
+    </svg>
+  );
+}
+
 // Root <html> for one language. Each language has its own root layout so
 // lang/dir are correct in the server-rendered HTML.
 // Footer links, grouped so the list stays readable on phones.
@@ -54,7 +66,7 @@ export default function Shell({ lang, children }) {
       <body>
         <header className="top">
           <div className="top-in">
-            <Link href={t.base || "/"} className="brand"><Mark />{t.brand}</Link>
+            <Link href={t.base || "/"} className="brand"><StudyMark />{t.brand}</Link>
             <nav className="topnav" aria-label={t.base ? "Main" : "الرئيسية"}>
               <Link className="toplink" href={`${t.base}/quiz`}>{MENU[lang].programmes}</Link>
               <Link className="toplink" href={`${t.base}/scholarships`}>{MENU[lang].scholarships}</Link>

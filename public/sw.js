@@ -1,12 +1,12 @@
 // Bawabat AlDirasa service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
-const V = "mng-v5";
+const V = "mng-v6";
 // The study site is served under /study (basePath).
 const B = "/study";
 const OFFLINE = B + "/offline.html";
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, B, B + "/icon-192.png?v=2"])).then(() => self.skipWaiting()));
+  e.waitUntil(caches.open(V).then((c) => c.addAll([OFFLINE, B, B + "/icon-192.png?v=3"])).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", (e) => {
