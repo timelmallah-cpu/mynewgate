@@ -4,7 +4,8 @@ import Link from "next/link";
 import deadlines from "../lib/deadlines.json";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS } from "../lib/scholarships";
-import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved } from "../lib/saved";
+import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved, signedIn } from "../lib/saved";
+import { ACC } from "../lib/accountText";
 import { fmtDate } from "./ScholarshipParts";
 import WhatsApp from "./WhatsApp";
 
@@ -74,8 +75,10 @@ export default function MyList({ lang }) {
   const [saved, setSaved] = useState(null);
   const [incoming, setIncoming] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [si, setSi] = useState(true);
   useEffect(() => {
     setSaved(getSaved());
+    setSi(signedIn());
     const check = () => { const sh = readShared(); if (sh) setIncoming(items(sh, lang).map((x) => x.k)); };
     check();
     window.addEventListener("hashchange", check);
@@ -97,6 +100,7 @@ export default function MyList({ lang }) {
     <>
       <h1>{m.title}</h1>
       <p className="lead">{m.lead}</p>
+      {!si && <p className="mylist-sync"><Link href={`${t.base}/login?next=${t.base}/my-list`}>{ACC[lang].syncHint}</Link></p>}
       {incoming && (
         <div className="share-in">
           {incoming.length === 0 ? (

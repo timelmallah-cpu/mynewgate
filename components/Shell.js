@@ -4,6 +4,7 @@ import { T } from "../lib/i18n";
 import LangSwitch from "./LangSwitch";
 import PwaRegister from "./PwaRegister";
 import AskFab from "./AskFab";
+import AccountSync from "./AccountSync";
 import SiteMenu from "./SiteMenu";
 import { MENU } from "../lib/homeText";
 import "@fontsource-variable/readex-pro/index.css";
@@ -42,7 +43,7 @@ const FOOT_GROUPS = [
     ["/glossary", "قاموس الكلمات", "Glossary"],
   ] },
   { ar: "عن الموقع", en: "About", links: [
-    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "أعلن معنا", "Advertise"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
+    ["/contact", "تواصل معنا", "Contact us"], ["/advertise", "أعلن معنا", "Advertise"], ["/account", "حسابي", "My account"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"],
   ] },
 ];
 
@@ -69,6 +70,9 @@ export default function Shell({ lang, children }) {
               <Link className="top-list" href={`${t.base}/my-list`} aria-label={MENU[lang].list} title={MENU[lang].list}>
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 3h10v18l-5-4-5 4z" /></svg>
               </Link>
+              <Link className="top-list" href={`${t.base}/account`} aria-label={MENU[lang].account} title={MENU[lang].account}>
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
+              </Link>
               <LangSwitch lang={lang} label={t.switchLabel} />
             </div>
           </div>
@@ -92,6 +96,7 @@ export default function Shell({ lang, children }) {
         <Analytics />
         <PwaRegister />
         <AskFab lang={lang} />
+        <AccountSync />
       </body>
     </html>
   );

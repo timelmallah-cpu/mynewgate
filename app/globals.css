@@ -999,3 +999,32 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .a30-rule h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .a30-rule p { margin: 4px 0; }
 .ausb-find { display: inline-block; margin-top: 4px; font-size: .82rem; font-weight: 700; white-space: nowrap; }
+
+/* Accounts: sign-in and account page */
+.acc { max-width: 640px; margin: 0 auto; padding: 8px 0 24px; }
+.acc .lead { color: var(--muted); }
+.acc-box { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; margin: 16px 0; }
+.acc-box h2 { font-size: 1.15rem; margin: 0 0 6px; }
+.acc-form { display: grid; gap: 10px; }
+.acc-form label { font-weight: 600; }
+.acc-form input:not([type="checkbox"]), .acc-form select {
+  font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); width: 100%;
+}
+.acc-form input:focus-visible, .acc-form select:focus-visible { outline: 2px solid var(--navy); outline-offset: 1px; }
+.acc-form .btn { justify-self: start; }
+.acc-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400 !important; }
+.acc-check input { margin-top: 6px; width: 18px; height: 18px; flex: none; }
+.acc-countries { border: 0; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 4px 12px; }
+.acc-countries legend { font-weight: 600; margin-bottom: 6px; padding: 0; }
+.acc-note { color: var(--muted); font-size: .95rem; margin: 0; }
+.acc-who { color: var(--muted); overflow-wrap: anywhere; }
+.acc-err { color: var(--warn); background: var(--warn-soft); padding: 8px 12px; border-radius: 10px; margin: 0; }
+.acc-dev { overflow-wrap: anywhere; font-size: .9rem; }
+.acc-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+.acc-danger { color: #a3271c; }
+.acc-danger-solid { background: #a3271c; }
+.acc-danger-solid:hover { background: #7e1d15; }
+.acc-confirm { border-top: 1px solid var(--line); margin-top: 12px; padding-top: 12px; }
+.top-acc { display: inline-flex; align-items: center; color: var(--navy); padding: 6px; border-radius: 10px; }
+.top-acc:hover { background: var(--sky); }
+.mylist-sync { color: var(--muted); font-size: .95rem; }
