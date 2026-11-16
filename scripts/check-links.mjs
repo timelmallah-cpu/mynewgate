@@ -6,6 +6,8 @@ import { join } from "node:path";
 
 const files = [
   ...readdirSync("lib").filter((f) => /\.(js|json)$/.test(f)).map((f) => join("lib", f)),
+  // Per-origin visa routes and certificate rules.
+  ...["lib/visa", "lib/cert"].flatMap((d) => readdirSync(d).filter((f) => f.endsWith(".js")).map((f) => join(d, f))),
   "data/university_photos.json", "data/programme_links.csv",
 ];
 const where = new Map();
