@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EgyptOnlyNote } from "./Origin";
+import LegalisationOrigin from "./LegalisationOrigin";
 import { T } from "../lib/i18n";
 import { LEGAL_TEXT, LEGAL_SRC, LEGAL_REVIEWED, OFFICES_URL } from "../lib/legalisationText";
 
@@ -7,7 +8,7 @@ export default function Legalisation({ lang }) {
   const t = T[lang];
   const s = LEGAL_TEXT[lang];
   return (
-    <>
+    <LegalisationOrigin lang={lang}>
       <h1>{s.title}</h1>
       <EgyptOnlyNote lang={lang} />
       <p className="lead">{s.lead}</p>
@@ -70,6 +71,6 @@ export default function Legalisation({ lang }) {
       <ul className="note">{LEGAL_SRC.map((x) => <li key={x.url}><a href={x.url} target="_blank" rel="noopener noreferrer"><bdi>{lang === "ar" ? x.name : x.en}</bdi></a></li>)}</ul>
       <p className="note">{s.disclaimer}</p>
       <p className="note">{s.reviewed}: {LEGAL_REVIEWED}</p>
-    </>
+    </LegalisationOrigin>
   );
 }
