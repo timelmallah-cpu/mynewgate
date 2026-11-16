@@ -40,6 +40,11 @@ for (const c of Object.keys(PHD_CODE)) {
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "doctorate", _id: `d-${PHD_CODE[c]}-${r["#"]}` })));
 }
 
+// Weekly review (docs/weekly-programme-review.md): per-programme review dates and closed programmes.
+const REVIEWED_AT = existsSync("data/checks/reviewed.json") ? JSON.parse(readFileSync("data/checks/reviewed.json", "utf8")) : {};
+const RETIRED = existsSync("data/checks/retired.json") ? JSON.parse(readFileSync("data/checks/retired.json", "utf8")) : {};
+for (let i = rows.length - 1; i >= 0; i--) if (RETIRED[String(rows[i]._id)]) rows.splice(i, 1);
+
 const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt" };
 // Economics degrees that were first filed under business or data science (ids stay the same).
 const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
@@ -207,7 +212,7 @@ const out = rows.map((r) => {
     livingMonthly: monthlyLiving(r["متوسط تكلفة المعيشة الشهرية في المدينة"]),
     housing: r["السكن الجامعي / المساعدة في السكن"],
     source: r["رابط المصدر"],
-    reviewed: r["تاريخ المراجعة"],
+    reviewed: REVIEWED_AT[String(r._id)] || r["تاريخ المراجعة"],
     status: r["حالة التحقق"],
     en: {
       countryLabel: en(r["الدولة"]), fieldLabel: en(r["التخصص"]), city: r["المدينة"],

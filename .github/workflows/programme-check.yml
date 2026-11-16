@@ -1,0 +1,24 @@
+name: Programme check
+# Weekly, Saturday early morning UK time. The weekly AI review reads the newest report of this workflow.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 2 * * 6"
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+      - run: npm install --no-save unpdf
+      - run: npm run data
+      - run: node scripts/check-programmes.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: programme-check
+          path: programme-check.*
+          retention-days: 60
