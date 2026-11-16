@@ -3,8 +3,8 @@ import { BASE } from "@/lib/site";
 // Web app manifest: lets phones install the site like an app (Add to Home Screen).
 export default function manifest() {
   return {
-    name: "بوابة السفر | Bawabat AlSafar",
-    short_name: "بوابة السفر",
+    name: "بوابة الدراسة | Bawabat AlDirasa",
+    short_name: "بوابة الدراسة",
     description: "الدراسة في أوروبا للطلاب العرب: برامج ومنح وأدوات من المصادر الرسمية.",
     start_url: `${BASE}/?source=app`,
     scope: `${BASE}/`,
