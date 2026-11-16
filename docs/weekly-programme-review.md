@@ -19,7 +19,7 @@ Two parts keep the programme catalogue current:
 2. Get the newest report:
    `gh run list --workflow=programme-check.yml -L1 --json databaseId,conclusion,createdAt`
    If it is older than 3 days or failed, start it (`gh workflow run programme-check.yml`), wait until it finishes, then
-   `gh run download <id> -n programme-check -D /tmp/pc`.
+   `gh run download <id> -n programme-check -D /tmp/pc`. If downloading artifacts is blocked, read the same report from the log: `gh run view <id> --log` (the line starting `FLAGGED_JSON` lists every flagged programme).
 3. Work list, at most 50 programmes:
    - every `fee_missing`, `broken` and `moved` programme (programmes sharing one source page are checked together);
    - then up to 10 `unreadable` ones, oldest `reviewed` first;

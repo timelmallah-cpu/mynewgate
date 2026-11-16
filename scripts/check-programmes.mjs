@@ -107,4 +107,6 @@ const md = [
 ].join("\n");
 writeFileSync("programme-check.md", md);
 if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, md + "\n");
-console.log(md.split("\n").slice(0, 7).join("\n"));
+// Full report in the log too: the review sandbox may not be able to download artifacts (gh run view --log works).
+console.log(md);
+console.log("FLAGGED_JSON " + JSON.stringify(flagged.map(({ id, issue, detail }) => ({ id, issue, detail }))));
