@@ -5,13 +5,15 @@ import Flag from "../lib/Flag";
 import { CC_TEXT } from "../lib/countriesText";
 import { Local, CurrencyPicker } from "./Currency";
 
+const PER_WEEK = { week: 1, month: 12 / 52, day: 5, year: 1 / 52 };
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 // Column -> value used for sorting, and whether bigger is better (sorted first).
 const COLS = [
   { key: "fee", val: (r, lv) => r.fee[lv].med, desc: false },
   { key: "living", val: (r) => r.living, desc: false },
   { key: "proof", val: (r) => r.proof, desc: false },
-  { key: "work", val: (r) => (r.hours === null ? null : r.hours), desc: true },
+  // Sorted by the weekly equivalent, shown in the source's own unit.
+  { key: "work", val: (r) => (r.hours === null ? null : r.hours * PER_WEEK[r.per || "week"]), desc: true },
   { key: "after", val: (r) => r.months, desc: true },
 ];
 
@@ -82,7 +84,7 @@ export default function CountriesTable({ lang, rows, names }) {
               </td>
               <td data-label={s.living}><span>{r.living === null ? s.na : <>{s.eur(fmt(r.living))}<Local eur={r.living} lang={lang} /></>}</span></td>
               <td data-label={s.proof}><span>{r.proof === null ? s.na : <>{s.eur(fmt(r.proof))}<Local eur={r.proof} lang={lang} /></>}{r.proofCheck ? chk : ""}</span></td>
-              <td data-label={s.work}><span><a href={`#cc-${r.c}`}>{s.hours(r.hours)}</a>{r.workCheck ? chk : ""}</span></td>
+              <td data-label={s.work}><span><a href={`#cc-${r.c}`}>{s.hours(r.hours, r.per)}</a>{r.workCheck ? chk : ""}</span></td>
               <td data-label={s.after}>{r.months === null ? s.na : s.months(r.months)}{r.afterCheck ? chk : ""}</td>
             </tr>
           ))}

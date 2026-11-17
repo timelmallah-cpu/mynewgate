@@ -5,6 +5,7 @@ import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, eligibility } from "../lib/scholarships";
 import { COUNTRY_IDS } from "../lib/options";
 import { Hosts, nextDeadline, fmtDate, KindTag } from "./ScholarshipParts";
+const TODAY = new Date().toISOString().slice(0, 10);
 import { useOrigin, setOrigin } from "./Origin";
 
 export default function ScholarshipFinder({ lang }) {
@@ -59,8 +60,9 @@ export default function ScholarshipFinder({ lang }) {
 
       <div className="sch-list">
         {shown.map(({ s, e }) => {
-          const d = nextDeadline(s);
-          const rough = d.kind === "expected" || d.kind === "varies";
+          // Every upcoming deadline, each named by what it is for (a programme deadline is not the scholarship's).
+          const up = [...s.deadlines].sort((a, b) => a.date.localeCompare(b.date)).filter((x) => x.date >= TODAY);
+          const ds = up.length ? up : [nextDeadline(s)];
           return (
             <Link key={s.id} className="sch" href={`${t.base}/scholarships/${s.id}`}>
               <span className="sch-type">{st.types[s.type]} · {s.levels.map((l) => st.levels[l]).join(" / ")}</span>
@@ -68,7 +70,11 @@ export default function ScholarshipFinder({ lang }) {
               <span className="where"><Hosts s={s} lang={lang} /></span>
               <span className="sum">{s.summary[lang]}</span>
               <span className="sch-foot">
-                <span><b>{t.keyDeadline}:</b> {fmtDate(d.date, lang, rough)} <KindTag kind={d.kind} lang={lang} /></span>
+                {ds.map((d) => (
+                  <span key={d.date} className="sch-dl">
+                    <b>{d.step ? st.stepsShort[d.step] : t.keyDeadline}:</b> {fmtDate(d.date, lang, d.kind === "expected" || d.kind === "varies")} <KindTag kind={d.kind} lang={lang} />
+                  </span>
+                ))}
                 {e === "yes" && <span className="elig yes">{st.yes}</span>}
                 {e === "check" && <span className="elig check">{st.check}</span>}
               </span>

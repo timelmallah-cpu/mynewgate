@@ -2,7 +2,7 @@ import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, EXCLUDED, SCHOLARSHIPS_REVIEWED } from "../lib/scholarships";
 import ScholarshipFinder from "./ScholarshipFinder";
-import { fmtDate, KindTag } from "./ScholarshipParts";
+import { fmtDate, KindTag, StepTag } from "./ScholarshipParts";
 
 export function ScamBox({ lang }) {
   const st = T[lang].sch;
@@ -38,6 +38,7 @@ export default function Scholarships({ lang }) {
                 <span className="when">{fmtDate(d.date, lang, rough)}</span>
                 <span>
                   <Link href={`${t.base}/scholarships/${s.id}`}>{s.name[lang]}</Link>
+                  <StepTag step={d.step} lang={lang} />
                   <span className="what">{d.label[lang]}</span>
                   <KindTag kind={d.kind} lang={lang} />
                 </span>

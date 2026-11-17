@@ -26,7 +26,7 @@ function items(saved, lang) {
     }
     const s = SCHOLARSHIPS.find((x) => x.id === id);
     if (!s) return null;
-    const ds = s.deadlines.filter((d) => d.date >= now).map((d) => ({ d: d.date, est: d.kind !== "official" }));
+    const ds = s.deadlines.filter((d) => d.date >= now).map((d) => ({ d: d.date, est: d.kind !== "official", step: d.step ? t.sch.stepsShort[d.step] : null }));
     return { k, title: s.name[lang], sub: s.funder[lang], href: `${t.base}/scholarships/${s.id}`, text: s.deadlines.map((d) => d.label[lang]).join(" / "), next: ds[0], dates: ds };
   }).filter(Boolean).sort((a, b) => (a.next?.d || "9999").localeCompare(b.next?.d || "9999"));
 }
@@ -43,7 +43,7 @@ function ics(list, lang) {
     ev.push([
       "BEGIN:VEVENT", `UID:${it.k}-${day}@mynewgate`, `DTSTAMP:${stamp}`,
       `DTSTART;VALUE=DATE:${day}`, `DTEND;VALUE=DATE:${end.toISOString().slice(0, 10).replace(/-/g, "")}`,
-      `SUMMARY:${esc(`${t.icsTitle}: ${it.title}`)}`,
+      `SUMMARY:${esc(`${t.icsTitle}: ${it.title}${d.step ? ` (${d.step})` : ""}`)}`,
       `DESCRIPTION:${esc(`${it.sub}\n${it.text}\n${d.est ? t.estNote + "\n" : ""}${SITE_URL}${it.href}`)}`,
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P14D", "END:VALARM",
       "BEGIN:VALARM", "ACTION:DISPLAY", `DESCRIPTION:${esc(it.title)}`, "TRIGGER:-P3D", "END:VALARM",
@@ -152,6 +152,7 @@ export default function MyList({ lang }) {
                       <>
                         <b>{left === 0 ? m.today : m.daysLeft(left)}</b>
                         <span>{fmtDate(it.next.d, lang)}</span>
+                        {it.next.step && <span className="step">{it.next.step}</span>}
                         {it.next.est && <span className="kind kind-expected">{m.est}</span>}
                       </>
                     ) : (

@@ -20,6 +20,7 @@ export function countryRows() {
       proof: COSTS[c]?.proofMonthly ?? null,
       proofCheck: !!COSTS[c]?.proofCheck,
       hours: STUDY_WORK[c]?.hours ?? null,
+      per: STUDY_WORK[c]?.per || "week",
       workCheck: !!STUDY_WORK[c]?.check,
       months: POST_STUDY[c]?.months ?? null,
       afterCheck: !!POST_STUDY[c]?.check,

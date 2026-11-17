@@ -1148,3 +1148,8 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .el-checks li { border: 0; }
 .el-countries .chip { font: inherit; font-weight: 600; background: #fff; border: 0; padding: 7px 13px; }
 .el-countries .chip.on { background: var(--navy); color: #fff; }
+/* What a scholarship deadline is for */
+.step { display: inline-block; font-size: .8rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #eef2f8; color: var(--navy); margin-inline-end: 4px; }
+.step-admission { background: #fff4dc; color: #7a5200; }
+.step-scholarship { background: #e3f3ea; color: #1f5e3a; }
+.sch-foot .sch-dl { display: block; }

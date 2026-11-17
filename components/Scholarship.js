@@ -3,7 +3,7 @@ import Link from "@/components/Link";
 import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, SCHOLARSHIPS_REVIEWED } from "../lib/scholarships";
-import { Hosts, fmtDate, KindTag } from "./ScholarshipParts";
+import { Hosts, fmtDate, KindTag, StepTag } from "./ScholarshipParts";
 import { ScamBox } from "./Scholarships";
 import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
@@ -58,7 +58,7 @@ export default function Scholarship({ id, lang }) {
           <div><dt>{st.conditions}</dt><dd><ul>{s.conditions[lang].map((x, i) => <li key={i}>{x}</li>)}</ul></dd></div>
           <div>
             <dt>{st.deadlinesTitle}</dt>
-            <dd><ul>{s.deadlines.map((d, i) => <li key={i}>{d.label[lang]} <KindTag kind={d.kind} lang={lang} /></li>)}</ul><AddToCalendar k={`s-${s.id}`} lang={lang} /></dd>
+            <dd><ul>{s.deadlines.map((d, i) => <li key={i}><StepTag step={d.step} lang={lang} /> {d.label[lang]} <KindTag kind={d.kind} lang={lang} /></li>)}</ul><AddToCalendar k={`s-${s.id}`} lang={lang} /></dd>
           </div>
           <div><dt>{st.language}</dt><dd>{s.language[lang]}</dd></div>
           {s.hostsNote && <div><dt>{st.study}</dt><dd>{s.hostsNote[lang]}</dd></div>}

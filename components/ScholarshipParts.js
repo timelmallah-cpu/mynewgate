@@ -29,6 +29,12 @@ export function Hosts({ s, lang }) {
   );
 }
 
+// What a deadline is for: applying to the programme, applying for the scholarship, or one application for both.
+export function StepTag({ step, lang }) {
+  if (!step) return null;
+  return <span className={`step step-${step}`}>{T[lang].sch.steps[step]}</span>;
+}
+
 export function KindTag({ kind, lang }) {
   return <span className={`kind kind-${kind}`}>{T[lang].sch.kinds[kind]}</span>;
 }
