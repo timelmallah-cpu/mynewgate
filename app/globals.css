@@ -1123,3 +1123,8 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .app-manual { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; align-items: end; }
 .app-manual label { display: grid; gap: 4px; font-size: .92rem; color: var(--muted); }
 .btn.track.on { border-color: var(--gold); }
+/* Header sign-in / account button (visible on phones too) */
+.top-acc { display: inline-flex; align-items: center; justify-content: center; min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--navy); color: var(--navy); background: var(--card); font-weight: 600; font-size: .92rem; text-decoration: none; white-space: nowrap; }
+.top-acc:hover { background: var(--sky); }
+.top-acc.in { width: 38px; padding: 0; border-color: var(--line); }
+@media (max-width: 400px) { .top-acc { padding: 0 11px; font-size: .88rem; } }

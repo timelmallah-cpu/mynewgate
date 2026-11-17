@@ -1,3 +1,4 @@
+import TopAccount from "./TopAccount";
 import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import { T } from "../lib/i18n";
@@ -82,9 +83,7 @@ export default function Shell({ lang, children }) {
               <Link className="top-list" href={`${t.base}/my-list`} aria-label={MENU[lang].list} title={MENU[lang].list}>
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 3h10v18l-5-4-5 4z" /></svg>
               </Link>
-              <Link className="top-list" href={`${t.base}/account`} aria-label={MENU[lang].account} title={MENU[lang].account}>
-                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4" /><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg>
-              </Link>
+              <TopAccount lang={lang} base={t.base} label={MENU[lang].account} />
               <LangSwitch lang={lang} label={t.switchLabel} />
             </div>
           </div>
