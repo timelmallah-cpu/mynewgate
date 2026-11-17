@@ -288,10 +288,10 @@ add("eng", "Renewable Energy Systems (RES)", "Technische Hochschule Ingolstadt",
     ("B2 (IELTS Academic 5.5 أو TOEFL iBT 72)", "B2 (IELTS Academic 5.5 or TOEFL iBT 72)"),
     ("بكالوريوس 210 ساعة معتمدة في هندسة الطاقة أو الميكانيكا أو الصناعية أو الكهرباء أو المدنية، مع خبرة في مجال الطاقة. أصحاب 180 ساعة قد تُحسب لهم 30 ساعة مقابل خبرة عملية. يُنصح بتعلم الألمانية للتدريب العملي",
      "Bachelor's of 210 ECTS in energy, mechanical, industrial, electrical or civil engineering with energy-related experience. With 180 ECTS, qualified work experience may count for 30 ECTS. Learning German is advised for internships"),
-    ("uni-assist أولاً (للتقييم المبدئي) ثم موقع الجامعة", "uni-assist first (preliminary review), then the university website"),
+    ("uni-assist أولاً للحصول على التقييم المبدئي VPD، ثم التقديم به على بوابة PRIMUSS في الجامعة", "uni-assist first for the preliminary review (VPD), then apply with it on the university's PRIMUSS portal"),
     ("حوالي 950 - 1,200 يورو (مجموع البنود المنشورة: سكن 500 - 650، أكل 200 - 300، تأمين صحي 150 وغيرها)", "About €950 - 1,200 (sum of the published items: housing €500 - 650, food €200 - 300, health insurance €150 and others)"),
     ("لا: لا يوجد سكن طلابي تابع للجامعة، وابدأ البحث مبكراً بميزانية 500 يورو على الأقل", "No: the university has no halls; start early with a budget of at least €500"),
-    "https://www.thi.de/en/studies/application/master-application/", ("صفحة التقديم في الجامعة", "University application page"))
+    "https://www.thi.de/en/studies/application/masterapplication-from-abroad/", ("صفحة التقديم من الخارج في الجامعة", "University page for applying from abroad"))
 
 add("eng", "Advanced Manufacturing - Mechanical Engineering and Production", "Chemnitz University of Technology", "Chemnitz", 7612, MSC, S4, FREE,
     ("حوالي 340.50 يورو", "About €340.50"),
