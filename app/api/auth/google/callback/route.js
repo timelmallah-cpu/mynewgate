@@ -1,7 +1,7 @@
 // Google sends the visitor back here. Creates the account on first sign-in, then opens the account page.
 import { cookies } from "next/headers";
 import { T } from "@/lib/i18n";
-import { baseUrl, setSession } from "@/lib/account/http";
+import { baseUrl, setSession, clientIp } from "@/lib/account/http";
 import { accountsConfigured, normEmail, signInEmail, createSession } from "@/lib/account/store";
 import { googleConfigured, finish, GCOOKIE } from "@/lib/account/google";
 import { BASE } from "@/lib/site";
@@ -24,7 +24,9 @@ export async function GET(req) {
   try {
     const email = normEmail(await finish({ code, verifier: st.verifier, redirectUri: `${base}/api/auth/google/callback` }));
     if (!email) return back("google");
-    const { uid } = await signInEmail(email, lang);
+    const r = await signInEmail(email, lang, clientIp(req));
+    if (r.limited) return back("limit");
+    const { uid } = r;
     await setSession(await createSession(uid));
     return Response.redirect(`${base}${st.next || `${T[lang].base}/account`}`, 303);
   } catch (e) {

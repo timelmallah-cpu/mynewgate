@@ -14,7 +14,9 @@ export async function POST(req) {
     if (!(await allow(`cf:${clientIp(req)}`, 20, 3600))) return res({ error: "limit" }, 429);
     const tok = await takeLoginToken(b?.t);
     if (!tok) return res({ error: "invalid" }, 400);
-    const { uid, created } = await signInEmail(tok.email, tok.lang);
+    const r = await signInEmail(tok.email, tok.lang, clientIp(req));
+    if (r.limited) return res({ error: "limit" }, 429);
+    const { uid, created } = r;
     await setSession(await createSession(uid));
     return res({ ok: true, created, next: tok.next || null });
   } catch (e) {
