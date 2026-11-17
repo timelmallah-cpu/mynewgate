@@ -27,8 +27,8 @@ const read = (f) => parse(readFileSync(f, "utf8").replace(/^\uFEFF/, ""), { colu
 // Master's: one concatenated file, numeric ids (kept stable for existing URLs).
 const rows = read("data/programmes/all_programmes.csv").map((r) => ({ ...r, _level: "master", _id: Number(r["#"]) }));
 // Bachelor's (incl. long-cycle medicine): one file per country, ids "b-<country>-<n>".
-const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy", "bulgaria", "czechia", "austria", "finland", "france", "portugal", "ireland", "denmark", "croatia", "slovakia", "cyprus", "malta"];
-const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it", bulgaria: "bg", czechia: "cz", austria: "at", finland: "fi", france: "fr", portugal: "pt", ireland: "ie", denmark: "dk", croatia: "hr", slovakia: "sk", cyprus: "cy", malta: "mt" };
+const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy", "bulgaria", "czechia", "austria", "finland", "france", "portugal", "ireland", "denmark", "croatia", "slovakia", "cyprus", "malta", "norway"];
+const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it", bulgaria: "bg", czechia: "cz", austria: "at", finland: "fi", france: "fr", portugal: "pt", ireland: "ie", denmark: "dk", croatia: "hr", slovakia: "sk", cyprus: "cy", malta: "mt", norway: "no" };
 for (const c of BA_ORDER) {
   const f = `data/programmes_ba/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
@@ -45,7 +45,7 @@ const REVIEWED_AT = existsSync("data/checks/reviewed.json") ? JSON.parse(readFil
 const RETIRED = existsSync("data/checks/retired.json") ? JSON.parse(readFileSync("data/checks/retired.json", "utf8")) : {};
 for (let i = rows.length - 1; i >= 0; i--) if (RETIRED[String(rows[i]._id)]) rows.splice(i, 1);
 
-const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt" };
+const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt", "النرويج": "no" };
 // Economics degrees that were first filed under business or data science (ids stay the same).
 const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
 const FIELD = {
@@ -110,10 +110,13 @@ const SEK_PER_EUR = 10.98;
 const CZK_PER_EUR = 24.35;
 // Danish krone, pegged to the euro in ERM II (central rate 7.46038).
 const DKK_PER_EUR = 7.46;
+// Norwegian krone (market rate in November 2026: about 11.0); also used in scripts/catalogue/norway.py.
+const NOK_PER_EUR = 11.0;
 // Converts one fee figure to euros per year (null when the text gives no usable amount).
 function toAnnual(v, t, y) {
   if (/كرونة تشيكية/.test(t)) v = v / CZK_PER_EUR; // Czech fees are in CZK
   else if (/كرونة دنماركية/.test(t)) v = v / DKK_PER_EUR; // Danish fees are in DKK
+  else if (/كرونة نرويجية/.test(t)) v = v / NOK_PER_EUR; // Norwegian fees are in NOK
   else if (/كرونة/.test(t)) v = v / SEK_PER_EUR; // Swedish fees are in SEK
   if (/للفصل/.test(t)) v = v * 2;
   else if (/للبرنامج كاملاً/.test(t) && y) v = v / y;
