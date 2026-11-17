@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { SECTORS, BOARDS, PROGRAMMES, STEPS, CAIRO, GUIDE_TEXT, SRC, jobSearchUrl } from "../lib/ausbildungGuide";
 
 const fmt = (n) => n.toLocaleString("en-US");

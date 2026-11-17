@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { ACC, LEVEL_LABELS } from "../lib/accountText";

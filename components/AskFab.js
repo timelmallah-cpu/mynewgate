@@ -1,6 +1,6 @@
 "use client";
 // Floating "Ask the assistant" button on every page except the assistant page itself.
-import Link from "next/link";
+import Link from "@/components/Link";
 import { usePathname } from "next/navigation";
 
 export default function AskFab({ lang }) {

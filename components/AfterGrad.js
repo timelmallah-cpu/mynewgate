@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";
 import { POST_STUDY, PS_TEXT } from "../lib/postStudy";

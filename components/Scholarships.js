@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, EXCLUDED, SCHOLARSHIPS_REVIEWED } from "../lib/scholarships";
 import ScholarshipFinder from "./ScholarshipFinder";

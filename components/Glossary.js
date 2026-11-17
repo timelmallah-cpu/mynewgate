@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { GLOSSARY, GLOSSARY_GROUPS, GLOSSARY_TEXT } from "../lib/glossary";
 

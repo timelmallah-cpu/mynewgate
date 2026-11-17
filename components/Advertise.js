@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T, CONTACT_EMAIL } from "../lib/i18n";
 import { ADV_TEXT, INST_TEXT } from "../lib/institutes";
 

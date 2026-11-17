@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { SITE_URL } from "../lib/site";
 

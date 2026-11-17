@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";

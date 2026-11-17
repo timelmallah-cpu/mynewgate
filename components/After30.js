@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import programmes from "../lib/programmes.json";

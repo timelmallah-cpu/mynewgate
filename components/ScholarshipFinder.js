@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, eligibility } from "../lib/scholarships";
 import { COUNTRY_IDS } from "../lib/options";

@@ -1,5 +1,5 @@
 import { pageMeta } from "../lib/site";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { cityOf } from "../lib/cities";
 import WhatsApp from "./WhatsApp";
 import AddToCalendar from "./AddToCalendar";

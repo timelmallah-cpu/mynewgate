@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { feeLabel } from "../lib/options";
 import { notFound } from "next/navigation";
 import { pageMeta } from "../lib/site";

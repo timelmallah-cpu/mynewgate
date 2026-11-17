@@ -1,5 +1,5 @@
 import { pageMeta } from "../lib/site";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { notFound } from "next/navigation";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS, ARAB, ARAB_IDS, SCHOLARSHIPS_REVIEWED } from "../lib/scholarships";

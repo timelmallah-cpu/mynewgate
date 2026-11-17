@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { EMAIL_TEXT } from "../lib/emailText";
 import { BASE } from "../lib/site";

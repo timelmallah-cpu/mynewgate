@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 
 export const PRIVACY_UPDATED = "2026-11-17";
 

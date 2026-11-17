@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { SUBSCRIBED } from "./Privacy";
 import { BASE } from "../lib/site";
 

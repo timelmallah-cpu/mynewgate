@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 
 // Monthly newsletter sign-up. Sent straight to Kit (kit.com), which emails a confirmation link (double opt-in).
 const FORM_ID = "10191374";

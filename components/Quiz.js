@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo, useEffect, useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
 import { T, view } from "../lib/i18n";

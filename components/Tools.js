@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { T } from "../lib/i18n";
 import { TOOLS, TOOL_ICONS, TOOLS_TEXT } from "../lib/tools";
 import { STEPS, ALWAYS, ALWAYS_TEXT } from "../lib/journey";

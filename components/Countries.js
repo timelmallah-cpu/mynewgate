@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import programmes from "../lib/programmes.json";
 import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";

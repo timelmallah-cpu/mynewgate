@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { EgyptOnlyNote } from "./Origin";
 import { T } from "../lib/i18n";
 import Flag from "../lib/Flag";

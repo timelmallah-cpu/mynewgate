@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/Link";
 import { EgyptOnlyNote } from "./Origin";
 import { T } from "../lib/i18n";
 import { OFFICIAL, LANGS, INST_TEXT, activeAds } from "../lib/institutes";

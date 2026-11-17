@@ -1,5 +1,5 @@
 import { pageMeta } from "../lib/site";
-import Link from "next/link";
+import Link from "@/components/Link";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
 import { feeStats } from "../lib/feeStats";

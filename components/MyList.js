@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/Link";
 import deadlines from "../lib/deadlines.json";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS } from "../lib/scholarships";
