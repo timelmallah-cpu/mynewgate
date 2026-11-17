@@ -1146,3 +1146,5 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .el-checks .el-check .el-ic { color: #9a6b00; }
 .el-checks .el-info { color: var(--muted); }
 .el-checks li { border: 0; }
+.el-countries .chip { font: inherit; font-weight: 600; background: #fff; border: 0; padding: 7px 13px; }
+.el-countries .chip.on { background: var(--navy); color: #fff; }

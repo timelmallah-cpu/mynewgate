@@ -8,7 +8,7 @@ import { EL_TEXT } from "../lib/eligibilityText";
 import { SCALES, SCORE_RANGE, evaluate, toGerman, scoreValid, loadProfile, saveProfile } from "../lib/eligibility";
 import { BASE } from "../lib/site";
 
-const START = { level: "master", field: "", country: "any", scale: "pct", grade: "", max: 100, min: 50, test: "ielts", score: "", budget: "any" };
+const START = { level: "master", field: "", countries: [], scale: "pct", grade: "", max: 100, min: 50, test: "ielts", score: "", budget: "any" };
 const PAGE = 20;
 const ICON = { ok: "✓", miss: "✗", check: "!", info: "–" };
 
@@ -25,8 +25,14 @@ export default function Eligibility({ lang }) {
     const saved = loadProfile();
     const q = new URLSearchParams(window.location.search);
     const next = { ...START, ...(saved || {}) };
+    // Older saved answers had one country ("country"); keep it as a one-country list.
+    if (!Array.isArray(next.countries)) next.countries = [];
+    if (next.country && next.country !== "any" && !next.countries.length) next.countries = [next.country];
+    delete next.country;
+    next.countries = next.countries.filter((c) => COUNTRY_IDS.includes(c));
     if (LEVEL_IDS.includes(q.get("level"))) next.level = q.get("level");
-    if (COUNTRY_IDS.includes(q.get("country"))) next.country = q.get("country");
+    const qc = (q.get("country") || "").split(",").filter((c) => COUNTRY_IDS.includes(c));
+    if (qc.length) next.countries = qc;
     setA(next);
     setLoaded(true);
   }, [lang]);
@@ -69,18 +75,25 @@ export default function Eligibility({ lang }) {
           </select>
         </label>
         <label className="ec-field">
-          <span>{s.country}</span>
-          <select value={a.country} onChange={(e) => set("country", e.target.value)}>
-            <option value="any">{s.anyCountry}</option>
-            {COUNTRY_IDS.map((c) => <option key={c} value={c}>{t.countries[c]}</option>)}
-          </select>
-        </label>
-        <label className="ec-field">
           <span>{s.budget}</span>
           <select value={a.budget} onChange={(e) => set("budget", e.target.value)}>
             {BUDGETS.map((b) => <option key={b.id} value={b.id}>{t.budgets[b.id]}</option>)}
           </select>
         </label>
+
+        <fieldset className="ec-tests el-countries">
+          <legend>{s.country} <small className="meta">({a.countries.length ? s.picked(a.countries.length) : s.pickHint})</small></legend>
+          <button type="button" className={`chip${a.countries.length ? "" : " on"}`} aria-pressed={!a.countries.length} onClick={() => set("countries", [])}>{s.anyCountry}</button>
+          {COUNTRY_IDS.map((c) => {
+            const on = a.countries.includes(c);
+            return (
+              <button type="button" key={c} className={`chip${on ? " on" : ""}`} aria-pressed={on}
+                onClick={() => set("countries", on ? a.countries.filter((x) => x !== c) : [...a.countries, c])}>
+                <Flag code={c} size={16} /> {t.countries[c]}
+              </button>
+            );
+          })}
+        </fieldset>
 
         <fieldset className="ec-tests">
           <legend>{s.grade} <small className="meta">({a.level === "bachelor" ? s.gradeHelpBa : s.gradeHelpMa})</small></legend>
@@ -142,7 +155,7 @@ export default function Eligibility({ lang }) {
             <>
               <p className="el-sum"><b>{s.summary(res.fit.length, res.check.length, res.miss.length)}</b></p>
               {a.level === "bachelor" && (
-                <p><Link href={`${t.base}/school-certificate${a.country !== "any" ? `?country=${a.country}` : ""}`}>{s.schoolCert}</Link></p>
+                <p><Link href={`${t.base}/school-certificate${a.countries.length === 1 ? `?country=${a.countries[0]}` : ""}`}>{s.schoolCert}</Link></p>
               )}
               <Group title={s.fit(res.fit.length)} note={s.fitNote} items={res.fit} lang={lang} open cls="fit" />
               <Group title={s.check(res.check.length)} note={s.checkNote} items={res.check} lang={lang} open={!res.fit.length} cls="check" />
