@@ -71,6 +71,7 @@ export default function Quiz({ lang }) {
           <p className="tool-strip">
             <span>{lang === "ar" ? "قبل ما تقدم:" : "Before you apply:"}</span>
             <Link href={`${t.base}/english-check${a.countries?.length === 1 ? `?country=${a.countries[0]}&level=${a.level}` : `?level=${a.level}`}`}>{lang === "ar" ? "هل درجتك في الإنجليزية تكفي؟" : "Is your English score enough?"}</Link>
+            <Link href={`${t.base}/eligibility?level=${a.level}${a.countries?.length === 1 ? `&country=${a.countries[0]}` : ""}`}>{lang === "ar" ? "هل أنت مؤهل؟ قارن معدلك وشروطها" : "Are you eligible? Compare your grade"}</Link>
             <Link href={`${t.base}/planner`}>{lang === "ar" ? "خطط مواعيدك" : "Plan your dates"}</Link>
             <Link href={`${t.base}/countries`}>{lang === "ar" ? "قارن الدول" : "Compare countries"}</Link>
             {a.level === "bachelor" && <Link href={`${t.base}/school-certificate`}>{lang === "ar" ? "ثانويتك تكفي؟" : "Is your school certificate enough?"}</Link>}

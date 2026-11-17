@@ -1128,3 +1128,21 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .top-acc:hover { background: var(--sky); }
 .top-acc.in { width: 38px; padding: 0; border-color: var(--line); }
 @media (max-width: 400px) { .top-acc { padding: 0 11px; font-size: .88rem; } }
+
+/* Eligibility check (/eligibility) */
+.el-form .el-help { grid-column: 1 / -1; margin: -6px 0 0; font-weight: 400; }
+.el-sum { margin: 18px 0 6px; }
+.el-group summary { cursor: pointer; }
+.el-fit { border-inline-start: 4px solid #2e7d4f; }
+.el-check { border-inline-start: 4px solid var(--gold); }
+.el-miss { border-inline-start: 4px solid #b3412e; }
+.el-list { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 14px; }
+.el-row { border-top: 1px solid var(--line); padding-top: 12px; }
+.el-where { display: block; color: var(--muted); margin: 2px 0 6px; }
+.el-checks { list-style: none; padding: 0; margin: 0; display: grid; gap: 3px; font-size: .93rem; }
+.el-ic { display: inline-block; width: 1.2em; text-align: center; font-weight: 700; }
+.el-checks .el-ok .el-ic { color: #2e7d4f; }
+.el-checks .el-miss { color: #8f2f20; }
+.el-checks .el-check .el-ic { color: #9a6b00; }
+.el-checks .el-info { color: var(--muted); }
+.el-checks li { border: 0; }

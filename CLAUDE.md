@@ -31,18 +31,19 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 
 ## Accounts and Study Plus (live since 17 Nov 2026)
 - Sign-in: Google (project "Bawabat AlSafar", support email is a Google group, not Hatem's) and email links via Brevo (Brevo keys not set yet). Accounts in Upstash Redis (KV_* env vars).
-- Payments: Stripe account "Bawabat AlSafar", Managed Payments, product "Bawabat AlDirasa Plus" US$4.99/month, webhook `/study/api/billing/webhook` (checkout.session.completed, customer.subscription.created/updated/deleted). Restricted API key. Test purchase worked.
+- Payments: Stripe account "Bawabat AlSafar", Managed Payments, product "Bawabat AlDirasa Plus" US$4.99/month, webhook `/study/api/billing/webhook` (checkout.session.completed, customer.subscription.created/updated/deleted). Restricted API key. Test purchase worked. Stripe setup fully finished (17 Nov 2026).
 - Limits (lib/plans.js): free = assistant 3/month, letter review / CV review / university email 1 each ever, compare 3, saved 5, application tracker 1; Plus = assistant 100/cycle, reviews/emails 20, compare 10, unlimited saved and tracker.
 - Free AI uses are counted per account AND per device (cookie mng_dev); no per-network limit (Hatem's choice: another phone on the same wifi may try). New accounts: max 5 per connection per day.
 - Page limits are on by default; `NEXT_PUBLIC_PLUS_OPEN=0` in Vercel switches them off. AI limits apply whenever Stripe keys are set.
 
 ## Recently finished
 - Germany: 30 more master's from DAAD (71 programmes). Ireland expanded (44). Application tracker (/applications). Header sign-in button. Study Plus live.
+- Eligibility check (/eligibility, components/Eligibility.js, lib/eligibility.js): level, field, country, budget, grade (any scale, converted to German with the modified Bavarian formula) and IELTS/TOEFL -> programmes grouped as fit / check / missing, with each check explained. Compares only numeric published requirements: fee, English minimums (il/tf) and a minimum grade parsed from the English "other requirements" text (`g` in compare-*.json; `gw` = high grade asked in words). Different grade scales are never converted to each other, only flagged "check". Answers kept in localStorage `mng-elig-v1` (free for everyone).
 
 ## Next (in Hatem's order)
-1. Eligibility check (enter major, grade, English level, budget -> programmes that fit and what is missing).
+1. My Study Journey dashboard (agreed 17 Nov): built on the eligibility answers; fitting programmes, saved list, tracker, deadlines (official only, "غير منشور في المصدر" when missing), next step. Free = basic dashboard (results, saved, 1 tracked application); Plus = deadlines with alerts, detailed next step, personal plan. Answers stored in the account need a privacy policy update and a delete button; without an account nothing is stored server-side.
 2. More countries: Italy, France, Austria (30+ each); new fields (media, education, political science, agriculture, environment, tourism).
 3. Fix the ~40 old broken links.
 4. Jordan and Algeria visa routes/certificate rules; Saudi and Moroccan versions of the language, institutes, guide, ausbildung and foundation pages.
 5. Study Plus "coming soon": email alerts (needs Brevo), personal plan, tailored document list.
-- Hatem's own to-dos: finish Stripe setup guide (verify email, review profile), Brevo keys, ICO self-assessment, check Vercel Analytics after the /study move, Vercel free domain (claim within 30 days of 17 Nov).
+- Hatem's own to-dos: Brevo keys, ICO self-assessment, check Vercel Analytics after the /study move, Vercel free domain (claim within 30 days of 17 Nov).
