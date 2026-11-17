@@ -63,7 +63,7 @@ function ics(list, lang) {
   };
   return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//BawabatAlsafar//Deadlines//EN", "CALSCALE:GREGORIAN", ...ev, "END:VCALENDAR"].join("\r\n").split("\r\n").map(fold).join("\r\n");
 }
-function download(list, lang, name) {
+export function download(list, lang, name) {
   const blob = new Blob([ics(list, lang)], { type: "text/calendar;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob); a.download = name; a.click();

@@ -35,7 +35,7 @@ export async function PATCH(req) {
   try {
     const cu = await who();
     if (cu.error) return cu.error;
-    const u = await updateUser(cu.uid, { profile: b?.profile, list: b?.list, lang: b?.lang });
+    const u = await updateUser(cu.uid, { profile: b?.profile, list: b?.list, apps: b?.apps, lang: b?.lang });
     return res({ ok: true, user: view(u) });
   } catch (e) {
     console.error("account update failed", String(e).slice(0, 300));

@@ -331,7 +331,7 @@ add("ph", "Master of Science in International Health", "Ludwig-Maximilians-Unive
 add("arch", "Integrated Urbanism and Sustainable Design (IUSD)", "University of Stuttgart", "Stuttgart", 4499, MSC, S4,
     ("تختلف (للتحقق): الصفحة لا تذكر مبلغاً، وولاية بادن-فورتمبيرغ تفرض رسوماً على الطلاب الدوليين", "Varies (to be checked): the page gives no amount, and Baden-Württemberg charges fees to international students"),
     ("حوالي 200 يورو", "About €200"),
-    ("يفتح 1 يونيو من السنة السابقة للبدء: 29 يوليو لمسار الشهادة المزدوجة مع عين شمس، و15 أكتوبر لشهادة شتوتغارت فقط", "Opens on 1 June of the year before the start: 29 July for the dual degree with Ain Shams, 15 October for the Stuttgart degree only"),
+    ("آخر موعد: 29 يوليو لمسار الشهادة المزدوجة مع عين شمس، و15 أكتوبر لشهادة شتوتغارت فقط (في السنة السابقة للبدء، والتقديم يفتح في يونيو)", "Deadline: 29 July for the dual degree with Ain Shams, 15 October for the Stuttgart degree only (in the year before the start; applications open in June)"),
     ("B2 (مثلاً IELTS Academic 6)", "B2 (e.g. IELTS Academic 6)"),
     ("بكالوريوس عمارة أو تخطيط عمراني أو عمارة بيئة أو تخطيط إقليمي أو هندسة مدنية؛ والمجالات القريبة مع خبرة عملية. شهادة مزدوجة مع جامعة عين شمس في القاهرة",
      "Bachelor's in architecture, urban planning, landscape architecture, regional planning or civil engineering; related fields with professional experience. Dual degree with Ain Shams University, Cairo"),

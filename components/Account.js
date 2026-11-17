@@ -70,6 +70,7 @@ export default function Account({ lang }) {
         <h2>{a.listTitle}</h2>
         <p>{a.listText(listCount)}</p>
         <Link href={`${t.base}/my-list`}>{a.listLink}</Link>
+        {" · "}<Link href={`${t.base}/applications`}>{lang === "ar" ? "متابعة طلبات التقديم" : "Application tracker"}</Link>
       </section>
 
       <form className="acc-box acc-form" onSubmit={saveProfile}>

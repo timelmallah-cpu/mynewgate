@@ -14,6 +14,7 @@ import { feeLabel } from "../lib/options";
 import { scholarshipsFor } from "../lib/scholarships";
 import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
+import TrackButton from "./TrackButton";
 import CostCalc from "./CostCalc";
 
 // Where the data came from, in words for visitors (the stored status is an internal note).
@@ -79,7 +80,7 @@ export default function Programme({ id, lang }) {
         <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link><AltLine p={raw} lang={lang} t={t} /></dd></div>
       </dl>
       {p.photo && <PhotoCredit ph={p.photo} p={p} t={t} />}
-      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <WhatsApp lang={lang} path={`${t.base}/programme/${raw.id}`} text={`${raw.name} | ${raw.university} (${p.countryLabel})\n${lang === "ar" ? "الرسوم" : "Fee"}: ${known ? `€${p.feePerYear.toLocaleString("en-US")}` : feeLabel(p, lang)}\n${t.keyDeadline}: ${p.deadline}`} /></div>
+      <div className="save-row"><SaveButton k={`p:${raw.id}`} lang={lang} /> <TrackButton id={raw.id} dates={(deadlines.find((x) => String(x.id) === String(raw.id))?.dates || []).map((d) => d.d)} lang={lang} /> <Link className="btn ghost small" href={`${t.base}/compare?ids=${raw.id}`}>{lang === "ar" ? "قارنه ببرامج أخرى" : "Compare with others"}</Link> <WhatsApp lang={lang} path={`${t.base}/programme/${raw.id}`} text={`${raw.name} | ${raw.university} (${p.countryLabel})\n${lang === "ar" ? "الرسوم" : "Fee"}: ${known ? `€${p.feePerYear.toLocaleString("en-US")}` : feeLabel(p, lang)}\n${t.keyDeadline}: ${p.deadline}`} /></div>
       <AddToCalendar k={`p-${raw.id}`} lang={lang} />
 
       <section className="apply">

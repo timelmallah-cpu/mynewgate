@@ -42,7 +42,7 @@ function StudyMark() {
 const FOOT_GROUPS = [
   { ar: "ابحث وقارن", en: "Search and compare", links: [
     ["/quiz", "ابحث عن برنامج", "Find a programme"], ["/search", "أدلة الدراسة", "Study guides"], ["/scholarships", "المنح", "Scholarships"],
-    ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"],
+    ["/compare", "قارن البرامج", "Compare programmes"], ["/countries", "قارن الدول", "Compare countries"], ["/cities", "المدن الجامعية", "University cities"], ["/my-list", "قائمتي", "My list"], ["/applications", "متابعة التقديم", "Application tracker"],
   ] },
   { ar: "أدوات", en: "Tools", links: [
     ["/ask", "اسأل المساعد", "Ask the assistant"], ["/english-check", "هل درجتك في الإنجليزية كافية؟", "English score check"], ["/without-ielts", "الدراسة بدون IELTS", "Without IELTS"], ["/language", "اللغة والاختبارات", "Language & tests"],
