@@ -64,7 +64,7 @@ DIT_ADM = ("رسوم طلب 60 يورو مرة واحدة لغير الأورو�
 DIT_DL = ("للدراسة في أكتوبر 2027: التقديم من 15 أبريل حتى 15 يوليو 2027", "For October 2027: apply 15 April - 15 July 2027")
 DIT_HOW = ("التقديم أونلاين على بوابة جامعة ديغندورف التقنية (DIT)", "Apply online on the Deggendorf Institute of Technology portal")
 DUR7 = ("3.5 سنوات (7 فصول، 210 ساعة معتمدة)", "3.5 years (7 semesters, 210 credits)")
-DIT_FEES = "https://ec.th-deg.de/en/study-with-us/apply/fees"
+DIT_FEES = "https://ec.th-deg.de/en/students/documents/application-and-service-fees"
 ECRI = "Deggendorf Institute of Technology (European Campus Rottal-Inn)"
 for field, name, deg, url, other in [
     ("bus", "International Tourism Management / Health & Medical Tourism", BA_,
