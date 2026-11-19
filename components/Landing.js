@@ -5,6 +5,8 @@ import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { COUNTRY_INFO } from "../lib/countryInfo";
 import Newsletter from "./Newsletter";
+import SoonDeadlines from "./SoonDeadlines";
+import deadlines from "../lib/deadlines.json";
 import { OriginPicker } from "./Origin";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS } from "../lib/journey";
@@ -22,6 +24,19 @@ const PROMISE_ICONS = {
 
 export function Icon({ d, size = 22 }) {
   return <svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{d}</svg>;
+}
+
+// Nearest confirmed deadlines, one entry per university and date; the client drops the passed ones.
+function soonItems() {
+  const today = new Date().toISOString().slice(0, 10);
+  const groups = new Map();
+  for (const r of deadlines) for (const x of r.dates) {
+    if (x.est || x.d < today) continue;
+    const k = `${x.d}|${r.university}`;
+    const g = groups.get(k);
+    if (g) g.more += 1; else groups.set(k, { d: x.d, id: String(r.id), name: r.name, uni: r.university, cc: r.country, more: 0 });
+  }
+  return [...groups.values()].sort((a, b) => a.d.localeCompare(b.d) || a.uni.localeCompare(b.uni)).slice(0, 60);
 }
 
 export default function Landing({ lang }) {
@@ -54,6 +69,8 @@ export default function Landing({ lang }) {
       <section className="card origin-home" aria-label={lang === "ar" ? "بلدك" : "Your country"}>
         <OriginPicker lang={lang} />
       </section>
+
+      <SoonDeadlines lang={lang} base={t.base} items={soonItems()} />
 
       <ul className="promises">
         {h.promises.map(([id, title, text]) => (

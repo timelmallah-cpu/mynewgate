@@ -1168,3 +1168,19 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .jr-c { display: inline-flex; align-items: center; gap: 4px; margin-inline-end: 10px; }
 .jr-plan li.late { color: var(--muted); text-decoration: line-through; }
 .jr-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0 16px; }
+
+/* Home: upcoming deadlines */
+.soon-dl { margin: 22px 0; display: grid; gap: 10px; justify-items: start; }
+.soon-dl .land-h { margin: 0; }
+.soon-dl > p { margin: 0; color: var(--muted, #555); font-size: .93rem; }
+.soon-dl ul { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; gap: 8px; }
+.soon-dl li { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.soon-dl li:last-child { border-bottom: 0; }
+.soon-dl li a { display: grid; gap: 2px; min-width: 0; text-decoration: none; color: inherit; }
+.soon-dl li a b { font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.soon-dl li a:hover b { text-decoration: underline; }
+.soon-dl li small { color: var(--muted, #555); display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.soon-dl time { font-size: .85rem; color: var(--muted, #555); white-space: nowrap; }
+.soon-left { font-size: .78rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--sand, #f4efe3); white-space: nowrap; }
+.soon-left.hot { background: #fde8e4; color: #a3271a; }
+@media (max-width: 560px) { .soon-dl li { grid-template-columns: auto 1fr; } .soon-dl li a { grid-column: 1 / -1; order: 3; } }
