@@ -51,7 +51,7 @@ const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics", "العمارة": "architecture", "القانون": "law",
-  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism", "الطب البيطري": "veterinary",
+  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism", "الطب البيطري": "veterinary", "علم النفس": "psychology",
 };
 
 // Years of study from the Arabic duration text.
