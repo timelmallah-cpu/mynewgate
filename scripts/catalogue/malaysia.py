@@ -63,7 +63,7 @@ for field, name, usd, other in [
     ("art", "Master of Design in Creative Industry", 6400, ("التصميم للصناعات الإبداعية", "Design for the creative industry")),
 ]:
     deg = ("ماجستير بالمقررات", "Coursework master's")
-    add(MA, field, name, USM, "Penang", deg, DUR_NP, usm_fee(usd, round(usd / 1.11 / 10) * 10), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/index.php/en/postgraduate/postgraduate-programme")
+    add(MA, field, name, USM, "Penang", deg, DUR_NP, usm_fee(usd, round(usd / 1.11 / 10) * 10), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/")
 
 write("ماليزيا", "Malaysia", "malaysia", MA, level="master")
 append_master("ماليزيا", "malaysia")
