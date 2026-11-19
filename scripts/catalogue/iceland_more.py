@@ -31,7 +31,7 @@ UI_EN_SOME = ("قد يُطلب إثبات الإنجليزية (TOEFL أو IELTS
 add(MA, "edu", "International Studies in Education", UI, "Reykjavik", MAD, Y2, UI_FEE, UI_ADM, UI_DL, UI_EN_SOME,
     ("برنامج دولي بالإنجليزية بالكامل عن التعليم في سياق العولمة والهجرة والمجتمعات متعددة الثقافات؛ يشترط بكالوريوس بتقدير جيد جداً (7.25 من 10 على السلم الأيسلندي)",
      "An international programme taught entirely in English on education in the context of globalisation, migration and multicultural societies; requires a bachelor's degree with a first-class grade (7.25 out of 10 on the Icelandic scale)"),
-    UI_HOW, NP, NP, "https://english.hi.is/node/52366", UI_FEES)
+    UI_HOW, NP, NP, "https://old-english.hi.is/node/52366", UI_FEES)
 add(MA, "pol", "Global Studies", UI, "Reykjavik", MAD, Y2, UI_FEE, UI_ADM, UI_DL, UI_EN_SOME,
     ("برنامج متعدد التخصصات عن العولمة؛ تخصصان: الدراسات العالمية، والهجرة والمجتمعات متعددة الثقافات. لغة التدريس الأساسية الإنجليزية ومعظم الكتب بالإنجليزية، وبعض المقررات الاختيارية قد تكون بالأيسلندية",
      "A multidisciplinary programme on globalisation with two specialisations: Global Studies, and Migration and Multicultural Societies. The main language of instruction is English and most textbooks are in English; some electives may be in Icelandic"),
@@ -47,7 +47,7 @@ add(MA, "eng", "Industrial Engineering", UI, "Reykjavik", MS, Y2, UI_FEE, UI_ADM
 add(MA, "cs", "Computer Science (Cybersecurity)", UI, "Reykjavik", MS, Y2, UI_FEE, UI_ADM, UI_DL, UI_EN,
     ("تخصص الأمن السيبراني فقط يُدرّس بالإنجليزية (بالشراكة مع جامعة ريكيافيك ومع مقررات عن بُعد من جامعات أوروبية)، أما تخصص تقنيات اللغة فللمتحدثين بالأيسلندية؛ يشترط بكالوريوس في علوم الحاسب أو مجال قريب بمعدل 6.5 من 10 على الأقل",
      "Only the Cybersecurity specialisation is taught in English (with Reykjavik University and some distance courses from European universities); Language Technology is for Icelandic speakers. Requires a BS in computer science or a related subject with an average of at least 6.5 out of 10"),
-    UI_HOW, NP, NP, "https://english.hi.is/node/50094", UI_FEES)
+    UI_HOW, NP, NP, "https://island.is/en/university-studies/8c486a2b-f37f-4d1f-a744-b0b8b4834c11", UI_FEES)
 
 # University of Akureyri
 UNAK = "University of Akureyri"
@@ -75,7 +75,7 @@ add(MA, "law", "Polar Law", UNAK, "Akureyri", MAD, Y2, UNAK_FEE,
 
 # University Centre of the Westfjords (Isafjordur): enrolled at and graduating from the University of Akureyri
 UW = "University Centre of the Westfjords (University of Akureyri)"
-UW_FAQ = "https://www.uw.is/en/admissions/faq"
+UW_FAQ = "https://www.uw.is/en/study/masters-programs/faq"
 UW_FEE = ("غير منشور في المصدر: رسوم التسجيل السنوية للطلاب الدوليين 300,000 كرونة أيسلندية (حوالي 2,100 يورو) حسب المركز، ولم ينشر بعد الرسوم الدراسية لغير الأوروبيين من خريف 2027 (للتحقق)",
           "Not published in the source: the annual registration fee for international students is ISK 300,000 (about €2,100) per the centre, and tuition for non-EEA students from autumn 2027 is not published yet (to verify)")
 UW_ADM = ("لا توجد رسوم تقديم", "No application fee")
@@ -103,6 +103,6 @@ add(MA, "env", "Restoration Ecology", "Agricultural University of Iceland", "Hva
     ("ماجستير سنتين بدوام كامل عن مكافحة تدهور النظم البيئية واستعادتها؛ المقررات عادة بالإنجليزية، والبدء في الخريف فقط",
      "A two-year full-time master's on combating degradation and restoring ecosystems; courses are generally taught in English and the programme starts in autumn only"),
     ("التقديم على بوابة الجامعة الزراعية، ثم تصريح الإقامة من مديرية الهجرة", "Apply on the Agricultural University's portal, then the residence permit from the Directorate of Immigration"),
-    NP, NP, "https://lbhi.is/university/about-the-school/news/applications-open-for-restoration-ecology-master-programme-2025", "https://lbhi.is/en/study")
+    NP, NP, "https://lbhi.is/en/education/postgraduate-studies/restoration-ecology-msc", "https://lbhi.is/en/education/postgraduate-studies/restoration-ecology-msc")
 
 append_extra("أيسلندا", "iceland", MA, REVIEWED)
