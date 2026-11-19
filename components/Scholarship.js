@@ -14,7 +14,7 @@ export const schParams = () => SCHOLARSHIPS.map((s) => ({ id: s.id }));
 export function schMeta(id, lang) {
   const s = SCHOLARSHIPS.find((x) => x.id === id);
   if (!s) return { title: T[lang].brand };
-  return pageMeta(lang, { title: `${s.name[lang]} | ${T[lang].brand}`, description: `${s.summary[lang]} ${s.funder[lang]}.`, path: `/scholarships/${s.id}` });
+  return pageMeta(lang, { title: `${s.name[lang]} | ${T[lang].brand}`, description: `${s.summary[lang]} ${s.funder[lang]}.`, path: `/scholarships/${s.id}`, image: `/api/og/scholarship/${s.id}${lang === "en" ? "?lang=en" : ""}` });
 }
 
 export default function Scholarship({ id, lang }) {

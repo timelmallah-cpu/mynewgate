@@ -6,6 +6,8 @@ export default {
   reactStrictMode: true,
   basePath: BASE,
   poweredByHeader: false,
+  // Share-card routes read their fonts and the logo from disk; make sure Vercel ships them with the functions.
+  outputFileTracingIncludes: { "/api/og/**": ["./lib/og/fonts/**", "./public/icon-192.png"] },
   // Security headers on every page and API response. No full CSP yet (Next inline scripts, Vercel Analytics, Stripe and
   // Google redirects); frame-ancestors, object-src and base-uri are safe to lock down.
   async headers() {
