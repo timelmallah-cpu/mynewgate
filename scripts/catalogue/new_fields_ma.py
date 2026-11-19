@@ -44,7 +44,7 @@ add(DE, "agri", "Agricultural Sciences in the Tropics and Subtropics (AgriTropic
     ("صفحة التقديم الخاصة بالبرنامج في جامعة هوهنهايم", "The programme's application page at the University of Hohenheim"),
     ("950 - 1,000 يورو شهرياً حسب الجامعة", "€950 - 1,000 a month, per the university"),
     ("سكن جامعي بإدارة Studierendenwerk Tübingen-Hohenheim مع حصة للطلاب الدوليين، والطلب عليه كبير، ومدته للماجستير سنتان", "Halls run by Studierendenwerk Tübingen-Hohenheim with a quota for international students; demand is high and master's students may stay two years"),
-    DAAD.format(3788), "https://www.uni-hohenheim.de/en/agritropics")
+    DAAD.format(3788), DAAD.format(3788))
 BONN_DL = ("1 - 30 أبريل للفصل الشتوي للمتقدمين الدوليين (موعد كلية الزراعة والتغذية والهندسة بجامعة بون)", "1 - 30 April for the winter semester for international applicants (deadline of the University of Bonn's Faculty of Agricultural, Nutritional and Engineering Sciences)")
 BONN_LIVING = ("حوالي 1,000 يورو شهرياً حسب جامعة بون", "About €1,000 a month, per the University of Bonn")
 BONN_ADM = ("مساهمة فصلية (Social contribution) يحددها اتحاد الطلاب، وأكثر من نصفها لتذكرة المواصلات في ألمانيا كلها؛ المبلغ الحالي غير منشور في المصدر الذي راجعناه",
@@ -68,7 +68,7 @@ add(DE, "env", "Environmental and Resource Management (MSc)", "Brandenburg Unive
     ("بكالوريوس في العلوم البيئية أو الهندسة البيئية أو حماية البيئة أو علم البيئة أو ما يقاربها. ثلاثة تخصصات: العلوم البيئية، والاقتصاد والتخطيط والقانون البيئي، والهندسة البيئية",
      "A bachelor's in environmental science or engineering, environmental protection, ecology or related subjects. Three specialisations: Environmental Science; Environmental Economics, Planning and Law; and Environmental Engineering"),
     ("عبر uni-assist (للتحقق)", "Through uni-assist (to verify)"), NP, NP,
-    "https://www.b-tu.de/en/environment-ms/details",
+    "https://www.b-tu.de/en/fakultaet2/study-teaching/study-programmes",
     "https://www.daad.de/en/studying-in-germany/universities/all-degree-programmes/detail/brandenburgische-technische-universitaet-cottbus-senftenberg-environmental-and-resource-management-w6666/?hec-id=w6666")
 add(DE, "env", "Environmental Governance (MEG)", "University of Freiburg", "Freiburg", ("ماجستير العلوم في الحوكمة البيئية", "Master of Science in Environmental Governance"), S4,
     ("1,500 يورو للفصل لغير الأوروبيين (والحاصلون على منحة DAAD-EPOS معفون)", "€1,500 per semester for non-EU students (DAAD-EPOS scholarship holders are exempt)"),
