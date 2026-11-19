@@ -26,8 +26,8 @@ const urls = [...where.keys()];
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 (Bawabat AlSafar link check)";
 const TLS = /CERT|LEAF_SIGNATURE|SELF_SIGNED|UNABLE_TO_GET_ISSUER/;
 
-async function check(u) {
-  for (const method of ["HEAD", "GET"]) {
+async function check(u, getOnly = false) {
+  for (const method of getOnly ? ["GET"] : ["HEAD", "GET"]) {
     const ctl = new AbortController();
     const t = setTimeout(() => ctl.abort(), 25000);
     try {
@@ -48,10 +48,11 @@ await Promise.all(Array.from({ length: 12 }, async () => {
   while (i < urls.length) { const u = urls[i++]; out.push(await check(u)); }
 }));
 // Second, slower pass for links that gave no answer (timeouts and resets are mostly network noise from the runner).
-for (let k = 0; k < out.length; k++) {
-  const r = out[k];
-  if (r.status === 0 && !TLS.test(r.error || "")) out[k] = await check(r.u);
-}
+const retry = out.map((r, k) => (r.status === 0 && !TLS.test(r.error || "") ? k : -1)).filter((k) => k >= 0);
+let j = 0;
+await Promise.all(Array.from({ length: 12 }, async () => {
+  while (j < retry.length) { const k = retry[j++]; out[k] = await check(out[k].u, true); }
+}));
 const cls = (r) => (r.status >= 200 && r.status < 400 ? "ok" : r.status === 401 || r.status === 403 || r.status === 429 ? "blocked"
   : r.status === 0 && TLS.test(r.error || "") ? "tls" : r.status === 0 ? "network" : "broken");
 const groups = { ok: [], blocked: [], tls: [], network: [], broken: [] };
