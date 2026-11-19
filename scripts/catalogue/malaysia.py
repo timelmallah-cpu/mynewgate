@@ -4,7 +4,7 @@
 # international postgraduate applications for the March 2027 intake 7 Sept 2026 - 30 Jan 2027 (study.um.edu.my/how-to-apply).
 # Universiti Sains Malaysia (Penang): international coursework totals in US dollars, effective from session 2025/2026
 # (admission.usm.my/postgraduate/fee-pg, updated 18 Nov 2026). Checked 2026-11-19.
-# Euro figures are approximate: about 4.9 ringgit per euro (November 2026, to check) and US$1.11 per euro.
+# Euro figures are approximate: ECB reference rate of 17 Nov 2026 (4.4983 ringgit per euro) and US$1.11 per euro.
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import write, NP
@@ -24,14 +24,14 @@ UM_HOW = ("التقديم أونلاين على بوابة الجامعة (رس�
 UM_FEES = "https://fsktm.um.edu.my/fsktm/doc/postgraduate/fees/Fees_PG_NC.pdf"
 UM_SRC = "https://study.um.edu.my/how-to-apply"
 def um_fee(rm, eur):
-    return (f"حوالي {eur:,} يورو للبرنامج كاملاً ({rm} رينغيت ماليزي لغير الماليزيين بدوام كامل في 2026/2027، بدون السكن وضريبة الخدمة 6%؛ التحويل تقريبي)",
-            f"About €{eur:,} for the whole programme (RM{rm} for non-citizens, full time, 2026/2027, excluding housing and 6% SST; approximate conversion)")
+    return (f"حوالي {eur:,} يورو للبرنامج كاملاً ({rm} رينغيت ماليزي لغير الماليزيين بدوام كامل في 2026/2027، بدون السكن وضريبة الخدمة 6%؛ التحويل بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} for the whole programme (RM{rm} for non-citizens, full time, 2026/2027, excluding housing and 6% SST; converted at the ECB rate of 17 November 2026)")
 for field, name, deg, rm, eur, other in [
-    ("ds", "Master of Data Science", ("ماجستير علم البيانات", "Master of Data Science"), "41,663.80", 8500, ("علم البيانات (بالمقررات)", "Data science (coursework)")),
-    ("cs", "Master of Cyber Security", ("ماجستير الأمن السيبراني", "Master of Cyber Security"), "48,073.30", 9810, ("الأمن السيبراني (بالمقررات)", "Cyber security (coursework)")),
-    ("cs", "Master of Artificial Intelligence", ("ماجستير الذكاء الاصطناعي", "Master of Artificial Intelligence"), "48,073.00", 9810, ("الذكاء الاصطناعي (بالمقررات)", "Artificial intelligence (coursework)")),
-    ("cs", "Master of Computer Science (Applied Computing)", ("ماجستير علوم الحاسب", "Master of Computer Science"), "43,265.80", 8830, ("الحوسبة التطبيقية (مقررات وبحث)", "Applied computing (mixed mode)")),
-    ("cs", "Master of Software Engineering (Software Technology)", ("ماجستير هندسة البرمجيات", "Master of Software Engineering"), "43,265.80", 8830, ("تقنيات البرمجيات (مقررات وبحث)", "Software technology (mixed mode)")),
+    ("ds", "Master of Data Science", ("ماجستير علم البيانات", "Master of Data Science"), "41,663.80", 9260, ("علم البيانات (بالمقررات)", "Data science (coursework)")),
+    ("cs", "Master of Cyber Security", ("ماجستير الأمن السيبراني", "Master of Cyber Security"), "48,073.30", 10690, ("الأمن السيبراني (بالمقررات)", "Cyber security (coursework)")),
+    ("cs", "Master of Artificial Intelligence", ("ماجستير الذكاء الاصطناعي", "Master of Artificial Intelligence"), "48,073.00", 10690, ("الذكاء الاصطناعي (بالمقررات)", "Artificial intelligence (coursework)")),
+    ("cs", "Master of Computer Science (Applied Computing)", ("ماجستير علوم الحاسب", "Master of Computer Science"), "43,265.80", 9620, ("الحوسبة التطبيقية (مقررات وبحث)", "Applied computing (mixed mode)")),
+    ("cs", "Master of Software Engineering (Software Technology)", ("ماجستير هندسة البرمجيات", "Master of Software Engineering"), "43,265.80", 9620, ("تقنيات البرمجيات (مقررات وبحث)", "Software technology (mixed mode)")),
 ]:
     add(MA, field, name, UM, "Kuala Lumpur", deg, Y1, um_fee(rm, eur), UM_ADM, UM_DL, UM_EN, other, UM_HOW, NP, NP, UM_FEES, UM_SRC)
 

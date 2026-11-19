@@ -5,7 +5,7 @@ import Flag from "../lib/Flag";
 import { CC_TEXT } from "../lib/countriesText";
 import { Local, CurrencyPicker } from "./Currency";
 
-const PER_WEEK = { week: 1, month: 12 / 52, day: 5, year: 1 / 52 };
+const PER_WEEK = { week: 1, fortnight: 0.5, month: 12 / 52, day: 5, year: 1 / 52 };
 const fmt = (n) => Math.round(n).toLocaleString("en-US");
 // Column -> value used for sorting, and whether bigger is better (sorted first).
 const COLS = [
