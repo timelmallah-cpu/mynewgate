@@ -107,7 +107,7 @@ add("at", "bus", "Business and Economics (BBE)", "WU Vienna University of Econom
     "https://www.wu.ac.at/studium/bachelor/business-and-economics/ueberblick/selection-procedure-bbe/entrance-exam")
 
 # ---------------- Greece: National and Kapodistrian University of Athens (first English-taught bachelor's at a Greek public university)
-add("gr", "pol", "BA in the Archaeology, History, and Literature of Ancient Greece", "National and Kapodistrian University of Athens", "Athens", BA_,
+add("gr", "hum", "BA in the Archaeology, History, and Literature of Ancient Greece", "National and Kapodistrian University of Athens", "Athens", BA_,
     ("4 سنوات (8 فصول، 248 ساعة معتمدة)", "4 years (8 semesters, 248 credits)"),
     ("6,000 يورو سنوياً، على قسطين (نهاية يونيو ونهاية يناير)", "€6,000 a year, in two instalments (end of June and end of January)"),
     ("شهادة ثانوية أو IB بمتوسط استرشادي 70% أو ما يعادله؛ خطاب شخصي وسيرة ذاتية؛ قد يُطلب عربون لتأكيد القبول",
@@ -116,8 +116,8 @@ add("gr", "pol", "BA in the Archaeology, History, and Literature of Ancient Gree
      "2027/2028 deadline not published yet; the form is open for 2027/2028; for 2026/2027 it was 1 August (including D1.1 visa applicants)"),
     ("TOEFL 88 (Listening 17 وWriting 17 وReading 18 وSpeaking 20) أو IELTS 6.5 (5.5 لكل جزء) أو FCE B2",
      "TOEFL 88 (Listening 17, Writing 17, Reading 18, Speaking 20) or IELTS 6.5 (5.5 per component) or FCE B2"),
-    ("الآثار والتاريخ والأدب اليوناني القديم (علوم إنسانية، مصنّف هنا مع العلوم الاجتماعية)؛ أول بكالوريوس بالإنجليزية في جامعة يونانية حكومية",
-     "Archaeology, history and literature of ancient Greece (humanities, listed here with social sciences); the first English-taught bachelor's at a Greek public university"),
+    ("الآثار والتاريخ والأدب اليوناني القديم؛ أول بكالوريوس بالإنجليزية في جامعة يونانية حكومية",
+     "Archaeology, history and literature of ancient Greece; the first English-taught bachelor's at a Greek public university"),
     ("التقديم أونلاين على موقع البرنامج baag.uoa.gr مع الشهادات وترجمتها للإنجليزية", "Apply online on baag.uoa.gr with certificates and English translations"),
     "https://baag.uoa.gr/admission-fees/", "https://baag.uoa.gr/application")
 

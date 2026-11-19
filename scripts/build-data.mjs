@@ -48,10 +48,12 @@ for (let i = rows.length - 1; i >= 0; i--) if (RETIRED[String(rows[i]._id)]) row
 const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt", "النرويج": "no", "لوكسمبورغ": "lu", "سويسرا": "ch", "سلوفينيا": "si", "اليونان": "gr", "أيسلندا": "is", "ليختنشتاين": "li" };
 // Economics degrees that were first filed under business or data science (ids stay the same).
 const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
+// Reclassified when the urban planning and sport fields were added (19 Nov 2026).
+Object.assign(FIELD_OVERRIDE, { 362: "urban", 363: "urban", 420: "sport" });
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics", "العمارة": "architecture", "القانون": "law",
-  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism", "الطب البيطري": "veterinary", "علم النفس": "psychology", "العلاج الطبيعي والتغذية": "physio",
+  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism", "الطب البيطري": "veterinary", "علم النفس": "psychology", "العلاج الطبيعي والتغذية": "physio", "العلوم الطبيعية": "science", "اللغات والعلوم الإنسانية": "humanities", "الفنون والتصميم": "art", "علوم الرياضة": "sport", "علوم الأغذية": "food", "العمل الاجتماعي": "socialwork", "التخطيط العمراني": "urban",
 };
 
 // Years of study from the Arabic duration text.
