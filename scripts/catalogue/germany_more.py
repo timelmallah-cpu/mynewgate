@@ -291,7 +291,7 @@ add("eng", "Renewable Energy Systems (RES)", "Technische Hochschule Ingolstadt",
     ("uni-assist أولاً للحصول على التقييم المبدئي VPD، ثم التقديم به على بوابة PRIMUSS في الجامعة", "uni-assist first for the preliminary review (VPD), then apply with it on the university's PRIMUSS portal"),
     ("حوالي 950 - 1,200 يورو (مجموع البنود المنشورة: سكن 500 - 650، أكل 200 - 300، تأمين صحي 150 وغيرها)", "About €950 - 1,200 (sum of the published items: housing €500 - 650, food €200 - 300, health insurance €150 and others)"),
     ("لا: لا يوجد سكن طلابي تابع للجامعة، وابدأ البحث مبكراً بميزانية 500 يورو على الأقل", "No: the university has no halls; start early with a budget of at least €500"),
-    "https://www.thi.de/en/studies/application/masterapplication-from-abroad/", ("صفحة التقديم من الخارج في الجامعة", "University page for applying from abroad"))
+    "https://thi.de/en/studies/application/masterapplication-from-abroad", ("صفحة التقديم من الخارج في الجامعة", "University page for applying from abroad"))
 
 add("eng", "Advanced Manufacturing - Mechanical Engineering and Production", "Chemnitz University of Technology", "Chemnitz", 7612, MSC, S4, FREE,
     ("حوالي 340.50 يورو", "About €340.50"),

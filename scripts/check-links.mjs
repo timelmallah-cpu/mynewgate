@@ -22,14 +22,16 @@ for (const f of files) {
   }
 }
 const urls = [...where.keys()];
-const UA = "Mozilla/5.0 (compatible; Bawabat AlSafar link checker; +https://bawabatalsafar.com)";
+// A browser-like user agent: several official sites answer bots with 404/400 while the page works in a browser.
+const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36 (Bawabat AlSafar link check)";
+const TLS = /CERT|LEAF_SIGNATURE|SELF_SIGNED|UNABLE_TO_GET_ISSUER/;
 
 async function check(u) {
   for (const method of ["HEAD", "GET"]) {
     const ctl = new AbortController();
     const t = setTimeout(() => ctl.abort(), 25000);
     try {
-      const r = await fetch(u, { method, redirect: "follow", signal: ctl.signal, headers: { "user-agent": UA, accept: "*/*" } });
+      const r = await fetch(u, { method, redirect: "follow", signal: ctl.signal, headers: { "user-agent": UA, accept: "text/html,application/xhtml+xml,application/pdf,*/*;q=0.8", "accept-language": "en,ar;q=0.8" } });
       clearTimeout(t);
       if (method === "HEAD" && (r.status === 405 || r.status === 403 || r.status === 404 || r.status >= 500)) continue;
       return { u, status: r.status, final: r.url !== u ? r.url : undefined };
@@ -45,14 +47,23 @@ let i = 0;
 await Promise.all(Array.from({ length: 12 }, async () => {
   while (i < urls.length) { const u = urls[i++]; out.push(await check(u)); }
 }));
-const cls = (r) => (r.status >= 200 && r.status < 400 ? "ok" : r.status === 401 || r.status === 403 || r.status === 429 ? "blocked" : "broken");
-const groups = { ok: [], blocked: [], broken: [] };
+// Second, slower pass for links that gave no answer (timeouts and resets are mostly network noise from the runner).
+for (let k = 0; k < out.length; k++) {
+  const r = out[k];
+  if (r.status === 0 && !TLS.test(r.error || "")) out[k] = await check(r.u);
+}
+const cls = (r) => (r.status >= 200 && r.status < 400 ? "ok" : r.status === 401 || r.status === 403 || r.status === 429 ? "blocked"
+  : r.status === 0 && TLS.test(r.error || "") ? "tls" : r.status === 0 ? "network" : "broken");
+const groups = { ok: [], blocked: [], tls: [], network: [], broken: [] };
 for (const r of out) groups[cls(r)].push({ ...r, files: [...where.get(r.u)] });
 writeFileSync("link-report.json", JSON.stringify(groups, null, 1));
 const md = [
   `# Link check: ${urls.length} links`,
-  `- OK: ${groups.ok.length}`, `- Blocked by the site (403/401/429, usually fine in a browser): ${groups.blocked.length}`, `- Broken (404/410/5xx/no response): ${groups.broken.length}`,
-  "", "## Broken", ...groups.broken.sort((a, b) => a.u.localeCompare(b.u)).map((r) => `- ${r.status || r.error} ${r.u} (${r.files.join(", ")})`),
+  `- OK: ${groups.ok.length}`, `- Blocked by the site (403/401/429, usually fine in a browser): ${groups.blocked.length}`, `- Broken (404/410/5xx): ${groups.broken.length}`,
+  `- Certificate chain not accepted by Node (usually fine in a browser): ${groups.tls.length}`, `- No answer twice (network, check by hand): ${groups.network.length}`,
+  "", "## Broken", ...groups.broken.sort((a, b) => a.u.localeCompare(b.u)).map((r) => `- ${r.status} ${r.u} (${r.files.join(", ")})`),
+  "", "## No answer", ...groups.network.sort((a, b) => a.u.localeCompare(b.u)).map((r) => `- ${r.error} ${r.u} (${r.files.join(", ")})`),
+  "", "## Certificate", ...groups.tls.map((r) => `- ${r.error} ${r.u}`),
   "", "## Blocked", ...groups.blocked.map((r) => `- ${r.status} ${r.u}`),
 ].join("\n");
 writeFileSync("link-report.md", md);

@@ -6,7 +6,7 @@ import { T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { VISA, VISA_TEXT, hasVisaRoute } from "../lib/embassy";
 import { ARAB } from "../lib/scholarships";
-import { useOrigin, setOrigin, originIds } from "./Origin";
+import { useOrigin, originIds } from "./Origin";
 
 export default function Visa({ lang }) {
   const t = T[lang];
@@ -23,7 +23,7 @@ export default function Visa({ lang }) {
   // Start from the visitor's saved country unless the link names one.
   useEffect(() => { if (loaded && origin && !fromUrl.current) setFrom(origin); }, [loaded, origin]);
   useEffect(() => { window.history.replaceState(null, "", from === (origin || "eg") ? `?to=${to}` : `?from=${from}&to=${to}`); }, [from, to, origin]);
-  const pickFrom = (v) => { setFrom(v); fromUrl.current = false; setOrigin(v); };
+  const pickFrom = (v) => { setFrom(v); fromUrl.current = false; };
   const v = VISA[to];
   const r = hasVisaRoute(to, from) ? v[from] : null;
   const readyFor = COUNTRY_IDS.filter((c) => hasVisaRoute(c, from));
