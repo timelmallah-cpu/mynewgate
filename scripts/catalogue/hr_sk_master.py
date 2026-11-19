@@ -58,13 +58,13 @@ add(HR, "eng", "Chemical and Environmental Technology", "University of Zagreb, F
     ("غير منشور في المصدر لدفعة 2027/2028؛ الدراسة تبدأ أوائل أكتوبر", "Not published in the source for 2027/2028; classes start in early October"),
     ("مستوى B2 إلزامي يُثبت بـ TOEFL أو اختبار مماثل", "Mandatory B2 level, shown by TOEFL or an equivalent test"),
     ("برنامج مشترك بين تخصصات الهندسة الكيميائية والبيئية والمواد، والمحاضرات بالإنجليزية فقط", "A joint interdisciplinary programme in chemical, environmental and materials engineering; lectures only in English"),
-    HR_HOW, NP, NP, UNIZG_PDF, "https://www.fkit.unizg.hr/en/curricula/graduate_study_CET/CET_adm")
+    HR_HOW, NP, NP, UNIZG_PDF, UNIZG_PDF)
 add(HR, "pol", "Master of European Studies", "University of Zagreb, Faculty of Political Science", "Zagreb", ("ماجستير (MA)", "Master's degree (MA)"), Y1,
     ("2,000 يورو", "€2,000"), NP,
     ("دورة 2026/2027: الإعلان في يوليو 2026 والترتيب النهائي 24 سبتمبر 2026؛ دورة 2027/2028 لم تُعلن بعد (للتحقق)", "2026/2027 cycle: call in July 2026, final ranking on 24 September 2026; the 2027/2028 call is not out yet (to verify)"),
     ("غير منشور في المصدر", "Not published in the source"),
     ("30 مقعداً؛ يشترط بكالوريوس 4 سنوات (240 ساعة) في العلوم الاجتماعية أو الإنسانية", "30 places; requires a 4-year bachelor's (240 ECTS) in social sciences or humanities"),
-    HR_HOW, NP, NP, "https://fpzg.unizg.hr/en/study/graduate_study/master_of_european_studies", "https://fpzg.unizg.hr/en/study/graduate_study/master_of_european_studies")
+    HR_HOW, NP, NP, UNIZG_PDF, "https://www.fpzg.unizg.hr/upisi/upisi_u_diplomske_studije")
 add(HR, "ds", "Biomedical Mathematics", "University of Zagreb, Faculty of Science", "Zagreb", MA_D, ("سنتان (4 فصول)", "2 years (4 semesters)"),
     ("7,500 يورو سنوياً", "€7,500 per year"), NP,
     ("غير منشور في المصدر لدفعة 2027/2028؛ الدراسة تبدأ في أكتوبر", "Not published in the source for 2027/2028; classes start in October"),
@@ -76,7 +76,7 @@ add(HR, "env", "Close to Nature Forestry", "University of Zagreb, Faculty of For
     ("الطلبات تُقبل حتى 1 يوليو للسنة التي تبدأ أوائل أكتوبر (حسب كتيب 2025/2026؛ للتحقق لدفعة 2027)", "Applications are considered until 1 July for the year starting in early October (2025/2026 brochure; to verify for 2027)"),
     ("اختبار شفهي لتقييم الإنجليزية", "An oral test assesses your English"),
     ("الغابات القريبة من الطبيعة وإدارتها المستدامة، بالإنجليزية", "Close-to-nature forestry and sustainable forest management, taught in English"),
-    HR_HOW, NP, NP, UNIZG_PDF, "https://www.sumfak.unizg.hr/en/study-programmes/forestrystudies/graduate-studies-programme-close-to-nature-forestry/")
+    HR_HOW, NP, NP, UNIZG_PDF, UNIZG_PDF)
 add(HR, "bus", "Logistics and Mobility Management (TALENT)", "University of Zagreb, Faculty of Transport and Traffic Sciences", "Zagreb", MA_D, Y2,
     ("4,500 يورو سنوياً تُدفع قبل بدء السنة الدراسية", "€4,500 per year, paid before the academic year starts"),
     ("رسوم قيد 50 يورو", "€50 enrolment fee"),
