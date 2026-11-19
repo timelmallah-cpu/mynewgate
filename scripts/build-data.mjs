@@ -27,8 +27,8 @@ const read = (f) => parse(readFileSync(f, "utf8").replace(/^\uFEFF/, ""), { colu
 // Master's: one concatenated file, numeric ids (kept stable for existing URLs).
 const rows = read("data/programmes/all_programmes.csv").map((r) => ({ ...r, _level: "master", _id: Number(r["#"]) }));
 // Bachelor's (incl. long-cycle medicine): one file per country, ids "b-<country>-<n>".
-const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy", "bulgaria", "czechia", "austria", "finland", "france", "portugal", "ireland", "denmark", "croatia", "slovakia", "cyprus", "malta", "norway"];
-const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it", bulgaria: "bg", czechia: "cz", austria: "at", finland: "fi", france: "fr", portugal: "pt", ireland: "ie", denmark: "dk", croatia: "hr", slovakia: "sk", cyprus: "cy", malta: "mt", norway: "no" };
+const BA_ORDER = ["germany", "netherlands", "spain", "belgium", "estonia", "poland", "hungary", "romania", "latvia", "lithuania", "italy", "bulgaria", "czechia", "austria", "finland", "france", "portugal", "ireland", "denmark", "croatia", "slovakia", "cyprus", "malta", "norway", "luxembourg"];
+const BA_CODE = { germany: "de", netherlands: "nl", spain: "es", belgium: "be", estonia: "ee", poland: "pl", hungary: "hu", romania: "ro", latvia: "lv", lithuania: "lt", italy: "it", bulgaria: "bg", czechia: "cz", austria: "at", finland: "fi", france: "fr", portugal: "pt", ireland: "ie", denmark: "dk", croatia: "hr", slovakia: "sk", cyprus: "cy", malta: "mt", norway: "no", luxembourg: "lu" };
 for (const c of BA_ORDER) {
   const f = `data/programmes_ba/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
@@ -45,7 +45,7 @@ const REVIEWED_AT = existsSync("data/checks/reviewed.json") ? JSON.parse(readFil
 const RETIRED = existsSync("data/checks/retired.json") ? JSON.parse(readFileSync("data/checks/retired.json", "utf8")) : {};
 for (let i = rows.length - 1; i >= 0; i--) if (RETIRED[String(rows[i]._id)]) rows.splice(i, 1);
 
-const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt", "النرويج": "no" };
+const COUNTRY = { "ألمانيا": "de", "هولندا": "nl", "إسبانيا": "es", "بلجيكا": "be", "إستونيا": "ee", "بولندا": "pl", "المجر": "hu", "رومانيا": "ro", "لاتفيا": "lv", "ليتوانيا": "lt", "إيطاليا": "it", "فنلندا": "fi", "بلغاريا": "bg", "السويد": "se", "التشيك": "cz", "النمسا": "at", "فرنسا": "fr", "البرتغال": "pt", "أيرلندا": "ie", "الدنمارك": "dk", "كرواتيا": "hr", "سلوفاكيا": "sk", "قبرص": "cy", "مالطا": "mt", "النرويج": "no", "لوكسمبورغ": "lu" };
 // Economics degrees that were first filed under business or data science (ids stay the same).
 const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b-pl-29", "b-hu-6", "b-hu-9", "b-it-2"].map((id) => [id, "economics"]));
 const FIELD = {
@@ -74,7 +74,8 @@ function years(d, level) {
 // Numbers in the text that are amounts (not academic years like 2026/27).
 function amounts(t) {
   const out = [];
-  const re = /(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{4,}(?:\.\d+)?)(?!\s*\/|\d)/g;
+  // Three-digit amounts count only when followed by "يورو" (e.g. Luxembourg's €800 a year).
+  const re = /(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{4,}(?:\.\d+)?|\d{3}(?=\s*يورو))(?!\s*\/|\d)/g;
   let m;
   while ((m = re.exec(t))) {
     const n = parseFloat(m[1].replace(/,/g, ""));
