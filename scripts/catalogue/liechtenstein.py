@@ -17,7 +17,7 @@ LIVING = ("الجامعة تذكر 1,500 فرنك سويسري شهرياً عل
           "The university cites at least CHF 1,500 a month for living costs and rent; Liechtenstein is expensive")
 HOW = ("التقديم أونلاين على بوابة الجامعة uni.li/application ودفع رسوم الطلب قبل الموعد؛ مكتب تنسيق التصاريح في الجامعة يساعد في طلب الإقامة بعد القبول",
        "Apply online at uni.li/application and pay the application fee by the deadline; the university's permit coordination office helps with the residence application after admission")
-ADMISSION = "https://www.uni.li/en/study/admission"
+ADMISSION = "https://www.uni.li/en/studies/application-and-admission"
 DL_WINTER = ("لمن يحتاج تأشيرة: حتى 31 مارس 2027 للدراسة في سبتمبر 2027 (بداية الشتاء فقط)",
              "Applicants who need a visa: by 31 March 2027 for a September 2027 start (winter intake only)")
 DL_BOTH = ("لمن يحتاج تأشيرة: حتى 31 مارس 2027 للدراسة في سبتمبر 2027، أو حتى 30 سبتمبر 2027 للبدء في الفصل الصيفي (فبراير 2028)",
@@ -32,7 +32,7 @@ add(MA, "cs", "MSc Information Systems", "University of Liechtenstein", "Vaduz",
     ("شهادة لغة حسب إرشادات القبول الخاصة بالبرنامج (المستوى غير مذكور في صفحة التقديم؛ للتحقق)", "Language certificate per the programme's admission guidelines (level not on the application page; to verify)"),
     ("نظم المعلومات: التقاء التكنولوجيا والإدارة. المطلوب: البكالوريوس (يمكن تقديمه حتى بداية الفصل)، وسيرة ذاتية، وخطاب دافع، وقد تكون هناك مقابلة",
      "Information systems at the meeting point of technology and business. Required: bachelor's (can follow up to the semester start), CV and motivation letter; there may be an interview"),
-    HOW, LIVING, NP, "https://uni.li/en/study/study-programmes/master-information-systems/worth-knowing/application-and-advice/application", ADMISSION)
+    HOW, LIVING, NP, "https://uni.li/en/studies/study-programmes/msc-information-systems", ADMISSION)
 add(MA, "arch", "MSc Architecture", "University of Liechtenstein", "Vaduz", ("ماجستير العلوم في العمارة (MSc Arch)", "Master of Science in Architecture (MSc Arch)"), Y2, FEE, ADM, DL_BOTH,
     ("مستوى B2 في الإنجليزية", "English at B2"),
     ("العمارة والتصميم لمواجهة تغير المناخ مع 5 تخصصات؛ يُطلب ملف أعمال (Portfolio) يشمل مشروع البكالوريوس وخطاب دافع",
