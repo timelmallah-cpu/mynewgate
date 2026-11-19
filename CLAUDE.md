@@ -52,10 +52,12 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 - France batch 2 (19 Nov, 30 master's): scripts/catalogue/france_more.py (append-only): Paris-Saclay 6 M1 (national rate €255 in 2026/27 after the university's partial exemption; INCEPTION mid-Jan to mid-Mar), Paris Cité 11 (moratorium, €255 in 2026/27; eCandidat / Études en France), Côte d'Azur 4 MSc (€5,000-5,500), Grenoble 4 (€255 transition year, new rules from 2027/28). Fixed Paris-Saclay M1 Nuclear Engineering fee to €6,254 (international track). Note: amounts() ignores sums under 500, so €255 fees show as unknown in filters.
 - New-country helpers: scripts/catalogue/helpers.py (add, append_master keeps ids by name+university, append_extra = append-only batch for countries with hand-written rows, like italy_more.py). /home/claude/tools/wire_country.py is session-only, not in the repo.
 
+- Jordan and Algeria (19 Nov): visa routes in lib/visa/jo.js (de, fr, es, it, nl, be, pl, hu, se; Italy Amman by email to visti.amman, not VFS) and lib/visa/dz.js (fr, es, it, be, de; Capago for France, TLS Algiers for Belgium), certificate rules in lib/cert/jo.js and lib/cert/dz.js (Germany: Jordan = check via uni-assist tool, Algeria = Studienkolleg per uni-assist; Netherlands per Nuffic: Jordan = HAVO, Algeria = at least HAVO).
+
 ## Next (in Hatem's order)
 1. My Study Journey dashboard (agreed 17 Nov): built on the eligibility answers; fitting programmes, saved list, tracker, deadlines (official only, "غير منشور في المصدر" when missing), next step. Free = basic dashboard (results, saved, 1 tracked application); Plus = deadlines with alerts, detailed next step, personal plan. Answers stored in the account need a privacy policy update and a delete button; without an account nothing is stored server-side.
 2. More countries: Italy, France, Austria (30+ each); new fields (media, education, political science, agriculture, environment, tourism).
 3. Fix the ~40 old broken links.
-4. Jordan and Algeria visa routes/certificate rules; Saudi and Moroccan versions of the language, institutes, guide, ausbildung and foundation pages.
+4. Saudi and Moroccan versions of the language, institutes, guide, ausbildung and foundation pages.
 5. Study Plus "coming soon": email alerts (needs Brevo), personal plan, tailored document list.
 - Hatem's own to-dos: Brevo keys, ICO self-assessment, check Vercel Analytics after the /study move, Vercel free domain (claim within 30 days of 17 Nov).
