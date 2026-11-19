@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { DOCS_COMMON, DOCS_EXTRA, GUIDE_TEXT } from "../lib/guide";
+import { useOrigin } from "./Origin";
+import { LOCAL_ORIGIN } from "../lib/localOrigins";
 
 const KEY = "mng-docs-v1";
 
@@ -15,7 +17,9 @@ export default function DocsChecklist({ lang, countries, initial = "de" }) {
   }, []);
   const save = (d) => { setDone(d); try { localStorage.setItem(KEY, JSON.stringify(d)); } catch {} };
 
-  const extra = DOCS_EXTRA[country] || [];
+  const [origin] = useOrigin();
+  const own = LOCAL_ORIGIN[origin]?.guide.docs[country];
+  const extra = own ? [own] : DOCS_EXTRA[country] || [];
   const all = [...DOCS_COMMON.map((x, i) => [`c${i}`, x]), ...extra.map((x, i) => [`${country}${i}`, x])];
   const count = all.filter(([k]) => done[k]).length;
   const name = countries.find(([c]) => c === country)?.[1];

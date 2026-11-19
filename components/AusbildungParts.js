@@ -1,4 +1,6 @@
 import Link from "@/components/Link";
+import OriginText from "./OriginText";
+import { byOrigin } from "../lib/localOrigins";
 import { SECTORS, BOARDS, PROGRAMMES, STEPS, CAIRO, GUIDE_TEXT, SRC, jobSearchUrl } from "../lib/ausbildungGuide";
 
 const fmt = (n) => n.toLocaleString("en-US");
@@ -58,8 +60,11 @@ export function Steps({ lang }) {
       {STEPS[lang].map(([h, txt], i) => (
         <li key={h}>
           <b>{i + 1}. {h}</b>
-          <span>{txt}</span>
-          <small><Src href={STEPS.src[i]} label={g.source} /></small>
+          {i === 5
+            ? <OriginText lang={lang} by={byOrigin((l) => <><span>{l.ausbVisa[lang]}</span><small><Src href={l.ausbVisa.src} label={g.source} /></small></>)}><span>{txt}</span><small><Src href={STEPS.src[i]} label={g.source} /></small></OriginText>
+            : i === 2
+              ? <><span><OriginText lang={lang} by={byOrigin(() => txt.replace(/ ?(السفارة في القاهرة|The embassy in Cairo)[^.]*\./, ""))}>{txt}</OriginText></span><small><Src href={STEPS.src[i]} label={g.source} /></small></>
+              : <><span>{txt}</span><small><Src href={STEPS.src[i]} label={g.source} /></small></>}
         </li>
       ))}
     </ol>

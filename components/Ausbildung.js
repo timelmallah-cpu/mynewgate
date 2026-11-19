@@ -23,7 +23,7 @@ export default function Ausbildung({ lang }) {
     <>
       <p className="crumb"><Link href={`${t.base}/vocational`}>{VOC_TEXT[lang].back}</Link></p>
       <h1><Flag code="de" size={30} /> {s.title}</h1>
-      <EgyptOnlyNote lang={lang} />
+      <EgyptOnlyNote lang={lang} what={{ ar: "قسم «أوراق السفارة» في هذه الصفحة", en: "The \"embassy documents\" section on this page" }} />
       <p className="lead">{s.lead}</p>
       <nav className="tool-jump" aria-label={lang === "ar" ? "محتوى الصفحة" : "On this page"}>
         {nav.map(([id, label]) => <a key={id} className="chip" href={`#${id}`}>{label}</a>)}

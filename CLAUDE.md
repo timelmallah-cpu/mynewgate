@@ -53,11 +53,11 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 - New-country helpers: scripts/catalogue/helpers.py (add, append_master keeps ids by name+university, append_extra = append-only batch for countries with hand-written rows, like italy_more.py). /home/claude/tools/wire_country.py is session-only, not in the repo.
 
 - Jordan and Algeria (19 Nov): visa routes in lib/visa/jo.js (de, fr, es, it, nl, be, pl, hu, se; Italy Amman by email to visti.amman, not VFS) and lib/visa/dz.js (fr, es, it, be, de; Capago for France, TLS Algiers for Belgium), certificate rules in lib/cert/jo.js and lib/cert/dz.js (Germany: Jordan = check via uni-assist tool, Algeria = Studienkolleg per uni-assist; Netherlands per Nuffic: Jordan = HAVO, Algeria = at least HAVO).
+- Saudi and Moroccan page versions (19 Nov): lib/localOrigins.js (LOCAL_ORIGIN.sa/.ma: test fees and centres, local-language institutes, institutes list, guide overrides with apostille notes, Ausbildung visa step) shown through components/OriginText.js (client, picks by `mng-origin`, Egyptian children otherwise). EgyptOnlyNote has `covered`. Foundation page shows Germany's rule for sa/ma/jo/dz from certFor("de", o). Saudi Arabia joined the Apostille Convention on 7 Dec 2022. Still Egypt-only: Ausbildung "embassy documents" (Cairo) and the Cairo Studienkolleg card. Jordan/Algeria page versions not done.
 
 ## Next (in Hatem's order)
 1. My Study Journey dashboard (agreed 17 Nov): built on the eligibility answers; fitting programmes, saved list, tracker, deadlines (official only, "غير منشور في المصدر" when missing), next step. Free = basic dashboard (results, saved, 1 tracked application); Plus = deadlines with alerts, detailed next step, personal plan. Answers stored in the account need a privacy policy update and a delete button; without an account nothing is stored server-side.
 2. More countries: Italy, France, Austria (30+ each); new fields (media, education, political science, agriculture, environment, tourism).
 3. Fix the ~40 old broken links.
-4. Saudi and Moroccan versions of the language, institutes, guide, ausbildung and foundation pages.
-5. Study Plus "coming soon": email alerts (needs Brevo), personal plan, tailored document list.
+4. Study Plus "coming soon": email alerts (needs Brevo), personal plan, tailored document list.
 - Hatem's own to-dos: Brevo keys, ICO self-assessment, check Vercel Analytics after the /study move, Vercel free domain (claim within 30 days of 17 Nov).

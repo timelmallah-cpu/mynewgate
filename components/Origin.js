@@ -58,9 +58,9 @@ export function OriginPicker({ lang, compact = false }) {
 }
 
 // Shown on pages whose details are written for Egypt only, when the visitor chose another country.
-export function EgyptOnlyNote({ lang, what }) {
+export function EgyptOnlyNote({ lang, what, covered = [] }) {
   const [o] = useOrigin();
-  if (!o || o === "eg") return null;
+  if (!o || o === "eg" || covered.includes(o)) return null;
   const ar = lang === "ar";
   return (
     <div className="notice origin-note" role="note">

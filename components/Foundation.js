@@ -1,5 +1,7 @@
 import Link from "@/components/Link";
 import { EgyptOnlyNote } from "./Origin";
+import OriginText from "./OriginText";
+import { certFor, CERT_LIST } from "../lib/schoolCert";
 import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { COURSES, KOLLEGS, OTHERS, FOUND_TEXT, FOUND_SRC } from "../lib/foundation";
@@ -24,10 +26,16 @@ export default function Foundation({ lang }) {
       </p>
     </section>
   );
+  // Germany's rule for the visitor's own certificate (Saudi, Moroccan, Jordanian, Algerian), in place of the Egyptian text.
+  const own = (f) => Object.fromEntries(["sa", "ma", "jo", "dz"].map((o) => {
+    const r = certFor("de", o);
+    const c = CERT_LIST.find((x) => x.id === o);
+    return r && c ? [o, f(c, r)] : null;
+  }).filter(Boolean));
   return (
     <>
       <h1>{s.title}</h1>
-      <EgyptOnlyNote lang={lang} what={{ ar: "قسم السنة التحضيرية في مصر", en: "The foundation-year section for Egypt" }} />
+      <EgyptOnlyNote lang={lang} what={{ ar: "قسم الكلية التحضيرية في القاهرة", en: "The section on the Cairo foundation college" }} />
       <p className="lead">{s.lead}</p>
 
       <section className="card">
@@ -37,8 +45,8 @@ export default function Foundation({ lang }) {
       </section>
 
       <section className="card">
-        <h2>{s.egTitle}</h2>
-        <p>{s.eg}{s.toCheck}</p>
+        <h2><OriginText lang={lang} by={own((c, r) => s.ownTitle(c[lang]))}>{s.egTitle}</OriginText></h2>
+        <p><OriginText lang={lang} by={own((c, r) => <>{r[lang === "ar" ? "ar" : "en"]}{r.check ? s.toCheck : ""} {r.src && <a href={r.src} target="_blank" rel="noopener noreferrer">↗</a>}</>)}>{s.eg}{s.toCheck}</OriginText></p>
         <p className="pl-actions"><Src href={FOUND_SRC.daadDb}>DAAD</Src><Link className="linkbtn" href={`${t.base}/school-certificate#cert-de`}>{s.links[0][1]}</Link></p>
       </section>
 
