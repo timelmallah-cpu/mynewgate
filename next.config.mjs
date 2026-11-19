@@ -5,6 +5,22 @@ const BASE = "/study";
 export default {
   reactStrictMode: true,
   basePath: BASE,
+  poweredByHeader: false,
+  // Security headers on every page and API response. No full CSP yet (Next inline scripts, Vercel Analytics, Stripe and
+  // Google redirects); frame-ancestors, object-src and base-uri are safe to lock down.
+  async headers() {
+    return [{
+      source: "/:path*",
+      headers: [
+        { key: "X-Content-Type-Options", value: "nosniff" },
+        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+        { key: "X-Frame-Options", value: "SAMEORIGIN" },
+        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
+        { key: "Strict-Transport-Security", value: "max-age=63072000" },
+        { key: "Content-Security-Policy", value: "frame-ancestors 'self'; object-src 'none'; base-uri 'self'" },
+      ],
+    }];
+  },
   async redirects() {
     return [
       // Old address: every page moves permanently to the same page under the new domain.

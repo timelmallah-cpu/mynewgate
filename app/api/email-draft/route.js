@@ -1,5 +1,6 @@
 // University email assistant. The notes are sent to the Gemini API (paid tier) to draft the email and are not stored by us.
 // The student's name never leaves the browser: the draft is signed with {{NAME}} and the page fills it in.
+import { sameOrigin } from "@/lib/account/http";
 import { ask, geminiConfigured } from "@/lib/assistant/gemini";
 import { limitsConfigured } from "@/lib/assistant/limit";
 import { useQuota, limitBody } from "@/lib/assistant/usage";
@@ -13,8 +14,7 @@ const res = (body, status = 200) => Response.json(body, { status, headers: { "Ca
 const str = (v, n) => (typeof v === "string" ? v.replace(/\r/g, "").trim().slice(0, n) : "");
 
 export async function POST(req) {
-  const origin = req.headers.get("origin");
-  if (origin && new URL(origin).host !== req.headers.get("host")) return res({ error: "forbidden" }, 403);
+  if (!sameOrigin(req)) return res({ error: "forbidden" }, 403);
   let b;
   try { b = await req.json(); } catch { return res({ error: "bad_request" }, 400); }
   const lang = b?.lang === "en" ? "en" : "ar";

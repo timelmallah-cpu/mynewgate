@@ -1,6 +1,7 @@
 // Feedback on assistant answers. A thumbs up/down only adds to a daily counter.
 // Only when the visitor chooses to send a report after a thumbs down do we keep that question and answer,
 // for 90 days, with no data about the visitor, so we can fix weak answers.
+import { sameOrigin } from "@/lib/account/http";
 import { pipeline, limitsConfigured, visitorId } from "@/lib/assistant/limit";
 import { MODEL } from "@/lib/assistant/gemini";
 
@@ -11,8 +12,7 @@ const res = (body, status = 200) => Response.json(body, { status, headers: { "Ca
 const clip = (x, n) => (typeof x === "string" ? x.slice(0, n) : "");
 
 export async function POST(req) {
-  const origin = req.headers.get("origin");
-  if (origin && new URL(origin).host !== req.headers.get("host")) return res({ error: "forbidden" }, 403);
+  if (!sameOrigin(req)) return res({ error: "forbidden" }, 403);
   let b;
   try { b = await req.json(); } catch { return res({ error: "bad_request" }, 400); }
   const vote = b?.vote === "up" ? "up" : b?.vote === "down" ? "down" : null;

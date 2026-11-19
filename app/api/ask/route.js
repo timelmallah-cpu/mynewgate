@@ -1,5 +1,6 @@
 // The assistant endpoint. Answers only from the site's own data (lib/assistant), with a daily limit per visitor.
 // Questions are sent to the Gemini API (paid tier) to write the answer and are not stored by us.
+import { sameOrigin } from "@/lib/account/http";
 import { retrieve, overviewText } from "@/lib/assistant/retrieve";
 import { DOCS } from "@/lib/assistant/knowledge";
 import { SYSTEM, contextBlock } from "@/lib/assistant/prompt";
@@ -17,8 +18,7 @@ for (const d of DOCS) if (!TITLES.has(d.url)) TITLES.set(d.url, d.title);
 const bad = (error, status) => Response.json({ error }, { status, headers: { "Cache-Control": "no-store" } });
 
 export async function POST(req) {
-  const origin = req.headers.get("origin");
-  if (origin && new URL(origin).host !== req.headers.get("host")) return bad("forbidden", 403);
+  if (!sameOrigin(req)) return bad("forbidden", 403);
 
   let body;
   try { body = await req.json(); } catch { return bad("bad_request", 400); }
