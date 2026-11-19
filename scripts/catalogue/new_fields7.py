@@ -244,8 +244,7 @@ ma("de", "sport", "Sport Science for Health (MSc)", "University of Konstanz", "K
    ("بكالوريوس علوم رياضة (3 سنوات على الأقل) أو مجال قريب جداً", "Bachelor's in sport science (at least 3 years) or a closely related subject"),
    ("الفصل الشتوي: 15 مارس - 15 أبريل", "Winter semester: 15 March - 15 April"),
    ("B2: IELTS 6", "B2: IELTS 6"), ("علوم الرياضة للصحة", "Sport science for health"),
-   ("التقديم على بوابة جامعة كونستانس", "Apply on the University of Konstanz portal"), DAAD + "7755/",
-   "https://uni-konstanz.de/fr/study/study-essentials/finances/tuition-fees/fees-for-international-students-and-for-second-degree-studies")
+   ("التقديم على بوابة جامعة كونستانس", "Apply on the University of Konstanz portal"), DAAD + "7755/")
 ma("de", "sport", "Exercise Science & Training (MSc)", "Julius-Maximilians-Universität Würzburg", "Würzburg", MSC, S4, FREE("180"),
    ("بكالوريوس (180 ساعة معتمدة) فيه 40 ساعة معتمدة على الأقل في علوم الرياضة", "Bachelor's (180 credits) with at least 40 credits in sport science"),
    ("الفصل الشتوي: 15 يناير - 15 يوليو", "Winter semester: 15 January - 15 July"),
@@ -376,10 +375,11 @@ ba("hu", "art", "Motion Pictures BA", "Eötvös Loránd University (ELTE)", "Bud
    NP, ("موعد 2027 غير منشور في صفحة الرسوم", "2027 deadline not on the fee page"), NP,
    ("صناعة الأفلام بكلية الآداب في جامعة ELTE", "Film-making at ELTE's Faculty of Humanities"),
    ("التقديم أونلاين على apply.elte.hu", "Apply online on apply.elte.hu"), "https://www.btk.elte.hu/en/fees-and-finances")
-ba("hu", "sport", "BSc in Physical Training", "University of Pécs", "Pécs", BSC, B6, HU("2,500"),
+ba("hu", "sport", "BSc in Physical Training", "University of Pécs", "Pécs", BSC, B6,
+   ("2,500 يورو للفصل لغير الأوروبيين حسب صفحة البرنامج (صفحة الرسوم العامة تذكر 3,000 يورو لبكالوريوس التدريب الرياضي، للتحقق)", "€2,500 per semester for non-EU students per the programme page (the general fee page lists €3,000 for the Sports Coaching BSc, to verify)"),
    ("رسوم طلب 140 يورو؛ اختيار تخصص رياضي واحد عند التقديم (ألعاب القوى، كرة اليد، السلة، القدم، السباحة)", "€140 application fee; choose one sport when applying (athletics, handball, basketball, football, swimming)"),
    ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
-   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://international.pte.hu/study-programs/bsc-physical-training")
+   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://www.ttk.pte.hu/en/admission/english-degree-programs/bsc-study-programs/physical-training-bsc", PTE_FEES)
 ba("hu", "sw", "BA in Social Work", "University of Pécs", "Pécs", BAA, ("3.5 سنوات (7 فصول)", "3.5 years (7 semesters)"), HU("2,200"),
    NP, ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
    ("الخدمة الاجتماعية", "Social work"), PTE_HOW, "https://btk.pte.hu/en/study-programs/ba-in-social-work")
