@@ -1,11 +1,11 @@
 "use client";
 import { useState, useMemo, useEffect, useRef } from "react";
 import Link from "@/components/Link";
-import programmes from "../lib/programmes.json";
 import Flag from "../lib/Flag";
 import { T, view } from "../lib/i18n";
 import { LEVEL_IDS, FIELD_IDS, BA_FIELD_IDS, COUNTRY_IDS, BUDGETS, DURATIONS, BA_DURATIONS, match, feeLabel } from "../lib/options";
 import { progsAr } from "../lib/arCount";
+import { BASE } from "../lib/site";
 
 export default function Quiz({ lang }) {
   const t = T[lang];
@@ -40,7 +40,10 @@ export default function Quiz({ lang }) {
     { key: "duration", q: t.qDuration, opts: (ba ? BA_DURATIONS : DURATIONS).map((d) => ({ id: d.id, label: (ba ? t.baDurations : t.durations)[d.id] })) },
   ].filter((st) => !(phd && (st.key === "budget" || st.key === "duration")));
   const done = step >= STEPS.length;
-  const results = useMemo(() => (done ? match(programmes, a).map((p) => view(p, lang)) : []), [done, a, lang]);
+  // The slim catalogue is fetched once (public/data/quiz.json, built by build-data) instead of bundling programmes.json.
+  const [programmes, setProgrammes] = useState(null);
+  useEffect(() => { fetch(`${BASE}/data/quiz.json`).then((r) => r.json()).then(setProgrammes).catch(() => setProgrammes([])); }, []);
+  const results = useMemo(() => (done && programmes ? match(programmes, a).map((p) => view(p, lang)) : []), [done, a, lang, programmes]);
   const known = results.filter((p) => p.feePerYear !== null);
   const unknown = results.filter((p) => p.feePerYear === null);
 
@@ -50,7 +53,7 @@ export default function Quiz({ lang }) {
     return st.opts.find((o) => o.id === v)?.label ?? "";
   };
   // When nothing matches: how many programmes each single relaxation would give.
-  const tries = done && results.length === 0
+  const tries = done && programmes && results.length === 0
     ? [
         { key: "budget", val: "any", label: e.tryBudget },
         { key: "duration", val: "any", label: e.tryDuration },
@@ -62,6 +65,7 @@ export default function Quiz({ lang }) {
         .filter((x) => x.n > 0)
     : [];
 
+  if (done && !programmes) return <p className="meta">{lang === "ar" ? "جارٍ تحميل البرامج..." : "Loading programmes..."}</p>;
   if (done) {
     return (
       <>

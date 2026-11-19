@@ -302,6 +302,16 @@ function docKeys(p) {
 import { mkdirSync } from "node:fs";
 mkdirSync("public/data", { recursive: true });
 writeFileSync("public/data/deadlines.json", JSON.stringify(DL)); // fetched by the planner page
+// Slim catalogue for the 5-question quiz (fetched by the browser, so the page doesn't bundle all of programmes.json).
+{
+  const warn = (t, w) => { const i = (t || "").indexOf(w); return i >= 0 ? t.slice(i) : ""; };
+  writeFileSync("public/data/quiz.json", JSON.stringify(out.map((p) => ({
+    id: p.id, level: p.level, field: p.field, country: p.country, countryAr: p.countryAr, fieldAr: p.fieldAr, years: p.years,
+    feePerYear: p.feePerYear, feePerYearMax: p.feePerYearMax, feePeriod: p.feePeriod, feeNeedsCheck: p.feeNeedsCheck, feeText: p.feeText,
+    name: p.name, university: p.university, city: p.city, duration: p.duration, deadline: p.deadline, other: warn(p.other, "تنبيه"),
+    en: { countryLabel: p.en.countryLabel, fieldLabel: p.en.fieldLabel, city: p.en.city, duration: p.en.duration, deadline: p.en.deadline, feeText: p.en.feeText, other: warn(p.en.other, "Warning") },
+  }))));
+}
 for (const lang of ["ar", "en"]) {
   writeFileSync(`public/data/compare-${lang}.json`, JSON.stringify(out.map((p) => {
     const v = lang === "ar" ? p : { ...p, ...p.en };

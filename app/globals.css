@@ -537,7 +537,7 @@ h2 { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0 10px; 
 .cc-sort:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
 .cc-star { margin: 6px 12px 10px; }
 .cc-notes { padding-inline-start: 20px; }
-.cc-details { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+.cc-details { display: grid; gap: 12px; align-items: start; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
 .cc-card h3 { margin-top: 0; }
 .cc-card h3 a { color: var(--navy); }
 
@@ -1188,3 +1188,9 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .jr-doc-prog { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 8px 0; }
 .jr-doc-prog summary { cursor: pointer; font-weight: 600; }
 .jr-doc-prog h4 { margin: 10px 0 2px; font-size: .92rem; }
+.cc-card summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.cc-card summary::-webkit-details-marker { display: none; }
+.cc-card summary::after { content: "+"; font-size: 1.3rem; color: var(--muted); }
+.cc-card[open] summary::after { content: "−"; }
+.cc-card summary h3 { margin: 0; color: var(--navy); }
+.cc-card[open] summary { margin-bottom: 8px; }

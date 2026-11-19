@@ -48,14 +48,15 @@ export default function Countries({ lang }) {
           const cost = COSTS[c];
           const ps = POST_STUDY[c];
           return (
-            <section key={c} className="card cc-card" id={`cc-${c}`}>
-              <h3><Link href={`${t.base}/country/${c}`}>{t.countries[c]}</Link></h3>
+            <details key={c} className="card cc-card" id={`cc-${c}`}>
+              <summary><h3>{t.countries[c]}</h3></summary>
+              <p><Link href={`${t.base}/country/${c}`}>{lang === "ar" ? `دليل ${t.countries[c]} الكامل` : `Full ${t.countries[c]} guide`}</Link></p>
               <dl className="ps-dl">
                 {cost && <div><dt>{s.proof}</dt><dd>{cost.proof[lang]}{cost.proofCheck ? t.toCheck : ""} · <a href={cost.proofSrc} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></dd></div>}
                 {w && <div><dt>{s.work}</dt><dd>{w[lang]}{w.check && !/للتحقق|to verify/.test(w[lang]) ? t.toCheck : ""} · <a href={w.src} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></dd></div>}
                 {ps && <div><dt>{s.after}</dt><dd>{ps.name[lang]}: {PS_TEXT[lang].months(ps.months)}{ps.check ? t.toCheck : ""} · <a href={ps.src} target="_blank" rel="noopener noreferrer">{s.source} ↗</a></dd></div>}
               </dl>
-            </section>
+            </details>
           );
         })}
       </div>

@@ -84,7 +84,7 @@ export default function CountriesTable({ lang, rows, names }) {
               </td>
               <td data-label={s.living}><span>{r.living === null ? s.na : <>{s.eur(fmt(r.living))}<Local eur={r.living} lang={lang} /></>}</span></td>
               <td data-label={s.proof}><span>{r.proof === null ? s.na : <>{s.eur(fmt(r.proof))}<Local eur={r.proof} lang={lang} /></>}{r.proofCheck ? chk : ""}</span></td>
-              <td data-label={s.work}><span><a href={`#cc-${r.c}`}>{s.hours(r.hours, r.per)}</a>{r.workCheck ? chk : ""}</span></td>
+              <td data-label={s.work}><span><a href={`#cc-${r.c}`} onClick={() => document.getElementById(`cc-${r.c}`)?.setAttribute("open", "")}>{s.hours(r.hours, r.per)}</a>{r.workCheck ? chk : ""}</span></td>
               <td data-label={s.after}>{r.months === null ? s.na : s.months(r.months)}{r.afterCheck ? chk : ""}</td>
             </tr>
           ))}
