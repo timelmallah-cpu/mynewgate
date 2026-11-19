@@ -19,7 +19,7 @@ export function Hosts({ s, lang }) {
   return (
     <span className="hosts">
       {s.hosts.length > 6 ? (
-        <>{lang === "ar" ? "عدة دول أوروبية" : "Several European countries"}</>
+        <>{lang === "ar" ? "عدة دول" : "Several countries"}</>
       ) : (
         s.hosts.map((h) => (
           <span key={h}><Flag code={h} size={16} /> {t.countries[h]}</span>

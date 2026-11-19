@@ -9,7 +9,7 @@ const LEVEL = { ar: { master: "ماجستير", bachelor: "بكالوريوس", 
 
 function where(s, lang) {
   const names = T[lang].countries;
-  if (s.hosts.length > 3) return lang === "ar" ? `الدراسة في ${s.hosts.length} دولة أوروبية` : `Study in ${s.hosts.length} European countries`;
+  if (s.hosts.length > 3) return lang === "ar" ? `الدراسة في ${s.hosts.length} دولة` : `Study in ${s.hosts.length} countries`;
   const list = s.hosts.map((h) => names[h] || h).join(lang === "ar" ? " و" : " and ");
   return lang === "ar" ? `الدراسة في ${list}` : `Study in ${list}`;
 }
