@@ -76,7 +76,7 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 - Iceland batch 2 (19 Nov, 12 master's): scripts/catalogue/iceland_more.py (append-only, re-run after iceland.py): University of Iceland International Studies in Education, Global Studies, Criminology, Industrial Engineering, Computer Science (Cybersecurity track only in English); University of Akureyri research MS Psychology (find a supervisor first, non-EU 1 April) and Polar Law (MA/LLM, non-EU 1 March, portal opens spring 2027); University Centre of the Westfjords in Isafjordur (enrolled at Akureyri) Coastal and Marine Management (MRM) and Coastal Communities and Regional Development (15 Feb priority / 15 Apr final, ISK 300,000 registration for internationals); Agricultural University of Iceland Restoration Ecology in Hvanneyri (non-EU 31 Jan). All fee texts start with "غير منشور في المصدر" (2027 tuition amounts not decided at Akureyri, unreadable at UI). Cities Akureyri, Isafjordur, Hvanneyri added. Reykjavik University skipped (private).
 
 ## Next (in Hatem's order)
-1. Keep growing the small fields (education 5, media 5, tourism 5, agriculture 8, environment 7) and psychology (12), Greece (3), Iceland (12), Cyprus (3), Portugal (8).
+1. Keep growing the small fields (education 6, media 5, tourism 5, agriculture 8, environment 10) and psychology (13), Greece (3), Iceland (12), Cyprus (3), Portugal (8).
 2. Check the link report's real "Broken" group after each run (the TLS and no-answer groups are usually fine in a browser).
 3. Study Plus "coming soon": email alerts (needs Brevo), detailed eligibility analysis.
 - Hatem's own to-dos: Brevo keys, ICO self-assessment, check Vercel Analytics after the /study move, Vercel free domain (claim within 30 days of 17 Nov).
