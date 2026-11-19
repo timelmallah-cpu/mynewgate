@@ -21,7 +21,7 @@ TUW_DL = ("لغير الأوروبيين موعد خاص: يجب أن يصل ا�
 TUW_OTHER = ("البرنامج كله بالإنجليزية. القبول بدون عدد محدود إذا كان البكالوريوس مطابقاً لشروط البرنامج، وقد تُطلب مواد تكميلية. الأوراق الأجنبية تحتاج تصديقاً وترجمة رسمية",
              "Taught entirely in English. No cap on places if your bachelor's meets the programme's requirements; supplementary courses may be required. Foreign documents need legalisation and an official translation")
 TUW_HOW = ("التقديم أونلاين لمكتب القبول في TU Wien", "Apply online to the TU Wien admission office")
-TUW_APPLY = "https://tuwien.at/en/studies/admission/the-conditions-for-international-students/masters-programme/step-1-application"
+TUW_APPLY = "https://www.tuwien.at/en/studies/admission/academic-calendar"
 TUW_LIST = "https://www.tuwien.at/en/studies/studies/master-programmes/english-taught-masters-programmes"
 for name, field, url in [
     ("Aeronautical Engineering", "eng", TUW_LIST),
@@ -40,7 +40,7 @@ TUG_DL = ("إذا كان البرنامج يتطلب إجراء قبول: الت
 TUG_OTHER = ("البرنامج كله بالإنجليزية. كل البرامج الإنجليزية في TU Graz لها إجراء قبول لمن ليس من خريجي برامج معينة، ويمكن إكماله قبل نهاية البكالوريوس. لبعض الدول حد أدنى للمعدل",
              "Taught entirely in English. All of TU Graz's English master's have an admission procedure for applicants who are not graduates of specified programmes, and it can be completed before finishing the bachelor's. Some countries have a minimum GPA")
 TUG_HOW = ("إجراء القبول أونلاين، ثم طلب المقعد الدراسي لدى مكتب التسجيل (لا تُقبل الطلبات بالبريد الإلكتروني)", "Online admission procedure, then the study-place application to the Registrar's Office (applications by email are not accepted)")
-TUG_APPLY = "https://tugraz.at/en/studying-and-teaching/studying-at-tu-graz/prospective-students/registration-and-admission/admission-of-international-degree-programme-applicants"
+TUG_APPLY = "https://www.tugraz.at/en/studying-and-teaching/studying-internationally/international-students/faq-for-international-students"
 TUG = "https://www.tugraz.at/en/studying-and-teaching/degree-and-certificate-programmes/masters-degree-programmes/"
 for name, field, slug in [
     ("Computer Science", "cs", "computer-science"),
@@ -49,9 +49,9 @@ for name, field, slug in [
     ("Data Science", "ds", "data-science"),
     ("Biomedical Engineering", "eng", "biomedical-engineering"),
     ("Production Science and Management", "eng", "production-science-and-management"),
-    ("Electrical Engineering", "eng", "electrical-engineering"),
+    ("Electrical Engineering", "eng", "ETIT"),
 ]:
-    add(ROWS, field, name, "TU Graz (Graz University of Technology)", "Graz", DI, Y2, FEE, NP, TUG_DL, B2, TUG_OTHER, TUG_HOW, NP, NP, TUG + slug, TUG_APPLY)
+    add(ROWS, field, name, "TU Graz (Graz University of Technology)", "Graz", DI, Y2, FEE, NP, TUG_DL, B2, TUG_OTHER, TUG_HOW, NP, NP, ("https://www.tugraz.at/en/fakultaeten/etit/studies/masters-degree-programmes/electrical-engineering" if slug == "ETIT" else TUG + slug), TUG_APPLY)
 
 # ---------- WU Vienna ----------
 WU_DL = ("القبول المتدرج لدفعة 2027/2028: الموعد الأول 8 أكتوبر 2026 (انتهى، والجامعة تنصح غير الأوروبيين به)، والثاني 8 يناير 2027، والثالث 8 مارس 2027. التقديم بعد الموعد الأول قد لا يترك وقتاً كافياً لتصريح الإقامة",
@@ -66,7 +66,7 @@ WU_HOW = ("التقديم أونلاين على بوابة WU", "Apply online on
 WU_APPLY = "https://www.wu.ac.at/en/programs/application-and-admission/deadlines-rolling-admission"
 for name, field, dl, url in [
     ("Digital Economy", "bus", WU_DL, WU_APPLY),
-    ("Economics", "econ", WU_DL, "https://www.wu.ac.at/en/programs/masters-programs/detail/master-economics"),
+    ("Economics", "econ", WU_DL, WU_APPLY),
     ("Marketing", "bus", WU_DL, "https://www.wu.ac.at/studium/master/marketing/ueberblick"),
     ("Quantitative Finance", "econ", WU_DL, WU_APPLY),
     ("Socio-Ecological Economics and Policy", "econ", WU_DL, WU_APPLY),
@@ -84,7 +84,7 @@ add(ROWS, "cs", "Computer Science", "University of Vienna", "Vienna", MSC, Y2, F
      "Winter semester 2027/2028 dates are not yet published. For non-EU applicants the winter 2026/2027 period was 22 June - 3 August 2026, and summer 2027 is 16 November 2026 - 7 January 2027 (2027 dates to verify)"),
     ("مستوى B2 في الإنجليزية شرط للقبول", "English at B2 is an admission requirement"),
     ("البرنامج كله بالإنجليزية", "Taught entirely in English"), UV_HOW, NP, NP,
-    "https://studieren.univie.ac.at/en/master-programmes/degree-programmes-in-foreign-languages/",
+    "https://studieren.univie.ac.at/en/degree-programmes/master-programmes/",
     "https://studieren.univie.ac.at/en/applying-for-a-programme/deadlines")
 add(ROWS, "ds", "Business Analytics", "University of Vienna", "Vienna", MSC, Y2, FEE, NP,
     ("التقديم مرة واحدة في السنة؛ مواعيد 2027/2028 غير منشورة في المصدر بعد", "Applications once a year; 2027/2028 dates not yet published in the source"),

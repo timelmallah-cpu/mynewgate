@@ -98,7 +98,7 @@ for field, name, n, city in [
     add(field, name, UCA, city, ("سنتان", "2 years"),
         (f"{n:,} يورو سنوياً للطلاب الدوليين المقبولين في 2026/2027 (بشرط تصويت المجلس الأكاديمي)", f"€{n:,} per year for international students starting in 2026/2027 (subject to the Academic Council's vote)"),
         UCA_DL, UCA_EN, ("برنامج دولي بالإنجليزية بالكامل، والجامعة تمنح 10 منح IdEx سنوياً لأفضل المتقدمين", "International MSc taught entirely in English; the university awards 10 IdEx scholarships a year to top applicants"),
-        UCA_HOW, NP, UCA_SRC, "https://univ-cotedazur.eu/msc-programs/2026-intake-applications-now-open-for-international-msc-programs")
+        UCA_HOW, NP, UCA_SRC, UCA_SRC)
 
 # ---------- Université Grenoble Alpes ----------
 UGA = "Université Grenoble Alpes & Grenoble INP - UGA"
@@ -115,6 +115,6 @@ for field, name, dur, src in [
 ]:
     add(field, name, UGA if "INP" in src or src == UGA_SRC else "Université Grenoble Alpes", "Grenoble", dur, UGA_FEE, UGA_DL, UGA_EN,
         ("القبول انتقائي؛ برامج السنة الواحدة تتطلب سنة ماجستير أولى (M1) أو ما يعادلها", "Selective; one-year programmes require a first master's year (M1) or equivalent") if dur != Y2 else ("القبول انتقائي", "Selective admission"),
-        CF, CROUS, src, "https://www.univ-grenoble-alpes.fr/requesting-exemption-of-the-additional-tuition-fees-students-from-outside-europe-/")
+        CF, CROUS, src, UGA_NEWS)
 
 append_extra("فرنسا", "france", ROWS, "2026-11-19")
