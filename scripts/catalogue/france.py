@@ -59,7 +59,7 @@ add(MA, "econ", "Master's programmes, international track (in English)", "Toulou
     CF, NP, NP, "https://www.tse-fr.eu/admissions?lang=en", "https://www.tse-fr.eu/admissions?lang=en")
 add(MA, "eng", "M1 Nuclear Engineering", "Université Paris-Saclay", "Gif-sur-Yvette", MSC,
     ("سنتان (M1 ثم M2)", "2 years (M1 then M2)"),
-    ("3,950 يورو سنوياً لغير الأوروبيين (2026/2027) ما لم تحصل على إعفاء؛ الجامعة تطبق إعفاءً جزئياً لبعض الطلاب (للتحقق)", "€3,950 a year for non-EU students (2026/2027) unless exempted; the university grants a partial exemption to some students (to verify)"),
+    ("6,254 يورو سنوياً لغير الأوروبيين (2026/2027، رسوم المسارات الدولية في جامعة باريس ساكلاي)؛ وبعض المنح تخفضها حسب شروط الجامعة", "€6,254 a year for non-EU students (2026/2027, Université Paris-Saclay international-track fee); some scholarships reduce it under the university's criteria"),
     NP, ("لدفعة 2026 كان التقديم على منصة Inception من 15 يناير إلى 16 مارس 2026 (مواعيد 2027 للتحقق)", "For 2026 entry applications on Inception ran 15 January - 16 March 2026 (2027 dates to verify)"),
     ("شهادة مستوى إنجليزي إلزامية لغير الناطقين بها", "An English-level certificate is compulsory for non-native speakers"),
     ("بالإنجليزية بالكامل؛ 45 مكان؛ لخريجي فيزياء أو كيمياء", "Taught entirely in English; 45 places; for physics or chemistry graduates"),
