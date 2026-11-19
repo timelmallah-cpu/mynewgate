@@ -1194,3 +1194,24 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .cc-card[open] summary::after { content: "−"; }
 .cc-card summary h3 { margin: 0; color: var(--navy); }
 .cc-card[open] summary { margin-bottom: 8px; }
+
+/* Home: "where do you want to study?" region cards, and /region pages */
+.regions h2 { margin: 0 0 4px; font-size: 1.25rem; }
+.regions > p { margin: 0 0 12px; color: var(--muted, #5b6478); }
+.regions ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+@media (max-width: 480px) { .regions ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } .regions a { padding: 10px; } }
+.regions a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 12px; border: 1px solid #dfe4ef; border-radius: 12px; text-decoration: none; color: inherit; background: #fff; }
+.regions a:hover { border-color: var(--gold); }
+.regions b { font-size: 1.05rem; }
+.regions small { color: #5b6478; font-size: .82rem; }
+.region-flags { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; min-height: 18px; color: #8a93a8; }
+.region-flags i { font-style: normal; font-size: .78rem; color: #5b6478; }
+.regions .soon a { background: #f6f7fb; }
+.soon-tag { display: inline-block; width: fit-content; padding: 1px 8px; border-radius: 999px; background: #fff3d6; color: #7a5a00 !important; }
+.region-grid { list-style: none; padding: 0; margin: 16px 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.region-grid a { position: relative; display: block; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--navy); color: #fff; text-decoration: none; }
+.region-grid img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: .85; }
+.region-grid span { position: absolute; inset: auto 0 0 0; padding: 22px 10px 8px; background: linear-gradient(transparent, rgba(10,20,45,.85)); display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-weight: 600; }
+.region-grid small { flex-basis: 100%; font-weight: 400; color: #dfe6f5; font-size: .8rem; }
+.region-want { margin: 16px 0; }
+.region-want p { margin: 8px 0 0; }

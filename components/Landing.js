@@ -12,6 +12,7 @@ import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS } from "../lib/journey";
 import { SECTORS } from "../lib/ausbildungGuide";
 import { HOME } from "../lib/homeText";
+import { RegionCards } from "./Regions";
 
 // A smaller Wikimedia thumbnail for the photo strip (only where a larger thumbnail of the same file is used).
 const thumb = (url) => url.replace("/1280px-", "/960px-");
@@ -65,6 +66,8 @@ export default function Landing({ lang }) {
           ))}
         </ul>
       </section>
+
+      <RegionCards lang={lang} />
 
       <section className="card origin-home" aria-label={lang === "ar" ? "بلدك" : "Your country"}>
         <OriginPicker lang={lang} />

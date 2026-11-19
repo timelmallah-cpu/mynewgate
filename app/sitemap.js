@@ -1,3 +1,4 @@
+import { REGIONS } from "@/lib/regions";
 import programmes from "@/lib/programmes.json";
 import { SCHOLARSHIPS } from "@/lib/scholarships";
 import { COUNTRY_IDS } from "@/lib/options";
@@ -12,6 +13,7 @@ export default function sitemap() {
   const paths = [
     "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms",
     ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
+    ...REGIONS.filter((r) => r.countries.length > 1).map((r) => `/region/${r.id}`),
     ...programmes.map((p) => `/programme/${p.id}`),
     ...SCHOLARSHIPS.map((s) => `/scholarships/${s.id}`),
     ...VOC.map((v) => `/vocational/${v.code}`),
