@@ -51,7 +51,7 @@ ma("nl", "tour", "Tourism, Society and Environment (MSc)", "Wageningen Universit
    ("IELTS 6.0 (والتحدث 6.0) أو TOEFL iBT 80", "IELTS 6.0 (speaking 6.0) or TOEFL iBT 80"),
    ("ماجستير سنتين عن السياحة والاستدامة والمجتمع والبيئة؛ تدريب أو مشروع استشاري ضمن البرنامج", "A two-year MSc on tourism, sustainability, society and the environment, with an internship or consultancy project"),
    NL_HOW, "https://www.wur.nl/en/education-programmes/master/practical-information-masters/study-expenses.htm",
-   "https://www.studyinnl.org/dutch-education/studies/tourism-society-and-environment-947-wageningen-university-research")
+   "https://www.wur.nl/en/Education-Programmes/master/Scholarships.htm")
 ma("dk", "tour", "Tourism (MA)", "Aalborg University", "Aalborg", MAD, Y2,
    ("حوالي 3,582 يورو للفصل لغير الأوروبيين حسب بوابة Study in Denmark الرسمية (للتحقق من رقم 2027)", "About €3,582 per semester for non-EU students per the official Study in Denmark portal (2027 figure to verify)"),
    ("رسوم طلب 150 يورو (1,150 كرونة دنماركية) لغير الأوروبيين، وتغطي حتى 3 طلبات؛ الرسوم الدراسية تُدفع قبل كل فصل (1 أغسطس للخريف)", "€150 (DKK 1,150) application fee for non-EU applicants, covering up to 3 applications; tuition is paid before each semester (1 August for autumn)"),
@@ -122,7 +122,7 @@ ma("cz", "media", "Society, Communication and Media (SCM)", "Charles University,
    ("دورة 2025: الموعد المبكر 28 فبراير والعادي 30 أبريل؛ مواعيد 2027 للتحقق", "2025 cycle: early bird 28 February, regular 30 April; 2027 dates to verify"),
    NP, ("علم الاجتماع والإعلام معاً: الإعلام الرقمي والاتصال السياسي وتحليل الخطاب والنظرية الاجتماعية، بالإنجليزية", "Sociology and media together: digital media, political communication, discourse analysis and social theory, in English"),
    ("التقديم أونلاين على بوابة كلية العلوم الاجتماعية ودفع رسوم الطلب، ثم تأشيرة الدراسة من سفارة التشيك", "Apply online on the Faculty of Social Sciences portal and pay the application fee, then the study visa from the Czech embassy"),
-   "https://fsv.cuni.cz/en/SCM", "https://study.fsv.cuni.cz/how-to-apply")
+   "https://iss.fsv.cuni.cz/en/admissions/master-studies/society-communication-and-media", "https://study.fsv.cuni.cz/how-to-apply")
 
 # ---- Law ----
 GR_LAW_DL = ("1 مايو 2027 (البدء 1 سبتمبر 2027)", "1 May 2027 (start 1 September 2027)")
@@ -164,7 +164,7 @@ ma("se", "edu", "International and Comparative Education", "Stockholm University
    ("90,000 كرونة سويدية سنوياً (فئة العلوم الإنسانية والاجتماعية حسب كتيب الجامعة؛ للتحقق في صفحة البرنامج)", "SEK 90,000 a year (humanities and social sciences rate in the university brochure; to verify on the programme page)"),
    SE_ADM, SE_DL, SE_EN,
    ("التعليم الدولي والمقارن: التخطيط التعليمي والتعليم والتنمية والعولمة ومناهج البحث", "International and comparative education: educational planning, education and development, globalisation and research methods"),
-   SE_HOW, "https://www.su.se/polopoly_fs/1.849188.1758711710!/menu/standard/file/tillg%C3%A4nglig_Masterfolder_2025_WEBB-komp.pdf")
+   SE_HOW, "https://www.su.se/english/education/how-to-apply/costs-fees-and-scholarships")
 
 # ======================= BACHELOR'S =======================
 # ---- Architecture ----
