@@ -51,7 +51,7 @@ const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics", "العمارة": "architecture", "القانون": "law",
-  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism",
+  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism", "الطب البيطري": "veterinary",
 };
 
 // Years of study from the Arabic duration text.
@@ -61,6 +61,7 @@ function years(d, level) {
   if (level === "bachelor") {
     if (/3\.5 سنوات|210 ساعات|7 فصول/.test(d)) return 3.5;
     if (/6 سنوات|360 ساعة|12 فصلاً/.test(d)) return 6;
+    if (/5\.5 سنوات|11 فصلاً/.test(d)) return 5.5;
     if (/5 سنوات|300 ساعة/.test(d)) return 5;
     if (/4 سنوات|240 ساعة|8 فصول/.test(d)) return 4;
     if (/3 سنوات|180 ساعة|6 فصول/.test(d)) return 3;

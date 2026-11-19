@@ -96,3 +96,60 @@ def append_extra(country_ar, slug, rows, reviewed, status=None):
         csv.writer(f).writerows([lh] + lb)
     n = sum(1 for r in body if r[1] == country_ar)
     print(f"{slug}: +{len(rows)} extra master's; {n} in all_programmes for {country_ar}")
+
+
+def append_ba(country_ar, slug, rows, reviewed, status=None):
+    """Append-only for bachelor's / long-cycle rows (data/programmes_ba/<slug>.csv, ids b-<cc>-<#>).
+    Rows already in the file keep their number; rows of this batch (matched by name + university) keep theirs on
+    re-runs, and new ones get the next free number, so published URLs never change.
+    Note: a country's own *_ba.py script uses write(), which rewrites the file: re-run this batch after it."""
+    import json
+    from common import FIELDAR, STATUS
+    status = status or STATUS
+    tr = {}
+
+    def t(v):
+        tr[v[0]] = v[1]
+        return v[0]
+
+    mine = {(r["name"], r["uni"]) for r in rows}
+    assert len(mine) == len(rows), "duplicate (name, university) in rows"
+    data = os.path.join(ROOT, "data")
+    cp = os.path.join(data, "programmes_ba", f"{slug}.csv")
+    if os.path.exists(cp):
+        c = list(csv.reader(open(cp, encoding="utf-8-sig")))
+        hdr, body = c[0], [r for r in c[1:] if r]
+    else:
+        hdr = list(csv.reader(open(os.path.join(data, "programmes", "germany.csv"), encoding="utf-8-sig")))[0]
+        body = []
+    old = {(r[3], r[4]): r[0] for r in body if (r[3], r[4]) in mine}
+    keep = [r for r in body if (r[3], r[4]) not in mine]
+    nxt = max([int(r[0]) for r in body] + [0]) + 1
+    out = list(keep)
+    for r in rows:
+        k = (r["name"], r["uni"])
+        if k in old:
+            rid = old[k]
+        else:
+            rid, nxt = str(nxt), nxt + 1
+        out.append([rid, country_ar, FIELDAR[r["field"]], r["name"], r["uni"], r["city"], t(r["deg"]), t(r["dur"]), t(r["fee"]),
+                    t(r["adm"]), t(r["dl"]), t(r["en"]), t(r["other"]), t(r["how"]), t(r["living"]), t(r["house"]), r["src"],
+                    reviewed, t(status)])
+    out.sort(key=lambda r: int(r[0]))
+    with open(cp, "w", newline="", encoding="utf-8-sig") as f:
+        csv.writer(f).writerows([hdr] + out)
+
+    tp = os.path.join(data, "translations_en.json")
+    allt = json.load(open(tp, encoding="utf-8"))
+    allt.update(tr)
+    json.dump(allt, open(tp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    lp = os.path.join(data, "programme_links.csv")
+    links = list(csv.reader(open(lp, encoding="utf-8")))
+    lh, lb = links[0], [l for l in links[1:] if l and not (l[0] == country_ar and l[-1] == "bachelor" and (l[1], l[2]) in mine)]
+    for r in rows:
+        rn, an = r["req_note"], r["apply_note"]
+        lb.append([country_ar, r["name"], r["uni"], r["req"] or "", rn[0], rn[1], r["apply"] or "", an[0], an[1], "bachelor"])
+    with open(lp, "w", newline="", encoding="utf-8") as f:
+        csv.writer(f).writerows([lh] + lb)
+    print(f"{slug} (bachelor): +{len(rows)} rows, {len(out)} in file")
