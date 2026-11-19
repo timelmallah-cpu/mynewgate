@@ -38,7 +38,7 @@ bo("eng", "Mechanical Engineering for Sustainability", "Forlì", 6720, BO_OPEN)
 bo("econ", "Applied Economics and Markets", "Bologna", 6756, BO_OPEN)
 bo("econ", "Economics and Econometrics", "Bologna", 6757, BO_OPEN)
 bo("econ", "Economics and Public Policy", "Bologna", 6758, BO_OPEN)
-bo("econ", "Tourism Economics and Management", "Rimini", 6761, BO_OPEN)
+bo("tour", "Tourism Economics and Management", "Rimini", 6761, BO_OPEN)
 bo("bus", "International Management", "Bologna", 6803,
    bo_restricted(70, "، منها 30 مقعداً لغير الأوروبيين المقيمين بالخارج", ", of which 30 are reserved for non-EU citizens residing abroad"))
 bo("bus", "Service Management", "Rimini", 6804, bo_restricted(50))

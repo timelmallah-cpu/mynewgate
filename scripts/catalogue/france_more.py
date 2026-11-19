@@ -92,7 +92,7 @@ UCA_SRC = "https://univ-cotedazur.eu/msc-programs/tuition-fees/are-you-a-europea
 for field, name, n, city in [
     ("ds", "MSc Biobanks and Complex Data Management", 5500, "Nice"),
     ("bus", "MSc Management of the Flavor & Fragrance Industry", 5000, "Grasse"),
-    ("eng", "MSc Environmental Hazards and Risks Management", 5500, "Nice"),
+    ("env", "MSc Environmental Hazards and Risks Management", 5500, "Nice"),
     ("cs", "MSc Modeling for Neuronal & Cognitive Systems", 5000, "Sophia Antipolis"),
 ]:
     add(field, name, UCA, city, ("سنتان", "2 years"),

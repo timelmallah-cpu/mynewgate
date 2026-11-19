@@ -51,6 +51,7 @@ const FIELD_OVERRIDE = Object.fromEntries([78, 105, 130, "b-es-2", "b-nl-25", "b
 const FIELD = {
   "علوم الحاسب": "cs", "علوم البيانات": "ds", "إدارة الأعمال": "business",
   "الهندسة": "engineering", "الصحة العامة": "health", "الطب": "medicine", "طب الأسنان": "dentistry", "الصيدلة": "pharmacy", "التمريض": "nursing", "الاقتصاد": "economics", "العمارة": "architecture", "القانون": "law",
+  "الإعلام والاتصال": "media", "التربية والتعليم": "education", "العلوم السياسية والاجتماعية": "politics", "الزراعة": "agriculture", "البيئة": "environment", "السياحة": "tourism",
 };
 
 // Years of study from the Arabic duration text.
@@ -74,13 +75,15 @@ function years(d, level) {
 // Numbers in the text that are amounts (not academic years like 2026/27).
 function amounts(t) {
   const out = [];
-  // Three-digit amounts count only when followed by "يورو" (e.g. Luxembourg's €800 a year).
+  // Three-digit amounts count only when followed by "يورو" (e.g. Luxembourg's €800 a year, France's €255).
   const re = /(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d{4,}(?:\.\d+)?|\d{3}(?=\s*يورو))(?!\s*\/|\d)/g;
   let m;
   while ((m = re.exec(t))) {
     const n = parseFloat(m[1].replace(/,/g, ""));
     if (n >= 2000 && n <= 2100 && !m[1].includes(",")) continue; // a year
-    if (n >= 500) out.push(n);
+    // Small sums count only when written as euros (e.g. France's national rate of €255 a year).
+    const perUnit = /^\s*يورو\s*\//.test(t.slice(m.index + m[1].length)); // "120 يورو/ساعة" is a per-credit price
+    if (n >= 500 || (m[1].length === 3 && n >= 100 && !perUnit)) out.push(n);
   }
   return out;
 }
