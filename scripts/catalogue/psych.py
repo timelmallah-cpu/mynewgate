@@ -112,7 +112,7 @@ PD_MA = [("Applied Child and Adolescent Psychology", 40, ("متوسط درجات
 for name, seats, req in PD_MA:
     ma("it", name, PD, "Padua", Y2, PD_FEE, ("رسوم ما قبل التسجيل 30 يورو", "€30 pre-enrolment fee"), PD_DL, PD_EN,
        (f"{seats} مقعداً لغير الأوروبيين المقيمين بالخارج (إعلان 2026/2027)؛ " + req[0], f"{seats} places for non-EU applicants residing abroad (2026/2027 call); " + req[1]),
-       PD_HOW, "https://www.unipd.it/sites/unipd.it/files/2026/en-2026_Bando_LM_PsicologiaInglese.pdf", "https://www.unipd.it/en/avvisi-ammissione-titoli-esteri",
+       PD_HOW, "https://www.unipd.it/en/avvisi-ammissione-titoli-esteri", "https://www.unipd.it/en/avvisi-ammissione-titoli-esteri",
        deg=("ماجستير (Laurea Magistrale)", "Master's degree (Laurea Magistrale)"))
 
 # ---------- Belgium: KU Leuven ----------

@@ -188,7 +188,7 @@ add("ee", "Veterinary Medicine (DVM)", "Estonian University of Life Sciences", "
     ("مستوى B2 في الإنجليزية", "B2 level in English"),
     ("اختبار ISAT للقدرات (حتى 40 نقطة) وخطاب دافع (حتى 10 نقاط)؛ معتمد من EAEVE", "ISAT aptitude test (up to 40 points) and a motivation letter (up to 10 points); EAEVE-accredited"),
     ("التقديم على منصة DreamApply مع إرسال الأوراق الورقية", "Apply on DreamApply and post the paper documents"),
-    "https://www-vana.emu.ee/en/admissions/veterinary-medicine/admission-requirements", "https://estonia.dreamapply.com/courses/course/330")
+    "https://estonia.dreamapply.com/courses/course/330", "https://estonia.dreamapply.com/courses/course/330")
 
 COUNTRIES = {"hu": ("المجر", "hungary"), "sk": ("سلوفاكيا", "slovakia"), "cz": ("التشيك", "czechia"), "lt": ("ليتوانيا", "lithuania"),
              "pl": ("بولندا", "poland"), "ro": ("رومانيا", "romania"), "bg": ("بلغاريا", "bulgaria"), "lv": ("لاتفيا", "latvia"),
