@@ -1,4 +1,4 @@
-// The signed-in person's account: read, update (profile and saved list), delete.
+// The signed-in person's account: read, update (profile, saved list, tracker, eligibility answers), delete.
 import { res, sameOrigin, currentUser, clearSession } from "@/lib/account/http";
 import { accountsConfigured, publicUser, updateUser, deleteUser, touch } from "@/lib/account/store";
 import { isPlus } from "@/lib/plans";
@@ -35,7 +35,7 @@ export async function PATCH(req) {
   try {
     const cu = await who();
     if (cu.error) return cu.error;
-    const u = await updateUser(cu.uid, { profile: b?.profile, list: b?.list, apps: b?.apps, lang: b?.lang });
+    const u = await updateUser(cu.uid, { profile: b?.profile, list: b?.list, apps: b?.apps, lang: b?.lang, elig: b?.elig });
     return res({ ok: true, user: view(u) });
   } catch (e) {
     console.error("account update failed", String(e).slice(0, 300));

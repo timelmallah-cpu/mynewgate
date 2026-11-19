@@ -5,7 +5,8 @@ import Flag from "../lib/Flag";
 import { T } from "../lib/i18n";
 import { LEVEL_IDS, FIELD_IDS, BA_FIELD_IDS, COUNTRY_IDS, BUDGETS } from "../lib/options";
 import { EL_TEXT } from "../lib/eligibilityText";
-import { SCALES, SCORE_RANGE, evaluate, toGerman, scoreValid, loadProfile, saveProfile } from "../lib/eligibility";
+import { SCALES, SCORE_RANGE, evaluate, toGerman, scoreValid, loadProfile, saveProfile, seenProfile } from "../lib/eligibility";
+import { signedIn } from "../lib/saved";
 import { BASE } from "../lib/site";
 
 const START = { level: "master", field: "", countries: [], scale: "pct", grade: "", max: 100, min: 50, test: "ielts", score: "", budget: "any" };
@@ -19,10 +20,13 @@ export default function Eligibility({ lang }) {
   const [err, setErr] = useState(false);
   const [a, setA] = useState(START);
   const [loaded, setLoaded] = useState(false);
+  const [isIn, setIn] = useState(false);
 
   useEffect(() => {
     fetch(`${BASE}/data/compare-${lang}.json`).then((r) => r.json()).then(setData).catch(() => setErr(true));
-    const saved = loadProfile();
+    setIn(signedIn());
+    loadProfile().then((saved) => {
+    if (saved) seenProfile(saved);
     const q = new URLSearchParams(window.location.search);
     const next = { ...START, ...(saved || {}) };
     // Older saved answers had one country ("country"); keep it as a one-country list.
@@ -35,9 +39,10 @@ export default function Eligibility({ lang }) {
     if (qc.length) next.countries = qc;
     setA(next);
     setLoaded(true);
+    });
   }, [lang]);
 
-  // Keep the answers in this browser once the student has chosen a field.
+  // Keep the answers in the account (signed-in students only) once a field is chosen.
   useEffect(() => { if (loaded && a.field) saveProfile(a); }, [a, loaded]);
 
   const set = (k, v) => setA((x) => {
@@ -138,7 +143,8 @@ export default function Eligibility({ lang }) {
           </label>
         )}
       </form>
-      <p className="meta">{s.privacy}</p>
+      <p className="meta">{isIn ? s.privacyIn : s.privacyOut}{" "}
+        {isIn ? <Link href={`${t.base}/journey`}>{s.journeyLink}</Link> : <Link href={`${t.base}/login?next=${encodeURIComponent(`${t.base}/eligibility`)}`}>{s.signIn}</Link>}</p>
 
       {err && <div className="notice">{s.failed}</div>}
       {!err && !data && <p className="meta">{s.loading}</p>}
