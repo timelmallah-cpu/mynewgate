@@ -17,6 +17,7 @@ import { useOrigin } from "./Origin";
 import { BASE } from "../lib/site";
 import { download } from "./MyList";
 import Flag from "../lib/Flag";
+import DocList from "./DocList";
 
 const today = () => new Date().toISOString().slice(0, 10);
 const daysLeft = (iso) => Math.round((new Date(iso + "T12:00:00Z") - new Date(today() + "T12:00:00Z")) / 864e5);
@@ -78,6 +79,13 @@ export default function Journey({ lang }) {
     const withDate = out.filter((x) => x.next).sort((x, y) => x.next.d.localeCompare(y.next.d));
     return { withDate, without: out.filter((x) => !x.next) };
   }, [apps, saved, res, plus]);
+
+  // Programmes the student tracks or saved, for the tailored document list.
+  const docItems = useMemo(() => {
+    if (!data) return [];
+    const ids = [...new Set([...apps.filter((x) => x.k.startsWith("p:")).map((x) => x.k.slice(2)), ...saved.filter((k) => k.startsWith("p:")).map((k) => k.slice(2))])];
+    return ids.map((id) => data.find((p) => String(p.i) === id)).filter(Boolean);
+  }, [apps, saved, data]);
 
   if (state === "loading") return <><h1>{s.title}</h1><p className="meta">{s.loading}</p></>;
   if (state === "failed") return <><h1>{s.title}</h1><p className="ask-err" role="alert">{s.failed}</p></>;
@@ -253,6 +261,10 @@ export default function Journey({ lang }) {
             </ol>
           </>
         )}
+      </Box>
+
+      <Box title={s.docsTitle} s={s} plusTag>
+        <DocList lang={lang} plus={plus} items={docItems} origin={origin} />
       </Box>
 
       <div className="jr-two">

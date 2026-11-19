@@ -1184,3 +1184,7 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .soon-left { font-size: .78rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--sand, #f4efe3); white-space: nowrap; }
 .soon-left.hot { background: #fde8e4; color: #a3271a; }
 @media (max-width: 560px) { .soon-dl li { grid-template-columns: auto 1fr; } .soon-dl li a { grid-column: 1 / -1; order: 3; } }
+.jr-docs { margin: 6px 0 10px; padding-inline-start: 20px; display: grid; gap: 4px; }
+.jr-doc-prog { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; margin: 8px 0; }
+.jr-doc-prog summary { cursor: pointer; font-weight: 600; }
+.jr-doc-prog h4 { margin: 10px 0 2px; font-size: .92rem; }

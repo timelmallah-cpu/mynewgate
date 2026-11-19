@@ -279,6 +279,25 @@ function gradeReq(t) {
 // The source asks for a high grade in words only ("good grade", "upper second-class", "highly competitive").
 const gradeWords = (t) => /good (?:or excellent )?grade|outstanding grade|excellent grade|second[- ]class|honours|highly competitive|by grade|grades? (?:are|is) (?:ranked|used)/i.test(t || "");
 
+// Documents a programme's own text asks for (used by the tailored document list in My Study Journey).
+function docKeys(p) {
+  const t = [p.en.other, p.en.howToApply, p.en.english, p.en.adminFee].join(" ");
+  const k = [];
+  const has = (re) => re.test(t);
+  if (has(/uni-assist/i)) k.push("ua");
+  if (has(/\bAPS\b/)) k.push("aps");
+  if (has(/motivation|statement of purpose|personal statement|cover letter|letter of intent/i)) k.push("ml");
+  if (has(/recommendation|reference letter|letters? of reference|referees?\b/i)) k.push("ref");
+  if (has(/\bCV\b|curriculum vitae|r[ée]sum[ée]/i)) k.push("cv");
+  if (has(/portfolio/i)) k.push("port");
+  if (has(/\bGRE\b|\bGMAT\b/)) k.push("gre");
+  if (has(/interview/i)) k.push("int");
+  if (has(/entrance exam|admission (?:test|exam)|aptitude test|selection test|entrance test/i)) k.push("exam");
+  if (has(/writing sample/i)) k.push("wri");
+  if (has(/application fee/i)) k.push("fee");
+  return k.length ? k : undefined;
+}
+
 // Slim per-language data for the comparison page, fetched by the browser only when it is opened.
 import { mkdirSync } from "node:fs";
 mkdirSync("public/data", { recursive: true });
@@ -286,7 +305,7 @@ writeFileSync("public/data/deadlines.json", JSON.stringify(DL)); // fetched by t
 for (const lang of ["ar", "en"]) {
   writeFileSync(`public/data/compare-${lang}.json`, JSON.stringify(out.map((p) => {
     const v = lang === "ar" ? p : { ...p, ...p.en };
-    return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly, fd: p.field, g: gradeReq(p.en.other), gw: gradeWords(p.en.other) || undefined, ...englishReq(p.en.english) };
+    return { i: p.id, l: p.level, c: p.country, n: p.name, u: p.university, ci: v.city, f: p.feePerYear, ft: v.feeText, y: p.years, d: v.duration, dl: v.deadline, e: v.english, lm: p.livingMonthly, fd: p.field, g: gradeReq(p.en.other), gw: gradeWords(p.en.other) || undefined, ...englishReq(p.en.english), dk: docKeys(p) };
   })));
 }
 console.log(`programmes.json: ${out.filter((p) => p.level === "master").length} master's + ${out.filter((p) => p.level === "bachelor").length} bachelor's + ${out.filter((p) => p.level === "doctorate").length} doctoral, ${out.filter((p) => p.feePerYear === null).length} with unknown fee`);
