@@ -54,8 +54,7 @@ add("lt", "cs", "Applied Artificial Intelligence", "Vilnius Gediminas Technical 
     ("مستوى B2 حسب شروط الجامعة (الدرجات المقبولة في صفحة الشروط)", "B2 per the university's rules (accepted scores on the requirements page)"),
     ("60% على الأقل من الدرجة القصوى في الرياضيات والفيزياء أو مادة علمية أو اجتماعية والإنجليزية في شهادة الثانوية", "At least 60% of the maximum in mathematics, physics or another science/social science subject, and English, in your school certificate"),
     ("التقديم أونلاين على apply.vilniustech.lt", "Apply online at apply.vilniustech.lt"),
-    "https://vilniustech.lt/for-international-students/programmes-in-english-20262027/undergraduate-studies-/applied-artificial-intelligence/296355",
-    "https://vilniustech.lt/for-international-students/admission/application-procedure/9598")
+    "https://vilniustech.lt/for-international-students/programmes-in-english-20262027/undergraduate-studies-/applied-artificial-intelligence/296355")
 add("lt", "cs", "Informatics", "Kaunas University of Technology (KTU)", "Kaunas", BSC, Y4,
     ("4,108 يورو سنوياً (نفس الرسوم لغير الأوروبيين)، مع إعفاءات جزئية للمتفوقين", "€4,108 a year (the same for non-EU students), with partial fee waivers for top applicants"),
     NP,
