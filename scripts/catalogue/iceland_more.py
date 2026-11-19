@@ -31,7 +31,7 @@ UI_EN_SOME = ("قد يُطلب إثبات الإنجليزية (TOEFL أو IELTS
 add(MA, "edu", "International Studies in Education", UI, "Reykjavik", MAD, Y2, UI_FEE, UI_ADM, UI_DL, UI_EN_SOME,
     ("برنامج دولي بالإنجليزية بالكامل عن التعليم في سياق العولمة والهجرة والمجتمعات متعددة الثقافات؛ يشترط بكالوريوس بتقدير جيد جداً (7.25 من 10 على السلم الأيسلندي)",
      "An international programme taught entirely in English on education in the context of globalisation, migration and multicultural societies; requires a bachelor's degree with a first-class grade (7.25 out of 10 on the Icelandic scale)"),
-    UI_HOW, NP, NP, "https://old-english.hi.is/node/52366", UI_FEES)
+    UI_HOW, NP, NP, "https://english.hi.is/node/50053", UI_FEES)
 add(MA, "pol", "Global Studies", UI, "Reykjavik", MAD, Y2, UI_FEE, UI_ADM, UI_DL, UI_EN_SOME,
     ("برنامج متعدد التخصصات عن العولمة؛ تخصصان: الدراسات العالمية، والهجرة والمجتمعات متعددة الثقافات. لغة التدريس الأساسية الإنجليزية ومعظم الكتب بالإنجليزية، وبعض المقررات الاختيارية قد تكون بالأيسلندية",
      "A multidisciplinary programme on globalisation with two specialisations: Global Studies, and Migration and Multicultural Societies. The main language of instruction is English and most textbooks are in English; some electives may be in Icelandic"),
