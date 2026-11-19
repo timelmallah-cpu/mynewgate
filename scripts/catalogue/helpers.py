@@ -29,3 +29,70 @@ def append_master(country_ar, slug):
     with open(ap, "w", newline="", encoding="utf-8-sig") as f:
         csv.writer(f).writerows([hdr] + body)
     print(f"all_programmes.csv: {len(body)} rows; {slug}: {len(new)} master's")
+
+
+def append_extra(country_ar, slug, rows, reviewed, status=None):
+    """Append-only: add (or refresh) `rows` (built with add()) for a country that already has hand-written rows.
+    Other rows of the country are never touched; ids of rows published earlier are kept."""
+    import json
+    from common import FIELDAR, STATUS
+    status = status or STATUS
+    tr = {}
+
+    def t(v):
+        tr[v[0]] = v[1]
+        return v[0]
+
+    mine = {(r["name"], r["uni"]) for r in rows}
+    assert len(mine) == len(rows), "duplicate (name, university) in rows"
+    data = os.path.join(ROOT, "data")
+
+    def row(r, rid):
+        return [rid, country_ar, FIELDAR[r["field"]], r["name"], r["uni"], r["city"], t(r["deg"]), t(r["dur"]), t(r["fee"]),
+                t(r["adm"]), t(r["dl"]), t(r["en"]), t(r["other"]), t(r["how"]), t(r["living"]), t(r["house"]), r["src"],
+                reviewed, t(status)]
+
+    cp = os.path.join(data, "programmes", f"{slug}.csv")
+    c = list(csv.reader(open(cp, encoding="utf-8-sig")))
+    hdr, keep = c[0], [r for r in c[1:] if r and (r[3], r[4]) not in mine]
+    clash = {(r[3], r[4]) for r in keep} & mine
+    assert not clash, clash
+    nxt = max(int(r[0]) for r in keep) + 1
+    out = keep + [row(r, str(nxt + i)) for i, r in enumerate(rows)]
+    with open(cp, "w", newline="", encoding="utf-8-sig") as f:
+        csv.writer(f).writerows([hdr] + out)
+
+    ap = os.path.join(data, "programmes", "all_programmes.csv")
+    a = list(csv.reader(open(ap, encoding="utf-8-sig")))
+    ahdr, body = a[0], a[1:]
+    others = {(r[3], r[4]) for r in body if r and r[1] == country_ar and (r[3], r[4]) not in mine}
+    assert not (others & mine)
+    old = {(r[3], r[4]): r[0] for r in body if r and r[1] == country_ar and (r[3], r[4]) in mine}
+    body = [r for r in body if r and not (r[1] == country_ar and (r[3], r[4]) in mine)]
+    nid = max(int(r[0]) for r in body + [[i] for i in old.values()]) + 1
+    for r in rows:
+        k = (r["name"], r["uni"])
+        if k in old:
+            rid = old[k]
+        else:
+            rid, nid = str(nid), nid + 1
+        body.append(row(r, rid))
+    body.sort(key=lambda r: int(r[0]))
+    with open(ap, "w", newline="", encoding="utf-8-sig") as f:
+        csv.writer(f).writerows([ahdr] + body)
+
+    tp = os.path.join(data, "translations_en.json")
+    allt = json.load(open(tp, encoding="utf-8"))
+    allt.update(tr)
+    json.dump(allt, open(tp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    lp = os.path.join(data, "programme_links.csv")
+    links = list(csv.reader(open(lp, encoding="utf-8")))
+    lh, lb = links[0], [l for l in links[1:] if l and not (l[0] == country_ar and l[-1] == "master" and (l[1], l[2]) in mine)]
+    for r in rows:
+        rn, an = r["req_note"], r["apply_note"]
+        lb.append([country_ar, r["name"], r["uni"], r["req"] or "", rn[0], rn[1], r["apply"] or "", an[0], an[1], "master"])
+    with open(lp, "w", newline="", encoding="utf-8") as f:
+        csv.writer(f).writerows([lh] + lb)
+    n = sum(1 for r in body if r[1] == country_ar)
+    print(f"{slug}: +{len(rows)} extra master's; {n} in all_programmes for {country_ar}")
