@@ -1,4 +1,5 @@
 "use client";
+import PushToggle from "./PushToggle";
 import { useEffect, useState } from "react";
 import Link from "@/components/Link";
 import deadlines from "../lib/deadlines.json";
@@ -175,6 +176,7 @@ export default function MyList({ lang }) {
           </ol>
         </>
       )}
+      <PushToggle lang={lang} />
       <p className="meta">{m.privacy} {list.length > 0 && m.sharePrivacy}</p>
     </>
   );

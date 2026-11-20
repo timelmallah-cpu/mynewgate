@@ -7,6 +7,8 @@ import { SYSTEM, contextBlock } from "@/lib/assistant/prompt";
 import { ask, geminiConfigured } from "@/lib/assistant/gemini";
 import { limitsConfigured } from "@/lib/assistant/limit";
 import { useQuota, limitBody } from "@/lib/assistant/usage";
+import { currentUser } from "@/lib/account/http";
+import { studentContext } from "@/lib/assistant/memory";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,12 +44,18 @@ export async function POST(req) {
     } catch { return bad("failed", 502); }
   }
 
+  // Memory: a signed-in student's own account data (answers, saved programmes, tracker), unless they switched it off.
+  let student = "";
+  if (body?.useAccount !== false) {
+    try { const cu = await currentUser(); student = studentContext(cu?.user); } catch {}
+  }
+
   const { docs } = retrieve(message, history);
   const allowed = new Set([...docs.map((d) => d.url), ...DOCS.filter((d) => d.overview).map((d) => d.url)]);
 
   let out;
   if (mock) {
-    out = { answer: lang === "ar" ? `إجابة تجريبية عن: ${message}` : `Test answer about: ${message}`, sources: docs.slice(0, 3).map((d) => d.url), found: docs.length > 0 };
+    out = { answer: (lang === "ar" ? `إجابة تجريبية عن: ${message}` : `Test answer about: ${message}`) + (student ? `\n[memory: ${student.split("\n").length} lines]` : ""), sources: docs.slice(0, 3).map((d) => d.url), found: docs.length > 0 };
   } else {
     // Gemini needs turns that alternate and start with the user.
     const turns = [];
@@ -57,7 +65,8 @@ export async function POST(req) {
       turns.push({ role: h.role, parts: [{ text: h.text }] });
     }
     if (turns.length && turns[turns.length - 1].role === "user") turns.pop();
-    turns.push({ role: "user", parts: [{ text: `${contextBlock(docs, overviewText(lang), lang)}\n\nQUESTION (${lang === "ar" ? "answer in the same Arabic dialect the user writes in, or in simple Modern Standard Arabic if unclear; in English if the question is in English" : "answer in the language of the question, English by default"}):\n${message}` }] });
+    const mem = student ? `\n\nSTUDENT STATE (from the student's own account on this site; use it to personalise the answer when relevant, never invent anything beyond it, don't repeat it back unless asked, and when the question is about what to do, end with the one concrete next step and its page link):\n${student}` : "";
+    turns.push({ role: "user", parts: [{ text: `${contextBlock(docs, overviewText(lang), lang)}${mem}\n\nQUESTION (${lang === "ar" ? "answer in the same Arabic dialect the user writes in, or in simple Modern Standard Arabic if unclear; in English if the question is in English" : "answer in the language of the question, English by default"}):\n${message}` }] });
     try {
       out = await ask({ system: SYSTEM, contents: turns, signal: AbortSignal.timeout(25000) });
     } catch (e) {
@@ -68,5 +77,5 @@ export async function POST(req) {
 
   const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => allowed.has(u)).slice(0, 5)
     .map((url) => ({ url, title: (TITLES.get(url) || { ar: url, en: url })[lang] }));
-  return Response.json({ answer: out.answer, sources, found: out.found, left, per }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ answer: out.answer, sources, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
 }

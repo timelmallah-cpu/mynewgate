@@ -5,6 +5,13 @@ import { T } from "../lib/i18n";
 import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";
 import Upgrade, { leftText } from "./Upgrade";
+import { signedIn } from "../lib/saved";
+
+const MEM_KEY = "mng-ask-memory";
+const MEM = {
+  ar: { label: "استخدم بيانات حسابي في الإجابة (إجاباتك المحفوظة وقائمتك وطلباتك)", next: "ما خطوتي التالية؟", on: "المساعد قرأ بيانات حسابك" },
+  en: { label: "Use my account data in answers (your saved answers, list and applications)", next: "What is my next step?", on: "The assistant read your account data" },
+};
 
 export default function Assistant({ lang }) {
   const t = T[lang];
@@ -17,6 +24,11 @@ export default function Assistant({ lang }) {
   const [per, setPer] = useState(null);
   const [up, setUp] = useState(null);
   const endRef = useRef(null);
+  const [inAcc, setInAcc] = useState(false);
+  const [useMem, setUseMem] = useState(true);
+  useEffect(() => { setInAcc(signedIn()); try { setUseMem(localStorage.getItem(MEM_KEY) !== "0"); } catch {} }, []);
+  const toggleMem = (v) => { setUseMem(v); try { localStorage.setItem(MEM_KEY, v ? "1" : "0"); } catch {} };
+  const mm = MEM[lang];
 
   const setMsg = (i, patch) => setMsgs((m) => m.map((x, j) => (j === i ? { ...x, ...patch } : x)));
   const feedback = (i, vote, report = false) => {
@@ -50,11 +62,11 @@ export default function Assistant({ lang }) {
     const history = msgs.map((m) => ({ role: m.role, text: m.text }));
     setMsgs((m) => [...m, { role: "user", text: q }]);
     try {
-      const r = await fetch(`${BASE}/api/ask`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q, history, lang }) });
+      const r = await fetch(`${BASE}/api/ask`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: q, history, lang, useAccount: useMem }) });
       const d = await r.json().catch(() => ({}));
       if (!r.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
       else {
-        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [] }]);
+        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [], memory: !!d.memory }]);
         if (typeof d.left === "number") { setLeft(d.left); setPer(d.per); }
       }
     } catch { setErr(s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
@@ -72,6 +84,7 @@ export default function Assistant({ lang }) {
         <div className="ask-examples">
           <p className="note">{s.examplesTitle}</p>
           <div className="city-chips">
+            {inAcc && useMem && <button type="button" onClick={() => send(mm.next)} disabled={busy}>{mm.next}</button>}
             {s.examples.map((x) => <button key={x} type="button" onClick={() => send(x)} disabled={busy}>{x}</button>)}
           </div>
         </div>
@@ -82,6 +95,7 @@ export default function Assistant({ lang }) {
           <div key={i} className={`ask-msg ${m.role === "user" ? "me" : "bot"}`}>
             <span className="ask-who">{m.role === "user" ? s.you : s.bot}</span>
             <p dir="auto">{m.text}</p>
+            {m.memory && <small className="note ask-mem">{mm.on}</small>}
             {m.role === "model" && (
               <div className="ask-fb">
                 {!m.vote && (
@@ -123,6 +137,7 @@ export default function Assistant({ lang }) {
           onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } }} />
         <button type="submit" className="btn gold" disabled={busy || input.trim().length < 2}>{busy ? "..." : s.send}</button>
       </form>
+      {inAcc && <label className="note ask-memopt"><input type="checkbox" checked={useMem} onChange={(e) => toggleMem(e.target.checked)} /> {mm.label}</label>}
       <p className="note ask-foot">
         {left !== null && <span>{leftText(lang, left, per)} · </span>}
         {s.warn}

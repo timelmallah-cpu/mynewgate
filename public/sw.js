@@ -1,6 +1,6 @@
 // Bawabat AlDirasa service worker: pages work offline once visited, and the app opens without a connection.
 // Network first for pages and data (so content is always fresh when online); cache first for build assets.
-const V = "mng-v6";
+const V = "mng-v7";
 // The study site is served under /study (basePath).
 const B = "/study";
 const OFFLINE = B + "/offline.html";
@@ -33,4 +33,19 @@ self.addEventListener("fetch", (e) => {
     }
     return res;
   }).catch(() => caches.match(req).then((hit) => hit || (req.mode === "navigate" ? caches.match(OFFLINE) : Response.error()))));
+});
+
+// Deadline alerts (Web Push): show the notification, and open the programme page when it is tapped.
+self.addEventListener("push", (e) => {
+  let d = {};
+  try { d = e.data ? e.data.json() : {}; } catch {}
+  e.waitUntil(self.registration.showNotification(d.title || "Bawabat AlDirasa", { body: d.body || "", icon: B + "/icon-192.png?v=3", badge: B + "/icon-192.png?v=3", data: { url: d.url || B }, lang: "ar" }));
+});
+self.addEventListener("notificationclick", (e) => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || B;
+  e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((ws) => {
+    for (const w of ws) if (w.url.includes(url) && "focus" in w) return w.focus();
+    return self.clients.openWindow(url);
+  }));
 });
