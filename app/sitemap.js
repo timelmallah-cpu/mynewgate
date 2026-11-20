@@ -9,7 +9,7 @@ import { LANDINGS } from "@/lib/landings";
 import { CITIES } from "@/lib/cities";
 import { SOON_IDS } from "@/lib/sections";
 import { SITE_ORIGIN } from "@/lib/site";
-import { DEST_SLUGS } from "@/lib/visit";
+import { DEST_SLUGS } from "@/lib/visasMeta";
 import { QUESTIONS } from "@/lib/questions";
 import { FROM_SLUGS } from "@/lib/fromOrigin";
 import { FR_ORIGINS } from "@/lib/visaFr";

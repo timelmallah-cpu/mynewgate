@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { Mark, SectionMark } from "./Shell";
 import Flag from "../lib/Flag";
 import VisaChecker from "./VisaChecker";
+import PointsCheck from "./PointsCheck";
+import { ROUTES, RTEXT } from "../lib/visaRoutes";
 import { DEST, ORIGINS, KIND, VTEXT, VISIT_REVIEWED } from "../lib/visit";
 import { BASE } from "../lib/site";
 import "@fontsource-variable/readex-pro/index.css";
@@ -18,7 +20,7 @@ export const visasBase = (lang) => (lang === "en" ? "/en/visas" : "/visas");
 const TAG = { ar: "دليلك الذكي للدراسة والعمل والهجرة حول العالم", en: "Your smart guide to study, work and immigration around the world" };
 const fmt = (d, lang) => new Date(d).toLocaleDateString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-function Frame({ lang, other, crumbs, children }) {
+function Frame({ lang, other, crumbs, children, note }) {
   const t = VTEXT[lang];
   const home = lang === "ar" ? "/" : "/en";
   const arrow = lang === "ar" ? "←" : "→";
@@ -35,7 +37,7 @@ function Frame({ lang, other, crumbs, children }) {
           <a href={home}>{t.home}</a> {arrow} {crumbs ? <><a href={visasBase(lang)}>{t.brand}</a> {arrow} {crumbs}</> : t.brand}
         </p>
         {children}
-        <p className="notice">{t.disclaimer}</p>
+        <p className="notice">{note || t.disclaimer}</p>
         <p className="meta">{t.reviewed(fmt(VISIT_REVIEWED, lang))} · {t.studyLink} <a href={lang === "ar" ? `${BASE}/visa` : `${BASE}/en/visa`}>{t.studyGo}</a></p>
       </main>
       <footer className="foot">
@@ -92,6 +94,18 @@ export function VisasHub({ lang }) {
           );
         })}
       </ul>
+      <h2>{RTEXT[lang].section}</h2>
+      <p className="meta">{RTEXT[lang].sectionLead}</p>
+      <ul className="vz-dests">
+        {ROUTES.map((r) => (
+          <li key={r.slug}>
+            <a className="card vz-dest" href={`${b}/${r.slug}`}>
+              <span className="vz-dname"><Flag code={r.id} /> <b>{r.name[lang]}</b></span>
+              <span className="meta">{r.short[lang]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
       <p className="meta">{t.soonMore}</p>
     </Frame>
   );
@@ -140,6 +154,40 @@ export function VisaDest({ d, lang }) {
       </div>
       <h2>{t.destinations}</h2>
       <p className="chips vz-other">{DEST.filter((x) => x.id !== d.id).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}</p>
+    </Frame>
+  );
+}
+
+export function VisaRoute({ r, lang }) {
+  const t = RTEXT[lang];
+  const b = visasBase(lang);
+  const ext = { target: "_blank", rel: "noopener noreferrer" };
+  return (
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${r.slug}`} crumbs={r.name[lang]} note={t.disclaimer}>
+      <h1 className="vz-h1"><Flag code={r.id} /> {r.name[lang]}</h1>
+      <p className="lead">{r.lead[lang]}</p>
+      <section className="card">
+        <dl className="vz-facts">
+          {r.facts.map(([k, val, src]) => <div key={k.en}><dt>{k[lang]}</dt><dd>{val[lang]} <a href={src} {...ext} aria-label={t.src}>↗</a></dd></div>)}
+        </dl>
+      </section>
+      <section className="card">
+        <h2>{r.who.title[lang]}</h2>
+        <ul>{r.who.items.map((x) => <li key={x.en}>{x[lang]}</li>)}</ul>
+        <p className="meta"><a href={r.who.src} {...ext}>{t.src} ↗</a></p>
+      </section>
+      {r.tool === "points" && <PointsCheck lang={lang} selfCheck={r.links[0][1]} />}
+      <section className="card">
+        <h2>{t.docs}</h2>
+        <ul>{r.docs[lang].map((x) => <li key={x}>{x}</li>)}</ul>
+        <p className="meta"><a href={r.docs.src} {...ext}>{t.src} ↗</a></p>
+      </section>
+      <section className="card">
+        <h2>{t.links}</h2>
+        <ul>{r.links.map(([l, u]) => <li key={u}><a href={u} {...ext}>{l[lang]} ↗</a></li>)}</ul>
+        <p className="meta">{r.note[lang]}</p>
+      </section>
+      <p className="chips vz-other">{ROUTES.filter((x) => x.slug !== r.slug).map((x) => <a key={x.slug} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}<a className="chip" href={b}>{VTEXT[lang].destinations}</a></p>
     </Frame>
   );
 }
