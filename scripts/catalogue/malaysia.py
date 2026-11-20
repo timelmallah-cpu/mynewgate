@@ -7,7 +7,9 @@
 # Euro figures are approximate: ECB reference rate of 17 Nov 2026 (4.4983 ringgit per euro) and US$1.11 per euro.
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import common
 from common import write, NP
+common.REVIEWED = "2026-11-20"
 from helpers import add, append_master
 
 MA = []
@@ -75,6 +77,40 @@ for field, name, usd, other in [
 ]:
     deg = ("ماجستير بالمقررات", "Coursework master's")
     add(MA, field, name, USM, "Penang", deg, USM_DUR.get(name, DUR_NP), usm_fee(usd, round(usd / 1.11 / 10) * 10, name in USM_DUR), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/")
+
+# Universiti Teknologi Malaysia (UTM), Kuala Lumpur campus: Faculty of Artificial Intelligence and Malaysia-Japan International
+# Institute of Technology (MJIIT). International coursework/mixed-mode fees per programme (3 semesters) from admission.utm.my/?p=48200
+# (the page gives no session or effective date, so the fee text says so); intake windows from UTM's PG programme lists
+# (Feb 2026: 1 Nov - 31 Dec 2025; Sept 2026: 1 Apr - 31 Jul 2026, international); English: sps.utm.my general entry requirements.
+# Checked 2026-11-20.
+UTM = "Universiti Teknologi Malaysia (UTM)"
+UTM_DUR = ("3 فصول دراسية (سنة ونصف تقريباً؛ فصلان في السنة)", "3 semesters (about 1.5 years; two semesters a year)")
+UTM_ADM = ("بكالوريوس في مجال مناسب حسب شروط البرنامج", "A bachelor's in a suitable field per the programme's conditions")
+UTM_DL = ("مواعيد دفعة فبراير 2027 لم تُنشر بعد؛ في الدورة الماضية كان التقديم للطلاب الدوليين لدفعة فبراير 2026 من 1 نوفمبر حتى 31 ديسمبر 2025، ولدفعة سبتمبر 2026 من 1 أبريل حتى 31 يوليو 2026",
+          "February 2027 intake dates not out yet; last cycle international applications for February 2026 ran 1 November - 31 December 2025 and for September 2026 1 April - 31 July 2026")
+UTM_EN = ("IELTS أكاديمي 6.0 أو TOEFL iBT 79 (أو PBT 550)؛ من لا يستوفي المستوى يدرس برنامج إنجليزية مكثفاً في الجامعة؛ لغة التدريس الإنجليزية للطلاب الدوليين (للتحقق مع البرنامج)",
+          "IELTS Academic 6.0 or TOEFL iBT 79 (or PBT 550); those below the level take an intensive English programme at the university; language of teaching English for international students (check with the programme)")
+UTM_HOW = ("التقديم أونلاين على نظام UTM-SMARt من موقع القبول؛ الطلبات بعد تاريخ الإغلاق تُحوَّل للدفعة التالية؛ الرسوم لا تشمل السكن والتأشيرة والكفالة الشخصية",
+           "Apply online through UTM-SMARt on the admission site; applications after the closing date are moved to the next intake; fees exclude housing, visa and the personal bond")
+UTM_FEES = "https://admission.utm.my/?p=48200"
+UTM_SRC = "https://sps.utm.my/general-entry-requirements/"
+def utm_fee(rm):
+    eur = round(rm / 4.4983 / 10) * 10
+    return (f"حوالي {eur:,} يورو للبرنامج كاملاً ({rm:,} رينغيت ماليزي للطلاب الدوليين للدفعات الجديدة؛ صفحة الرسوم لا تذكر السنة الدراسية، للتحقق؛ التحويل بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} for the whole programme (RM{rm:,} for new international students; the fee page names no academic year, to verify; converted at the ECB rate of 17 November 2026)")
+for field, name, deg, rm, other in [
+    ("cs", "Master of Software Engineering", ("ماجستير هندسة البرمجيات", "Master of Software Engineering"), 26204, ("كلية الذكاء الاصطناعي", "Faculty of Artificial Intelligence")),
+    ("cs", "Master of Science (Information Assurance)", ("ماجستير العلوم في أمن المعلومات", "MSc Information Assurance"), 26204, ("أمن المعلومات، كلية الذكاء الاصطناعي", "Information assurance, Faculty of Artificial Intelligence")),
+    ("ds", "Master of Science (Business Intelligence and Analytics)", ("ماجستير العلوم في ذكاء الأعمال والتحليلات", "MSc Business Intelligence and Analytics"), 26204, ("ذكاء الأعمال وتحليل البيانات، كلية الذكاء الاصطناعي", "Business intelligence and analytics, Faculty of Artificial Intelligence")),
+    ("eng", "Master of Science (Systems Engineering)", ("ماجستير العلوم في هندسة النظم", "MSc Systems Engineering"), 31554, ("هندسة النظم، كلية الذكاء الاصطناعي", "Systems engineering, Faculty of Artificial Intelligence")),
+    ("eng", "Master of Science (Engineering Design)", ("ماجستير العلوم في التصميم الهندسي", "MSc Engineering Design"), 33554, ("التصميم الهندسي، كلية الذكاء الاصطناعي", "Engineering design, Faculty of Artificial Intelligence")),
+    ("bus", "Master of Science (Engineering Business Management)", ("ماجستير العلوم في إدارة الأعمال الهندسية", "MSc Engineering Business Management"), 33504, ("إدارة الأعمال الهندسية، كلية الذكاء الاصطناعي", "Engineering business management, Faculty of Artificial Intelligence")),
+    ("env", "Master of Sustainable System", ("ماجستير النظم المستدامة", "Master of Sustainable System"), 28500, ("الاستدامة، المعهد الماليزي الياباني للتكنولوجيا (MJIIT)", "Sustainability, Malaysia-Japan International Institute of Technology (MJIIT)")),
+    ("env", "Master of Disaster Risk Management", ("ماجستير إدارة مخاطر الكوارث", "Master of Disaster Risk Management"), 36004, ("مخاطر الكوارث، المعهد الماليزي الياباني للتكنولوجيا (MJIIT)", "Disaster risk, MJIIT")),
+    ("bus", "Master in Technology and Innovation Management", ("ماجستير إدارة التكنولوجيا والابتكار", "Master in Technology and Innovation Management"), 28500, ("إدارة التكنولوجيا والابتكار، MJIIT", "Technology and innovation management, MJIIT")),
+    ("urb", "Master of Science (Sustainable Urban Design)", ("ماجستير العلوم في التصميم الحضري المستدام", "MSc Sustainable Urban Design"), 26769, ("التصميم الحضري المستدام، MJIIT", "Sustainable urban design, MJIIT")),
+]:
+    add(MA, field, name, UTM, "Kuala Lumpur", deg, UTM_DUR, utm_fee(rm), UTM_ADM, UTM_DL, UTM_EN, other, UTM_HOW, NP, NP, UTM_FEES, "https://admission.utm.my/")
 
 write("ماليزيا", "Malaysia", "malaysia", MA, level="master")
 append_master("ماليزيا", "malaysia")
