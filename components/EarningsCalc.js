@@ -43,7 +43,7 @@ export default function EarningsCalc({ rows, lang }) {
       <p className="meta"><Flag code={row.c} size={14} /> {s.cap}: {row.capText}{row.workCheck ? ` (${s.check})` : ""}{cap == null && !row.termBan ? ` — ${s.noCap}` : ""}</p>
       {cap != null && h > cap && <p className="notice">{s.over(cap)}</p>}
       {row.none ? (
-        <p className="notice">{s.none}{row.note ? ` ${row.note}` : ""}</p>
+        <p className="notice">{row.own ? row.note : `${s.none}${row.note ? ` ${row.note}` : ""}`}</p>
       ) : row.termBan ? (
         <p className="notice">{s.term}</p>
       ) : (

@@ -29,6 +29,7 @@ export function earningsRows(lang) {
       living: x.living,
       livingN: x.livingN,
       none: !!m.none,
+      own: !!m.own,
       note: m.note?.[lang] || null,
       regions: regs.map((g, i) => ({
         id: g.id || String(i),
