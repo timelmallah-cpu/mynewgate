@@ -2,15 +2,15 @@
 import { useState } from "react";
 import Link from "@/components/Link";
 
-// Monthly newsletter sign-up. Sent straight to Kit (kit.com), which emails a confirmation link (double opt-in).
+// Weekly newsletter sign-up (the weekly deadlines email is drafted in Kit by app/api/digest/cron). Sent straight to Kit (kit.com), which emails a confirmation link (double opt-in).
 const FORM_ID = "10191374";
 
 const S = {
   ar: {
-    title: "النشرة الشهرية",
-    text: "مرة في الشهر: مواعيد التقديم القريبة، والمنح التي فتحت، والرسوم أو الشروط التي تغيّرت. مجانية، وتقدر تلغي الاشتراك في أي وقت.",
+    title: "النشرة الأسبوعية",
+    text: "مرة في الأسبوع: مواعيد التقديم القريبة، والمنح التي فتحت، والرسوم أو الشروط التي تغيّرت. مجانية، وتقدر تلغي الاشتراك في أي وقت.",
     label: "بريدك الإلكتروني",
-    consent: "أوافق على استلام النشرة الشهرية، وقرأت",
+    consent: "أوافق على استلام النشرة الأسبوعية، وقرأت",
     privacy: "سياسة الخصوصية",
     btn: "اشترك",
     sending: "جارٍ الإرسال...",
@@ -20,10 +20,10 @@ const S = {
     needConsent: "يجب الموافقة أولاً.",
   },
   en: {
-    title: "Monthly newsletter",
-    text: "Once a month: upcoming deadlines, scholarships that opened, and fees or requirements that changed. Free, and you can unsubscribe at any time.",
+    title: "Weekly newsletter",
+    text: "Once a week: upcoming deadlines, scholarships that opened, and fees or requirements that changed. Free, and you can unsubscribe at any time.",
     label: "Your email",
-    consent: "I agree to receive the monthly newsletter and have read the",
+    consent: "I agree to receive the weekly newsletter and have read the",
     privacy: "privacy policy",
     btn: "Subscribe",
     sending: "Sending...",

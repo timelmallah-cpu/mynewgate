@@ -1325,3 +1325,20 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .pm-dot.on text, .pm-dot:hover text { fill: #fff; }
 .pm-panel { max-height: 560px; overflow: auto; }
 .pm-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+/* Deadlines in the next 30 days */
+.ds-list { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 4px; }
+.ds-list > li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 4px 12px; align-items: start; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.ds-list > li > a { display: grid; gap: 2px; text-decoration: none; color: inherit; min-width: 0; }
+.ds-list > li > a:hover b { text-decoration: underline; }
+.ds-list > li small { color: var(--muted, #555); }
+.ds-list .soon-left { font-weight: 700; color: var(--navy); font-size: .9rem; }
+.ds-list details { grid-column: 2; font-size: .9rem; }
+.ds-more { margin: 6px 0 0; padding-inline-start: 18px; }
+.ds-list .soon-left { background: none; padding: 0; white-space: normal; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Earnings calculator */
+.earn-out { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); margin: 12px 0; }
+.earn-out > div { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: grid; gap: 2px; }
+.earn-out span { font-size: .85rem; color: var(--muted, #555); }
+.earn-out b { font-size: 1.35rem; color: var(--navy); }
+.earn-out small { color: var(--muted, #555); }

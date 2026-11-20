@@ -14,6 +14,7 @@ const TXT = {
     days: (n) => (n === 2 ? "باقي يومان" : n <= 10 ? `باقي ${n} أيام` : `باقي ${n} يوماً`),
     more: (n) => (n === 1 ? "وبرنامج آخر" : n === 2 ? "وبرنامجان آخران" : n <= 10 ? `و${n} برامج أخرى` : `و${n} برنامجاً آخر`),
     plan: "خطط مواعيدك",
+    all: "كل مواعيد الثلاثين يوماً",
   },
   en: {
     title: "Application deadlines coming up",
@@ -23,6 +24,7 @@ const TXT = {
     days: (n) => `${n} days left`,
     more: (n) => `and ${n} more programme${n === 1 ? "" : "s"}`,
     plan: "Plan your dates",
+    all: "All deadlines in the next 30 days",
   },
 };
 
@@ -54,7 +56,7 @@ export default function SoonDeadlines({ lang, base, items, max = 6 }) {
           );
         })}
       </ul>
-      <Link className="btn ghost" href={`${base}/planner`}>{t.plan}</Link>
+      <div className="row-btns"><Link className="btn ghost" href={`${base}/deadlines-soon`}>{t.all}</Link> <Link className="btn ghost" href={`${base}/planner`}>{t.plan}</Link></div>
     </section>
   );
 }
