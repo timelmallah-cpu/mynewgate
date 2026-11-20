@@ -52,8 +52,8 @@ bo("law", "Law, Economics and Governance", "Bologna", 6829, BO_OPEN)
 PD = "University of Padova"
 PD_FEE_B = ("2,990 يورو سنوياً لغير الأوروبيين الذين تقيم أسرتهم خارج إيطاليا (رسوم ثابتة لبرامج المجموعة B العلمية، 2026/2027)؛ وطلاب الدول الأفقر في القائمة الوزارية يدفعون الثلث (996.66 يورو)",
             "€2,990 a year for non-EU students whose family lives outside Italy (fixed fee for Group B science programmes, 2026/2027); students from the poorest countries on the ministerial list pay one third (€996.66)")
-PD_FEE_A = ("بين 2,790 و2,990 يورو سنوياً لغير الأوروبيين الذين تقيم أسرتهم خارج إيطاليا، حسب مجموعة البرنامج (A للإنسانيات أو B للعلوم) في 2026/2027 (للتحقق من مجموعة هذا البرنامج)؛ وطلاب الدول الأفقر يدفعون الثلث",
-            "Between €2,790 and €2,990 a year for non-EU students whose family lives outside Italy, depending on the programme's group (A humanities or B sciences) in 2026/2027 (check this programme's group); students from the poorest countries pay one third")
+PD_FEE_A = ("2,790 يورو سنوياً لغير الأوروبيين الذين تقيم أسرتهم خارج إيطاليا (رسوم ثابتة لبرامج المجموعة A، ومنها كل برامج مدرسة الاقتصاد والعلوم السياسية، 2026/2027)؛ وطلاب الدول الأفقر في القائمة الوزارية يدفعون الثلث (930 يورو)",
+            "€2,790 a year for non-EU students whose family lives outside Italy (fixed fee for Group A programmes, which include all programmes of the School of Economics and Political Science, 2026/2027); students from the poorest countries on the ministerial list pay one third (€930)")
 PD_ADM = ("رسوم تقديم 60 يورو غير مستردة", "Application fee €60, non-refundable")
 PD_DL = ("لدفعة 2027/2028: البرامج ذات الأماكن غير المحدودة: الجولة الأولى 15 سبتمبر - 15 نوفمبر 2026 (انتهت)، والجولة الثانية 1 ديسمبر 2026 - 1 مارس 2027. البرامج ذات الأماكن المحدودة: لغير الأوروبيين المقيمين بالخارج 7 يناير - 7 مارس 2027. نوع القبول في صفحة البرنامج",
          "2027/2028 intake: programmes with unlimited places: Call One 15 September - 15 November 2026 (closed), Call Two 1 December 2026 - 1 March 2027. Programmes with limited places: non-EU applicants residing abroad 7 January - 7 March 2027. The access type is on the programme page")

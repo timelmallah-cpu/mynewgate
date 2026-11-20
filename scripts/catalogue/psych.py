@@ -92,8 +92,8 @@ ma("nl", "Psychology (MSc)", "University of Twente", "Enschede", Y1,
 
 # ---------- Italy: University of Padova ----------
 PD = "University of Padova"
-PD_FEE = ("بين 2,790 و2,990 يورو سنوياً لغير الأوروبيين الذين تقيم أسرتهم خارج إيطاليا، حسب مجموعة البرنامج في 2026/2027 (للتحقق من مجموعة هذا البرنامج)؛ وطلاب الدول الأفقر يدفعون الثلث",
-          "Between €2,790 and €2,990 a year for non-EU students whose family lives outside Italy, depending on the programme's group in 2026/2027 (check this programme's group); students from the poorest countries pay one third")
+PD_FEE = ("2,990 يورو سنوياً لغير الأوروبيين الذين تقيم أسرتهم خارج إيطاليا (رسوم ثابتة لبرامج المجموعة B، ومنها كل برامج مدرسة علم النفس، 2026/2027)؛ وطلاب الدول الأفقر في القائمة الوزارية يدفعون الثلث (996.66 يورو)",
+          "€2,990 a year for non-EU students whose family lives outside Italy (fixed fee for Group B programmes, which include all programmes of the School of Psychology, 2026/2027); students from the poorest countries on the ministerial list pay one third (€996.66)")
 PD_DL = ("البرامج ذات الأماكن المحدودة لدفعة 2027/2028: لغير الأوروبيين المقيمين بالخارج من 7 يناير إلى 7 مارس 2027 (للتحقق في إعلان البرنامج)",
          "Limited-place programmes for 2027/2028: non-EU applicants residing abroad from 7 January to 7 March 2027 (check the programme's call)")
 PD_EN = ("مستوى B2 في الإنجليزية أو ما يعادله", "English at B2 (CEFR) or equivalent")

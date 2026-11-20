@@ -94,8 +94,8 @@ cor("cs", "Business Informatics", "https://corvinus-university.dreamapply.com/co
 DEB = "University of Debrecen"
 DEB_FEES = "https://www.edu.unideb.hu/p/tuition-fee-application-entrance-fee"
 DEB_APPLY = "https://edu.unideb.hu/page.php?id=9"
-DEB_DL = ("لدفعة سبتمبر 2027: 15 مايو 2027 حسب صفحة التقديم (كان 15 يونيو في 2026 - للتحقق)؛ معظم برامج الماجستير لها دفعة فبراير أيضاً",
-          "September 2027 intake: 15 May 2027 per the application page (it was 15 June in 2026 - to verify); most master's programmes also have a February intake")
+DEB_DL = ("لدفعة سبتمبر 2027: 15 مايو 2027 لكل البرامج حسب صفحة التقديم الرسمية (أبكر من موعد 2026 الذي كان 15 يونيو)؛ ولدفعة فبراير 2027 كان آخر موعد 1 نوفمبر 2026",
+          "September 2027 intake: 15 May 2027 for all programmes per the official application page (earlier than in 2026, when it was mid-June); for the February 2027 intake the deadline was 1 November 2026")
 DEB_ADM = ("رسوم طلب 150 دولار + رسوم إجراءات القبول 350 دولار (غير مستردة)", "$150 application fee + $350 entrance procedure fee (non-refundable)")
 DEB_HOW = ("التقديم الإلكتروني، ثم مقابلة قبول عبر الإنترنت تقيّم الخلفية الدراسية والإنجليزية", "Online application, then an online entrance interview assessing background and English")
 DEB_EN = ("تُقيّم الإنجليزية في مقابلة القبول", "English is assessed in the entrance interview")

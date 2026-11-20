@@ -16,7 +16,7 @@ FEE = ("غير منشور في المصدر: من 2027/2028 يدفع الطلا�
        "Not published in the source: from 2027-2028 students from outside the EU/EEA/EFTA pay a tuition fee that varies by programme and includes the annual registration fee (ISK 100,000, about €730); we have not seen this programme's amount (to verify)")
 ADM = ("رسوم معالجة الطلب 20,000 كرونة أيسلندية (حوالي 145 يورو) مرة واحدة وغير مستردة؛ والرسوم الدراسية تُدفع كاملة حتى 4 يوليو",
        "Application processing fee ISK 20,000 (about €145), once and non-refundable; the tuition fee is paid in full by 4 July")
-DL = ("1 فبراير لغير الأوروبيين (دفعة الخريف)؛ لدفعة 2027 يُتوقع 1 فبراير 2027 (للتحقق)", "1 February for non-EU applicants (autumn intake); 1 February 2027 expected for 2027 (to verify)")
+DL = ("1 فبراير 2027 لغير الأوروبيين لدفعة خريف 2027 (الجامعة تحدد 1 فبراير من كل سنة؛ نموذج الطلب يفتح في منتصف ديسمبر، والمستندات بنفس الموعد)", "1 February 2027 for non-EU applicants, autumn 2027 intake (the university sets the same date every year; the online form opens in mid-December, supporting documents by the same date)")
 HOW = ("التقديم أونلاين على بوابة الجامعة، ثم طلب تصريح الإقامة للطلاب من مديرية الهجرة قبل السفر", "Apply online on the university portal, then apply for the student residence permit from the Directorate of Immigration before travelling")
 
 add(MA, "env", "Environment and Natural Resources", UI, "Reykjavik", MS, Y2, FEE, ADM, DL, NP,

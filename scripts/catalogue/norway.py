@@ -68,7 +68,7 @@ for name, city, field in [("Mechatronics and Automation (MSc)", "Ålesund", "eng
 UIS_FEES = "https://www.uis.no/en/studies/how-much-is-the-tuition-fees"
 UIS_EN_URL = "https://www.uis.no/en/english-language-requirements-international-applicants"
 UIS_EN = ("IELTS Academic 6.5 (والكتابة 6.0 على الأقل) أو TOEFL iBT 90 (والكتابة 22 على الأقل)؛ لا تُقبل TOEFL Home Edition ولا IELTS Online", "IELTS Academic 6.5 (writing at least 6.0) or TOEFL iBT 90 (writing at least 22); TOEFL Home Edition and IELTS Online are not accepted")
-UIS_DL = ("1 ديسمبر 2026 لدفعة أغسطس 2027 (الموعد في الدورة السابقة كان 1 ديسمبر 2025، للتحقق)", "1 December 2026 for the August 2027 intake (the previous round's deadline was 1 December 2025; to verify)")
+UIS_DL = ("لدفعة أغسطس 2027: التقديم مفتوح الآن من 15 نوفمبر حتى 1 ديسمبر 2026، مع رفع كشف الدرجات ونتيجة اختبار الإنجليزية حتى 1 ديسمبر (حسب صفحة القبول الدولي، تأكد 20 نوفمبر 2026)", "August 2027 intake: applications open now, 15 November - 1 December 2026, with transcript and English test uploaded by the same deadline (UiS international admission page, checked on 2026-11-20)")
 UIS_NOTE = ("رسوم 2027/2028 للتحقق", "2027/2028 fee to verify")
 UIS_ADM = ("رسوم الفصل 900 كرونة (قابلة للتغيير)", "Semester fee NOK 900 (subject to change)")
 UIS_OTHER = ("الجامعة لا تقيّم أهليتك قبل التقديم، وترفض الطلب إذا لم ترفع نتيجة اختبار الإنجليزية في الموعد", "UiS does not assess your eligibility before you apply, and rejects applications without an English test result uploaded in time")
