@@ -133,11 +133,11 @@ for field, name, slug, gbp, adm, other, en in [
     ("sport", "MSc Applied Sport and Exercise Medicine", "applied-sport-and-exercise-medicine-msc", 31700,
      ("بكالوريوس بتقدير 2:1 في تخصص قريب مثل علوم الرياضة أو الأحياء البشرية أو علم الأوبئة أو التغذية البشرية (وقد يُقبل 2:2 لبعض الحالات)", "A 2:1 in a relevant subject such as sports science, human biology, epidemiology or human nutrition (a 2:2 may be considered case by case)"),
      ("طب الرياضة والتمارين لغير الأطباء، مع تدريب في الإسعاف الميداني في الفعاليات الرياضية", "Sport and exercise medicine for non-clinical graduates, with pitch-side emergency care at sports events"), N_EN),
-    ("tour", "MSc International Tourism Management and Marketing", "international-tourism-management-and-marketing-msc", 31700,
+    ("tour", "MSc International Tourism Management and Marketing", "International-Tourism-Management-and-Marketing-MSc", 31700,
      ("بكالوريوس بتقدير 2:1 في أي تخصص، ومنها الأعمال والإدارة", "A 2:1 in any discipline, including business and management"),
      ("إدارة وتسويق السياحة الدولية في كلية نوتنغهام للأعمال (الأماكن محدودة وقد يُغلق التقديم مبكراً)", "International tourism management and marketing at Nottingham University Business School (limited places; applications may close early)"),
      ("غير منشور في المصدر (صفحة البرنامج لا تذكر مستوى الإنجليزية)", "Not published in the source (the course page does not state the English level)")),
-    ("cs", "MSc Computer Science", "computer-science-or-computer-science-artificial-intelligence-msc", 34800,
+    ("cs", "MSc Computer Science", "2026/computer-science-or-computer-science-artificial-intelligence-msc", 34800,
      ("بكالوريوس بتقدير 2:1 مع اهتمام أو قدرة على البرمجة؛ ويُنظر في خريجي العلوم والهندسة بمتوسط 55% (للتحقق من صفحة البرنامج)", "A 2:1 with evidence of interest or aptitude for programming; science or engineering graduates considered with a 55% average (to verify on the course page)"),
      ("علوم الحاسب، مع مسار للذكاء الاصطناعي", "Computer science, with an artificial intelligence pathway"), N_EN),
 ]:
