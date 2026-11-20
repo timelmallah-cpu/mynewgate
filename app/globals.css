@@ -1308,3 +1308,20 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .from-link{margin:10px 0}
 .table-wrap{overflow-x:auto}
 .cmp-hub{list-style:none;padding:0;display:grid;gap:8px}.cmp-hub li a{display:block;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.et-sum{list-style:none;padding:0;display:grid;gap:6px}
+/* Programme map */
+.pm-tabs, .pm-cities { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; padding: 0; list-style: none; }
+.pm-tabs .chip, .pm-cities .chip { text-decoration: none; background: var(--card); border: 0; font: inherit; font-size: .92rem; padding: 7px 14px; }
+.pm-tabs .chip.on, .pm-cities .chip.on { background: var(--navy); color: #fff; }
+.pm-wrap { display: grid; gap: 12px; }
+@media (min-width: 900px) { .pm-wrap:has(.pm-panel) { grid-template-columns: 1.6fr 1fr; align-items: start; } }
+.pm-stack { position: relative; }
+.pm-dots { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pm-map { width: 100%; height: auto; display: block; border-radius: 14px; border: 1px solid var(--line); }
+.pm-dot { cursor: pointer; }
+.pm-dot circle { fill: var(--gold); fill-opacity: .85; stroke: var(--navy); stroke-width: 1.2; }
+.pm-dot.on circle, .pm-dot:hover circle { fill: var(--navy); }
+.pm-dot text { font-size: 10px; font-weight: 700; fill: var(--navy); pointer-events: none; }
+.pm-dot.on text, .pm-dot:hover text { fill: #fff; }
+.pm-panel { max-height: 560px; overflow: auto; }
+.pm-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
