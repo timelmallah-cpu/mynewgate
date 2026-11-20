@@ -9,6 +9,8 @@ import { LANDINGS } from "@/lib/landings";
 import { CITIES } from "@/lib/cities";
 import { SECTION_IDS } from "@/lib/sections";
 import { QUESTIONS } from "@/lib/questions";
+import { FROM_SLUGS } from "@/lib/fromOrigin";
+import { PAIRS, pairSlug } from "@/lib/countryCompare";
 import { FR_QUESTIONS } from "@/lib/fr";
 
 // Every public page in both languages, with the other language linked (hreflang).
@@ -16,6 +18,8 @@ export default function sitemap() {
   const paths = [
     "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms", "/updates", "/how-we-work", "/my-plan", "/questions",
     ...QUESTIONS.map((q) => `/questions/${q.slug}`),
+    "/compare-countries", ...PAIRS.map((p) => `/compare-countries/${pairSlug(p)}`),
+    ...FROM_SLUGS.flatMap((o) => [`/study-from/${o}`, ...COUNTRY_IDS.map((c) => `/study-from/${o}/${c}`)]),
     ...SECTION_IDS.map((id) => `/soon/${id}`),
     ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
     ...REGIONS.filter((r) => r.countries.length > 1).map((r) => `/region/${r.id}`),

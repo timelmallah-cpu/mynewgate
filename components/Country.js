@@ -20,6 +20,8 @@ import WhatsApp from "./WhatsApp";
 import { CITIES } from "../lib/cities";
 import { progsAr } from "../lib/arCount";
 import { CountryFaq } from "./Questions";
+import FromOriginLink from "./FromOriginLink";
+import { CountryComparisons } from "./CountryCompare";
 
 const S = {
   ar: {
@@ -113,6 +115,7 @@ export default function Country({ code, lang }) {
       </p>
 
       {covered && <Link className="btn gold" href={`${t.base}/quiz?country=${code}`}>{s.search(name)}</Link>}
+      {covered && <FromOriginLink c={code} cn={name} lang={lang} base={t.base} />}
       {covered && (
         <p className="tool-strip">
           <Link href={`${t.base}/countries`}>{lang === "ar" ? `قارن ${name} بباقي الدول` : `Compare ${name} with the other countries`}</Link>
@@ -212,6 +215,7 @@ export default function Country({ code, lang }) {
         </section>
       )}
 
+      {covered && <CountryComparisons code={code} lang={lang} />}
       {covered && <CountryFaq code={code} lang={lang} />}
 
       <section className="country-sec">

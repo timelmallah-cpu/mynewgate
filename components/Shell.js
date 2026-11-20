@@ -74,7 +74,7 @@ const FOOT_GROUPS = [
     ["/glossary", "قاموس الكلمات", "Glossary"],
   ] },
   { ar: "عن الموقع", en: "About", links: [
-    ["/pricing", "اشتراك Study Plus", "Study Plus subscription"], ["/contact", "تواصل معنا", "Contact us"], ["/questions", "أسئلة شائعة", "Common questions"], ["/how-we-work", "كيف نجمع المعلومات", "How we collect information"], ["/updates", "آخر التحديثات", "What's new"], ["/advertise", "أعلن معنا", "Advertise"], ["/account", "حسابي", "My account"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"], ["/terms", "شروط الاستخدام", "Terms of use"],
+    ["/pricing", "اشتراك Study Plus", "Study Plus subscription"], ["/contact", "تواصل معنا", "Contact us"], ["/questions", "أسئلة شائعة", "Common questions"], ["/compare-countries", "مقارنة بين دولتين", "Country vs country"], ["/how-we-work", "كيف نجمع المعلومات", "How we collect information"], ["/updates", "آخر التحديثات", "What's new"], ["/advertise", "أعلن معنا", "Advertise"], ["/account", "حسابي", "My account"], ["/install", "ثبّت التطبيق", "Install the app"], ["/privacy", "الخصوصية", "Privacy"], ["/terms", "شروط الاستخدام", "Terms of use"],
   ] },
 ];
 

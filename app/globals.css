@@ -1299,3 +1299,12 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .up-bar { display: flex; align-items: center; gap: 6px; max-width: 1040px; margin: 0 auto; padding: 6px 20px 0; font-size: .82rem; color: var(--muted); }
 .up-bar a { display: inline-flex; align-items: center; gap: 5px; color: var(--navy); font-weight: 600; text-decoration: none; }
 .up-bar a:hover { text-decoration: underline; }
+.from-cost{margin:14px 0}
+.from-cost h3{margin:6px 0}
+.from-list{padding-inline-start:20px}
+.from-list li{margin:8px 0;line-height:1.6}
+.from-table{width:100%;border-collapse:collapse}
+.from-table th,.from-table td{padding:8px;border-bottom:1px solid var(--line,#e3e6ee);text-align:start}
+.from-link{margin:10px 0}
+.table-wrap{overflow-x:auto}
+.cmp-hub{list-style:none;padding:0;display:grid;gap:8px}.cmp-hub li a{display:block;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
