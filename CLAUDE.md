@@ -21,7 +21,7 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 - Build: `npm run -s build` (runs build-data first) or `timeout 400 env NEXT_PUBLIC_WEB3FORMS_KEY=test npx next build`.
 - Local server: `npx next start -p 3100` (add `ASK_MOCK=1` to mock AI routes); pages at localhost:3100/study/...; Playwright (Python) for UI tests.
 - Push: `git -c push.negotiate=true push -q origin main`. Vercel status: `gh api repos/timelmallah-cpu/mynewgate/commits/$(git rev-parse HEAD)/statuses --jq '.[0].state'`.
-- Link check: dispatch `.github/workflows/link-check.yml`, then grep "Broken (" in the run log (about 40 old broken links is normal; spikes to 100+ are network noise).
+- Link check: dispatch `.github/workflows/link-check.yml`, then grep "Broken (" in the run log (about 40 old broken links is normal; spikes to 100+ are network noise). Since 20 Nov the checker ignores undici "AssertionError assert(!this.paused)" crashes (process.on uncaughtException); before that one bad TLS stream killed the whole run.
 - Non-Link URLs (fetch, `<a>`, manifest, service worker, cookie paths) must use `BASE` from lib/site.js. Internal links use `@/components/Link` (no prefetch, to save CDN requests); only Shell/SiteMenu use next/link.
 - WebFetch only works on URLs that appeared in search results; search first. DAAD detail pages (www2.daad.de/.../international-programmes/en/detail/<id>/) are a good official source for Germany.
 

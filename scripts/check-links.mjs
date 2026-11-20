@@ -4,6 +4,10 @@
 import { readFileSync, readdirSync, writeFileSync, appendFileSync } from "node:fs";
 import { join } from "node:path";
 
+// Node's built-in fetch (undici) sometimes throws an internal assertion on a broken TLS stream, which used to kill
+// the whole run. Log it and carry on: every request has its own timeout, so the affected link ends as "No answer".
+process.on("uncaughtException", (e) => console.warn("Ignored internal fetch error:", e?.code || e?.message || e));
+
 const files = [
   ...readdirSync("lib").filter((f) => /\.(js|json)$/.test(f)).map((f) => join("lib", f)),
   // Per-origin visa routes and certificate rules.
