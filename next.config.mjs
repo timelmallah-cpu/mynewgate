@@ -1,5 +1,6 @@
-// The study site lives under bawabatalsafar.com/study (the domain's other sections come later).
+// The study site lives under bawabatalsafar.com/study; the domain root shows the Bawabat AlSafar home (gateway pages).
 const BASE = "/study";
+const ORIGIN = (process.env.NEXT_PUBLIC_SITE_ORIGIN || "https://bawabatalsafar.com").replace(/\/$/, "");
 
 /** @type {import('next').NextConfig} */
 export default {
@@ -23,13 +24,20 @@ export default {
       ],
     }];
   },
+  // The umbrella home page lives inside the app at /study/gateway and /study/gateway-en. A rewrite outside the basePath
+  // must be absolute, so "/" and "/en" proxy to the same domain's /study/gateway pages.
+  async rewrites() {
+    return { beforeFiles: [
+      { source: "/", destination: `${ORIGIN}${BASE}/gateway`, basePath: false },
+      { source: "/en", destination: `${ORIGIN}${BASE}/gateway-en`, basePath: false },
+    ] };
+  },
   async redirects() {
     return [
       // Old address: every page moves permanently to the same page under the new domain.
       { source: "/:path*", has: [{ type: "host", value: "mynewgate.vercel.app" }], destination: "https://bawabatalsafar.com/study/:path*", permanent: true, basePath: false },
-      // Until the domain's own home page exists, its root and any path outside /study open the study site.
-      { source: "/", destination: BASE, permanent: false, basePath: false },
-      { source: "/:path((?!study(?:/|$)).*)", destination: `${BASE}/:path`, permanent: false, basePath: false },
+      // The domain's root ("/" and "/en") shows the Bawabat AlSafar home (rewrites below); any other path outside /study opens the study site.
+      { source: "/:path((?!study(?:/|$)|en$|_next/|favicon).+)", destination: `${BASE}/:path`, permanent: false, basePath: false },
       // The search landing pages moved from /study/<slug> to /search/<slug> (inside the study site).
       { source: "/study", destination: "/search", permanent: true },
       { source: "/study/:slug*", destination: "/search/:slug*", permanent: true },

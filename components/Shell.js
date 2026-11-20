@@ -16,7 +16,7 @@ import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
 import "../app/globals.css";
 
 // The brand mark: an arched gate with its keystone.
-function Mark() {
+export function Mark() {
   return (
     <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
       <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
@@ -26,7 +26,7 @@ function Mark() {
 }
 
 // The study section's mark: the same gate with an open book inside.
-function StudyMark() {
+export function StudyMark() {
   return (
     <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
       <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
@@ -91,7 +91,7 @@ export default function Shell({ lang, children }) {
         <main>{children}</main>
         <footer className="foot">
           <div className="foot-brand">
-            <p className="foot-name"><Mark />{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</p>
+            <p className="foot-name"><a href={lang === "ar" ? "/" : "/en"}><Mark />{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</a></p>
             <p className="foot-tagline">{t.tagline}</p>
             <p className="foot-powered"><bdi>{t.poweredBy}</bdi></p>
           </div>
