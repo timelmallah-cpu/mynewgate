@@ -1739,7 +1739,7 @@
  "غرف فردية في سكن Studentenwerk Chemnitz-Zwickau بسعر 270 - 350 يورو": "Single rooms in Studentenwerk Chemnitz-Zwickau halls at €270 - 350",
  "B2 (IELTS Academic 5.5 أو TOEFL iBT 72)، وألماني A1 بشهادة": "B2 (IELTS Academic 5.5 or TOEFL iBT 72), and German A1 with a certificate",
  "بكالوريوس هندسة كهربائية وتقنية معلومات أو هندسة رقمية أو ما يعادله، والمعادلة تُقرر فردياً": "Bachelor's in electrical engineering and IT or digital engineering, or equivalent; equivalence is decided individually",
- "فصلان دراسيان (سنة واحدة)": "2 semesters (1 year)",
+ "فصلان دراسيان (سنة واحدة)": "Two semesters (one year)",
  "6,000 يورو للفصل": "€6,000 per semester",
  "حوالي 97 يورو": "About €97",
  "الشتوي فقط: 1 ديسمبر - 31 يناير": "Winter only: 1 December - 31 January",
@@ -3056,7 +3056,7 @@
  "علم البيانات": "Data science",
  "التقديم أونلاين على موقع القبول في الجامعة؛ رسوم تسجيل 225 دولاراً وكفالة شخصية 1,000 دولار للطلاب الدوليين": "Apply online on the university's admission site; registration fee US$225 and a US$1,000 personal bond for international students",
  "حوالي 8,510 يورو للبرنامج كاملاً (9,450 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ مدة البرنامج غير منشورة في صفحة الرسوم؛ التحويل تقريبي)": "About €8,510 for the whole programme (US$9,450 for international students, rates effective from 2025/2026; duration not on the fee page; approximate conversion)",
- "الأمن السيبراني": "Cyber security",
+ "الأمن السيبراني": "Cybersecurity",
  "حوالي 8,140 يورو للبرنامج كاملاً (9,030 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ مدة البرنامج غير منشورة في صفحة الرسوم؛ التحويل تقريبي)": "About €8,140 for the whole programme (US$9,030 for international students, rates effective from 2025/2026; duration not on the fee page; approximate conversion)",
  "تحليلات الأعمال": "Business analytics",
  "حوالي 8,650 يورو للبرنامج كاملاً (9,600 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ مدة البرنامج غير منشورة في صفحة الرسوم؛ التحويل تقريبي)": "About €8,650 for the whole programme (US$9,600 for international students, rates effective from 2025/2026; duration not on the fee page; approximate conversion)",
@@ -3373,5 +3373,13 @@
  "حوالي 25,070 يورو في السنة (40,900 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €25,070 a year (AUD 40,900 in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)",
  "حوالي 29,600 يورو في السنة (48,300 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €29,600 a year (AUD 48,300 in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)",
  "حوالي 24,030 يورو في السنة (39,200 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €24,030 a year (AUD 39,200 in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)",
- "حوالي 27,950 يورو في السنة (45,600 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €27,950 a year (AUD 45,600 in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)"
+ "حوالي 27,950 يورو في السنة (45,600 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €27,950 a year (AUD 45,600 in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)",
+ "3 فصول دراسية على الأقل بدوام كامل (سنة ونصف تقريباً)": "At least 3 semesters full-time (about 1.5 years)",
+ "حوالي 7,210 يورو للبرنامج كاملاً (8,000 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ المدة من صفحة البرنامج؛ التحويل تقريبي)": "About €7,210 for the whole programme (US$8,000 for international students, rates effective from 2025/2026; duration from the programme page; approximate conversion)",
+ "فصلان دراسيان على الأقل بدوام كامل (سنة تقريباً)، والحد الأقصى 4 فصول": "At least 2 semesters full-time (about 1 year), maximum 4",
+ "حوالي 8,510 يورو للبرنامج كاملاً (9,450 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ المدة من صفحة البرنامج؛ التحويل تقريبي)": "About €8,510 for the whole programme (US$9,450 for international students, rates effective from 2025/2026; duration from the programme page; approximate conversion)",
+ "4 فصول دراسية على الأقل بدوام كامل (سنتان)": "At least 4 semesters full-time (2 years)",
+ "حوالي 8,110 يورو للبرنامج كاملاً (9,000 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ المدة من صفحة البرنامج؛ التحويل تقريبي)": "About €8,110 for the whole programme (US$9,000 for international students, rates effective from 2025/2026; duration from the programme page; approximate conversion)",
+ "حوالي 5,770 يورو للبرنامج كاملاً (6,400 دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ المدة من صفحة البرنامج؛ التحويل تقريبي)": "About €5,770 for the whole programme (US$6,400 for international students, rates effective from 2025/2026; duration from the programme page; approximate conversion)",
+ "فصلان دراسيان على الأقل بدوام كامل (سنة تقريباً)": "At least 2 semesters full-time (about 1 year)"
 }

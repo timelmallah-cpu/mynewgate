@@ -45,9 +45,20 @@ USM_EN = ("الدراسة بالإنجليزية للطلاب الدوليين (
 USM_HOW = ("التقديم أونلاين على موقع القبول في الجامعة؛ رسوم تسجيل 225 دولاراً وكفالة شخصية 1,000 دولار للطلاب الدوليين",
            "Apply online on the university's admission site; registration fee US$225 and a US$1,000 personal bond for international students")
 USM_SRC = "https://admission.usm.my/postgraduate/fee-pg"
-def usm_fee(usd, eur):
-    return (f"حوالي {eur:,} يورو للبرنامج كاملاً ({usd:,} دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ مدة البرنامج غير منشورة في صفحة الرسوم؛ التحويل تقريبي)",
-            f"About €{eur:,} for the whole programme (US${usd:,} for international students, rates effective from 2025/2026; duration not on the fee page; approximate conversion)")
+def usm_fee(usd, eur, known):
+    d_ar = "المدة من صفحة البرنامج" if known else "مدة البرنامج غير منشورة في صفحة الرسوم"
+    d_en = "duration from the programme page" if known else "duration not on the fee page"
+    return (f"حوالي {eur:,} يورو للبرنامج كاملاً ({usd:,} دولار أمريكي للطلاب الدوليين، بأسعار سارية من 2025/2026؛ {d_ar}؛ التحويل تقريبي)",
+            f"About €{eur:,} for the whole programme (US${usd:,} for international students, rates effective from 2025/2026; {d_en}; approximate conversion)")
+# Minimum full-time duration from the official programme pages (checked 2026-11-20): admission.usm.my, cs.usm.my, cyres.usm.my,
+# medic.usm.my. USM has two semesters a year. The others are not published on a page we could read.
+USM_DUR = {
+    "Master of Data Science": ("3 فصول دراسية على الأقل بدوام كامل (سنة ونصف تقريباً)", "At least 3 semesters full-time (about 1.5 years)"),
+    "Master in Cybersecurity": ("فصلان دراسيان على الأقل بدوام كامل (سنة تقريباً)", "At least 2 semesters full-time (about 1 year)"),
+    "Master of Architecture": ("4 فصول دراسية على الأقل بدوام كامل (سنتان)", "At least 4 semesters full-time (2 years)"),
+    "Master of Environmental Science": ("فصلان دراسيان على الأقل بدوام كامل (سنة تقريباً)", "At least 2 semesters full-time (about 1 year)"),
+    "Master of Public Health": ("فصلان دراسيان (سنة واحدة)", "Two semesters (one year)"),
+}
 for field, name, usd, other in [
     ("ds", "Master of Data Science", 8000, ("علم البيانات", "Data science")),
     ("cs", "Master in Cybersecurity", 9450, ("الأمن السيبراني", "Cybersecurity")),
@@ -63,7 +74,7 @@ for field, name, usd, other in [
     ("art", "Master of Design in Creative Industry", 6400, ("التصميم للصناعات الإبداعية", "Design for the creative industry")),
 ]:
     deg = ("ماجستير بالمقررات", "Coursework master's")
-    add(MA, field, name, USM, "Penang", deg, DUR_NP, usm_fee(usd, round(usd / 1.11 / 10) * 10), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/")
+    add(MA, field, name, USM, "Penang", deg, USM_DUR.get(name, DUR_NP), usm_fee(usd, round(usd / 1.11 / 10) * 10, name in USM_DUR), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/")
 
 write("ماليزيا", "Malaysia", "malaysia", MA, level="master")
 append_master("ماليزيا", "malaysia")
