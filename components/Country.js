@@ -78,7 +78,7 @@ export const countryMeta = (code, lang) => {
   const description = lang === "ar"
     ? `الدراسة في ${name}${n ? `: ${progsAr(n)} بالإنجليزية في الجامعات الحكومية` : ""}، وإثبات المال للتأشيرة، ومعادلة الشهادات، والبقاء بعد التخرج، بالعربي مع المصادر الرسمية.`
     : `Studying in ${name}${n ? `: ${n} English-taught programmes at public universities` : ""}, visa proof of funds, certificate recognition and staying after graduation, with official sources.`;
-  return pageMeta(lang, { title: `${S[lang].title(name)} | ${T[lang].brand}`, description, path: `/country/${code}`, image: COUNTRY_INFO[code]?.photo[0] });
+  return pageMeta(lang, { title: `${S[lang].title(name)} | ${T[lang].brand}`, description, path: `/country/${code}`, image: COUNTRY_INFO[code]?.photo[0], fr: COUNTRY_IDS.includes(code) ? `/pays/${code}` : undefined });
 };
 
 const n = (v) => Math.round(v).toLocaleString("en-US");

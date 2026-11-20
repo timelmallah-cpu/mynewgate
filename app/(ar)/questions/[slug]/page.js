@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const q = questionBySlug(slug);
   if (!q) return {};
-  return pageMeta("ar", { title: `${q.q.ar} | ${T.ar.brand}`, description: q.answer("ar").short.slice(0, 300), path: `/questions/${slug}` });
+  return pageMeta("ar", { title: `${q.q.ar} | ${T.ar.brand}`, description: q.answer("ar").short.slice(0, 300), path: `/questions/${slug}`, fr: `/questions/${slug}` });
 }
 
 export default async function Page({ params }) {

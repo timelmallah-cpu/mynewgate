@@ -2,6 +2,7 @@ import TopAccount from "./TopAccount";
 import { Analytics } from "@vercel/analytics/next";
 import Link from "next/link";
 import { T } from "../lib/i18n";
+import { BASE } from "../lib/site";
 import LangSwitch from "./LangSwitch";
 import PwaRegister from "./PwaRegister";
 import AskFab from "./AskFab";
@@ -111,6 +112,7 @@ export default function Shell({ lang, children }) {
             <p className="foot-name"><a href={lang === "ar" ? "/" : "/en"}><Mark />{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</a></p>
             <p className="foot-tagline">{t.tagline}</p>
             <p className="foot-powered"><bdi>{t.poweredBy}</bdi></p>
+            <p><a href={`${BASE}/fr`} lang="fr">Version française</a></p>
           </div>
           <p>{t.footer} <span className="tag">{t.beta}</span></p>
           <nav className="foot-cols" aria-label={t.base ? "Site links" : "روابط الموقع"}>

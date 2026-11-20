@@ -9,6 +9,7 @@ import { LANDINGS } from "@/lib/landings";
 import { CITIES } from "@/lib/cities";
 import { SECTION_IDS } from "@/lib/sections";
 import { QUESTIONS } from "@/lib/questions";
+import { FR_QUESTIONS } from "@/lib/fr";
 
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
@@ -28,12 +29,15 @@ export default function sitemap() {
   const en = (p) => `/en${p === "/" ? "" : p}`;
   const now = new Date();
   const ar = (p) => (p === "/" ? "" : p);
-  return paths.flatMap((p) => {
+  // French pages (version 1): home, country summaries and questions, linked to their Arabic/English versions.
+  const fr = [["", "/"], ...COUNTRY_IDS.map((c) => [`/pays/${c}`, `/country/${c}`]), ["/questions", "/questions"], ...FR_QUESTIONS.map((q) => [`/questions/${q.slug}`, `/questions/${q.slug}`])]
+    .map(([f, p]) => ({ url: `${SITE_URL}/fr${f}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6, alternates: { languages: { fr: `${SITE_URL}/fr${f}`, ar: SITE_URL + (p === "/" ? "" : p), en: `${SITE_URL}/en${p === "/" ? "" : p}` } } }));
+  return [...fr, ...paths.flatMap((p) => {
     const languages = { ar: SITE_URL + ar(p), en: SITE_URL + en(p) };
     const priority = p === "/" ? 1 : p.startsWith("/programme/") ? 0.6 : 0.8;
     return [
       { url: SITE_URL + ar(p), lastModified: now, changeFrequency: "weekly", priority, alternates: { languages } },
       { url: SITE_URL + en(p), lastModified: now, changeFrequency: "weekly", priority: priority - 0.1, alternates: { languages } },
     ];
-  });
+  })];
 }

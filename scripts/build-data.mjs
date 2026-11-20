@@ -34,7 +34,7 @@ for (const c of BA_ORDER) {
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "bachelor", _id: `b-${BA_CODE[c]}-${r["#"]}` })));
 }
 // Doctoral programmes: one file per country, ids "d-<country>-<n>".
-const PHD_CODE = { finland: "fi", sweden: "se" };
+const PHD_CODE = { finland: "fi", sweden: "se", netherlands: "nl", switzerland: "ch", denmark: "dk" };
 for (const c of Object.keys(PHD_CODE)) {
   const f = `data/programmes_phd/${c}.csv`;
   if (existsSync(f)) rows.push(...read(f).map((r) => ({ ...r, _level: "doctorate", _id: `d-${PHD_CODE[c]}-${r["#"]}` })));
