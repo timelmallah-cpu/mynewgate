@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
-import { Mark, StudyMark } from "./Shell";
+import { Mark, StudyMark, SectionMark } from "./Shell";
+import SoonSection from "./Sections";
 import { SECTIONS, SECTION_TEXT } from "../lib/sections";
 import { BASE } from "../lib/site";
 import "@fontsource-variable/readex-pro/index.css";
@@ -74,6 +75,37 @@ export default function Portal({ lang }) {
           </div>
         </footer>
         <Analytics />
+    </>
+  );
+}
+
+// /soon/<id>: each coming-soon section has its own name and mark in the header (Hatem, 20 Nov), not the study brand.
+// It uses the portal root layout, so the header and footer belong to Bawabat AlSafar, with a link back to its home.
+export function SectionPortal({ id, lang }) {
+  const x = TX[lang];
+  const s = SECTION_TEXT[lang];
+  const other = lang === "ar" ? `${BASE}/en/soon/${id}` : `${BASE}/soon/${id}`;
+  const home = lang === "ar" ? "/" : "/en";
+  return (
+    <>
+      <header className="top">
+        <div className="top-in">
+          <a href={home} className="brand"><SectionMark id={id} />{s.names[id]}</a>
+          <div className="top-end"><a className="toplink" href={other} lang={lang === "ar" ? "en" : "ar"}>{x.other}</a></div>
+        </div>
+      </header>
+      <main>
+        <p className="crumbs"><a href={home}>{x.name}</a> {lang === "ar" ? "←" : "→"} {s.names[id]}</p>
+        <SoonSection id={id} lang={lang} />
+      </main>
+      <footer className="foot">
+        <div className="foot-brand">
+          <p className="foot-name"><Mark /><a href={home}>{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</a></p>
+          <p className="foot-tagline">{x.tagline}</p>
+          <p className="foot-powered"><bdi>{x.powered}</bdi></p>
+        </div>
+      </footer>
+      <Analytics />
     </>
   );
 }

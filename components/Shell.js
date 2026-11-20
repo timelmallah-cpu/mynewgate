@@ -37,6 +37,23 @@ export function StudyMark() {
   );
 }
 
+
+// The other sections' marks: the same gate with the section's own sign inside (gold, like the study book).
+const SECTION_SIGN = {
+  "visas-immigration": <><rect x="7.5" y="17" width="11" height="10" rx="1.4" fill="#e9b949" /><circle cx="13" cy="21" r="2" fill="none" stroke="#13234b" strokeWidth="1.1" /><path d="M10 25h6" stroke="#13234b" strokeWidth="1.1" /></>,
+  work: <><rect x="6.5" y="19" width="13" height="8" rx="1.4" fill="#e9b949" /><path d="M10.5 19v-2h5v2" fill="none" stroke="#e9b949" strokeWidth="1.6" /><path d="M6.5 22.5h13" stroke="#13234b" strokeWidth="1.1" /></>,
+  tourism: <><circle cx="13" cy="22" r="5.3" fill="#e9b949" /><path d="M7.7 22h10.6M13 16.7c1.8 1.6 1.8 9 0 10.6M13 16.7c-1.8 1.6-1.8 9 0 10.6" fill="none" stroke="#13234b" strokeWidth="1" /></>,
+};
+export function SectionMark({ id }) {
+  return (
+    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+      <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
+      <rect x="10" y="-1" width="6" height="6" rx="1" transform="rotate(45 13 2)" fill="#e9b949" />
+      {SECTION_SIGN[id]}
+    </svg>
+  );
+}
+
 // Root <html> for one language. Each language has its own root layout so
 // lang/dir are correct in the server-rendered HTML.
 // Footer links, grouped so the list stays readable on phones.
