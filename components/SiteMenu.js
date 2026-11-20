@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS, ALWAYS, ALWAYS_TEXT } from "../lib/journey";
 import { MENU } from "../lib/homeText";
+import { SECTIONS, SECTION_TEXT } from "../lib/sections";
 
 export default function SiteMenu({ lang, base }) {
   const m = MENU[lang];
@@ -56,6 +57,10 @@ export default function SiteMenu({ lang, base }) {
             <div>
               <h2>{ALWAYS_TEXT[lang]}</h2>
               <ul>{ALWAYS.map(item)}</ul>
+            </div>
+            <div>
+              <h2>{m.sections}</h2>
+              <ul>{SECTIONS.map((x) => <li key={x.id}><Link href={`${base}/soon/${x.id}`}><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={x.icon} /></svg>{SECTION_TEXT[lang].names[x.id]} <small className="soon-tag">{SECTION_TEXT[lang].soon}</small></Link></li>)}</ul>
             </div>
           </div>
           <p className="menu-foot"><Link href={`${base}/tools`}>{m.toolsPage}</Link> · <Link href={`${base}/contact`}>{m.contact}</Link></p>

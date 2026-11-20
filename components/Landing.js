@@ -11,7 +11,8 @@ import { OriginPicker } from "./Origin";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS } from "../lib/journey";
 import { SECTORS } from "../lib/ausbildungGuide";
-import { HOME } from "../lib/homeText";
+import { HOME, QUICK } from "../lib/homeText";
+import { SectionCards } from "./Sections";
 import { RegionCards } from "./Regions";
 
 // A smaller Wikimedia thumbnail for the photo strip (only where a larger thumbnail of the same file is used).
@@ -67,6 +68,10 @@ export default function Landing({ lang }) {
         </ul>
       </section>
 
+      <nav className="quick" aria-label={QUICK[lang].label}>
+        <ul>{QUICK[lang].items.map(([href, label]) => <li key={href}><Link className="chip" href={`${t.base}${href}`}>{label}</Link></li>)}</ul>
+      </nav>
+
       <RegionCards lang={lang} />
 
       <section className="card origin-home" aria-label={lang === "ar" ? "بلدك" : "Your country"}>
@@ -117,6 +122,8 @@ export default function Landing({ lang }) {
           ))}
         </ol>
       </section>
+
+      <SectionCards lang={lang} />
 
       <div className="dest-head">
         <h2 className="land-h">{h.destTitle}</h2>

@@ -1215,3 +1215,24 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .region-grid small { flex-basis: 100%; font-weight: 400; color: #dfe6f5; font-size: .8rem; }
 .region-want { margin: 16px 0; }
 .region-want p { margin: 8px 0 0; }
+
+/* Home shortcuts and Bawabat AlSafar sections */
+.quick ul { list-style: none; padding: 0; margin: 14px 0 4px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.sections h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.sections > p { margin: 0 0 12px; color: #5b6478; }
+.sections ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.sections a { display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 12px; border: 1px solid #dfe4ef; border-radius: 12px; text-decoration: none; color: inherit; background: #f6f7fb; }
+.sections a:hover { border-color: var(--gold); }
+.sections small { color: #5b6478; font-size: .84rem; line-height: 1.5; }
+.sec-icon { color: var(--navy); }
+.menu-groups small.soon-tag { font-size: .7rem; padding: 0 6px; margin-inline-start: 6px; }
+/* Updates and How we work */
+.updates { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 12px; }
+.updates li { background: var(--card, #fff); border: 1px solid var(--line, #dfe4ef); border-radius: 14px; padding: 12px 16px; }
+.updates time { font-size: .85rem; color: #5b6478; font-weight: 600; }
+.updates p { margin: 6px 0 0; }
+.upd-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.hw-stats { justify-content: flex-start; color: var(--navy); }
+.hw-labels div { margin: 0 0 10px; }
+.hw-labels dt { font-weight: 700; }
+.hw-labels dd { margin: 2px 0 0; }
