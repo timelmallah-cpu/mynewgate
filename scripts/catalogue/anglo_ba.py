@@ -46,12 +46,18 @@ for field, name, deg, dur, other in [
 # ---------------- Australia: Flinders University (Adelaide)
 FL_SRC = "https://www.flinders.edu.au/content/dam/documents/study/international/2027-international-commencing-tuition-fee-schedule.pdf"
 FL_APPLY = "https://www.flinders.edu.au/international"
-FL_DL = ("غير منشور في المصدر؛ الدراسة تبدأ عادة في فبراير ويوليو، وقدّم مبكراً لترك وقت لتأشيرة الطالب", "Not published in the source; study usually starts in February and July, so apply early to leave time for the student visa")
+FL_DL = ("آخر موعد غير منشور في المصدر؛ الدراسة تبدأ في الفصل الأول (فبراير/مارس) أو الثاني (يوليو) حسب البرنامج، فقدّم مبكراً لترك وقت لتأشيرة الطالب", "Deadline not published in the source; study starts in semester 1 (February/March) or semester 2 (July) depending on the course, so apply early to leave time for the student visa")
+# Durations from Flinders' international undergraduate entry requirements guide (2025 edition; checked 2026-11-20).
+FL_DUR = {"Bachelor of Engineering (Software) (Honours)": 4, "Bachelor of Engineering (Civil) (Honours)": 4, "Bachelor of Engineering (Mechanical) (Honours)": 4,
+          "Bachelor of Engineering (Robotics) (Honours)": 4, "Bachelor of Nutrition and Dietetics": 4, "Bachelor of Business Analytics": None}
+def fl_dur(name):
+    y = FL_DUR.get(name, 3)
+    return NP if y is None else ((f"{y} سنوات بدوام كامل", f"{y} years full-time"))
 FL_HOW = ("التقديم أونلاين للطلاب الدوليين عبر موقع الجامعة؛ بعد القبول تدفع عربوناً وتحصل على تأكيد التسجيل CoE لطلب التأشيرة", "Apply online as an international student; after admission you pay a deposit and receive the CoE for the visa")
 def fl_fee(aud):
     eur = round(aud / 1.6316 / 10) * 10
-    return (f"حوالي {eur:,} يورو في السنة ({aud:,} دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ الجدول لا يذكر صراحة أن المبلغ سنوي، للتحقق؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
-            f"About €{eur:,} a year (AUD {aud:,} in the 2027 international commencing fee schedule; the schedule does not say explicitly that it is annual, to verify; ECB rate of 17 November 2026)")
+    return (f"حوالي {eur:,} يورو في السنة ({aud:,} دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} a year (AUD {aud:,} in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)")
 for field, name, aud, other in [
     ("cs", "Bachelor of Computer Science", 45700, ("علوم الحاسب", "Computer science")),
     ("cs", "Bachelor of Computer Science (Artificial Intelligence)", 45700, ("الذكاء الاصطناعي", "Artificial intelligence")),
@@ -70,7 +76,7 @@ for field, name, aud, other in [
     ("ph", "Bachelor of Public Health", 39200, ("الصحة العامة", "Public health")),
     ("sci", "Bachelor of Science (Marine Biology)", 45600, ("علم الأحياء البحرية", "Marine biology")),
 ]:
-    add("au", field, name, "Flinders University", "Adelaide", (name, name), NP, fl_fee(aud), FL_DL, other, FL_HOW, FL_SRC, FL_APPLY)
+    add("au", field, name, "Flinders University", "Adelaide", (name, name), fl_dur(name), fl_fee(aud), FL_DL, other, FL_HOW, FL_SRC, FL_APPLY)
 
 # ---------------- New Zealand: University of Waikato (Hamilton) and AUT (Auckland)
 NZ_DL = ("الجامعة تعالج طلبات الطلاب الدوليين باستمرار؛ الدراسة تبدأ عادة في مارس ويوليو، وقدّم مبكراً لترك وقت للتأشيرة",

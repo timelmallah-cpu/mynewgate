@@ -1,7 +1,8 @@
 # Australia: Flinders University (public university, Adelaide).
-# Source: Flinders "International Commencing Tuition Fee Schedule 2027" (updated August 2026), checked 2026-11-19. The schedule
-# does not say whether the amounts are per year; Flinders states its international fees as annual elsewhere, so they are written
-# as yearly amounts with a "to verify" note. Euro figures: ECB rate of 17 Nov 2026 (1.6316 AUD per euro).
+# Source: Flinders "International Commencing Tuition Fee Schedule 2027" (updated August 2026), checked 2026-11-19. Each course page
+# lists international fees as "Annual fees", so the schedule amounts are yearly (checked 2026-11-20). Durations from the official
+# course pages (checked 2026-11-20): all 2 years; Public Health 1.5 or 2 years; start dates March and July (International
+# Relations: February and July). Euro figures: ECB rate of 17 Nov 2026 (1.6316 AUD per euro).
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import write, NP
@@ -12,13 +13,15 @@ UNI = "Flinders University"
 SRC = "https://www.flinders.edu.au/content/dam/documents/study/international/2027-international-commencing-tuition-fee-schedule.pdf"
 APPLY = "https://www.flinders.edu.au/international"
 ADM = ("بكالوريوس مناسب حسب شروط البرنامج", "A suitable bachelor's per the programme's conditions")
-DL = ("غير منشور في المصدر؛ الدراسة تبدأ عادة في فبراير ويوليو، وقدّم مبكراً لترك وقت لتأشيرة الطالب", "Not published in the source; study usually starts in February and July, so apply early to leave time for the student visa")
+DL = ("آخر موعد غير منشور في المصدر؛ الدراسة تبدأ في مارس ويوليو، فقدّم مبكراً لترك وقت لتأشيرة الطالب", "Deadline not published in the source; study starts in March and July, so apply early to leave time for the student visa")
+Y2 = ("سنتان بدوام كامل", "2 years full-time")
+DUR = {"Master of Public Health": ("سنة ونصف أو سنتان بدوام كامل حسب خلفيتك", "1.5 or 2 years full-time, depending on your background")}
 EN = ("شهادة إنجليزية حسب شروط البرنامج (IELTS أو ما يعادله؛ الحد الأدنى غير منشور هنا)", "An English certificate per the programme (IELTS or equivalent; minimum not published here)")
 HOW = ("التقديم أونلاين للطلاب الدوليين عبر موقع الجامعة؛ بعد القبول تدفع عربوناً وتحصل على تأكيد التسجيل CoE لطلب التأشيرة", "Apply online as an international student through the university; after admission you pay a deposit and receive the CoE for the visa")
 def fee(aud):
     eur = round(aud / 1.6316 / 10) * 10
-    return (f"حوالي {eur:,} يورو في السنة ({aud:,} دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ الجدول لا يذكر صراحة أن المبلغ سنوي، للتحقق؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
-            f"About €{eur:,} a year (AUD {aud:,} in the 2027 international commencing fee schedule; the schedule does not say explicitly that it is annual, to verify; ECB rate of 17 November 2026)")
+    return (f"حوالي {eur:,} يورو في السنة ({aud:,} دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ صفحات البرامج تذكر الرسوم سنوية؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} a year (AUD {aud:,} in the 2027 international commencing fee schedule; course pages list fees as annual; ECB rate of 17 November 2026)")
 for field, name, aud, other in [
     ("cs", "Master of Information Technology", 45000, ("تقنية المعلومات", "Information technology")),
     ("cs", "Master of Information Technology (Network and Cybersecurity Systems)", 45000, ("الشبكات والأمن السيبراني", "Networks and cybersecurity")),
@@ -34,7 +37,7 @@ for field, name, aud, other in [
     ("edu", "Master of Education", 40000, ("التربية", "Education")),
     ("bus", "Master of Business Administration (Business Analytics)", 46400, ("إدارة الأعمال مع تحليلات الأعمال", "Business administration with business analytics")),
 ]:
-    add(MA, field, name, UNI, "Adelaide", (name, name), NP, fee(aud), ADM, DL, EN, other, HOW, NP, NP, SRC, APPLY)
+    add(MA, field, name, UNI, "Adelaide", (name, name), DUR.get(name, Y2), fee(aud), ADM, DL, EN, other, HOW, NP, NP, SRC, APPLY)
 
 write("أستراليا", "Australia", "australia", MA, level="master")
 append_master("أستراليا", "australia")
