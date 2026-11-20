@@ -3112,7 +3112,7 @@
  "15 يناير (دفعة الخريف)": "15 January (fall intake)",
  "الرياضيات والإحصاء": "Mathematics and statistics",
  "علم النفس (بحثي)": "Psychology (research)",
- "العلوم السياسية": "Political science",
+ "العلوم السياسية": "Politics",
  "أستراليا": "Australia",
  "Master of Information Technology": "Master of Information Technology",
  "حوالي 27,580 يورو في السنة (45,000 دولار أسترالي حسب جدول رسوم الطلاب الدوليين الجدد لعام 2027؛ الجدول لا يذكر صراحة أن المبلغ سنوي، للتحقق؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)": "About €27,580 a year (AUD 45,000 in the 2027 international commencing fee schedule; the schedule does not say explicitly that it is annual, to verify; ECB rate of 17 November 2026)",
@@ -3558,5 +3558,10 @@
  "حسب شروط الإنجليزية العامة للجامعة (للتحقق)": "Per the university's general English requirements (to verify)",
  "تكنولوجيا الأغذية: تطوير المنتجات والتصنيع والجودة، في حرم ماناواتو": "Food technology: product development, processing and quality, at the Manawatū campus",
  "سنتان تقريباً (حوالي 20 شهراً)": "About 20 months",
- "سنة ونصف بدوام كامل (3 فصول، 180 نقطة، 120 نقطة في السنة)": "1.5 years full-time (180 credits, 120 credits a year)"
+ "سنة ونصف بدوام كامل (3 فصول، 180 نقطة، 120 نقطة في السنة)": "1.5 years full-time (180 credits, 120 credits a year)",
+ "الفنون الجميلة (التقديم يحتاج عادة ملف أعمال)": "Fine art (applications usually need a portfolio)",
+ "التصميم الجرافيكي (التقديم يحتاج عادة ملف أعمال)": "Graphic design (applications usually need a portfolio)",
+ "تصميم المنسوجات (التقديم يحتاج عادة ملف أعمال)": "Textile design (applications usually need a portfolio)",
+ "علوم الرياضة والتدريب والتربية البدنية": "Sport science, coaching and physical education",
+ "علم نفس الرياضة والتمرين": "Psychology of sport and exercise"
 }

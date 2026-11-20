@@ -44,6 +44,14 @@ for field, name, deg, gbp, other in [
     ("sci", "BSc Physics", "BSc", 31500, ("الفيزياء", "Physics")),
     ("sci", "BSc Chemistry", "BSc", 31500, ("الكيمياء", "Chemistry")),
     ("art", "BA Design", "BA", 31500, ("التصميم", "Design")),
+    # Added 2026-11-20 (same official 2027-28 fee table): small fields.
+    ("art", "BA Fine Art", "BA", 25500, ("الفنون الجميلة (التقديم يحتاج عادة ملف أعمال)", "Fine art (applications usually need a portfolio)")),
+    ("art", "BA Graphic Design", "BA", 25500, ("التصميم الجرافيكي (التقديم يحتاج عادة ملف أعمال)", "Graphic design (applications usually need a portfolio)")),
+    ("art", "BA Textile Design", "BA", 25500, ("تصميم المنسوجات (التقديم يحتاج عادة ملف أعمال)", "Textile design (applications usually need a portfolio)")),
+    ("sport", "BSc Sport Science, Coaching and Physical Education", "BSc", 31500, ("علوم الرياضة والتدريب والتربية البدنية", "Sport science, coaching and physical education")),
+    ("sport", "BSc Psychology of Sport and Exercise", "BSc", 31500, ("علم نفس الرياضة والتمرين", "Psychology of sport and exercise")),
+    ("hum", "BA History", "BA", 25500, ("التاريخ", "History")),
+    ("hum", "BA English Literature", "BA", 25500, ("الأدب الإنجليزي", "English literature")),
 ]:
     eur = round(gbp / GBP / 10) * 10
     fee = (f"حوالي {eur:,} يورو في السنة ({gbp:,} جنيهاً إسترلينياً رسوم الطلاب الدوليين للسنة الدراسية 2027/2028؛ رسوم السنوات التالية قد تزيد؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
