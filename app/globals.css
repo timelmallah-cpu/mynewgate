@@ -1397,3 +1397,12 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .pts-list { display: grid; gap: 8px; }
 .pts-pick { display: grid; gap: 6px; font-weight: 600; color: var(--navy); }
 .pts-pick select { font: inherit; font-weight: 400; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; min-height: 44px; }
+.nm-in { width: 100%; box-sizing: border-box; min-width: 0; font: inherit; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; min-height: 44px; }
+.nm-list { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 8px; }
+.nm-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; padding: 10px 14px; border-radius: 12px; border-inline-start: 6px solid var(--line); background: #f7f8fb; }
+.nm-row.vz-free { border-color: #1f8a4c; background: #eef8f1; }
+.nm-row.vz-cond { border-color: #b7791f; background: #fdf6e8; }
+.nm-row.vz-visa { border-color: #13234b; }
+.nm-row.vz-banned { border-color: #b42318; background: #fdf0ee; }
+.nm-row a { color: var(--navy); }
+.nm-st { grid-column: 1 / -1; font-size: .92rem; }

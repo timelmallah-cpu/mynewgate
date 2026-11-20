@@ -6,6 +6,8 @@ import Flag from "../lib/Flag";
 import VisaChecker from "./VisaChecker";
 import PointsCheck from "./PointsCheck";
 import { ROUTES, RTEXT } from "../lib/visaRoutes";
+import NomadFinder from "./NomadFinder";
+import { NOMADS, NTEXT, NOMAD_HUB } from "../lib/nomadVisas";
 import { DEST, ORIGINS, KIND, VTEXT, VISIT_REVIEWED } from "../lib/visit";
 import { BASE } from "../lib/site";
 import "@fontsource-variable/readex-pro/index.css";
@@ -65,6 +67,10 @@ function DestFlag({ id }) {
       <rect x="0.25" y="0.25" width="29.5" height="19.5" fill="none" stroke="rgba(0,0,0,.15)" strokeWidth=".5" />
     </svg>
   );
+  const box = (k) => <svg className="flag" width="28" height="18.7" viewBox="0 0 30 20" aria-hidden="true">{k}<rect x="0.25" y="0.25" width="29.5" height="19.5" fill="none" stroke="rgba(0,0,0,.15)" strokeWidth=".5" /></svg>;
+  if (id === "jp") return box(<><rect width="30" height="20" fill="#FFFFFF" /><circle cx="15" cy="10" r="6" fill="#BC002D" /></>);
+  if (id === "th") return box(<><rect width="30" height="20" fill="#A51931" /><rect y="3.33" width="30" height="13.33" fill="#F4F5F8" /><rect y="6.67" width="30" height="6.67" fill="#2D2A4A" /></>);
+  if (id === "br") return box(<><rect width="30" height="20" fill="#009C3B" /><path d="M15 2.5 L27 10 L15 17.5 L3 10 Z" fill="#FFDF00" /><circle cx="15" cy="10" r="4.2" fill="#002776" /></>);
   return <Flag code={id} />;
 }
 
@@ -97,6 +103,12 @@ export function VisasHub({ lang }) {
       <h2>{RTEXT[lang].section}</h2>
       <p className="meta">{RTEXT[lang].sectionLead}</p>
       <ul className="vz-dests">
+        <li>
+          <a className="card vz-dest" href={`${b}/${NOMAD_HUB}`}>
+            <span className="vz-dname"><b>{NTEXT[lang].hubTitle}</b></span>
+            <span className="meta">{lang === "ar" ? `${NOMADS.length} دولة: الدخل المطلوب والمدة وأين تقدّم` : `${NOMADS.length} countries: income needed, length and where to apply`}</span>
+          </a>
+        </li>
         {ROUTES.map((r) => (
           <li key={r.slug}>
             <a className="card vz-dest" href={`${b}/${r.slug}`}>
@@ -187,7 +199,74 @@ export function VisaRoute({ r, lang }) {
         <ul>{r.links.map(([l, u]) => <li key={u}><a href={u} {...ext}>{l[lang]} ↗</a></li>)}</ul>
         <p className="meta">{r.note[lang]}</p>
       </section>
-      <p className="chips vz-other">{ROUTES.filter((x) => x.slug !== r.slug).map((x) => <a key={x.slug} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}<a className="chip" href={b}>{VTEXT[lang].destinations}</a></p>
+      <p className="chips vz-other">{r.id === "es" && <a className="chip" href={`${b}/${NOMAD_HUB}`}>{NTEXT[lang].all}</a>}{ROUTES.filter((x) => x.slug !== r.slug).map((x) => <a key={x.slug} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}<a className="chip" href={b}>{VTEXT[lang].destinations}</a></p>
+    </Frame>
+  );
+}
+
+const NFlag = ({ id }) => <DestFlag id={id} />;
+const money = (n, lang) => Math.round(n).toLocaleString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB");
+
+export function NomadHub({ lang }) {
+  const t = NTEXT[lang];
+  const b = visasBase(lang);
+  const fam = (f) => (f === true ? t.yes : f === false ? t.no : t.unk);
+  return (
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${NOMAD_HUB}`} crumbs={t.hubTitle} note={t.disclaimer}>
+      <section className="gate vz-hero">
+        <h1>{t.hubTitle}</h1>
+        <p className="lead">{t.hubLead}</p>
+      </section>
+      <NomadFinder lang={lang} base={b} />
+      <div className="vz-table-wrap">
+        <table className="vz-table">
+          <thead><tr><th scope="col">{t.country}</th><th scope="col">{t.minCol}</th><th scope="col">{t.famCol}</th></tr></thead>
+          <tbody>
+            {NOMADS.map((n) => (
+              <tr key={n.id}>
+                <th scope="row"><a href={`${b}/${n.slug}`}><NFlag id={n.id} /> {n.name[lang]}</a></th>
+                <td>{n.min != null ? `${money(n.min, lang)} €${n.minCheck ? ` (${t.estimate})` : ""}` : t.unk}</td>
+                <td>{fam(n.family)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Frame>
+  );
+}
+
+export function NomadPage({ n, lang }) {
+  const t = NTEXT[lang];
+  const b = visasBase(lang);
+  const ext = { target: "_blank", rel: "noopener noreferrer" };
+  const fam = n.family === true ? t.yes : n.family === false ? t.no : t.unk;
+  const rows = [
+    [t.visa, n.visa[lang]],
+    [t.incomeH, n.income[lang] + (n.minNote ? "" : "")],
+    [t.stay, n.stay[lang]],
+    [t.family, n.famNote ? `${fam}. ${n.famNote[lang]}` : fam],
+    n.docs && [t.docs, n.docs[lang]],
+    n.fee && [t.fee, n.fee[lang]],
+    n.where && [t.where, n.where[lang]],
+    n.natNote && [t.nat, n.natNote[lang]],
+  ].filter(Boolean);
+  return (
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${n.slug}`} crumbs={<><a href={`${b}/${NOMAD_HUB}`}>{t.hubTitle}</a> {lang === "ar" ? "←" : "→"} {n.name[lang]}</>} note={t.disclaimer}>
+      <h1 className="vz-h1"><NFlag id={n.id} /> {t.pageTitle(n.name[lang])}</h1>
+      <section className="card">
+        <dl className="vz-facts">
+          {rows.map(([k, v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}
+        </dl>
+        <p className="meta"><a href={n.src} {...ext}>{t.src} ↗</a></p>
+      </section>
+      {n.more && (
+        <section className="card">
+          <h2>{t.more}</h2>
+          <ul>{n.more.map(([l, u]) => <li key={u}><a href={u} {...ext}>{l[lang]} ↗</a></li>)}</ul>
+        </section>
+      )}
+      <p className="chips vz-other"><a className="chip" href={`${b}/${NOMAD_HUB}`}>{t.all}</a>{NOMADS.filter((x) => x.id !== n.id).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}</p>
     </Frame>
   );
 }
