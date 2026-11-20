@@ -35,6 +35,15 @@ export function Local({ eur, lang }) {
   return <span className="local-cur">{lang === "ar" ? `حوالي ${fmt(eur * rate)} ${c.sym.ar}` : `≈ ${fmt(eur * rate)} ${c.code}`}</span>;
 }
 
+// Same, for a currency given by the page (e.g. the country chosen in "My plan in a minute").
+export function LocalAs({ eur, code, lang }) {
+  const { data } = useCurrency();
+  const rate = data?.rates?.[code];
+  if (!code || !rate || eur === null || eur === undefined) return null;
+  const c = CURRENCIES.find((x) => x.code === code);
+  return <span className="local-cur">{lang === "ar" ? `حوالي ${fmt(eur * rate)} ${c.sym.ar}` : `≈ ${fmt(eur * rate)} ${c.code}`}</span>;
+}
+
 export function CurrencyPicker({ lang }) {
   const { code, data } = useCurrency();
   const ar = lang === "ar";

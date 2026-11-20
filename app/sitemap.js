@@ -12,7 +12,7 @@ import { SECTION_IDS } from "@/lib/sections";
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
   const paths = [
-    "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms", "/updates", "/how-we-work",
+    "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms", "/updates", "/how-we-work", "/my-plan",
     ...SECTION_IDS.map((id) => `/soon/${id}`),
     ...[...new Set([...COUNTRY_IDS, "fi"])].map((c) => `/country/${c}`),
     ...REGIONS.filter((r) => r.countries.length > 1).map((r) => `/region/${r.id}`),

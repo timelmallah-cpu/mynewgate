@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { COSTS } from "../lib/costs";
+import { costDefaults } from "../lib/costTotal";
 import { Local, CurrencyPicker } from "./Currency";
 import { useOrigin } from "./Origin";
 
@@ -72,20 +72,17 @@ const fmt = (n) => Math.round(n).toLocaleString("en-US");
 
 export default function CostCalc({ p, lang }) {
   const s = S[lang];
-  const c = COSTS[p.country] || { fees: [], proof: null };
   const [origin] = useOrigin();
-  // Some fee lines apply only when applying from Egypt.
-  const fees = c.fees.filter((f) => !f.only || f.only === (origin || "eg"));
-  const knownFees = fees.reduce((a, f) => a + (f.eur || 0), 0);
-  const floor = c.proofExcludesHousing ? null : c.proofMonthly;
+  const d = costDefaults(p, origin);
+  const { c, fees, floor } = d;
   const [v, setV] = useState({
-    tuition: p.feePerYear ?? "",
-    living: p.livingMonthly != null && floor ? Math.max(p.livingMonthly, floor) : p.livingMonthly ?? floor ?? "",
-    insurance: c.insurance ? c.insurance.eur : "",
+    tuition: d.tuition ?? "",
+    living: d.living ?? "",
+    insurance: d.insurance ?? "",
     other: "",
-    oneTime: knownFees || "",
+    oneTime: d.oneTime ?? "",
     travel: "",
-    years: p.years ?? "",
+    years: d.years ?? "",
   });
   const set = (k) => (e) => setV({ ...v, [k]: e.target.value });
 

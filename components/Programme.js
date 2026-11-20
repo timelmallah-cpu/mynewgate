@@ -16,6 +16,7 @@ import ReportLink from "./ReportLink";
 import SaveButton from "./SaveButton";
 import TrackButton from "./TrackButton";
 import CostCalc from "./CostCalc";
+import TotalCost from "./TotalCost";
 
 // Where the data came from, in words for visitors (the stored status is an internal note).
 function sourceNote(status, lang) {
@@ -75,6 +76,7 @@ export default function Programme({ id, lang }) {
           <dt>{p.feePerYear === null && /للبرنامج كاملاً/.test(raw.feeText || "") ? (lang === "ar" ? "الرسوم" : "Fees") : t.keyFee}</dt>
           <dd>{known ? <><span className="ltr">€{p.feePerYear.toLocaleString("en-US")}</span><Local eur={p.feePerYear} lang={lang} /></> : feeLabel(p, lang)}{p.feeNeedsCheck && known ? t.toCheck : ""}</dd>
         </div>
+        <div><dt>{lang === "ar" ? "التكلفة الكاملة التقديرية" : "Estimated full cost"}</dt><TotalCost p={p} lang={lang} /></div>
         <div><dt>{t.keyDuration}</dt><dd>{p.duration}</dd></div>
         <div><dt>{t.keyDeadline}</dt><dd>{p.deadline}{allPassed(raw.id) && <span className="dl-passed">{lang === "ar" ? "كل المواعيد المنشورة انتهت، ومواعيد الدورة الجاية لم تُنشر بعد في المصدر. راجع صفحة البرنامج الرسمية." : "All published dates have passed, and the next cycle's dates are not published in the source yet. Check the official programme page."}</span>}<Link className="ctx-link" href={`${t.base}/planner?id=${raw.id}`}>{lang === "ar" ? "خطط مواعيدك لهذا البرنامج" : "Plan your dates for this programme"}</Link></dd></div>
         <div><dt>{lang === "ar" ? "شرط الإنجليزية" : "English requirement"}</dt><dd>{p.english}<Link className="ctx-link" href={`${t.base}/english-check?country=${raw.country}&level=${raw.level}`}>{lang === "ar" ? "هل درجتك تكفي؟ قارنها بالبرامج" : "Is your score enough? Check it"}</Link><AltLine p={raw} lang={lang} t={t} /></dd></div>
