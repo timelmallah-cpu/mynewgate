@@ -140,6 +140,8 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 
 - Glossary update (20 Nov, Hatem asked): lib/glossary.js now 53 terms (+15: Studielink, Universitaly, Études en France, UCAS, GRE/ALES, Employed PhD, CAS, IHS, Graduate visa (names per country), Study permit/PAL, CoE/OSHC, EMGS/eVAL, e-İkamet, Semester contribution, Median); lead text region-free ("في الخارج"). Definitions only, no amounts or dates. When a new country, tool or level adds foreign terms, add them to the glossary in the same batch.
 
+- Simpler portal + way back (20 Nov, Hatem): components/Portal.js default = arch hero (name + tagline) and 4 square tiles (.pt-grid/.pt-tile; study tile gold border with "ادخل", the three sections "قريباً"), footer "Powered by WithHatem" only. Every study page header has .up-bar "بوابة السفر ‹ بوابة الدراسة" (plain <a> to "/" or "/en", different root layout). Mark/StudyMark/SectionMark take `h`.
+
 ## Next (in Hatem's order)
 1. Keep growing the small fields (master's: social work 4, food 5, urban 7, art 7, sport 9, education 11, tourism 10, psychology 10; bachelor's: sport 1, social work 1, art 2, science 3, humanities 4; law 6, architecture 7, physio 6, health 2), Türkiye (METU, Boğaziçi, ITU; next Hacettepe, Ankara), Malaysia (UM, USM, UTM; next UKM/UPM when 2026/27 fees are published, bachelor's), Canada (Memorial), Australia (Flinders), New Zealand (Waikato, AUT): add more universities and official scholarships, Greece (5 master's + 1 bachelor's), Cyprus (19 + 1), Portugal (8 + 6).
 2. Check the link report's real "Broken" group after each run (the TLS and no-answer groups are usually fine in a browser).

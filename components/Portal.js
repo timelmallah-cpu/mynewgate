@@ -28,9 +28,14 @@ const TX = {
   },
 };
 
+const SHORT = {
+  ar: { study: "الدراسة", "visas-immigration": "التأشيرات والهجرة", work: "العمل", tourism: "السياحة" },
+  en: { study: "Study", "visas-immigration": "Visas & immigration", work: "Work", tourism: "Tourism" },
+};
+
 export default function Portal({ lang }) {
   const x = TX[lang];
-  const s = SECTION_TEXT[lang];
+  const sh = SHORT[lang];
   return (
     <>
         <header className="top">
@@ -40,39 +45,31 @@ export default function Portal({ lang }) {
           </div>
         </header>
         <main>
-          <section className="portal-hero">
+          <section className="gate pt-hero">
             <h1>{x.name}</h1>
-            <p className="portal-tag">{x.tagline}</p>
-            <p>{x.lead}</p>
+            <p className="lead">{x.tagline}</p>
           </section>
-          <h2 className="land-h">{x.pick}</h2>
-          <ul className="portal-cards">
+          <ul className="pt-grid">
             <li>
-              <a className="portal-card live" href={x.studyHref}>
-                <span className="portal-icon"><StudyMark /></span>
-                <b>{x.study}</b>
-                <span>{x.studyBlurb}</span>
-                <span className="portal-go">{x.open} {lang === "ar" ? "←" : "→"}</span>
+              <a className="pt-tile live" href={x.studyHref}>
+                <StudyMark h={58} />
+                <b>{sh.study}</b>
+                <span className="pt-go">{x.open} {lang === "ar" ? "←" : "→"}</span>
               </a>
             </li>
             {SECTIONS.map((c) => (
               <li key={c.id}>
-                <a className="portal-card" href={x.sec(c.id)}>
-                  <span className="portal-icon"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={c.icon} /></svg></span>
-                  <b>{s.names[c.id]}</b>
-                  <span>{s.blurbs[c.id]}</span>
-                  <span className="soon-tag">{x.soon}</span>
+                <a className="pt-tile" href={x.sec(c.id)}>
+                  <SectionMark id={c.id} h={58} />
+                  <b>{sh[c.id]}</b>
+                  <span className="pt-soon">{x.soon}</span>
                 </a>
               </li>
             ))}
           </ul>
         </main>
-        <footer className="foot">
-          <div className="foot-brand">
-            <p className="foot-name"><Mark />{lang === "ar" ? "بوابة السفر | Bawabat AlSafar" : "Bawabat AlSafar | بوابة السفر"}</p>
-            <p className="foot-tagline">{x.tagline}</p>
-            <p className="foot-powered"><bdi>{x.powered}</bdi></p>
-          </div>
+        <footer className="foot pt-foot">
+          <p className="foot-powered"><bdi>{x.powered}</bdi></p>
         </footer>
         <Analytics />
     </>

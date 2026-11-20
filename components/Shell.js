@@ -17,9 +17,9 @@ import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
 import "../app/globals.css";
 
 // The brand mark: an arched gate with its keystone.
-export function Mark() {
+export function Mark({ h = 30 }) {
   return (
-    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+    <svg width={(h * 26) / 30} height={h} viewBox="0 0 26 30" aria-hidden="true">
       <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
       <rect x="10" y="-1" width="6" height="6" rx="1" transform="rotate(45 13 2)" fill="#e9b949" />
     </svg>
@@ -27,9 +27,9 @@ export function Mark() {
 }
 
 // The study section's mark: the same gate with an open book inside.
-export function StudyMark() {
+export function StudyMark({ h = 30 }) {
   return (
-    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+    <svg width={(h * 26) / 30} height={h} viewBox="0 0 26 30" aria-hidden="true">
       <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
       <rect x="10" y="-1" width="6" height="6" rx="1" transform="rotate(45 13 2)" fill="#e9b949" />
       <path d="M6.2 26.5V19c2.4-1.3 4.8-1.3 6.8 0 2-1.3 4.4-1.3 6.8 0v7.5c-2.4-1.3-4.8-1.3-6.8 0-2-1.3-4.4-1.3-6.8 0z" fill="#e9b949" />
@@ -45,9 +45,9 @@ const SECTION_SIGN = {
   work: <><rect x="6.5" y="19" width="13" height="8" rx="1.4" fill="#e9b949" /><path d="M10.5 19v-2h5v2" fill="none" stroke="#e9b949" strokeWidth="1.6" /><path d="M6.5 22.5h13" stroke="#13234b" strokeWidth="1.1" /></>,
   tourism: <><circle cx="13" cy="22" r="5.3" fill="#e9b949" /><path d="M7.7 22h10.6M13 16.7c1.8 1.6 1.8 9 0 10.6M13 16.7c-1.8 1.6-1.8 9 0 10.6" fill="none" stroke="#13234b" strokeWidth="1" /></>,
 };
-export function SectionMark({ id }) {
+export function SectionMark({ id, h = 30 }) {
   return (
-    <svg width="26" height="30" viewBox="0 0 26 30" aria-hidden="true">
+    <svg width={(h * 26) / 30} height={h} viewBox="0 0 26 30" aria-hidden="true">
       <path d="M2 30V13a11 11 0 0 1 22 0v17" fill="none" stroke="#13234b" strokeWidth="3.2" />
       <rect x="10" y="-1" width="6" height="6" rx="1" transform="rotate(45 13 2)" fill="#e9b949" />
       {SECTION_SIGN[id]}
@@ -84,6 +84,11 @@ export default function Shell({ lang, children }) {
     <html lang={lang} dir={t.dir}>
       <body>
         <header className="top">
+          <div className="up-bar">
+            <a href={lang === "ar" ? "/" : "/en"}><Mark h={16} />{lang === "ar" ? "بوابة السفر" : "Bawabat AlSafar"}</a>
+            <span aria-hidden="true">{lang === "ar" ? "‹" : "›"}</span>
+            <span>{t.brand}</span>
+          </div>
           <div className="top-in">
             <Link href={t.base || "/"} className="brand"><StudyMark />{t.brand}</Link>
             <nav className="topnav" aria-label={t.base ? "Main" : "الرئيسية"}>
