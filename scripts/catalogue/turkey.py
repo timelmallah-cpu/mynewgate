@@ -4,7 +4,9 @@
 # Fees are set in US dollars; the euro figure is approximate (US$1.11 per euro, as in build-data monthlyLiving).
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import common
 from common import write, NP
+common.REVIEWED = "2026-11-20"  # spring 2027 window from sbe.metu.edu.tr checked 2026-11-20
 from helpers import add, append_master
 
 FEES = "https://iso.metu.edu.tr/en/system/files/2026-2027_tuition_fees_14092026.pdf"
@@ -19,8 +21,8 @@ G_FEE = ("حوالي 340 يورو للفصل (375 دولاراً أمريكيا�
          "About €340 per semester (US$375 per semester for all graduate programmes for international students in 2026/2027; approximate conversion)")
 G_ADM = ("درجة GRE (غالباً 149 - 155 حسب البرنامج) أو ALES؛ بدون GRE قد يكون القبول مشروطاً فقط؛ ليس كل برنامج يقبل طلاباً في كل فصل",
          "A GRE score (mostly 149-155 depending on the programme) or ALES; without GRE only conditional admission is possible; not every programme admits students every semester")
-G_DL = ("مواعيد 2027 تُعلن على موقع كلية الدراسات العليا؛ في الدورة الماضية: فصل الربيع 24 نوفمبر - 19 ديسمبر 2025، وفصل الخريف 23 فبراير - 27 مارس 2026",
-        "2027 dates are announced on the graduate school website; last cycle: spring 24 November - 19 December 2025, fall 23 February - 27 March 2026")
+G_DL = ("فصل الربيع 2027 (يبدأ في فبراير): التقديم 23 نوفمبر - 13 ديسمبر 2026 حسب صفحة كلية الدراسات العليا للعلوم الاجتماعية، والتقويم الأكاديمي يذكر 18 ديسمبر (للتحقق من موعد كل كلية دراسات عليا)؛ مواعيد خريف 2027 لم تُنشر بعد (في 2026: 23 فبراير - 27 مارس)",
+        "Spring 2027 (starts in February): applications 23 November - 13 December 2026 per the Graduate School of Social Sciences page; the academic calendar gives a later closing day, 18 Dec. (to verify for each graduate school); fall 2027 dates not out yet (in 2026: 23 February - 27 March)")
 G_EN = ("شهادة إنجليزية سارية (TOEFL أو امتحان METU EPE أو PTE حسب جدول المعادلة)؛ دليل الطلاب الدوليين يقول إن IELTS غير مقبول للدراسات العليا (للتحقق)",
         "A valid English certificate (TOEFL, the METU EPE or PTE per the equivalence table); the international students' guide says IELTS is not accepted for graduate study (to verify)")
 G_HOW = ("التقديم أونلاين فقط على نظام شؤون الطلاب بالجامعة (ÖİBS)؛ كليات الدراسات العليا هي التي تقيّم الطلبات وليس مكتب الطلاب الدوليين",
