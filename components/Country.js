@@ -1,4 +1,5 @@
 import { pageMeta } from "../lib/site";
+import HeroImg from "./HeroImg";
 import Link from "@/components/Link";
 import { notFound } from "next/navigation";
 import programmes from "../lib/programmes.json";
@@ -18,6 +19,7 @@ import { VOC_TEXT, VOC } from "../lib/vocational";
 import WhatsApp from "./WhatsApp";
 import { CITIES } from "../lib/cities";
 import { progsAr } from "../lib/arCount";
+import { CountryFaq } from "./Questions";
 
 const S = {
   ar: {
@@ -100,7 +102,7 @@ export default function Country({ code, lang }) {
   return (
     <>
       <figure className="country-hero">
-        <img src={src} alt={info.landmark[lang]} />
+        <HeroImg src={src} alt={info.landmark[lang]} />
         <figcaption>
           <h1><Flag code={code} size={34} /> {s.title(name)}</h1>
           <span>{info.landmark[lang]}</span>
@@ -209,6 +211,8 @@ export default function Country({ code, lang }) {
           </ul>
         </section>
       )}
+
+      {covered && <CountryFaq code={code} lang={lang} />}
 
       <section className="country-sec">
         <h2>{s.portal}</h2>

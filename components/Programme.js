@@ -1,4 +1,5 @@
 import { pageMeta } from "../lib/site";
+import HeroImg from "./HeroImg";
 import Link from "@/components/Link";
 import { cityOf } from "../lib/cities";
 import WhatsApp from "./WhatsApp";
@@ -62,7 +63,7 @@ export default function Programme({ id, lang }) {
     <>
       <Link className="back" href={`${t.base}/quiz`}>{t.backToQuiz}</Link>
       <header className={p.photo ? "prog-head has-photo" : "prog-head"}>
-        {p.photo && <img className="prog-photo" src={p.photo.src} alt={p.university} />}
+        {p.photo && <HeroImg className="prog-photo" src={p.photo.src} alt={p.university} />}
         <h1 className="ltr">{p.name}</h1>
         <div className="where">
           <span className="ltr">{p.university}</span>

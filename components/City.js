@@ -1,4 +1,5 @@
 import Link from "@/components/Link";
+import HeroImg from "./HeroImg";
 import { feeLabel } from "../lib/options";
 import { notFound } from "next/navigation";
 import { pageMeta } from "../lib/site";
@@ -52,7 +53,7 @@ export default function City({ slug, lang }) {
       {photo ? (
         <>
           <figure className="country-hero">
-            <img src={photo.src} alt={photo.of || name} />
+            <HeroImg src={photo.src} alt={photo.of || name} />
             <figcaption>
               <h1><Flag code={c.country} size={34} /> {s.title(name)}</h1>
               <span><bdi>{photo.of}</bdi></span>

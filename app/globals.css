@@ -1267,3 +1267,15 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 @media print { .no-print, .ask-fab, .top, .foot { display: none !important; } .print-only { display: block; } .my-plan .card { break-inside: avoid; box-shadow: none; } }
 .ask-memopt { display: flex; gap: 6px; align-items: flex-start; margin: 8px 0 0; }
 .ask-mem { display: block; margin-top: 4px; }
+
+/* Questions pages and country FAQ */
+.qa-list { display: grid; gap: 12px; }
+.qa-card h2 { font-size: 1.05rem; margin: 0 0 6px; }
+.qa-card p { margin: 0 0 10px; }
+.qa-short p { margin: 0; }
+.qa-items { padding-inline-start: 1.4em; display: grid; gap: 8px; }
+.qa-items img { vertical-align: middle; }
+.qa-acc { border-bottom: 1px solid var(--line, #e5e7eb); padding: 8px 0; }
+.qa-acc summary { cursor: pointer; font-weight: 600; }
+.qa-acc p { margin: 8px 0 0; }
+.crumbs { margin: 0 0 6px; font-size: .9rem; }
