@@ -17,7 +17,7 @@ import { FR_QUESTIONS } from "@/lib/fr";
 // Every public page in both languages, with the other language linked (hreflang).
 export default function sitemap() {
   const paths = [
-    "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms", "/updates", "/how-we-work", "/my-plan", "/questions", "/english-tests", "/calendars", "/map", "/deadlines-soon", "/earnings",
+    "/", "/quiz", "/eligibility", "/journey", "/scholarships", "/guide", "/compare", "/countries", "/english-check", "/planner", "/tools", "/visa", "/school-certificate", "/foundation", "/after-30", "/applied-sciences", "/housing", "/glossary", "/gpa", "/without-ielts", "/language", "/institutes", "/advertise", "/motivation-letter", "/university-email", "/pricing", "/legalisation", "/ask", "/cities", "/install", "/study", "/after-graduation", "/vocational", "/ausbildung", "/contact", "/privacy", "/terms", "/updates", "/how-we-work", "/my-plan", "/questions", "/english-tests", "/calendars", "/map", "/deadlines-soon", "/earnings", "/first-week", "/parents", "/muslim-life", "/check-offer",
     ...QUESTIONS.map((q) => `/questions/${q.slug}`),
     "/compare-countries", ...PAIRS.map((p) => `/compare-countries/${pairSlug(p)}`),
     ...FROM_SLUGS.flatMap((o) => [`/study-from/${o}`, ...COUNTRY_IDS.map((c) => `/study-from/${o}/${c}`)]),
