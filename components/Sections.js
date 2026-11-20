@@ -1,6 +1,6 @@
 import Link from "@/components/Link";
 import { T } from "../lib/i18n";
-import { SECTIONS, SECTION_TEXT } from "../lib/sections";
+import { SECTIONS, SECTION_TEXT, SECTION_LIVE } from "../lib/sections";
 import Newsletter from "./Newsletter";
 import RegionInterest from "./RegionInterest";
 
@@ -17,12 +17,21 @@ export function SectionCards({ lang }) {
       <ul>
         {SECTIONS.map((x) => (
           <li key={x.id}>
-            <Link href={`${t.base}/soon/${x.id}`}>
-              <span className="sec-icon"><Icon d={x.icon} /></span>
-              <b>{s.names[x.id]}</b>
-              <small>{s.blurbs[x.id]}</small>
-              <small className="soon-tag">{s.soon}</small>
-            </Link>
+            {SECTION_LIVE[x.id] ? (
+              <a href={SECTION_LIVE[x.id][lang]}>
+                <span className="sec-icon"><Icon d={x.icon} /></span>
+                <b>{s.names[x.id]}</b>
+                <small>{s.blurbs[x.id]}</small>
+                <small className="soon-tag live">{s.live}</small>
+              </a>
+            ) : (
+              <Link href={`${t.base}/soon/${x.id}`}>
+                <span className="sec-icon"><Icon d={x.icon} /></span>
+                <b>{s.names[x.id]}</b>
+                <small>{s.blurbs[x.id]}</small>
+                <small className="soon-tag">{s.soon}</small>
+              </Link>
+            )}
           </li>
         ))}
       </ul>
@@ -47,7 +56,7 @@ export default function SoonSection({ id, lang }) {
       <h2 className="land-h">{s.meanwhile}</h2>
       <ul className="voc-chips">{s.studyLinks.map(([href, label]) => <li key={href}><Link className="chip" href={`${t.base}${href}`}>{label}</Link></li>)}</ul>
       <h2 className="land-h">{s.other}</h2>
-      <ul className="voc-chips">{SECTIONS.filter((x) => x.id !== id).map((x) => <li key={x.id}><Link className="chip" href={`${t.base}/soon/${x.id}`}>{s.names[x.id]} · {s.soon}</Link></li>)}</ul>
+      <ul className="voc-chips">{SECTIONS.filter((x) => x.id !== id).map((x) => <li key={x.id}>{SECTION_LIVE[x.id] ? <a className="chip" href={SECTION_LIVE[x.id][lang]}>{s.names[x.id]}</a> : <Link className="chip" href={`${t.base}/soon/${x.id}`}>{s.names[x.id]} · {s.soon}</Link>}</li>)}</ul>
     </>
   );
 }

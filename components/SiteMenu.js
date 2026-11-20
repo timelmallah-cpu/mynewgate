@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { TOOLS, TOOL_ICONS } from "../lib/tools";
 import { STEPS, ALWAYS, ALWAYS_TEXT } from "../lib/journey";
 import { MENU } from "../lib/homeText";
-import { SECTIONS, SECTION_TEXT } from "../lib/sections";
+import { SECTIONS, SECTION_TEXT, SECTION_LIVE } from "../lib/sections";
 
 export default function SiteMenu({ lang, base }) {
   const m = MENU[lang];
@@ -60,7 +60,7 @@ export default function SiteMenu({ lang, base }) {
             </div>
             <div>
               <h2>{m.sections}</h2>
-              <ul>{SECTIONS.map((x) => <li key={x.id}><Link href={`${base}/soon/${x.id}`}><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={x.icon} /></svg>{SECTION_TEXT[lang].names[x.id]} <small className="soon-tag">{SECTION_TEXT[lang].soon}</small></Link></li>)}</ul>
+              <ul>{SECTIONS.map((x) => { const ic = <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={x.icon} /></svg>; return <li key={x.id}>{SECTION_LIVE[x.id] ? <a href={SECTION_LIVE[x.id][lang]}>{ic}{SECTION_TEXT[lang].names[x.id]}</a> : <Link href={`${base}/soon/${x.id}`}>{ic}{SECTION_TEXT[lang].names[x.id]} <small className="soon-tag">{SECTION_TEXT[lang].soon}</small></Link>}</li>; })}</ul>
             </div>
           </div>
           <p className="menu-foot"><Link href={`${base}/tools`}>{m.toolsPage}</Link> · <Link href={`${base}/contact`}>{m.contact}</Link></p>

@@ -30,6 +30,11 @@ export default {
     return { beforeFiles: [
       { source: "/", destination: `${ORIGIN}${BASE}/gateway`, basePath: false },
       { source: "/en", destination: `${ORIGIN}${BASE}/gateway-en`, basePath: false },
+      // Bawabat AlSafar visas section (20 Nov 2026): public at /visas and /en/visas, pages built under /study/visas.
+      { source: "/visas", destination: `${ORIGIN}${BASE}/visas`, basePath: false },
+      { source: "/visas/:slug", destination: `${ORIGIN}${BASE}/visas/:slug`, basePath: false },
+      { source: "/en/visas", destination: `${ORIGIN}${BASE}/en/visas`, basePath: false },
+      { source: "/en/visas/:slug", destination: `${ORIGIN}${BASE}/en/visas/:slug`, basePath: false },
     ] };
   },
   async redirects() {
@@ -37,7 +42,10 @@ export default {
       // Old address: every page moves permanently to the same page under the new domain.
       { source: "/:path*", has: [{ type: "host", value: "mynewgate.vercel.app" }], destination: "https://bawabatalsafar.com/study/:path*", permanent: true, basePath: false },
       // The domain's root ("/" and "/en") shows the Bawabat AlSafar home (rewrites below); any other path outside /study opens the study site.
-      { source: "/:path((?!study(?:/|$)|en$|_next/|favicon).+)", destination: `${BASE}/:path`, permanent: false, basePath: false },
+      { source: "/:path((?!study(?:/|$)|en$|visas(?:/|$)|en/visas(?:/|$)|_next/|favicon).+)", destination: `${BASE}/:path`, permanent: false, basePath: false },
+      // The visas section left "coming soon": its old placeholder pages go to the live section.
+      { source: "/study/soon/visas-immigration", destination: "/visas", permanent: false, basePath: false },
+      { source: "/study/en/soon/visas-immigration", destination: "/en/visas", permanent: false, basePath: false },
       // The search landing pages moved from /study/<slug> to /search/<slug> (inside the study site).
       { source: "/study", destination: "/search", permanent: true },
       { source: "/study/:slug*", destination: "/search/:slug*", permanent: true },

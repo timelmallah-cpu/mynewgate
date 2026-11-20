@@ -57,15 +57,18 @@ export default function Portal({ lang }) {
                 <span className="pt-go">{x.open} {lang === "ar" ? "←" : "→"}</span>
               </a>
             </li>
-            {SECTIONS.map((c) => (
-              <li key={c.id}>
-                <a className="pt-tile" href={x.sec(c.id)}>
-                  <SectionMark id={c.id} h={58} />
-                  <b>{sh[c.id]}</b>
-                  <span className="pt-soon">{x.soon}</span>
-                </a>
-              </li>
-            ))}
+            {SECTIONS.map((c) => {
+              const live = c.id === "visas-immigration";
+              return (
+                <li key={c.id}>
+                  <a className={live ? "pt-tile live" : "pt-tile"} href={live ? (lang === "ar" ? "/visas" : "/en/visas") : x.sec(c.id)}>
+                    <SectionMark id={c.id} h={58} />
+                    <b>{sh[c.id]}</b>
+                    {live ? <span className="pt-go">{x.open} {lang === "ar" ? "←" : "→"}</span> : <span className="pt-soon">{x.soon}</span>}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </main>
         <footer className="foot pt-foot">

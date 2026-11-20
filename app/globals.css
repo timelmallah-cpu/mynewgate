@@ -1352,3 +1352,41 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .gd-flag { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
 .gd-flag input { margin-top: 5px; width: 18px; height: 18px; flex: none; }
 .notice.gd-bad { background: #fde8e4; color: #8a1f12; }
+
+/* Visas section (bawabatalsafar.com/visas) */
+.soon-tag.live { background: #e3f5ea; color: #13643a !important; }
+.vz-hero { margin-top: 12px; }
+.vz-tool h2 { margin-top: 0; }
+.vz-form { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.vz-form label { display: grid; gap: 6px; font-weight: 600; color: var(--navy); }
+.vz-form select { font: inherit; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: #fff; min-height: 44px; }
+.vz-result { margin-top: 16px; padding: 16px; border-radius: 14px; border-inline-start: 6px solid var(--line); background: #f7f8fb; }
+.vz-result.vz-free { border-color: #1f8a4c; background: #eef8f1; }
+.vz-result.vz-eta { border-color: #2563a8; background: #eef4fb; }
+.vz-result.vz-cond { border-color: #b7791f; background: #fdf6e8; }
+.vz-result.vz-visa { border-color: #13234b; }
+.vz-result.vz-banned { border-color: #b42318; background: #fdf0ee; }
+.vz-who { margin: 0; color: var(--muted); font-size: .92rem; }
+.vz-kind { margin: 4px 0 8px; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.vz-links { margin: 10px 0 0; }
+.vz-facts { display: grid; gap: 10px; margin: 10px 0 0; }
+.vz-facts div { display: grid; gap: 2px; }
+.vz-facts dt { font-weight: 700; color: var(--navy); font-size: .92rem; }
+.vz-facts dd { margin: 0; }
+.vz-dests { list-style: none; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.vz-dest { display: grid; gap: 6px; text-decoration: none; color: inherit; margin: 0; height: 100%; }
+.vz-dest:hover { box-shadow: 0 4px 16px rgba(19, 35, 75, .1); }
+.vz-dname { display: flex; align-items: center; gap: 8px; color: var(--navy); font-size: 1.1rem; }
+.vz-h1 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vz-table-wrap { overflow-x: auto; }
+.vz-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 14px; overflow: hidden; }
+.vz-table th, .vz-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: start; vertical-align: top; }
+.vz-table thead th { background: var(--navy); color: #fff; }
+.vz-table tbody th { white-space: nowrap; color: var(--navy); }
+.vz-badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: .82rem; font-weight: 700; margin-bottom: 4px; background: #e8ebf3; color: var(--navy); }
+.vz-badge.vz-free { background: #dff3e6; color: #13643a; }
+.vz-badge.vz-eta { background: #dde9f7; color: #1d4f86; }
+.vz-badge.vz-cond { background: #fbeccd; color: #7a5200; }
+.vz-badge.vz-banned { background: #fadad6; color: #8f1c12; }
+.vz-note { display: block; font-size: .93rem; }
+.vz-other .chip { background: #fff; text-decoration: none; margin: 0 0 8px; }
