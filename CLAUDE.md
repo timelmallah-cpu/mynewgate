@@ -15,6 +15,7 @@ Read this first in every new session. Keep it up to date: when a decision is mad
 - Never ask for, read, show or store keys or passwords. Hatem enters secrets in Vercel himself. Never write his personal email anywhere public.
 - After each piece of work: build, test, commit, push to main, check the Vercel status, run the link check, then report with sources.
 - Don't raise visa consultation for Hatem himself.
+- Never add a country at war or under sanctions (e.g. Ukraine, Russia, Belarus) (Hatem, 20 Nov). Still open in Europe: UK (deferred by Hatem's earlier choice), Western Balkans, Moldova, Georgia, Armenia.
 
 ## How to work
 - Build: `npm run -s build` (runs build-data first) or `timeout 400 env NEXT_PUBLIC_WEB3FORMS_KEY=test npx next build`.
