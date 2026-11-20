@@ -3,7 +3,9 @@
 # application portal, checked 2026-11-19.
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import common
 from common import write, NP
+common.REVIEWED = "2026-11-20"
 from helpers import add, append_master
 
 MA = []
@@ -33,6 +35,26 @@ add(MA, "bus", "MSc in Financial Management", "Athens University of Economics an
     ("مطلوب كشف درجات رسمي مترجم للإنجليزية وسيرة ذاتية بالإنجليزية؛ " + DOATAP[0], "Official transcripts (translated into English) and a CV in English are required; " + DOATAP[1]),
     ("التقديم أونلاين مع رفع الأوراق", "Apply online and upload the documents"), NP, NP,
     "https://apply.studyingreece.edu.gr/en/programmes/msc/1187/details/pms-sti-chrimatooikonomiki-dioikisi", "https://www.dept.aueb.gr/el/node/34438")
+
+# University of Piraeus, Department of Maritime Studies (Study in Greece portal pages 1201 and 1202 and the programme's
+# 2025-2026 study guide, checked 2026-11-20). No 2027/28 call is open yet; earlier calls took applications in rounds until places were filled.
+UNIPI = "University of Piraeus"
+UNIPI_DL = ("لا يوجد إعلان قبول مفتوح حالياً على بوابة Study in Greece (موعد 2027/2028 غير منشور في المصدر)؛ في الدورات السابقة كانت الطلبات تُقبل على دفعات حتى امتلاء الأماكن",
+            "No open call on the Study in Greece portal at the moment (2027/2028 date not published in the source); in earlier cycles applications were taken in rounds until places were filled")
+UNIPI_EN = ("الدراسة بالإنجليزية؛ المستوى المطلوب غير منشور في المصدر (الإعلانات السابقة طلبت إثبات مستوى جيد جداً في الإنجليزية)",
+            "Taught in English; required level not published in the source (earlier calls asked for proof of very good English)")
+add(MA, "bus", "MSc in Shipping Management", UNIPI, "Piraeus", MSC, ("فصلان دراسيان بدوام كامل (75 ساعة معتمدة)، أو ضعف المدة بدوام جزئي", "2 semesters full time (75 ECTS), or 4 semesters part time"),
+    ("7,000 يورو للبرنامج كاملاً (دوام كامل)", "€7,000 for the full programme (full time)"),
+    ("بكالوريوس من جامعة يونانية أو مؤسسة أجنبية معادلة", "A bachelor's from a Greek university or an equivalent foreign institution"),
+    UNIPI_DL, UNIPI_EN, ("إدارة الشحن البحري، قسم الدراسات البحرية؛ منح متاحة؛ " + DOATAP[0], "Shipping management, Department of Maritime Studies; scholarships offered; " + DOATAP[1]),
+    ("التقديم عبر بوابة Study in Greece عند فتح الإعلان", "Apply through the Study in Greece portal when the call opens"), NP, NP,
+    "https://apply.studyingreece.edu.gr/en/programmes/msc/1201/details/shipping-management", "https://apply.studyingreece.edu.gr/en/programmes/msc/1201/details/shipping-management")
+add(MA, "env", "MSc in Sustainable Blue Economy", UNIPI, "Piraeus", MSC, ("فصلان دراسيان بدوام كامل (75 ساعة معتمدة)، أو ضعف المدة بدوام جزئي", "2 semesters full time (75 ECTS), or 4 semesters part time"),
+    ("5,000 يورو للبرنامج كاملاً (دوام كامل؛ عربون 1,000 يورو)", "€5,000 for the full programme (full time; €1,000 advance)"),
+    ("بكالوريوس من جامعة أوروبية أو دولية، ويُفضَّل تخصص قريب بتقدير ممتاز أو جيد جداً واهتمام بالقطاع البحري", "A bachelor's from an EU or international university; a related field with excellent or very good grades and an interest in the marine industry is preferred"),
+    UNIPI_DL, UNIPI_EN, ("الاقتصاد الأزرق المستدام: مساران، النمو الأزرق والجودة في الشحن البحري؛ منح متاحة؛ " + DOATAP[0], "Sustainable blue economy: tracks Blue Growth and Quality in Shipping; scholarships offered; " + DOATAP[1]),
+    ("التقديم عبر بوابة Study in Greece عند فتح الإعلان", "Apply through the Study in Greece portal when the call opens"), NP, NP,
+    "https://maritime-unipi.gr/wp-content/uploads/2026/02/study-guide.pdf", "https://apply.studyingreece.edu.gr/en/programmes/msc/1202/details/sustainable-blue-economy")
 
 write("اليونان", "Greece", "greece", MA, level="master")
 append_master("اليونان", "greece")
