@@ -105,6 +105,84 @@ for field, name, slug, gbp, adm, other, en, deg, note in [
     f = fee(gbp, *(note or ("", "")))
     add(MA, field, name, S, "Southampton", deg, Y1, f, adm, S_DL, en, other, S_HOW, NP, NP, src, src)
 
+# ---------------- University of Nottingham (added 2026-11-20)
+# Fees: official 2027/28 postgraduate taught fee table (nottingham.ac.uk/fees/tuitionfees/202728/postgraduate-taught.aspx).
+# Requirements from the course pages (2027 entry where shown). 2027/28 application deadlines are not published yet
+# ("to be confirmed"); no application fee for 2027 entry; international students pay a CAS deposit before the visa.
+N = "University of Nottingham"
+N_DL = ("مواعيد التقديم لدفعة سبتمبر 2027 لم تُنشر بعد (للتحقق)؛ في دفعة 2026 كان آخر موعد للطلاب الدوليين في أوائل أغسطس، والأماكن قد تمتلئ قبل الموعد فقدّم مبكراً",
+        "Deadlines for September 2027 entry are not published yet (to verify); for 2026 entry the international deadline was in early August, and places may fill earlier, so apply early")
+N_EN = ("IELTS بمجموع 6.5 ولا مهارة أقل من 6.0 (أو ما يعادله)", "IELTS 6.5 overall with no less than 6.0 in any element (or equivalent)")
+N_HOW = ("التقديم أونلاين مباشرة على بوابة الجامعة؛ لا توجد رسوم طلب لدفعة 2027، ويدفع الطالب الدولي عربون CAS قبل التأشيرة", "Apply online directly through the university; no application fee for 2027 entry, and international students pay a CAS deposit before the visa")
+NC = "https://www.nottingham.ac.uk/pgstudy/course/taught/"
+
+
+def nfee(gbp):
+    eur = round(gbp / GBP / 10) * 10
+    return (f"حوالي {eur:,} يورو في السنة ({gbp:,} جنيهاً إسترلينياً رسوم الطلاب الدوليين للسنة الدراسية 2027/2028 من جدول الرسوم الرسمي، والبرنامج سنة واحدة؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} a year (£{gbp:,} international fee for 2027/28 from the official fee table; the programme lasts one year; ECB rate of 17 November 2026)")
+
+
+for field, name, slug, gbp, adm, other, en in [
+    ("food", "MSc Food Production Management", "food-production-management-msc", 34800,
+     ("بكالوريوس بتقدير 2:2 أو أعلى في العلوم الطبيعية أو التطبيقية أو الهندسة (كيميائية أو زراعية أو هندسة أغذية مثلاً)", "A 2:2 or above in a natural or applied science or an engineering discipline (e.g. chemical, agricultural or food engineering)"),
+     ("علوم الأغذية مع الإدارة في الصناعات الغذائية، بالاشتراك مع كلية الأعمال", "Food science with management for the food industry, taught with the business school"), N_EN),
+    ("food", "MSc Nutritional Sciences", "nutritional-sciences-msc", 34800,
+     ("بكالوريوس بتقدير 2:2 في العلوم البيولوجية (غير التغذية أو تخصص قريب منها)، مثل الأحياء أو علم وظائف الأعضاء أو علوم الرياضة أو علوم الأغذية (للتحقق من صفحة البرنامج)", "A 2:2 in a biological science (not nutrition or a closely related degree), such as biology, physiology, sports science or food science (to verify on the course page)"),
+     ("علوم التغذية في حرم ساتون بونينغتون", "Nutritional sciences at the Sutton Bonington campus"), N_EN),
+    ("sport", "MSc Applied Sport and Exercise Medicine", "applied-sport-and-exercise-medicine-msc", 31700,
+     ("بكالوريوس بتقدير 2:1 في تخصص قريب مثل علوم الرياضة أو الأحياء البشرية أو علم الأوبئة أو التغذية البشرية (وقد يُقبل 2:2 لبعض الحالات)", "A 2:1 in a relevant subject such as sports science, human biology, epidemiology or human nutrition (a 2:2 may be considered case by case)"),
+     ("طب الرياضة والتمارين لغير الأطباء، مع تدريب في الإسعاف الميداني في الفعاليات الرياضية", "Sport and exercise medicine for non-clinical graduates, with pitch-side emergency care at sports events"), N_EN),
+    ("tour", "MSc International Tourism Management and Marketing", "international-tourism-management-and-marketing-msc", 31700,
+     ("بكالوريوس بتقدير 2:1 في أي تخصص، ومنها الأعمال والإدارة", "A 2:1 in any discipline, including business and management"),
+     ("إدارة وتسويق السياحة الدولية في كلية نوتنغهام للأعمال (الأماكن محدودة وقد يُغلق التقديم مبكراً)", "International tourism management and marketing at Nottingham University Business School (limited places; applications may close early)"),
+     ("غير منشور في المصدر (صفحة البرنامج لا تذكر مستوى الإنجليزية)", "Not published in the source (the course page does not state the English level)")),
+    ("cs", "MSc Computer Science", "computer-science-or-computer-science-artificial-intelligence-msc", 34800,
+     ("بكالوريوس بتقدير 2:1 مع اهتمام أو قدرة على البرمجة؛ ويُنظر في خريجي العلوم والهندسة بمتوسط 55% (للتحقق من صفحة البرنامج)", "A 2:1 with evidence of interest or aptitude for programming; science or engineering graduates considered with a 55% average (to verify on the course page)"),
+     ("علوم الحاسب، مع مسار للذكاء الاصطناعي", "Computer science, with an artificial intelligence pathway"), N_EN),
+]:
+    add(MA, field, name, N, "Nottingham", MSC, Y1, nfee(gbp), adm, N_DL, en, other, N_HOW, NP, NP, NC + slug, NC + slug)
+
+# ---------------- Loughborough University (added 2026-11-20)
+# Fees: official 2027-28 international postgraduate taught fee table; deadline for September 2027 programmes from the
+# master's deadlines page: new international applications by 23 August 2027 (portfolio programmes by 13 August 2027).
+L = "Loughborough University"
+L_DL = ("23 أغسطس 2027 آخر موعد لطلبات الطلاب الدوليين الجدد (والبرامج التي تطلب ملف أعمال قبلها بعشرة أيام)، وهو أيضاً آخر موعد لدفع العربون (دفعة سبتمبر 2027)",
+        "New international applications by 23 August 2027 (programmes needing a portfolio ten days earlier), which is also the deposit deadline (September 2027 intake)")
+L_EN = ("حسب متطلبات الإنجليزية العامة للجامعة (غير منشور في صفحة البرنامج، للتحقق)", "Per the university's general English requirements (not stated on the course page, to verify)")
+L_HOW = ("التقديم أونلاين مباشرة على بوابة الجامعة", "Apply online directly through the university")
+LC = "https://lboro.ac.uk/study/postgraduate/masters-degrees/"
+
+
+def lfee(gbp):
+    eur = round(gbp / GBP / 10) * 10
+    return (f"حوالي {eur:,} يورو في السنة ({gbp:,} جنيهاً إسترلينياً رسوم الطلاب الدوليين للسنة الدراسية 2027/2028 من جدول الرسوم الرسمي، والبرنامج سنة واحدة؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
+            f"About €{eur:,} a year (£{gbp:,} international fee for 2027/28 from the official fee table; the programme lasts one year; ECB rate of 17 November 2026)")
+
+
+MA_ = ("ماجستير الآداب (MA)", "Master of Arts (MA)")
+for field, name, slug, gbp, city, deg, adm, other in [
+    ("sport", "MSc Sport Management", "a-z/sport-management/", 33000, "Loughborough", MSC,
+     ("بكالوريوس بتقدير 2:1 في الرياضة (ومنها علوم الرياضة) أو الأعمال أو الإدارة أو تخصص قريب (تسويق، محاسبة، اقتصاد) أو القانون أو الهندسة مع الإدارة", "A 2:1 in sport (including sports science), business, management or a related subject (marketing, accounting, economics), law or engineering with management"),
+     ("إدارة الرياضة في كلية الرياضة والتمارين وعلوم الصحة", "Sport management at the School of Sport, Exercise and Health Sciences")),
+    ("sport", "MSc Sport Management, Politics and International Development", "a-z/sport-management-politics-international-developmen/", 33000, "Loughborough", MSC,
+     ("بكالوريوس بتقدير 2:1 في مجالات واسعة منها علوم الرياضة والعلوم الاجتماعية والآداب والهندسة والعلوم", "A 2:1 in a wide range of disciplines including sports science, social science, arts, engineering and sciences"),
+     ("إدارة الرياضة وسياساتها والتنمية الدولية", "Sport management, sport politics and policy, and international development")),
+    ("sport", "MSc Diplomacy and Sport", "diplomacy-sport/", 27000, "London", MSC,
+     ("بكالوريوس بتقدير 2:2 (50% في السنة الأخيرة) في أي تخصص", "A 2:2 (50% in the final year) in any subject"),
+     ("الدبلوماسية والرياضة في حرم لافبرة في لندن (الحديقة الأولمبية)", "Diplomacy and sport at Loughborough University London (Olympic Park)")),
+    ("art", "MA Graphic Design and Visual Communication", "a-z/graphic-design-visual-communication/", 31750, "Loughborough", MA_,
+     ("بكالوريوس بتقدير 2:1 مع ملف أعمال (Portfolio)", "A 2:1 honours degree plus a portfolio"),
+     ("التصميم الجرافيكي والتواصل البصري", "Graphic design and visual communication")),
+    ("art", "MA Fine Art", "fine-art/", 31750, "Loughborough", MA_,
+     ("بكالوريوس بتقدير 2:1 أو أعلى مع ملف أعمال (Portfolio)", "A 2:1 or above plus a portfolio"),
+     ("الفنون الجميلة", "Fine art")),
+    ("media", "MA Media and Communication", "media-communication-london/", 27000, "London", MA_,
+     ("بكالوريوس بتقدير 2:2 أو أعلى", "A 2:2 or above"),
+     ("الإعلام والاتصال في حرم لافبرة في لندن", "Media and communication at Loughborough University London")),
+]:
+    add(MA, field, name, L, city, deg, Y1, lfee(gbp), adm, L_DL, L_EN, other, L_HOW, NP, NP, LC + slug, LC + slug)
+
 write("بريطانيا", "United Kingdom", "united-kingdom", MA, level="master")
 append_master("بريطانيا", "united-kingdom")
 print("uk:", len(MA), "master's")
