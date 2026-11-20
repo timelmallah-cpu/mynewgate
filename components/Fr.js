@@ -6,6 +6,11 @@ import { BASE, SITE_URL } from "../lib/site";
 import Flag from "../lib/Flag";
 import { Mark, StudyMark } from "./Shell";
 import { FR_COUNTRY_IDS, FR_QUESTIONS, frQuestion, frName, frIn, frCountry, frCountryFaq, n, months } from "../lib/fr";
+import { eligibility } from "../lib/scholarships";
+import { VISA } from "../lib/embassy";
+import { VISA_FR, FR_ORIGINS } from "../lib/visaFr";
+import { FR_SCH, FR_DL_KIND } from "../lib/frScholarships";
+import FrEligibility from "./FrEligibility";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/latin-400.css";
 import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
@@ -75,10 +80,12 @@ export function FrHome() {
           <li key={c}><a className="chip" href={`${FR}/pays/${c}`}><Flag code={c} size={16} /> {frName(c)}</a></li>
         ))}
       </ul>
-      <h2 className="land-h">Outils (en arabe et en anglais)</h2>
+      <h2 className="land-h">Outils</h2>
       <ul className="voc-chips">
+        <li><a className="chip" href={`${FR}/eligibilite`}>Suis-je admissible ?</a></li>
+        <li><a className="chip" href={`${FR}/bourses`}>Bourses</a></li>
+        <li><a className="chip" href={`${FR}/visa`}>Visa étudiant</a></li>
         <li><a className="chip" href={`${BASE}/en/quiz`}>Trouver un programme</a></li>
-        <li><a className="chip" href={`${BASE}/en/scholarships`}>Bourses</a></li>
         <li><a className="chip" href={`${BASE}/en/my-plan`}>Mon plan en une minute</a></li>
         <li><a className="chip" href={`${BASE}/en/countries`}>Comparer les pays</a></li>
         <li><a className="chip" href={`${BASE}/ask`}>Assistant (arabe)</a></li>
@@ -134,7 +141,7 @@ export function FrCountry({ code }) {
       <p className="tool-strip">
         <a href={`${BASE}/country/${code}`}>Page complète en arabe</a>
         <a href={`${BASE}/en/country/${code}`}>Page complète en anglais</a>
-        <a href={`${BASE}/en/visa?to=${code}`}>Visa étudiant depuis votre pays (anglais)</a>
+        <a href={`${FR}/visa`}>Visa étudiant depuis votre pays</a>
       </p>
       <Note />
     </FrShell>
@@ -187,6 +194,109 @@ export function FrQuestion({ slug }) {
         <ul>{FR_QUESTIONS.filter((o) => o.slug !== slug).map((o) => <li key={o.slug}><a href={`${FR}/questions/${o.slug}`}>{o.q}</a></li>)}</ul>
       </section>
       <Note />
+    </FrShell>
+  );
+}
+
+// ---- Bourses, visa and eligibility (French, 20 Nov 2026) ----
+const ext = { target: "_blank", rel: "noopener noreferrer" };
+const frDate = (d) => new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(d));
+const ELIG = { yes: "oui", check: "à vérifier", no: "non" };
+const LV_FR = { master: "master", bachelor: "licence", doctorate: "doctorat" };
+
+export function FrScholarships() {
+  return (
+    <FrShell ar="/scholarships" en="/scholarships">
+      <p className="crumbs"><a href={FR}>Accueil</a></p>
+      <h1>Bourses entièrement financées pour les étudiants arabes</h1>
+      <p className="lead">{SCHOLARSHIPS.length} bourses qui couvrent les frais de scolarité et les frais de vie, avec l'admissibilité pour l'Algérie, le Maroc et la Tunisie et les dates limites. Les conditions détaillées et la source officielle sont sur la fiche de chaque bourse (en anglais).</p>
+      <div className="qa-list">
+        {SCHOLARSHIPS.map((s) => (
+          <section key={s.id} className="card qa-card">
+            <h2><a href={`${BASE}/en/scholarships/${s.id}`}><bdi>{s.name.en}</bdi></a></h2>
+            <p className="meta"><bdi>{s.funder.en}</bdi> · {s.levels.map((l) => LV_FR[l]).join(", ")} · {s.hosts.length > 3 ? `${s.hosts.length} pays` : s.hosts.map((c) => frName(c)).join(", ")}</p>
+            <p>{FR_SCH[s.id] || <bdi lang="en">{s.summary.en}</bdi>}</p>
+            <p className="meta">Ouverte aux Algériens : {ELIG[eligibility(s, "dz")]} · Marocains : {ELIG[eligibility(s, "ma")]} · Tunisiens : {ELIG[eligibility(s, "tn")]}</p>
+            {(s.deadlines || []).map((d) => <p key={d.date} className="meta">Date limite : <b>{frDate(d.date)}</b> ({FR_DL_KIND[d.kind] || d.kind})</p>)}
+          </section>
+        ))}
+      </div>
+      <Note />
+    </FrShell>
+  );
+}
+
+export function FrVisaHub() {
+  return (
+    <FrShell ar="/visa" en="/visa">
+      <p className="crumbs"><a href={FR}>Accueil</a></p>
+      <h1>Visa étudiant depuis votre pays</h1>
+      <p className="lead">Où et comment déposer la demande de visa d'études, pays par pays, avec le lien officiel de prise de rendez-vous. Choisissez le pays où vous résidez :</p>
+      <ul className="voc-chips">
+        {Object.entries(FR_ORIGINS).map(([slug, o]) => <li key={slug}><a className="chip" href={`${FR}/visa/${slug}`}><Flag code={o.o} size={16} /> {o.name}</a></li>)}
+      </ul>
+      <Note />
+    </FrShell>
+  );
+}
+
+export function FrVisa({ origin }) {
+  const o = FR_ORIGINS[origin];
+  if (!o) notFound();
+  const routes = VISA_FR[o.o] || {};
+  const sorted = [...FR_COUNTRY_IDS].sort((a, b) => frName(a).localeCompare(frName(b), "fr"));
+  const ready = sorted.filter((c) => routes[c]);
+  return (
+    <FrShell ar="/visa" en="/visa">
+      <p className="crumbs"><a href={`${FR}/visa`}>Visa étudiant</a></p>
+      <h1>Visa étudiant pour les résidents {o.from}</h1>
+      <p className="lead">{ready.length ? `Parcours détaillés depuis ${o.name === "Maroc" ? "le Maroc" : "l'Algérie"} pour ${ready.length} pays. Pour les autres pays, nous donnons la démarche générale et la source officielle.` : `Nous n'avons pas encore ajouté les parcours détaillés depuis la Tunisie. Pour chaque pays : la démarche générale et la source officielle.`}</p>
+      <div className="notice">Prenez vos rendez-vous vous-même, uniquement sur les sites officiels, et ne payez pas d'intermédiaires. Les règles et les frais changent : vérifiez la source avant de déposer.</div>
+      {sorted.map((c) => {
+        const r = routes[c];
+        const v = VISA[c]?.[o.o];
+        return (
+          <details key={c} className="card qa-acc" open={false}>
+            <summary><Flag code={c} size={16} /> <b>{frName(c)}</b>{r ? "" : " (démarche générale)"}</summary>
+            {r ? (
+              <>
+                <p><b>Où déposer ?</b> {r.where}{v?.check && !/vérifier/.test(r.where) ? " (une partie est à vérifier)" : ""}</p>
+                <ol>{r.steps.map((x, i) => <li key={i}>{x}</li>)}</ol>
+                {r.note && <p className="meta"><b>Attention :</b> {r.note}</p>}
+                <p className="tool-strip">
+                  {v?.src && <a href={v.src} {...ext}>Source officielle</a>}
+                  {v?.book && <a href={v.book} {...ext}>Prise de rendez-vous ou dépôt</a>}
+                </p>
+              </>
+            ) : (
+              <>
+                <p>Commencez par le site de l'ambassade du pays de destination dans votre pays de résidence, et vérifiez si le dépôt se fait à l'ambassade ou dans un centre de visas (VFS, TLScontact ou BLS). Il vous faudra en général la lettre d'admission, la preuve de ressources et une assurance maladie.</p>
+                <p className="tool-strip">
+                  {VISA[c]?.generalSrc && <a href={VISA[c].generalSrc} {...ext}>Source officielle (démarche générale)</a>}
+                  <a href={`${FR}/pays/${c}`}>Étudier {frIn(c)}</a>
+                </p>
+              </>
+            )}
+          </details>
+        );
+      })}
+      <Note />
+    </FrShell>
+  );
+}
+
+export function FrEligibilityPage() {
+  return (
+    <FrShell ar="/eligibility" en="/eligibility">
+      <p className="crumbs"><a href={FR}>Accueil</a></p>
+      <h1>Suis-je admissible ? Vérifiez vos chances</h1>
+      <p className="lead">Indiquez votre domaine, votre note, votre niveau d'anglais et votre budget. Nous montrons les programmes qui vous correspondent et ce qui manque pour les autres, à partir des seules conditions publiées par les sources officielles. Vos réponses ne sont enregistrées nulle part.</p>
+      <FrEligibility />
+      <ul className="meta">
+        <li>Nous comparons seulement ce que l'université publie en chiffres : frais, score d'anglais et note minimale. Les autres conditions sont sur la page de chaque programme.</li>
+        <li>La conversion d'une note vers l'échelle allemande (formule bavaroise modifiée) est approximative ; chaque université le fait à sa façon.</li>
+        <li>Un résultat n'est pas une admission. L'université décide : vérifiez toujours sa page officielle.</li>
+      </ul>
     </FrShell>
   );
 }
