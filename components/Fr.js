@@ -250,7 +250,7 @@ export function FrVisa({ origin }) {
     <FrShell ar="/visa" en="/visa">
       <p className="crumbs"><a href={`${FR}/visa`}>Visa étudiant</a></p>
       <h1>Visa étudiant pour les résidents {o.from}</h1>
-      <p className="lead">{ready.length ? `Parcours détaillés depuis ${o.name === "Maroc" ? "le Maroc" : "l'Algérie"} pour ${ready.length} pays. Pour les autres pays, nous donnons la démarche générale et la source officielle.` : `Nous n'avons pas encore ajouté les parcours détaillés depuis la Tunisie. Pour chaque pays : la démarche générale et la source officielle.`}</p>
+      <p className="lead">{ready.length ? `Parcours détaillés depuis ${o.name === "Maroc" ? "le Maroc" : o.name === "Tunisie" ? "la Tunisie" : "l'Algérie"} pour ${ready.length} pays. Pour les autres pays, nous donnons la démarche générale et la source officielle.` : `Nous n'avons pas encore ajouté les parcours détaillés depuis la Tunisie. Pour chaque pays : la démarche générale et la source officielle.`}</p>
       <div className="notice">Prenez vos rendez-vous vous-même, uniquement sur les sites officiels, et ne payez pas d'intermédiaires. Les règles et les frais changent : vérifiez la source avant de déposer.</div>
       {sorted.map((c) => {
         const r = routes[c];
