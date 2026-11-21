@@ -1,4 +1,4 @@
-# Draws public/og-ar.png and og-en.png (the study section share images) with Playwright. Run from the repo root: python3 scripts/og/make_site_og.py. After changing them, bump ?v= in lib/site.js, lib/visasMeta.js and components/Fr.js.
+# Draws public/og-ar.png and og-en.png (the study section share images) and og-visas-ar/en.png (visas section) with Playwright. Run from the repo root: python3 scripts/og/make_site_og.py. After changing them, bump ?v= in lib/site.js, lib/visasMeta.js and components/Fr.js.
 from playwright.sync_api import sync_playwright
 import os
 F=os.path.abspath("lib/og/fonts")
@@ -22,10 +22,12 @@ html,body{{margin:0;width:1200px;height:630px;background:#F3F4F8;overflow:hidden
 <div class="c"><div class="b">{brand}</div><div class="t">{title}</div><div class="s">{sub}</div></div></body></html>"""
 with sync_playwright() as p:
     b=p.chromium.launch(); pg=b.new_page(viewport={"width":1200,"height":630})
-    for lang,brand,title,sub in [
-      ("ar","بوابة الدراسة","ادرس في الخارج<br>بالإنجليزية وبأقل تكلفة","برامج بكالوريوس وماجستير في الجامعات الحكومية، بالعربي ومع رابط المصدر الرسمي"),
-      ("en","Bawabat AlDirasa","Study abroad<br>in English, for less","Bachelor's and master's at public universities,<br>with the official source for every fact")]:
-        open(f"/tmp/og-{lang}.html","w").write(page(lang,brand,title,sub))
-        pg.goto(f"file:///tmp/og-{lang}.html"); pg.wait_for_timeout(500)
-        pg.screenshot(path=f"public/og-{lang}.png")
+    for name,lang,brand,title,sub in [
+      ("og-visas-ar","ar","بوابة التأشيرات والهجرة","أي تأشيرة تحتاج؟","زيارة ودراسة وعمل وإقامة لكل الجوازات العربية، من المصادر الحكومية الرسمية"),
+      ("og-visas-en","en","Visas and immigration","Which visa do you need?","Visit, study, work and residence visas for every Arab passport,<br>from official government sources"),
+      ("og-ar","ar","بوابة الدراسة","ادرس في الخارج<br>بالإنجليزية وبأقل تكلفة","برامج بكالوريوس وماجستير في الجامعات الحكومية، بالعربي ومع رابط المصدر الرسمي"),
+      ("og-en","en","Bawabat AlDirasa","Study abroad<br>in English, for less","Bachelor's and master's at public universities,<br>with the official source for every fact")]:
+        open(f"/tmp/{name}.html","w").write(page(lang,brand,title,sub))
+        pg.goto(f"file:///tmp/{name}.html"); pg.wait_for_timeout(500)
+        pg.screenshot(path=f"public/{name}.png")
     b.close()

@@ -13,6 +13,7 @@ import { COUNTRY_IDS } from "../lib/options";
 import { hasVisaRoute } from "../lib/embassy";
 import PointsCheck from "./PointsCheck";
 import AtPointsCheck from "./AtPointsCheck";
+import FswCheck from "./FswCheck";
 import { ROUTES, RTEXT } from "../lib/visaRoutes";
 import NomadFinder from "./NomadFinder";
 import { NOMADS, NTEXT, NOMAD_HUB } from "../lib/nomadVisas";
@@ -108,14 +109,15 @@ export function VisasHub({ lang }) {
   return (
     <Frame lang={lang} other={visasBase(lang === "ar" ? "en" : "ar")} note={RTEXT[lang].disclaimer}>
       <VisaHero lang={lang} title={t.title} lead={HERO[lang].lead} text={{ ...HERO[lang], stats: undefined, quick: undefined }} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
-        stats={HERO[lang].stats(ORIGINS.length, DEST.length, ROUTES.filter((r) => r.job && !r.closed).length + NOMADS.length)} />
+        stats={HERO[lang].stats(ORIGINS.length, DEST.length, ROUTES.filter((r) => (r.job || r.imm) && !r.closed).length + NOMADS.length)} />
       <nav className="quick" aria-label={HERO[lang].quickLabel}>
         <ul>{HERO[lang].quick.map(([href, label]) => <li key={href}><a className="chip" href={href === "/visa" ? `${lang === "ar" ? BASE : `${BASE}/en`}${href}` : `${b}${href}`}>{label}</a></li>)}</ul>
       </nav>
       <VisaWizard lang={lang} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
         countries={Object.fromEntries(COUNTRY_IDS.map((c) => [c, STUDY_T[lang].countries[c]]))}
         studyReady={Object.fromEntries(ORIGINS.map((o) => [o.c, COUNTRY_IDS.filter((c) => hasVisaRoute(c, o.c))]).filter(([, v]) => v.length))}
-        jobRoutes={ROUTES.filter((r) => r.job).map((r) => ({ id: r.id, slug: r.slug, name: r.name[lang], short: r.short[lang], points: r.tool === "points" || r.tool === "at-points", closed: !!r.closed }))} />
+        jobRoutes={ROUTES.filter((r) => r.job).map((r) => ({ id: r.id, slug: r.slug, name: r.name[lang], short: r.short[lang], points: r.tool === "points" || r.tool === "at-points", closed: !!r.closed }))}
+        immRoutes={ROUTES.filter((r) => r.imm).map((r) => ({ id: r.id, slug: r.slug, name: r.name[lang], short: r.short[lang], points: !!r.tool }))} />
       <h2>{t.visitTitle}</h2>
       <ul className="vz-dests">
         {DEST.map((d) => {
@@ -144,6 +146,18 @@ export function VisasHub({ lang }) {
           </li>
         ))}
       </ul>
+      <h2>{RTEXT[lang].immSection}</h2>
+      <p className="meta">{RTEXT[lang].immLead}</p>
+      <ul className="vz-dests">
+        {ROUTES.filter((r) => r.imm).map((r) => (
+          <li key={r.slug}>
+            <a className="card vz-dest" href={`${b}/${r.slug}`}>
+              <span className="vz-dname"><DestFlag id={r.id} /> <b>{r.name[lang]}</b></span>
+              <span className="meta">{r.short[lang]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
       <h2>{RTEXT[lang].longSection}</h2>
       <p className="meta">{RTEXT[lang].sectionLead}</p>
       <ul className="vz-dests">
@@ -153,7 +167,7 @@ export function VisasHub({ lang }) {
             <span className="meta">{lang === "ar" ? `${NOMADS.length} دولة: الدخل المطلوب والمدة وأين تقدّم` : `${NOMADS.length} countries: income needed, length and where to apply`}</span>
           </a>
         </li>
-        {ROUTES.filter((r) => !r.nomad && !r.job).map((r) => (
+        {ROUTES.filter((r) => !r.nomad && !r.job && !r.imm).map((r) => (
           <li key={r.slug}>
             <a className="card vz-dest" href={`${b}/${r.slug}`}>
               <span className="vz-dname"><DestFlag id={r.id} /> <b>{r.name[lang]}</b></span>
@@ -296,6 +310,7 @@ export function VisaRoute({ r, lang }) {
       </section>
       {r.tool === "points" && <PointsCheck lang={lang} selfCheck={r.links[0][1]} />}
       {r.tool === "at-points" && <AtPointsCheck lang={lang} calc={r.links[0][1]} />}
+      {r.tool === "fsw" && <FswCheck lang={lang} calc={r.links[1][1]} />}
       <section className="card">
         <h2>{t.docs}</h2>
         <ul>{r.docs[lang].map((x) => <li key={x}>{x}</li>)}</ul>

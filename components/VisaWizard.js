@@ -1,6 +1,6 @@
 "use client";
 // "Which visa do I need?" in questions: purpose -> nationality -> destination / income -> answer + link.
-// Covers visit, study, job search and remote work (digital nomad). Nothing is saved; the answers live
+// Covers visit, study, job search, remote work (digital nomad) and immigration / work with a job offer. Nothing is saved; the answers live
 // only in the URL hash (#visit-eg-fr, #study-eg-de, #job-eg, #nomad-eg-3000) so a result can be shared.
 import { useEffect, useRef, useState } from "react";
 import Flag from "../lib/Flag";
@@ -12,41 +12,41 @@ import { NOMADS, NTEXT, nationalityOk } from "../lib/nomadVisas";
 const W = {
   ar: {
     q1: "ما سبب سفرك؟", q2: "ما جنسيتك (جواز السفر)؟", q3v: "إلى أين تريد السفر؟", q3s: "أين تريد أن تدرس؟", q3n: "كم دخلك الشهري من العمل عن بُعد؟ (باليورو)",
-    p: { visit: ["زيارة أو سياحة", "رحلة قصيرة، زيارة عائلة، مؤتمر"], study: ["دراسة", "جامعة أو لغة أو دراسة مهنية"], job: ["البحث عن عمل", "السفر للبحث عن وظيفة"], nomad: ["العمل عن بُعد", "تأشيرات الرحالة الرقميين"], live: ["الهجرة والإقامة الدائمة", "قريباً"] },
+    p: { visit: ["زيارة أو سياحة", "رحلة قصيرة، زيارة عائلة، مؤتمر"], study: ["دراسة", "جامعة أو لغة أو دراسة مهنية"], job: ["البحث عن عمل", "السفر للبحث عن وظيفة"], nomad: ["العمل عن بُعد", "تأشيرات الرحالة الرقميين"], live: ["الهجرة والعمل بعرض عمل", "الإكسبريس إنتري الكندي والبطاقة الزرقاء"] },
     step: (n) => `السؤال ${n}`, back: "رجوع", restart: "ابدأ من جديد", pick: "اختر",
     studyRes: (n, d) => `تأشيرة الدراسة إلى ${d} لحامل جواز ${n}`,
     studyReady: "عندنا خطوات مفصّلة لهذا الطريق: أين تحجز الموعد، والأوراق، والرسوم، وإثبات المال.",
     studyGeneral: "عندنا الخطوات العامة لتأشيرة الدراسة في هذه الدولة؛ الجهة التي تقدّم لديها من بلدك مكتوبة في الصفحة مع رابطها الرسمي، وبعض التفاصيل للتحقق.",
     studyGo: "افتح خطوات تأشيرة الدراسة", studyProg: "وابحث عن برامج في هذه الدولة",
     jobRes: "تأشيرات البحث عن عمل بدون عرض عمل مسبق",
-    jobSoon: "كل تأشيرة لها شروطها: افتح الصفحة لتعرف هل تناسبك. قريباً: البطاقة الزرقاء الأوروبية، وتأشيرة العامل الماهر البريطانية، وطرق النقاط في كندا وأستراليا ونيوزيلندا.",
+    jobSoon: "كل تأشيرة لها شروطها: افتح الصفحة لتعرف هل تناسبك. ولمن معه عرض عمل أو يريد الهجرة: اختر «الهجرة والعمل بعرض عمل».",
     closed: "متوقفة حالياً", gcc: "مواطنو الخليج يدخلون الإمارات بدون تأشيرة", calc: "احسب نقاطك",
     nomadRes: (k) => (!k ? "لا توجد تأشيرة في قائمتنا تناسب هذا الدخل" : k === 1 ? "تأشيرة واحدة تناسب هذا الدخل" : k === 2 ? "تأشيرتان تناسبان هذا الدخل" : k <= 10 ? `${k} تأشيرات تناسب هذا الدخل` : `${k} تأشيرة تناسب هذا الدخل`),
     nomadOther: "تأشيرات تحتاج دخلاً أعلى أو ليس لها رقم شهري", nomadAll: "كل تأشيرات الرحالة الرقميين",
-    liveSoon: "هذا الجزء قيد الإعداد: الإقامة الدائمة والهجرة في كندا وأستراليا ونيوزيلندا وبريطانيا وأوروبا. إلى أن يجهز، تجد طرق الإقامة الطويلة المتاحة الآن أسفل هذه الصفحة.",
+    liveRes: "طرق الهجرة والعمل المتاحة", liveSoon: "كل طريق له شروطه: افتح الصفحة لتعرف هل يناسبك. قريباً: تأشيرة العامل الماهر البريطانية، ونظام النقاط في أستراليا ونيوزيلندا.",
     next: "التالي", show: "اعرض النتيجة", stepOf: (a, b) => `السؤال ${a} من ${b}`, answers: "إجاباتك", edit: "تعديل", labels: { p: "سبب السفر", o: "الجنسية", d: "الوجهة", inc: "الدخل الشهري" }, incNote: "اكتب المبلغ باليورو قبل الضرائب كما في عقدك أو كشف حسابك. لا نحفظه.",
   },
   en: {
     q1: "Why are you travelling?", q2: "What is your nationality (passport)?", q3v: "Where do you want to go?", q3s: "Where do you want to study?", q3n: "How much do you earn a month working remotely? (euros)",
-    p: { visit: ["Visit or tourism", "Short trip, family visit, conference"], study: ["Study", "University, language or vocational study"], job: ["Look for work", "Travel to search for a job"], nomad: ["Work remotely", "Digital nomad visas"], live: ["Immigration and permanent residence", "Coming soon"] },
+    p: { visit: ["Visit or tourism", "Short trip, family visit, conference"], study: ["Study", "University, language or vocational study"], job: ["Look for work", "Travel to search for a job"], nomad: ["Work remotely", "Digital nomad visas"], live: ["Immigration and work with a job offer", "Canada's Express Entry and the EU Blue Card"] },
     step: (n) => `Question ${n}`, back: "Back", restart: "Start again", pick: "Choose",
     studyRes: (n, d) => `Student visa to ${d} for a ${n} passport`,
     studyReady: "We have detailed steps for this route: where to book, documents, fees and proof of funds.",
     studyGeneral: "We have the general student visa steps for this country; where to apply from your country is on the page with its official link, and some details are to verify.",
     studyGo: "Open the student visa steps", studyProg: "and find programmes in this country",
     jobRes: "Visas to look for work without a job offer",
-    jobSoon: "Each visa has its own conditions: open the page to see if it fits you. Coming soon: the EU Blue Card, the UK Skilled Worker visa, and the points routes of Canada, Australia and New Zealand.",
+    jobSoon: "Each visa has its own conditions: open the page to see if it fits you. With a job offer or planning to immigrate? Choose \"Immigration and work with a job offer\".",
     closed: "Suspended", gcc: "GCC citizens enter the UAE without a visa", calc: "Check your points",
     nomadRes: (k) => (k === 1 ? "1 visa fits this income" : k ? `${k} visas fit this income` : "No visa on our list fits this income"),
     nomadOther: "Visas that need a higher income or give no monthly figure", nomadAll: "All digital nomad visas",
-    liveSoon: "This part is being prepared: permanent residence and immigration in Canada, Australia, New Zealand, the UK and Europe. Until then, the long-stay routes available now are further down this page.",
+    liveRes: "Immigration and work routes available", liveSoon: "Each route has its own conditions: open the page to see if it fits you. Coming soon: the UK Skilled Worker visa and the points systems of Australia and New Zealand.",
     next: "Next", show: "Show the result", stepOf: (a, b) => `Question ${a} of ${b}`, answers: "Your answers", edit: "Edit", labels: { p: "Purpose", o: "Nationality", d: "Destination", inc: "Monthly income" }, incNote: "Type the amount in euros before tax, as in your contract or bank statement. We don't save it.",
   },
 };
 const PURPOSES = ["visit", "study", "job", "nomad", "live"];
 const fmt = (n, lang) => Math.round(n).toLocaleString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB");
 
-export default function VisaWizard({ lang, base, studyBase, countries, studyReady, jobRoutes }) {
+export default function VisaWizard({ lang, base, studyBase, countries, studyReady, jobRoutes, immRoutes = [] }) {
   const t = VTEXT[lang];
   const w = W[lang];
   const nt = NTEXT[lang];
@@ -59,7 +59,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
   const top = useRef(null);
 
   // The questions depend on the purpose: job search has no third question, "immigration" (soon) has only the first.
-  const keys = p === "live" ? ["p"] : p === "job" ? ["p", "o"] : ["p", "o", p === "nomad" ? "inc" : "d"];
+  const keys = p === "live" || p === "job" ? ["p", "o"] : ["p", "o", p === "nomad" ? "inc" : "d"];
   const done = step >= keys.length;
   const v = Number(String(inc).replace(/[^\d]/g, ""));
 
@@ -67,10 +67,9 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
     const h = (location.hash || "").slice(1).split("-");
     if (!PURPOSES.includes(h[0])) return;
     setP(h[0]);
-    if (h[0] === "live") { setStep(1); return; }
     if (!(h[1] && ORIGIN_NAME[h[1]])) { setStep(1); return; }
     setO(h[1]);
-    if (h[0] === "job") { setStep(2); return; }
+    if (h[0] === "job" || h[0] === "live") { setStep(2); return; }
     if (h[0] === "visit" && DEST.some((x) => x.id === h[2])) { setD(h[2]); setStep(3); }
     else if (h[0] === "study" && countries[h[2]]) { setD(h[2]); setStep(3); }
     else if (h[0] === "nomad" && /^\d+$/.test(h[2] || "")) { setInc(h[2]); setStep(3); }
@@ -105,7 +104,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
     if (k === "p") { if (id !== p) { setD(""); setInc(""); } setP(id); }
     if (k === "o") setO(id);
     if (k === "d") setD(id);
-    const nextKeys = k === "p" ? (id === "live" ? ["p"] : id === "job" ? ["p", "o"] : ["p", "o", id === "nomad" ? "inc" : "d"]) : keys;
+    const nextKeys = k === "p" ? (id === "live" || id === "job" ? ["p", "o"] : ["p", "o", id === "nomad" ? "inc" : "d"]) : keys;
     // One-answer questions move on by themselves (short pause so the tick shows); while editing, straight back to the result.
     const ready = (kk) => (kk === "p" ? true : kk === "o" ? (k === "o" || o) : kk === "d" ? (k === "d" || d) : v > 0);
     setTimeout(() => setStep((n) => {
@@ -141,7 +140,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
           <>
             <div className={s.two ? "options two" : "options"} role="group" aria-labelledby={`wz-q-${k}`}>
               {s.opts.map((x) => (
-                <button key={x.id} type="button" className={`opt${x.id === "live" ? " wz-soon" : ""}`} aria-pressed={s.val === x.id} onClick={() => pick(k, x.id)}>
+                <button key={x.id} type="button" className="opt" aria-pressed={s.val === x.id} onClick={() => pick(k, x.id)}>
                   {x.flag && <Flag code={x.flag} />}
                   <span className="wz-opt-t">{x.label}{x.sub && <small>{x.sub}</small>}</span>
                   <span className="tick">✓</span>
@@ -196,6 +195,23 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
         </div>
       </>
     );
+  } else if (p === "live") {
+    body = (
+      <div className="vz-result vz-eta" aria-live="polite">
+        <p className="vz-who">{ORIGIN_NAME[o][lang]}</p>
+        <p className="vz-kind">{w.liveRes}</p>
+        <ul className="wz-list">
+          {immRoutes.map((r) => (
+            <li key={r.slug}>
+              <a href={`${base}/${r.slug}`}><b>{r.name}</b></a><br />
+              <span className="meta">{r.short}</span>
+              {r.points ? <> · <a href={`${base}/${r.slug}#points`}>{w.calc}</a></> : null}
+            </li>
+          ))}
+        </ul>
+        <p className="meta">{w.liveSoon}</p>
+      </div>
+    );
   } else if (p === "job") {
     const GCC = ["sa", "ae", "kw", "qa", "bh", "om"];
     const list = jobRoutes.filter((r) => !(r.id === "ae" && o === "ae")).sort((a, b) => Number(a.closed) - Number(b.closed));
@@ -249,7 +265,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
   return (
     <section className="card vz-tool wz" id="wz" aria-labelledby="wz-h" ref={top}>
       <h2 id="wz-h" className="wz-title">{t.toolTitle}</h2>
-      {p === "live" ? <div className="vz-result vz-cond" aria-live="polite"><p className="vz-kind">{w.p.live[0]}</p><p>{w.liveSoon}</p></div> : body}
+      {body}
       <div className="answers">
         <h3>{w.answers}</h3>
         <ul>
@@ -262,7 +278,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
           ))}
         </ul>
       </div>
-      {p !== "live" && <VisaAsk key={`${p}-${o}-${d}-${v}`} lang={lang} ctx={{ p, o, d, inc: v || null }} base={base} studyBase={studyBase} />}
+      {<VisaAsk key={`${p}-${o}-${d}-${v}`} lang={lang} ctx={{ p, o, d, inc: v || null }} base={base} studyBase={studyBase} />}
       <button type="button" className="btn ghost" onClick={reset}>{w.restart}</button>
     </section>
   );
