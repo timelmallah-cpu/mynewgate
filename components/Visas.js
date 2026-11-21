@@ -109,7 +109,7 @@ export function VisasHub({ lang }) {
             <span className="meta">{lang === "ar" ? `${NOMADS.length} دولة: الدخل المطلوب والمدة وأين تقدّم` : `${NOMADS.length} countries: income needed, length and where to apply`}</span>
           </a>
         </li>
-        {ROUTES.map((r) => (
+        {ROUTES.filter((r) => !r.nomad).map((r) => (
           <li key={r.slug}>
             <a className="card vz-dest" href={`${b}/${r.slug}`}>
               <span className="vz-dname"><Flag code={r.id} /> <b>{r.name[lang]}</b></span>
@@ -175,7 +175,7 @@ export function VisaRoute({ r, lang }) {
   const b = visasBase(lang);
   const ext = { target: "_blank", rel: "noopener noreferrer" };
   return (
-    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${r.slug}`} crumbs={r.name[lang]} note={t.disclaimer}>
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${r.slug}`} crumbs={r.nomad ? <><a href={`${b}/${NOMAD_HUB}`}>{NTEXT[lang].hubTitle}</a> {lang === "ar" ? "←" : "→"} {r.name[lang]}</> : r.name[lang]} note={t.disclaimer}>
       <h1 className="vz-h1"><Flag code={r.id} /> {r.name[lang]}</h1>
       <p className="lead">{r.lead[lang]}</p>
       <section className="card">
@@ -199,7 +199,7 @@ export function VisaRoute({ r, lang }) {
         <ul>{r.links.map(([l, u]) => <li key={u}><a href={u} {...ext}>{l[lang]} ↗</a></li>)}</ul>
         <p className="meta">{r.note[lang]}</p>
       </section>
-      <p className="chips vz-other">{r.id === "es" && <a className="chip" href={`${b}/${NOMAD_HUB}`}>{NTEXT[lang].all}</a>}{ROUTES.filter((x) => x.slug !== r.slug).map((x) => <a key={x.slug} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}<a className="chip" href={b}>{VTEXT[lang].destinations}</a></p>
+      <p className="chips vz-other"><a className="chip" href={`${b}/${NOMAD_HUB}`}>{NTEXT[lang].all}</a>{r.nomad ? NOMADS.filter((x) => !x.own).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>) : ROUTES.filter((x) => x.slug !== r.slug && !x.nomad).map((x) => <a key={x.slug} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}<a className="chip" href={b}>{VTEXT[lang].destinations}</a></p>
     </Frame>
   );
 }
