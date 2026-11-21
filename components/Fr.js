@@ -30,7 +30,7 @@ export function frMeta({ title, description, path = "", ar, en }) {
     metadataBase: new URL(SITE_URL),
     title, description,
     alternates: { canonical: url, languages },
-    openGraph: { type: "website", siteName: "Bawabat AlDirasa", locale: "fr_FR", title, description, url, images: [{ url: `${SITE_URL}/og-en.png?v=3`, width: 1200, height: 630 }] },
+    openGraph: { type: "website", siteName: "Bawabat AlDirasa", locale: "fr_FR", title, description, url, images: [{ url: `${SITE_URL}/og-en.png?v=4`, width: 1200, height: 630 }] },
     twitter: { card: "summary_large_image", title, description },
   };
 }
