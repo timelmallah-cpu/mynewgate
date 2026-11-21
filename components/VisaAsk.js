@@ -1,7 +1,7 @@
 "use client";
 // The assistant inside the visas questions tool: it answers follow-up questions about the visitor's own answers
 // (purpose, nationality, destination or income), only from the visas data on the site. Same limits as the study assistant.
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";
 import Upgrade, { leftText } from "./Upgrade";
@@ -10,28 +10,34 @@ const X = {
   ar: {
     title: "اسأل المساعد الذكي عن حالتك",
     lead: "يجيب من معلومات الموقع الرسمية عن إجاباتك أعلاه فقط. لا تكتب رقم جوازك أو بياناتك البنكية.",
+    anyLead: "يجيب من معلومات التأشيرات الرسمية على الموقع. اذكر جنسيتك ووجهتك في السؤال. لا تكتب رقم جوازك أو بياناتك البنكية.",
     ex: {
       visit: ["ما الأوراق التي أحتاجها؟", "كم تستغرق التأشيرة وكم رسومها؟", "متى أقدّم قبل السفر؟"],
       study: ["أين أقدّم من بلدي؟", "كم إثبات المال المطلوب؟", "هل أستطيع العمل أثناء الدراسة؟"],
       job: ["أي تأشيرة تناسب حملة البكالوريوس؟", "كم المال المطلوب في كل تأشيرة؟", "ماذا يحدث إذا لم أجد عملاً؟"],
       nomad: ["أي هذه التأشيرات تسمح بإحضار العائلة؟", "ما الأوراق المطلوبة لأرخص خيار؟", "أيها أطول مدة؟"],
+      any: ["هل يحتاج المصري تأشيرة لتركيا؟", "ما الدول التي لديها تأشيرة بحث عن عمل؟", "أقل دخل لتأشيرة الرحالة الرقمي؟"],
     },
+    anyTitle: "اسأل المساعد الذكي عن التأشيرات",
     placeholder: "اكتب سؤالك عن هذه التأشيرة...",
   },
   en: {
     title: "Ask the AI assistant about your case",
     lead: "It answers from the site's official information about your answers above only. Don't type your passport number or bank details.",
+    anyLead: "It answers from the official visa information on the site. Say your nationality and destination in the question. Don't type your passport number or bank details.",
     ex: {
       visit: ["Which documents do I need?", "How long does it take and what does it cost?", "When should I apply before travelling?"],
       study: ["Where do I apply from my country?", "How much proof of funds is needed?", "Can I work while studying?"],
       job: ["Which visa suits a bachelor's holder?", "How much money does each visa need?", "What happens if I don't find a job?"],
       nomad: ["Which of these visas allow family?", "What documents does the cheapest option need?", "Which lasts longest?"],
+      any: ["Do Egyptians need a visa for Türkiye?", "Which countries have a job seeker visa?", "Lowest income for a digital nomad visa?"],
     },
+    anyTitle: "Ask the AI assistant about visas",
     placeholder: "Type your question about this visa...",
   },
 };
 
-export default function VisaAsk({ lang, ctx, base, studyBase }) {
+export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask" }) {
   const s = ASK_TEXT[lang];
   const x = X[lang];
   const [msgs, setMsgs] = useState([]);
@@ -44,6 +50,13 @@ export default function VisaAsk({ lang, ctx, base, studyBase }) {
   const endRef = useRef(null);
   // Visas pages live outside the study basePath; study pages (student visa steps, country pages) inside it.
   const href = (u) => (u.startsWith("/visas") ? `${base}${u.slice("/visas".length)}` : `${studyBase}${u}`);
+
+  // A question typed in the page's top box arrives as `first` and is asked once.
+  const sentFirst = useRef("");
+  useEffect(() => {
+    if (first && first !== sentFirst.current) { sentFirst.current = first; send(first); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [first]);
 
   const send = async (text) => {
     const q = (text ?? input).trim();
@@ -65,9 +78,9 @@ export default function VisaAsk({ lang, ctx, base, studyBase }) {
   };
 
   return (
-    <div className="vask" aria-labelledby="vask-h">
-      <h3 id="vask-h">✨ {x.title}</h3>
-      <p className="meta">{x.lead}</p>
+    <div className="vask" aria-labelledby={`${id}-h`} id={id}>
+      <h3 id={`${id}-h`}>✨ {ctx.p === "any" ? x.anyTitle : x.title}</h3>
+      <p className="meta">{ctx.p === "any" ? x.anyLead : x.lead}</p>
       {!msgs.length && (
         <div className="city-chips">
           {(x.ex[ctx.p] || []).map((q) => <button key={q} type="button" onClick={() => send(q)} disabled={busy}>{q}</button>)}

@@ -118,7 +118,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
     const k = keys[step];
     const s = Q[k];
     return (
-      <section className="card vz-tool wz" aria-labelledby="wz-h" ref={top}>
+      <section className="card vz-tool wz" id="wz" aria-labelledby="wz-h" ref={top}>
         <h2 id="wz-h" className="wz-title">{t.toolTitle}</h2>
         <div className="steps" style={{ gridTemplateColumns: `repeat(${Math.max(keys.length, step + 1)}, 1fr)` }} aria-hidden="true">
           {keys.map((_, i) => <span key={i} className={i < step ? "on" : i === step ? "now" : ""} />)}
@@ -246,7 +246,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
 
 
   return (
-    <section className="card vz-tool wz" aria-labelledby="wz-h" ref={top}>
+    <section className="card vz-tool wz" id="wz" aria-labelledby="wz-h" ref={top}>
       <h2 id="wz-h" className="wz-title">{t.toolTitle}</h2>
       {p === "live" ? <div className="vz-result vz-cond" aria-live="polite"><p className="vz-kind">{w.p.live[0]}</p><p>{w.liveSoon}</p></div> : body}
       <div className="answers">

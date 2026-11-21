@@ -5,6 +5,7 @@ import { Mark, SectionMark } from "./Shell";
 import Flag from "../lib/Flag";
 import VisaChecker from "./VisaChecker";
 import VisaWizard from "./VisaWizard";
+import VisaHero from "./VisaHero";
 import { T as STUDY_T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { hasVisaRoute } from "../lib/embassy";
@@ -79,15 +80,33 @@ function DestFlag({ id }) {
   return <Flag code={id} />;
 }
 
+const HERO = {
+  ar: {
+    lead: "زيارة ودراسة وبحث عن عمل وعمل عن بُعد، لـ22 جنسية عربية: هل تحتاج تأشيرة، وكم الرسوم، وأين تقدّم، من المصادر الرسمية.",
+    askLabel: "اسأل عن أي شيء في التأشيرات", askPh: "مثلاً: تأشيرة تركيا للمصريين", askBtn: "اسأل", or: "أو",
+    quiz: "أجب عن 3 أسئلة لتعرف أي تأشيرة تحتاج",
+    stats: (n, d, r) => [[n, "جنسية عربية"], [d, "وجهات زيارة"], [r, "تأشيرة عمل وإقامة"]],
+    quickLabel: "اختصارات", quick: [["/france", "تأشيرة شنغن"], ["/germany-opportunity-card", "بطاقة الفرص الألمانية"], ["/digital-nomad-visas", "الرحالة الرقميون"], ["/uae-job-seeker", "البحث عن عمل في الإمارات"], ["/visa", "تأشيرة الدراسة"]],
+  },
+  en: {
+    lead: "Visits, study, job search and remote work, for 22 Arab nationalities: whether you need a visa, what it costs and where to apply, from official sources.",
+    askLabel: "Ask anything about visas", askPh: "e.g. Türkiye visa for Egyptians", askBtn: "Ask", or: "or",
+    quiz: "Answer 3 questions to find the visa you need",
+    stats: (n, d, r) => [[n, "Arab nationalities"], [d, "visit destinations"], [r, "work and residence visas"]],
+    quickLabel: "Shortcuts", quick: [["/france", "Schengen visa"], ["/germany-opportunity-card", "Germany's Opportunity Card"], ["/digital-nomad-visas", "Digital nomads"], ["/uae-job-seeker", "Job search in the UAE"], ["/visa", "Student visa"]],
+  },
+};
+
 export function VisasHub({ lang }) {
   const t = VTEXT[lang];
   const b = visasBase(lang);
   return (
     <Frame lang={lang} other={visasBase(lang === "ar" ? "en" : "ar")} note={RTEXT[lang].disclaimer}>
-      <section className="gate vz-hero">
-        <h1>{t.title}</h1>
-        <p className="lead">{t.lead}</p>
-      </section>
+      <VisaHero lang={lang} title={t.title} lead={HERO[lang].lead} text={{ ...HERO[lang], stats: undefined, quick: undefined }} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
+        stats={HERO[lang].stats(ORIGINS.length, DEST.length, ROUTES.filter((r) => r.job && !r.closed).length + NOMADS.length)} />
+      <nav className="quick" aria-label={HERO[lang].quickLabel}>
+        <ul>{HERO[lang].quick.map(([href, label]) => <li key={href}><a className="chip" href={href === "/visa" ? `${lang === "ar" ? BASE : `${BASE}/en`}${href}` : `${b}${href}`}>{label}</a></li>)}</ul>
+      </nav>
       <VisaWizard lang={lang} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
         countries={Object.fromEntries(COUNTRY_IDS.map((c) => [c, STUDY_T[lang].countries[c]]))}
         studyReady={Object.fromEntries(ORIGINS.map((o) => [o.c, COUNTRY_IDS.filter((c) => hasVisaRoute(c, o.c))]).filter(([, v]) => v.length))}
