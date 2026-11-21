@@ -1419,3 +1419,11 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .ask-cards > .btn { justify-self: start; }
 .pt-art { display: block; width: min(300px, 80%); height: auto; margin: 18px auto 0; }
 [dir="rtl"] .pt-art { transform: scaleX(-1); }
+.pt-plane-still { display: none; }
+.pt-dash { animation: pt-dash 1.2s linear infinite; }
+@keyframes pt-dash { to { stroke-dashoffset: -10; } }
+@media (prefers-reduced-motion: reduce) {
+  .pt-plane-fly { display: none; }
+  .pt-plane-still { display: inline; }
+  .pt-dash { animation: none; }
+}

@@ -50,12 +50,17 @@ export default function Portal({ lang }) {
             <p className="lead">{x.tagline}</p>
             <svg className="pt-art" viewBox="0 0 320 84" aria-hidden="true" focusable="false">
               <path d="M10 70 H310" stroke="rgba(233,185,73,.35)" strokeWidth="1" />
-              <path d="M40 66 Q160 -6 280 66" fill="none" stroke="#E9B949" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" />
+              <path d="M40 66 Q160 -6 280 66" fill="none" stroke="#E9B949" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" className="pt-dash" />
               <circle cx="40" cy="66" r="6" fill="#E9B949" /><circle cx="40" cy="66" r="2.4" fill="#15234B" />
               <circle cx="280" cy="66" r="6" fill="#E9B949" /><circle cx="280" cy="66" r="2.4" fill="#15234B" />
               <circle cx="100" cy="45" r="3" fill="#C9D1E6" /><circle cx="220" cy="45" r="3" fill="#C9D1E6" />
-              <g transform="translate(160 30) rotate(0)">
-                <path d="M-16 0 L14 0 M14 0 L8 -2.5 M-2 0 L-9 -10 L-5 -10 L6 0 M-2 0 L-9 10 L-5 10 L6 0 M-13 0 L-16 -5 L-14 -5 L-9 0 M-13 0 L-16 5 L-14 5 L-9 0" fill="none" />
+              <path id="pt-route" d="M40 66 Q160 -6 280 66" fill="none" stroke="none" />
+              <g className="pt-plane-fly" opacity="0">
+                <path d="M15 0 C15 -2 12 -2.6 9 -2.6 L4 -2.6 L-4 -12 L-8 -12 L-3 -2.6 L-11 -2.6 L-14 -6.5 L-17 -6.5 L-15 0 L-17 6.5 L-14 6.5 L-11 2.6 L-3 2.6 L-8 12 L-4 12 L4 2.6 L9 2.6 C12 2.6 15 2 15 0 Z" fill="#FFFFFF" />
+                <animateMotion dur="7s" repeatCount="indefinite" rotate="auto" keyPoints="0;1;1" keyTimes="0;0.8;1" calcMode="spline" keySplines="0.45 0 0.55 1;0 0 1 1"><mpath href="#pt-route" /></animateMotion>
+                <animate attributeName="opacity" dur="7s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.08;0.72;0.8;1" />
+              </g>
+              <g className="pt-plane-still" transform="translate(160 30)">
                 <path d="M15 0 C15 -2 12 -2.6 9 -2.6 L4 -2.6 L-4 -12 L-8 -12 L-3 -2.6 L-11 -2.6 L-14 -6.5 L-17 -6.5 L-15 0 L-17 6.5 L-14 6.5 L-11 2.6 L-3 2.6 L-8 12 L-4 12 L4 2.6 L9 2.6 C12 2.6 15 2 15 0 Z" fill="#FFFFFF" />
               </g>
             </svg>
