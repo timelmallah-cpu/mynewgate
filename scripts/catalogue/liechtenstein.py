@@ -34,7 +34,7 @@ add(MA, "cs", "MSc Information Systems", "University of Liechtenstein", "Vaduz",
      "Information systems at the meeting point of technology and business. Required: bachelor's (can follow up to the semester start), CV and motivation letter; there may be an interview"),
     HOW, LIVING, NP, "https://uni.li/en/studies/study-programmes/msc-information-systems", ADMISSION)
 add(MA, "arch", "MSc Architecture", "University of Liechtenstein", "Vaduz", ("ماجستير العلوم في العمارة (MSc Arch)", "Master of Science in Architecture (MSc Arch)"), Y2, FEE, ADM, DL_BOTH,
-    ("مستوى B2 في الإنجليزية", "English at B2"),
+    ("مستوى B2 في الإنجليزية (صفحة البرنامج لا تحدد المستوى، للتحقق)", "English at B2 (the programme page does not state the level, to verify)"),
     ("العمارة والتصميم لمواجهة تغير المناخ مع 5 تخصصات؛ يُطلب ملف أعمال (Portfolio) يشمل مشروع البكالوريوس وخطاب دافع",
      "Architecture and design for climate change with five majors; a portfolio including your bachelor's thesis and a motivation letter are required"),
     HOW, LIVING, NP, "https://www.uni.li/en/studies/study-programmes/msc-architecture", ADMISSION)

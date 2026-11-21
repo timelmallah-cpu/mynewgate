@@ -63,9 +63,9 @@ add(RS, "dent", "Dental Medicine (Integrated Studies in English)", "University o
     ("امتحان قبول أونلاين", "Online entrance exam"), ("التقديم حسب صفحة القبول في كلية الطب بنوفي ساد", "Apply per the Novi Sad Faculty of Medicine admission page"), NP, NP, NS_SRC, NS_SRC)
 KG_SRC = "https://www.medf.kg.ac.rs/iasm/enrollment/3-IASM%202026%20(en).pdf"
 add(RS, "med", "Medicine (Integrated Academic Studies in English)", "University of Kragujevac", "Kragujevac", MD, Y6,
-    ("6,000 يورو سنوياً للأجانب", "€6,000 a year for foreign students"), ("رسوم امتحان 100 يورو", "€100 exam fee"),
+    ("6,000 يورو سنوياً للأجانب (إعلان القبول 2026/2027 يذكر 6,000 يورو والقسط الأول عند التسجيل، ولا يحدد أنها سنوية، للتحقق)", "€6,000 a year for foreign students (the 2026/2027 call gives €6,000 with a first instalment at enrolment and does not say it is per year, to verify)"), ("رسوم امتحان 100 يورو", "€100 exam fee"),
     ("في 2026 كانت الفترة الثالثة: الأوراق من 7 إلى 11 سبتمبر والامتحان 16 سبتمبر؛ مواعيد 2027 لم تُنشر بعد", "In 2026 the third period took documents from 7 to 11 September 2026 with the exam on 16 September 2026; 2027 dates are not out yet"),
-    ("الدراسة بالإنجليزية؛ مستوى الإنجليزية المطلوب حسب الإعلان (للتحقق)", "Taught in English; required English level per the call (to verify)"),
+    ("B2 على الأقل في الإنجليزية، أو إثبات دراسة سابقة بالإنجليزية (إعلان القبول 2026/2027)", "At least B2 English, or proof of previous education in English (2026/2027 call)"),
     ("امتحان قبول في كلية الطب بجامعة كراغوييفاتس", "Entrance exam at the University of Kragujevac Faculty of Medicine"),
     ("حسب إعلان التسجيل في موقع الكلية", "Per the enrolment call on the faculty website"), NP, NP, KG_SRC, KG_SRC)
 write("صربيا", "Serbia", "serbia", RS, level="bachelor")
