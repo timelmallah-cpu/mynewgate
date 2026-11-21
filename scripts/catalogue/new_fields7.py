@@ -54,12 +54,12 @@ ma("de", "sci", "Master of Science in Biochemistry", "Friedrich Schiller Univers
    ("للفصل الشتوي فقط: 1 أبريل - 31 مايو", "Winter semester only: 1 April - 31 May"),
    ("مستوى B2 (بدون شهادة إلزامية حسب صفحة DAAD)", "B2 level (no certificate required per the DAAD page)"),
    ("الكيمياء الحيوية", "Biochemistry"), ("التقديم على صفحة جامعة ينا", "Apply on the University of Jena's page"), DAAD + "4340/")
-ma("de", "sci", "Biochemistry and Molecular Biology (BMB)", "University of Bremen", "Bremen", MSC, S4, FREE("350"),
+ma("de", "sci", "Biochemistry and Molecular Biology (BMB)", "University of Bremen", "Bremen", MSC, S4, ("لا توجد رسوم دراسية؛ رسوم الفصل مع تذكرة المواصلات حوالي 425 يورو (الصفحة لا تذكر السنة الدراسية)", "No tuition fee; semester fee including the semester ticket about €425 (the page does not name the academic year)"),
    ("بكالوريوس في الكيمياء الحيوية أو الأحياء أو الكيمياء أو مجال قريب", "Bachelor's in biochemistry, biology, chemistry or a related field"),
-   ("15 يناير للفصل الشتوي التالي (صفحة DAAD 2024/2025، للتحقق)", "15 January for the following winter semester (DAAD page 2024/2025, to verify)"),
+   ("15 يناير 2027 للفصل الشتوي 2027/2028 (التقديم يفتح في ديسمبر)", "15 January 2027 for winter semester 2027/2028 (applications open in December)"),
    ("مستوى C1 بشهادة TOEFL أو ما يعادلها", "C1 level shown by TOEFL or equivalent"),
    ("الكيمياء الحيوية والبيولوجيا الجزيئية", "Biochemistry and molecular biology"),
-   ("التقديم على صفحة البرنامج بجامعة بريمن", "Apply on the programme page at the University of Bremen"), DAAD + "3900/",
+   ("التقديم على صفحة البرنامج بجامعة بريمن", "Apply on the programme page at the University of Bremen"), "https://www.uni-bremen.de/en/studies/orientation-application/offered-study-program/dbs/study/biochemistry-and-molecular-biology-master",
    "https://www.uni-bremen.de/en/mscbmb/application-and-admission-1")
 ma("de", "sci", "Physics", "University of Siegen", "Siegen", MSC, S4, FREE("372"),
    ("بكالوريوس في الفيزياء أو على وشك إنهائه", "Bachelor's in physics, or about to complete one"),
