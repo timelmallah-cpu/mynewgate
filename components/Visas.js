@@ -4,6 +4,10 @@ import { Analytics } from "@vercel/analytics/next";
 import { Mark, SectionMark } from "./Shell";
 import Flag from "../lib/Flag";
 import VisaChecker from "./VisaChecker";
+import VisaWizard from "./VisaWizard";
+import { T as STUDY_T } from "../lib/i18n";
+import { COUNTRY_IDS } from "../lib/options";
+import { hasVisaRoute } from "../lib/embassy";
 import PointsCheck from "./PointsCheck";
 import { ROUTES, RTEXT } from "../lib/visaRoutes";
 import NomadFinder from "./NomadFinder";
@@ -78,13 +82,16 @@ export function VisasHub({ lang }) {
   const t = VTEXT[lang];
   const b = visasBase(lang);
   return (
-    <Frame lang={lang} other={visasBase(lang === "ar" ? "en" : "ar")}>
+    <Frame lang={lang} other={visasBase(lang === "ar" ? "en" : "ar")} note={RTEXT[lang].disclaimer}>
       <section className="gate vz-hero">
         <h1>{t.title}</h1>
         <p className="lead">{t.lead}</p>
       </section>
-      <VisaChecker lang={lang} base={b} />
-      <h2>{t.destinations}</h2>
+      <VisaWizard lang={lang} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
+        countries={Object.fromEntries(COUNTRY_IDS.map((c) => [c, STUDY_T[lang].countries[c]]))}
+        studyReady={Object.fromEntries(ORIGINS.map((o) => [o.c, COUNTRY_IDS.filter((c) => hasVisaRoute(c, o.c))]).filter(([, v]) => v.length))}
+        jobRoutes={ROUTES.filter((r) => !r.nomad).map((r) => ({ slug: r.slug, name: r.name[lang], short: r.short[lang], points: r.tool === "points" }))} />
+      <h2>{t.visitTitle}</h2>
       <ul className="vz-dests">
         {DEST.map((d) => {
           const n = Object.values(d.status);
@@ -117,6 +124,15 @@ export function VisasHub({ lang }) {
             </a>
           </li>
         ))}
+      </ul>
+      <h2>{t.studyTitle}</h2>
+      <ul className="vz-dests">
+        <li>
+          <a className="card vz-dest" href={lang === "ar" ? `${BASE}/visa` : `${BASE}/en/visa`}>
+            <span className="vz-dname"><b>{t.studyTitle}</b></span>
+            <span className="meta">{t.studyCard(COUNTRY_IDS.length)}</span>
+          </a>
+        </li>
       </ul>
       <p className="meta">{t.soonMore}</p>
     </Frame>

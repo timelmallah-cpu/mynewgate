@@ -1427,3 +1427,24 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
   .pt-plane-still { display: inline; }
   .pt-dash { animation: none; }
 }
+/* Visa questions (VisaWizard) */
+.wz-dots { display: flex; gap: 6px; list-style: none; padding: 0; margin: 0 0 12px; }
+.wz-dots li { width: 28px; height: 5px; border-radius: 3px; background: var(--line); }
+.wz-dots li.on { background: var(--gold, #c9a227); }
+.wz-step { margin: 0; font-size: .85rem; color: #5b6478; }
+.wz-q { display: block; margin: 4px 0 12px; font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+.wz-opts { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.wz-opt { font: inherit; text-align: start; display: grid; gap: 4px; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: #fff; cursor: pointer; min-height: 64px; }
+.wz-opt b { color: var(--navy); }
+.wz-opt span { font-size: .85rem; color: #5b6478; }
+.wz-opt:hover, .wz-opt:focus-visible { border-color: var(--navy); }
+.wz-opt.wz-soon { background: #f7f8fb; }
+.wz-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.wz-chip { font: inherit; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: #fff; cursor: pointer; min-height: 44px; }
+.wz-chip:hover, .wz-chip:focus-visible { border-color: var(--navy); }
+.wz-nav { display: flex; gap: 16px; margin: 12px 0 0; }
+.wz-link { font: inherit; background: none; border: 0; padding: 8px 0; color: var(--navy); text-decoration: underline; cursor: pointer; min-height: 44px; }
+.wz-list { margin: 8px 0; padding-inline-start: 20px; display: grid; gap: 6px; }
+.wz-more { margin: 8px 0; }
+.wz-more summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.wz .vz-form .btn { min-height: 44px; }
