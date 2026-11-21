@@ -19,7 +19,7 @@ import "../app/globals.css";
 
 const ID = "visas-immigration";
 export const visasBase = (lang) => (lang === "en" ? "/en/visas" : "/visas");
-const TAG = { ar: "دليلك الذكي للدراسة والعمل والهجرة حول العالم", en: "Your smart guide to study, work and immigration around the world" };
+const TAG = { ar: "اكتشف فرص الدراسة والعمل والهجرة حول العالم، وقارن الشروط والتكاليف وخطوات التقديم في مكان واحد وباللغة العربية.", en: "Discover study, work and immigration opportunities around the world, and compare requirements, costs and application steps in one place, in Arabic." };
 const fmt = (d, lang) => new Date(d).toLocaleDateString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
 
 function Frame({ lang, other, crumbs, children, note }) {

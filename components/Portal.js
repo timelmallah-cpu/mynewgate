@@ -15,13 +15,13 @@ import "../app/globals.css";
 // so these links are plain <a> tags with BASE.
 const TX = {
   ar: {
-    dir: "rtl", name: "بوابة السفر", latin: "Bawabat AlSafar", tagline: "دليلك الذكي للدراسة والعمل والهجرة حول العالم",
+    dir: "rtl", name: "بوابة السفر", latin: "Bawabat AlSafar", tagline: "اكتشف فرص الدراسة والعمل والهجرة حول العالم، وقارن الشروط والتكاليف وخطوات التقديم في مكان واحد وباللغة العربية.",
     lead: "اختر القسم الذي تريده. كل المعلومات من المصادر الرسمية فقط، منظمة ومكتوبة بالعربية.",
     pick: "الأقسام", study: "بوابة الدراسة", studyBlurb: "الدراسة في الخارج بالإنجليزية في الجامعات الحكومية: البرامج والرسوم والمواعيد والمنح والتأشيرة، لكل دولة.",
     open: "ادخل", soon: "قريباً", other: "English", otherHref: "/en", powered: "Powered by WithHatem", sec: (id) => `${BASE}/soon/${id}`, studyHref: BASE,
   },
   en: {
-    dir: "ltr", name: "Bawabat AlSafar", latin: "بوابة السفر", tagline: "Your smart guide to study, work and immigration around the world",
+    dir: "ltr", name: "Bawabat AlSafar", latin: "بوابة السفر", tagline: "Discover study, work and immigration opportunities around the world, and compare requirements, costs and application steps in one place, in Arabic.",
     lead: "Choose a section. All information comes from official sources only, organised and written in Arabic.",
     pick: "Sections", study: "Study abroad", studyBlurb: "Studying abroad in English at public universities: programmes, fees, deadlines, scholarships and visas for each country.",
     open: "Open", soon: "Coming soon", other: "العربية", otherHref: "/", powered: "Powered by WithHatem", sec: (id) => `${BASE}/en/soon/${id}`, studyHref: `${BASE}/en`,

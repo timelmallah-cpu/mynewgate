@@ -2,8 +2,8 @@ import Portal from "@/components/Portal";
 import { SITE_ORIGIN } from "@/lib/site";
 export const metadata = {
   metadataBase: new URL(SITE_ORIGIN),
-  title: "بوابة السفر | دليلك الذكي للدراسة والعمل والهجرة حول العالم",
-  description: "بوابة السفر: الدراسة في الخارج، والتأشيرات والهجرة، والعمل، والسياحة، بالعربية ومن المصادر الرسمية فقط.",
+  title: "بوابة السفر | فرص الدراسة والعمل والهجرة حول العالم بالعربية",
+  description: "اكتشف فرص الدراسة والعمل والهجرة حول العالم، وقارن الشروط والتكاليف وخطوات التقديم في مكان واحد وباللغة العربية. من المصادر الرسمية، مع رابط المصدر الأصلي لكل معلومة.",
   alternates: { canonical: "/", languages: { ar: "/", en: "/en" } },
 };
 export const viewport = { themeColor: "#13234b" };
