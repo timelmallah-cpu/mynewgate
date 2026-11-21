@@ -1451,3 +1451,11 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .vz-closed { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #fdf0ee; color: #b42318; font-weight: 600; font-size: .85rem; }
 .pts-pick select { max-width: 100%; min-width: 0; }
 .pts-set { min-width: 0; }
+.wz .opt { align-items: center; }
+.wz-opt-t { display: grid; gap: 2px; }
+.wz-opt-t small { font-weight: 400; color: #5b6478; font-size: .85rem; }
+.wz .answers { margin: 16px 0; }
+.vask { margin: 18px 0; padding: 16px; border-radius: 16px; border: 1px solid var(--gold, #c9a227); background: #fffdf5; }
+.vask h3 { margin: 0 0 4px; color: var(--navy); }
+.vask .ask-form textarea { min-width: 0; }
+.wz .quiz-q { font-size: 1.25rem; line-height: 1.45; font-weight: 600; color: var(--navy); margin: 0 0 10px; }

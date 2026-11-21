@@ -2,7 +2,9 @@
 // "Which visa do I need?" in questions: purpose -> nationality -> destination / income -> answer + link.
 // Covers visit, study, job search and remote work (digital nomad). Nothing is saved; the answers live
 // only in the URL hash (#visit-eg-fr, #study-eg-de, #job-eg, #nomad-eg-3000) so a result can be shared.
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Flag from "../lib/Flag";
+import VisaAsk from "./VisaAsk";
 import { ORIGINS, ORIGIN_NAME, DEST, KIND, VTEXT } from "../lib/visit";
 import { NOMADS, NTEXT, nationalityOk } from "../lib/nomadVisas";
 
@@ -21,7 +23,7 @@ const W = {
     nomadRes: (k) => (!k ? "لا توجد تأشيرة في قائمتنا تناسب هذا الدخل" : k === 1 ? "تأشيرة واحدة تناسب هذا الدخل" : k === 2 ? "تأشيرتان تناسبان هذا الدخل" : k <= 10 ? `${k} تأشيرات تناسب هذا الدخل` : `${k} تأشيرة تناسب هذا الدخل`),
     nomadOther: "تأشيرات تحتاج دخلاً أعلى أو ليس لها رقم شهري", nomadAll: "كل تأشيرات الرحالة الرقميين",
     liveSoon: "هذا الجزء قيد الإعداد: الإقامة الدائمة والهجرة في كندا وأستراليا ونيوزيلندا وبريطانيا وأوروبا. إلى أن يجهز، تجد طرق الإقامة الطويلة المتاحة الآن أسفل هذه الصفحة.",
-    next: "التالي", show: "اعرض النتيجة",
+    next: "التالي", show: "اعرض النتيجة", stepOf: (a, b) => `السؤال ${a} من ${b}`, answers: "إجاباتك", edit: "تعديل", labels: { p: "سبب السفر", o: "الجنسية", d: "الوجهة", inc: "الدخل الشهري" }, incNote: "اكتب المبلغ باليورو قبل الضرائب كما في عقدك أو كشف حسابك. لا نحفظه.",
   },
   en: {
     q1: "Why are you travelling?", q2: "What is your nationality (passport)?", q3v: "Where do you want to go?", q3s: "Where do you want to study?", q3n: "How much do you earn a month working remotely? (euros)",
@@ -37,7 +39,7 @@ const W = {
     nomadRes: (k) => (k === 1 ? "1 visa fits this income" : k ? `${k} visas fit this income` : "No visa on our list fits this income"),
     nomadOther: "Visas that need a higher income or give no monthly figure", nomadAll: "All digital nomad visas",
     liveSoon: "This part is being prepared: permanent residence and immigration in Canada, Australia, New Zealand, the UK and Europe. Until then, the long-stay routes available now are further down this page.",
-    next: "Next", show: "Show the result",
+    next: "Next", show: "Show the result", stepOf: (a, b) => `Question ${a} of ${b}`, answers: "Your answers", edit: "Edit", labels: { p: "Purpose", o: "Nationality", d: "Destination", inc: "Monthly income" }, incNote: "Type the amount in euros before tax, as in your contract or bank statement. We don't save it.",
   },
 };
 const PURPOSES = ["visit", "study", "job", "nomad", "live"];
@@ -51,107 +53,113 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
   const [o, setO] = useState("");
   const [d, setD] = useState("");
   const [inc, setInc] = useState("");
-  const [done, setDone] = useState(false);
+  const [step, setStep] = useState(0);
+  const [editing, setEditing] = useState(false);
+  const top = useRef(null);
+
+  // The questions depend on the purpose: job search has no third question, "immigration" (soon) has only the first.
+  const keys = p === "live" ? ["p"] : p === "job" ? ["p", "o"] : ["p", "o", p === "nomad" ? "inc" : "d"];
+  const done = step >= keys.length;
+  const v = Number(String(inc).replace(/[^\d]/g, ""));
 
   useEffect(() => {
     const h = (location.hash || "").slice(1).split("-");
     if (!PURPOSES.includes(h[0])) return;
     setP(h[0]);
-    if (h[1] && ORIGIN_NAME[h[1]]) setO(h[1]);
-    if (h[0] === "visit" && DEST.some((x) => x.id === h[2])) { setD(h[2]); setDone(true); }
-    else if (h[0] === "study" && countries[h[2]]) { setD(h[2]); setDone(true); }
-    else if (h[0] === "nomad" && /^\d+$/.test(h[2] || "")) { setInc(h[2]); setDone(true); }
-    else if ((h[0] === "job" && h[1]) || h[0] === "live") setDone(true);
+    if (h[0] === "live") { setStep(1); return; }
+    if (!(h[1] && ORIGIN_NAME[h[1]])) { setStep(1); return; }
+    setO(h[1]);
+    if (h[0] === "job") { setStep(2); return; }
+    if (h[0] === "visit" && DEST.some((x) => x.id === h[2])) { setD(h[2]); setStep(3); }
+    else if (h[0] === "study" && countries[h[2]]) { setD(h[2]); setStep(3); }
+    else if (h[0] === "nomad" && /^\d+$/.test(h[2] || "")) { setInc(h[2]); setStep(3); }
+    else setStep(2);
   }, [countries]);
 
   useEffect(() => {
-    if (!p) { if (location.hash) history.replaceState(null, "", location.pathname + location.search); return; }
-    const v = Number(String(inc).replace(/[^\d]/g, ""));
+    if (!done) { if (location.hash) history.replaceState(null, "", location.pathname + location.search); return; }
     const parts = [p, o, p === "nomad" ? (v || "") : d].filter(Boolean);
     history.replaceState(null, "", `#${parts.join("-")}`);
-  }, [p, o, d, inc]);
+  }, [done, p, o, d, v]);
+
+  // Each new question starts at the top of the tool, like the study questions.
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) { first.current = false; return; }
+    const r = top.current?.getBoundingClientRect();
+    if (r && r.top < 0) top.current.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  }, [step]);
 
   const sorted = [...ORIGINS].sort((a, b) => a[lang].localeCompare(b[lang], lang));
-  const reset = () => { setP(""); setO(""); setD(""); setInc(""); setDone(false); };
-  const pickP = (x) => { setP(x); setD(""); setInc(""); setDone(x === "live"); };
-  const stepNo = !p ? 1 : !o && p !== "live" ? 2 : 3;
-  const needsThird = p === "visit" || p === "study" || p === "nomad";
+  const destOpts = DEST.map((x) => ({ id: x.id, label: x.name[lang], flag: x.id }));
+  const studyOpts = Object.entries(countries).sort((a, b) => a[1].localeCompare(b[1], lang)).map(([c, n]) => ({ id: c, label: n, flag: c }));
+  const Q = {
+    p: { q: w.q1, opts: PURPOSES.map((x) => ({ id: x, label: w.p[x][0], sub: w.p[x][1] })), val: p },
+    o: { q: w.q2, opts: sorted.map((x) => ({ id: x.c, label: x[lang] })), val: o, two: true },
+    d: { q: p === "study" ? w.q3s : w.q3v, opts: p === "study" ? studyOpts : destOpts, val: d, two: true },
+    inc: { q: w.q3n, input: true },
+  };
+  const reset = () => { setP(""); setO(""); setD(""); setInc(""); setStep(0); setEditing(false); };
+  const pick = (k, id) => {
+    if (k === "p") { if (id !== p) { setD(""); setInc(""); } setP(id); }
+    if (k === "o") setO(id);
+    if (k === "d") setD(id);
+    const nextKeys = k === "p" ? (id === "live" ? ["p"] : id === "job" ? ["p", "o"] : ["p", "o", id === "nomad" ? "inc" : "d"]) : keys;
+    // One-answer questions move on by themselves (short pause so the tick shows); while editing, straight back to the result.
+    const ready = (kk) => (kk === "p" ? true : kk === "o" ? (k === "o" || o) : kk === "d" ? (k === "d" || d) : v > 0);
+    setTimeout(() => setStep((n) => {
+      if (n !== step) return n;
+      if (editing && nextKeys.every(ready)) { setEditing(false); return nextKeys.length; }
+      return n + 1;
+    }), 250);
+  };
 
-  const Back = () => (
-    <p className="wz-nav">
-      <button type="button" className="wz-link" onClick={() => (done ? setDone(false) : o && needsThird ? setO("") : setP(""))}>{lang === "ar" ? "→ " : "← "}{w.back}</button>
-      <button type="button" className="wz-link" onClick={reset}>{w.restart}</button>
-    </p>
-  );
-
-  let body;
-  if (!p) {
-    body = (
-      <>
-        <p className="wz-step">{w.step(1)}</p>
-        <h3 className="wz-q">{w.q1}</h3>
-        <div className="wz-opts">
-          {PURPOSES.map((x) => (
-            <button key={x} type="button" className={`wz-opt${x === "live" ? " wz-soon" : ""}`} onClick={() => pickP(x)}>
-              <b>{w.p[x][0]}</b><span>{w.p[x][1]}</span>
-            </button>
-          ))}
+  if (!done) {
+    const k = keys[step];
+    const s = Q[k];
+    return (
+      <section className="card vz-tool wz" aria-labelledby="wz-h" ref={top}>
+        <h2 id="wz-h" className="wz-title">{t.toolTitle}</h2>
+        <div className="steps" style={{ gridTemplateColumns: `repeat(${Math.max(keys.length, step + 1)}, 1fr)` }} aria-hidden="true">
+          {keys.map((_, i) => <span key={i} className={i < step ? "on" : i === step ? "now" : ""} />)}
         </div>
-      </>
-    );
-  } else if (p === "live") {
-    body = (<><div className="vz-result vz-cond" aria-live="polite"><p className="vz-kind">{w.p.live[0]}</p><p>{w.liveSoon}</p></div><Back /></>);
-  } else if (!o) {
-    body = (
-      <>
-        <p className="wz-step">{w.step(2)} · {w.p[p][0]}</p>
-        <label className="wz-q" htmlFor="wz-o">{w.q2}</label>
-        <div className="vz-form">
-          <select id="wz-o" value={o} onChange={(e) => { setO(e.target.value); if (p === "job" && e.target.value) setDone(true); }}>
-            <option value="">{w.pick}</option>
-            {sorted.map((x) => <option key={x.c} value={x.c}>{x[lang]}</option>)}
-          </select>
-        </div>
-        <Back />
-      </>
-    );
-  } else if (!done) {
-    const v = Number(String(inc).replace(/[^\d]/g, ""));
-    body = (
-      <>
-        <p className="wz-step">{w.step(3)} · {w.p[p][0]} · {ORIGIN_NAME[o][lang]}</p>
-        {p === "visit" && (
-          <>
-            <h3 className="wz-q">{w.q3v}</h3>
-            <div className="wz-chips">
-              {DEST.map((x) => <button key={x.id} type="button" className="wz-chip" onClick={() => { setD(x.id); setDone(true); }}>{x.name[lang]}</button>)}
-            </div>
-          </>
-        )}
-        {p === "study" && (
-          <>
-            <label className="wz-q" htmlFor="wz-s">{w.q3s}</label>
+        <p className="meta">{w.stepOf(step + 1, p ? keys.length : 3)}</p>
+        <p className="quiz-q" id={`wz-q-${k}`}>{s.q}</p>
+        {s.input ? (
+          <form onSubmit={(e) => { e.preventDefault(); if (v) { setEditing(false); setStep(keys.length); } }}>
             <div className="vz-form">
-              <select id="wz-s" value={d} onChange={(e) => { setD(e.target.value); if (e.target.value) setDone(true); }}>
-                <option value="">{w.pick}</option>
-                {Object.entries(countries).sort((a, b) => a[1].localeCompare(b[1], lang)).map(([c, n]) => <option key={c} value={c}>{n}</option>)}
-              </select>
+              <input id="wz-i" aria-labelledby="wz-q-inc" inputMode="numeric" className="nm-in" placeholder="3000" value={inc} onChange={(e) => setInc(e.target.value)} />
             </div>
-          </>
-        )}
-        {p === "nomad" && (
-          <form onSubmit={(e) => { e.preventDefault(); if (v) setDone(true); }}>
-            <label className="wz-q" htmlFor="wz-i">{w.q3n}</label>
-            <div className="vz-form">
-              <input id="wz-i" inputMode="numeric" className="nm-in" placeholder="3000" value={inc} onChange={(e) => setInc(e.target.value)} />
+            <p className="meta">{w.incNote}</p>
+            <div className="quiz-actions">
               <button type="submit" className="btn" disabled={!v}>{w.show}</button>
+              <button type="button" className="btn ghost" onClick={() => setStep(step - 1)}>{w.back}</button>
             </div>
           </form>
+        ) : (
+          <>
+            <div className={s.two ? "options two" : "options"} role="group" aria-labelledby={`wz-q-${k}`}>
+              {s.opts.map((x) => (
+                <button key={x.id} type="button" className={`opt${x.id === "live" ? " wz-soon" : ""}`} aria-pressed={s.val === x.id} onClick={() => pick(k, x.id)}>
+                  {x.flag && <Flag code={x.flag} />}
+                  <span className="wz-opt-t">{x.label}{x.sub && <small>{x.sub}</small>}</span>
+                  <span className="tick">✓</span>
+                </button>
+              ))}
+            </div>
+            <div className="quiz-actions">
+              <button type="button" className="btn" disabled={!s.val} onClick={() => setStep(step + 1)}>{step === keys.length - 1 ? w.show : w.next}</button>
+              {step > 0 && <button type="button" className="btn ghost" onClick={() => setStep(step - 1)}>{w.back}</button>}
+            </div>
+          </>
         )}
-        <Back />
-      </>
+      </section>
     );
-  } else if (p === "visit") {
+  }
+
+  const ansVal = { p: p && w.p[p][0], o: o && ORIGIN_NAME[o][lang], d: d && (p === "study" ? countries[d] : DEST.find((x) => x.id === d)?.name[lang]), inc: v ? `${fmt(v, lang)} €` : "" };
+  let body;
+  if (p === "visit") {
     const dest = DEST.find((x) => x.id === d);
     const st = dest.status[o];
     body = (
@@ -172,7 +180,6 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
             {st.src ? <> · <a href={st.src} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></> : null}
           </p>
         </div>
-        <Back />
       </>
     );
   } else if (p === "study") {
@@ -186,7 +193,6 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
             <a href={`${studyBase}/visa?from=${o}&to=${d}`}>{w.studyGo} {lang === "ar" ? "←" : "→"}</a>
           </p>
         </div>
-        <Back />
       </>
     );
   } else if (p === "job") {
@@ -208,11 +214,9 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
           </ul>
           <p className="meta">{w.jobSoon}</p>
         </div>
-        <Back />
       </>
     );
   } else {
-    const v = Number(String(inc).replace(/[^\d]/g, ""));
     const rows = NOMADS.map((n) => ({ n, nat: nationalityOk(n, o), fit: n.min != null && v >= n.min })).sort((a, b) => (a.n.min ?? 1e9) - (b.n.min ?? 1e9));
     const fits = rows.filter((r) => r.fit && r.nat !== false);
     const rest = rows.filter((r) => !r.fit && r.nat !== false);
@@ -236,16 +240,29 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
           )}
           <p className="vz-links"><a href={`${base}/digital-nomad-visas`}>{w.nomadAll} {lang === "ar" ? "←" : "→"}</a></p>
         </div>
-        <Back />
       </>
     );
   }
 
+
   return (
-    <section className="card vz-tool wz" aria-labelledby="wz-h">
-      <h2 id="wz-h">{t.toolTitle}</h2>
-      <ol className="wz-dots" aria-hidden="true">{[1, 2, 3].map((n) => <li key={n} className={n <= stepNo ? "on" : ""} />)}</ol>
-      {body}
+    <section className="card vz-tool wz" aria-labelledby="wz-h" ref={top}>
+      <h2 id="wz-h" className="wz-title">{t.toolTitle}</h2>
+      {p === "live" ? <div className="vz-result vz-cond" aria-live="polite"><p className="vz-kind">{w.p.live[0]}</p><p>{w.liveSoon}</p></div> : body}
+      <div className="answers">
+        <h3>{w.answers}</h3>
+        <ul>
+          {keys.map((k, i) => (
+            <li key={k}>
+              <span className="k">{w.labels[k]}</span>
+              <span className="v">{ansVal[k]}</span>
+              <button type="button" className="linkbtn" onClick={() => { setEditing(true); setStep(i); }}>{w.edit}</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      {p !== "live" && <VisaAsk key={`${p}-${o}-${d}-${v}`} lang={lang} ctx={{ p, o, d, inc: v || null }} base={base} studyBase={studyBase} />}
+      <button type="button" className="btn ghost" onClick={reset}>{w.restart}</button>
     </section>
   );
 }

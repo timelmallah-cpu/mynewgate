@@ -10,6 +10,7 @@ import { useQuota, limitBody } from "@/lib/assistant/usage";
 import { currentUser } from "@/lib/account/http";
 import { studentContext } from "@/lib/assistant/memory";
 import { programmeCards } from "@/lib/assistant/cards";
+import { cleanVisaCtx, visaDocs, visaSituation, VISA_SYSTEM } from "@/lib/assistant/visaContext";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -44,6 +45,10 @@ export async function POST(req) {
       left = r.left; per = r.per;
     } catch { return bad("failed", 502); }
   }
+
+  // Visas questions tool: the context is the visitor's own answers and the visas data for them (no account data).
+  const visa = cleanVisaCtx(body?.visa);
+  if (visa) return answerVisa({ visa, lang, message, history, mock, left, per });
 
   // Memory: a signed-in student's own account data (answers, saved programmes, tracker), unless they switched it off.
   let student = "";
@@ -80,4 +85,32 @@ export async function POST(req) {
     .map((url) => ({ url, title: (TITLES.get(url) || { ar: url, en: url })[lang] }));
   const cards = programmeCards(sources.map((x) => x.url), lang);
   return Response.json({ answer: out.answer, sources, cards, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
+}
+
+async function answerVisa({ visa, lang, message, history, mock, left, per }) {
+  const docs = visaDocs(visa);
+  const titles = new Map(docs.map((d) => [d.url, d.title]));
+  let out;
+  if (mock) {
+    out = { answer: `${lang === "ar" ? "إجابة تجريبية عن" : "Test answer about"}: ${message}\n${visaSituation(visa, lang)}`, sources: docs.slice(0, 2).map((d) => d.url), found: docs.length > 0 };
+  } else {
+    const turns = [];
+    for (const h of history) {
+      if (!turns.length && h.role !== "user") continue;
+      if (turns.length && turns[turns.length - 1].role === h.role) continue;
+      turns.push({ role: h.role, parts: [{ text: h.text }] });
+    }
+    if (turns.length && turns[turns.length - 1].role === "user") turns.pop();
+    const ctx = docs.map((d) => `[${d.url}] ${d.title[lang]}: ${d.text[lang]}`).join("\n");
+    turns.push({ role: "user", parts: [{ text: `CONTEXT (site documents):\n${ctx}\n\nSITUATION:\n${visaSituation(visa, lang)}\n\nQUESTION (${lang === "ar" ? "answer in the same Arabic dialect the user writes in, or in simple Modern Standard Arabic if unclear; in English if the question is in English" : "answer in the language of the question, English by default"}):\n${message}` }] });
+    try {
+      out = await ask({ system: VISA_SYSTEM, contents: turns, signal: AbortSignal.timeout(25000) });
+    } catch (e) {
+      console.error("ask visa failed", String(e).slice(0, 300));
+      return bad("failed", 502);
+    }
+  }
+  const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => titles.has(u)).slice(0, 4)
+    .map((url) => ({ url, title: titles.get(url)[lang] }));
+  return Response.json({ answer: out.answer, sources, cards: [], found: out.found, left, per }, { headers: { "Cache-Control": "no-store" } });
 }
