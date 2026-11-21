@@ -9,6 +9,7 @@ import { T as STUDY_T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { hasVisaRoute } from "../lib/embassy";
 import PointsCheck from "./PointsCheck";
+import AtPointsCheck from "./AtPointsCheck";
 import { ROUTES, RTEXT } from "../lib/visaRoutes";
 import NomadFinder from "./NomadFinder";
 import { NOMADS, NTEXT, NOMAD_HUB } from "../lib/nomadVisas";
@@ -90,7 +91,7 @@ export function VisasHub({ lang }) {
       <VisaWizard lang={lang} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`}
         countries={Object.fromEntries(COUNTRY_IDS.map((c) => [c, STUDY_T[lang].countries[c]]))}
         studyReady={Object.fromEntries(ORIGINS.map((o) => [o.c, COUNTRY_IDS.filter((c) => hasVisaRoute(c, o.c))]).filter(([, v]) => v.length))}
-        jobRoutes={ROUTES.filter((r) => !r.nomad).map((r) => ({ slug: r.slug, name: r.name[lang], short: r.short[lang], points: r.tool === "points" }))} />
+        jobRoutes={ROUTES.filter((r) => r.job).map((r) => ({ id: r.id, slug: r.slug, name: r.name[lang], short: r.short[lang], points: r.tool === "points" || r.tool === "at-points", closed: !!r.closed }))} />
       <h2>{t.visitTitle}</h2>
       <ul className="vz-dests">
         {DEST.map((d) => {
@@ -107,7 +108,19 @@ export function VisasHub({ lang }) {
           );
         })}
       </ul>
-      <h2>{RTEXT[lang].section}</h2>
+      <h2>{RTEXT[lang].jobSection}</h2>
+      <p className="meta">{RTEXT[lang].jobLead}</p>
+      <ul className="vz-dests">
+        {ROUTES.filter((r) => r.job).map((r) => (
+          <li key={r.slug}>
+            <a className="card vz-dest" href={`${b}/${r.slug}`}>
+              <span className="vz-dname"><DestFlag id={r.id} /> <b>{r.name[lang]}</b>{r.closed ? <> <span className="vz-closed">{RTEXT[lang].closed}</span></> : null}</span>
+              <span className="meta">{r.short[lang]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <h2>{RTEXT[lang].longSection}</h2>
       <p className="meta">{RTEXT[lang].sectionLead}</p>
       <ul className="vz-dests">
         <li>
@@ -116,10 +129,10 @@ export function VisasHub({ lang }) {
             <span className="meta">{lang === "ar" ? `${NOMADS.length} دولة: الدخل المطلوب والمدة وأين تقدّم` : `${NOMADS.length} countries: income needed, length and where to apply`}</span>
           </a>
         </li>
-        {ROUTES.filter((r) => !r.nomad).map((r) => (
+        {ROUTES.filter((r) => !r.nomad && !r.job).map((r) => (
           <li key={r.slug}>
             <a className="card vz-dest" href={`${b}/${r.slug}`}>
-              <span className="vz-dname"><Flag code={r.id} /> <b>{r.name[lang]}</b></span>
+              <span className="vz-dname"><DestFlag id={r.id} /> <b>{r.name[lang]}</b></span>
               <span className="meta">{r.short[lang]}</span>
             </a>
           </li>
@@ -192,7 +205,8 @@ export function VisaRoute({ r, lang }) {
   const ext = { target: "_blank", rel: "noopener noreferrer" };
   return (
     <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${r.slug}`} crumbs={r.nomad ? <><a href={`${b}/${NOMAD_HUB}`}>{NTEXT[lang].hubTitle}</a> {lang === "ar" ? "←" : "→"} {r.name[lang]}</> : r.name[lang]} note={t.disclaimer}>
-      <h1 className="vz-h1"><Flag code={r.id} /> {r.name[lang]}</h1>
+      <h1 className="vz-h1"><DestFlag id={r.id} /> {r.name[lang]}</h1>
+      {r.closed && <p className="vz-closed">{t.closed}</p>}
       <p className="lead">{r.lead[lang]}</p>
       <section className="card">
         <dl className="vz-facts">
@@ -205,6 +219,7 @@ export function VisaRoute({ r, lang }) {
         <p className="meta"><a href={r.who.src} {...ext}>{t.src} ↗</a></p>
       </section>
       {r.tool === "points" && <PointsCheck lang={lang} selfCheck={r.links[0][1]} />}
+      {r.tool === "at-points" && <AtPointsCheck lang={lang} calc={r.links[0][1]} />}
       <section className="card">
         <h2>{t.docs}</h2>
         <ul>{r.docs[lang].map((x) => <li key={x}>{x}</li>)}</ul>

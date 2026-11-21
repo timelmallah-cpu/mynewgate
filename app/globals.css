@@ -1448,3 +1448,6 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .wz-more { margin: 8px 0; }
 .wz-more summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
 .wz .vz-form .btn { min-height: 44px; }
+.vz-closed { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #fdf0ee; color: #b42318; font-weight: 600; font-size: .85rem; }
+.pts-pick select { max-width: 100%; min-width: 0; }
+.pts-set { min-width: 0; }

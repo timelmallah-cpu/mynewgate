@@ -15,9 +15,9 @@ const W = {
     studyReady: "عندنا خطوات مفصّلة لهذا الطريق: أين تحجز الموعد، والأوراق، والرسوم، وإثبات المال.",
     studyGeneral: "عندنا الخطوات العامة لتأشيرة الدراسة في هذه الدولة؛ الجهة التي تقدّم لديها من بلدك مكتوبة في الصفحة مع رابطها الرسمي، وبعض التفاصيل للتحقق.",
     studyGo: "افتح خطوات تأشيرة الدراسة", studyProg: "وابحث عن برامج في هذه الدولة",
-    jobRes: "طرق البحث عن عمل المتاحة الآن في الموقع",
-    jobSoon: "قريباً: البطاقة الزرقاء الأوروبية، وتأشيرة العامل الماهر البريطانية، وطرق النقاط في كندا وأستراليا ونيوزيلندا.",
-    jobOpen: "مفتوحة لكل الجنسيات بشرط المؤهل", calc: "احسب نقاطك",
+    jobRes: "تأشيرات البحث عن عمل بدون عرض عمل مسبق",
+    jobSoon: "كل تأشيرة لها شروطها: افتح الصفحة لتعرف هل تناسبك. قريباً: البطاقة الزرقاء الأوروبية، وتأشيرة العامل الماهر البريطانية، وطرق النقاط في كندا وأستراليا ونيوزيلندا.",
+    closed: "متوقفة حالياً", gcc: "مواطنو الخليج يدخلون الإمارات بدون تأشيرة", calc: "احسب نقاطك",
     nomadRes: (k) => (!k ? "لا توجد تأشيرة في قائمتنا تناسب هذا الدخل" : k === 1 ? "تأشيرة واحدة تناسب هذا الدخل" : k === 2 ? "تأشيرتان تناسبان هذا الدخل" : k <= 10 ? `${k} تأشيرات تناسب هذا الدخل` : `${k} تأشيرة تناسب هذا الدخل`),
     nomadOther: "تأشيرات تحتاج دخلاً أعلى أو ليس لها رقم شهري", nomadAll: "كل تأشيرات الرحالة الرقميين",
     liveSoon: "هذا الجزء قيد الإعداد: الإقامة الدائمة والهجرة في كندا وأستراليا ونيوزيلندا وبريطانيا وأوروبا. إلى أن يجهز، تجد طرق الإقامة الطويلة المتاحة الآن أسفل هذه الصفحة.",
@@ -31,9 +31,9 @@ const W = {
     studyReady: "We have detailed steps for this route: where to book, documents, fees and proof of funds.",
     studyGeneral: "We have the general student visa steps for this country; where to apply from your country is on the page with its official link, and some details are to verify.",
     studyGo: "Open the student visa steps", studyProg: "and find programmes in this country",
-    jobRes: "Job-search routes on the site now",
-    jobSoon: "Coming soon: the EU Blue Card, the UK Skilled Worker visa, and the points routes of Canada, Australia and New Zealand.",
-    jobOpen: "Open to every nationality if you hold the qualification", calc: "Check your points",
+    jobRes: "Visas to look for work without a job offer",
+    jobSoon: "Each visa has its own conditions: open the page to see if it fits you. Coming soon: the EU Blue Card, the UK Skilled Worker visa, and the points routes of Canada, Australia and New Zealand.",
+    closed: "Suspended", gcc: "GCC citizens enter the UAE without a visa", calc: "Check your points",
     nomadRes: (k) => (k === 1 ? "1 visa fits this income" : k ? `${k} visas fit this income` : "No visa on our list fits this income"),
     nomadOther: "Visas that need a higher income or give no monthly figure", nomadAll: "All digital nomad visas",
     liveSoon: "This part is being prepared: permanent residence and immigration in Canada, Australia, New Zealand, the UK and Europe. Until then, the long-stay routes available now are further down this page.",
@@ -190,13 +190,20 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
       </>
     );
   } else if (p === "job") {
+    const GCC = ["sa", "ae", "kw", "qa", "bh", "om"];
+    const list = jobRoutes.filter((r) => !(r.id === "ae" && o === "ae")).sort((a, b) => Number(a.closed) - Number(b.closed));
     body = (
       <>
         <div className="vz-result vz-eta" aria-live="polite">
+          <p className="vz-who">{ORIGIN_NAME[o][lang]}</p>
           <p className="vz-kind">{w.jobRes}</p>
           <ul className="wz-list">
-            {jobRoutes.map((r) => (
-              <li key={r.slug}><a href={`${base}/${r.slug}`}><b>{r.name}</b></a><br /><span className="meta">{r.short} · {w.jobOpen}</span>{r.points ? <> · <a href={`${base}/${r.slug}#pts-h`}>{w.calc}</a></> : null}</li>
+            {list.map((r) => (
+              <li key={r.slug}>
+                <a href={`${base}/${r.slug}`}><b>{r.name}</b></a>{r.closed ? <> <span className="vz-closed">{w.closed}</span></> : null}<br />
+                <span className="meta">{r.short}{r.id === "ae" && GCC.includes(o) ? ` · ${w.gcc}` : ""}</span>
+                {r.points ? <> · <a href={`${base}/${r.slug}#points`}>{w.calc}</a></> : null}
+              </li>
             ))}
           </ul>
           <p className="meta">{w.jobSoon}</p>

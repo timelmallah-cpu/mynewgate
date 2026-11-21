@@ -16,7 +16,7 @@ export default function PointsCheck({ lang, selfCheck }) {
   else msg = total >= 6 ? t.ok : t.need;
   const good = base.full ? base.money : !missing.length && total >= 6;
   return (
-    <section className="card vz-tool" aria-labelledby="pts-h">
+    <section className="card vz-tool" aria-labelledby="pts-h" id="points">
       <h2 id="pts-h">{t.title}</h2>
       <fieldset className="pts-set">
         <legend>{t.basic}</legend>
