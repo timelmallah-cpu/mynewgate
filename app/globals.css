@@ -1417,3 +1417,5 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .ask-card dd { margin: 0; font-weight: 600; font-size: .92rem; }
 .ask-card-act { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .ask-cards > .btn { justify-self: start; }
+.pt-art { display: block; width: min(300px, 80%); height: auto; margin: 18px auto 0; }
+[dir="rtl"] .pt-art { transform: scaleX(-1); }

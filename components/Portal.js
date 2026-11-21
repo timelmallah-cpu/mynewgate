@@ -48,6 +48,17 @@ export default function Portal({ lang }) {
           <section className="gate pt-hero">
             <h1>{x.name}</h1>
             <p className="lead">{x.tagline}</p>
+            <svg className="pt-art" viewBox="0 0 320 84" aria-hidden="true" focusable="false">
+              <path d="M10 70 H310" stroke="rgba(233,185,73,.35)" strokeWidth="1" />
+              <path d="M40 66 Q160 -6 280 66" fill="none" stroke="#E9B949" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="round" />
+              <circle cx="40" cy="66" r="6" fill="#E9B949" /><circle cx="40" cy="66" r="2.4" fill="#15234B" />
+              <circle cx="280" cy="66" r="6" fill="#E9B949" /><circle cx="280" cy="66" r="2.4" fill="#15234B" />
+              <circle cx="100" cy="45" r="3" fill="#C9D1E6" /><circle cx="220" cy="45" r="3" fill="#C9D1E6" />
+              <g transform="translate(160 30) rotate(0)">
+                <path d="M-16 0 L14 0 M14 0 L8 -2.5 M-2 0 L-9 -10 L-5 -10 L6 0 M-2 0 L-9 10 L-5 10 L6 0 M-13 0 L-16 -5 L-14 -5 L-9 0 M-13 0 L-16 5 L-14 5 L-9 0" fill="none" />
+                <path d="M15 0 C15 -2 12 -2.6 9 -2.6 L4 -2.6 L-4 -12 L-8 -12 L-3 -2.6 L-11 -2.6 L-14 -6.5 L-17 -6.5 L-15 0 L-17 6.5 L-14 6.5 L-11 2.6 L-3 2.6 L-8 12 L-4 12 L4 2.6 L9 2.6 C12 2.6 15 2 15 0 Z" fill="#FFFFFF" />
+              </g>
+            </svg>
           </section>
           <ul className="pt-grid">
             <li>
