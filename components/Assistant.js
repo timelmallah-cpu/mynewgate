@@ -6,8 +6,38 @@ import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";
 import Upgrade, { leftText } from "./Upgrade";
 import { signedIn } from "../lib/saved";
+import SaveButton from "./SaveButton";
 
 const MEM_KEY = "mng-ask-memory";
+const CARD = {
+  ar: { title: "برامج من الإجابة", fee: "الرسوم", next: "أقرب موعد", est: "تقديري", none: "غير منشور", open: "التفاصيل والمصدر", cmp: "قارن هذه البرامج", lvl: { master: "ماجستير", bachelor: "بكالوريوس", phd: "دكتوراه" } },
+  en: { title: "Programmes from this answer", fee: "Fee", next: "Next deadline", est: "estimate", none: "Not published", open: "Details and source", cmp: "Compare these programmes", lvl: { master: "Master's", bachelor: "Bachelor's", phd: "Doctorate" } },
+};
+const day = (d, lang) => new Date(d + "T12:00:00Z").toLocaleDateString(lang === "ar" ? "ar-EG-u-nu-latn" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
+
+function Cards({ cards, lang, base }) {
+  const c = CARD[lang];
+  const ids = cards.map((x) => x.id).filter((x) => /^\d+$/.test(x));
+  return (
+    <div className="ask-cards">
+      <span className="ask-cards-h">{c.title}</span>
+      <ul>
+        {cards.map((x) => (
+          <li key={x.id} className="ask-card">
+            <Link href={`${base}${x.url}`} className="ask-card-name">{x.name}</Link>
+            <span className="meta">{x.university} · {x.country} · {c.lvl[x.level] || x.level}</span>
+            <dl>
+              <div><dt>{c.fee}</dt><dd>{x.fee}</dd></div>
+              <div><dt>{c.next}</dt><dd>{x.next ? `${day(x.next.d, lang)}${x.next.est ? ` (${c.est})` : ""}` : c.none}</dd></div>
+            </dl>
+            <div className="ask-card-act"><SaveButton k={`p:${x.id}`} lang={lang} /> <Link className="btn ghost small" href={`${base}${x.url}`}>{c.open}</Link></div>
+          </li>
+        ))}
+      </ul>
+      {ids.length > 1 && <Link className="btn small" href={`${base}/compare?ids=${ids.join(",")}`}>{c.cmp}</Link>}
+    </div>
+  );
+}
 const MEM = {
   ar: { label: "استخدم بيانات حسابي في الإجابة (إجاباتك المحفوظة وقائمتك وطلباتك)", next: "ما خطوتي التالية؟", on: "المساعد قرأ بيانات حسابك" },
   en: { label: "Use my account data in answers (your saved answers, list and applications)", next: "What is my next step?", on: "The assistant read your account data" },
@@ -66,7 +96,7 @@ export default function Assistant({ lang }) {
       const d = await r.json().catch(() => ({}));
       if (!r.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
       else {
-        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [], memory: !!d.memory }]);
+        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [], cards: d.cards || [], memory: !!d.memory }]);
         if (typeof d.left === "number") { setLeft(d.left); setPer(d.per); }
       }
     } catch { setErr(s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
@@ -95,6 +125,7 @@ export default function Assistant({ lang }) {
           <div key={i} className={`ask-msg ${m.role === "user" ? "me" : "bot"}`}>
             <span className="ask-who">{m.role === "user" ? s.you : s.bot}</span>
             <p dir="auto">{m.text}</p>
+            {m.cards?.length > 0 && <Cards cards={m.cards} lang={lang} base={t.base} />}
             {m.memory && <small className="note ask-mem">{mm.on}</small>}
             {m.role === "model" && (
               <div className="ask-fb">

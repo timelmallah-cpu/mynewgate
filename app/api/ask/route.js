@@ -9,6 +9,7 @@ import { limitsConfigured } from "@/lib/assistant/limit";
 import { useQuota, limitBody } from "@/lib/assistant/usage";
 import { currentUser } from "@/lib/account/http";
 import { studentContext } from "@/lib/assistant/memory";
+import { programmeCards } from "@/lib/assistant/cards";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -77,5 +78,6 @@ export async function POST(req) {
 
   const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => allowed.has(u)).slice(0, 5)
     .map((url) => ({ url, title: (TITLES.get(url) || { ar: url, en: url })[lang] }));
-  return Response.json({ answer: out.answer, sources, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
+  const cards = programmeCards(sources.map((x) => x.url), lang);
+  return Response.json({ answer: out.answer, sources, cards, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
 }
