@@ -8,6 +8,12 @@
 import { readFileSync, writeFileSync, appendFileSync } from "node:fs";
 
 import { existsSync } from "node:fs";
+// Node's built-in fetch (undici) sometimes crashes the whole process when one site closes a TLS stream badly
+// ("assert(!this.paused)"). Ignore only that internal crash so one bad site can't stop the weekly check.
+process.on("uncaughtException", (e) => {
+  if (e?.code === "ERR_ASSERTION" && /paused/.test(String(e?.message))) return console.warn("Ignored internal fetch error:", e.message.split("\n")[0]);
+  throw e;
+});
 const progs = JSON.parse(readFileSync("lib/programmes.json", "utf8"));
 // Some programmes publish the fee on another official page (a fee table or PDF): id -> url.
 const FEE_URLS = existsSync("data/checks/fee_urls.json") ? JSON.parse(readFileSync("data/checks/fee_urls.json", "utf8")) : {};
