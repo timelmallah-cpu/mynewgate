@@ -10,6 +10,7 @@ import { CITIES } from "@/lib/cities";
 import { SOON_IDS } from "@/lib/sections";
 import { SITE_ORIGIN } from "@/lib/site";
 import { DEST_SLUGS } from "@/lib/visasMeta";
+import { PAIRS as VISIT_PAIRS } from "@/lib/visitPairs";
 import { QUESTIONS } from "@/lib/questions";
 import { FROM_SLUGS } from "@/lib/fromOrigin";
 import { FR_ORIGINS } from "@/lib/visaFr";
@@ -40,7 +41,7 @@ export default function sitemap() {
   const fr = [["", "/"], ...COUNTRY_IDS.map((c) => [`/pays/${c}`, `/country/${c}`]), ["/questions", "/questions"], ["/bourses", "/scholarships"], ["/eligibilite", "/eligibility"], ["/visa", "/visa"], ...Object.keys(FR_ORIGINS).map((o) => [`/visa/${o}`, "/visa"]), ...FR_QUESTIONS.map((q) => [`/questions/${q.slug}`, `/questions/${q.slug}`])]
     .map(([f, p]) => ({ url: `${SITE_URL}/fr${f}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6, alternates: { languages: { fr: `${SITE_URL}/fr${f}`, ar: SITE_URL + (p === "/" ? "" : p), en: `${SITE_URL}/en${p === "/" ? "" : p}` } } }));
   // Visas section at the domain root (bawabatalsafar.com/visas).
-  const vz = ["", ...DEST_SLUGS.map((s) => `/${s}`)].flatMap((s) => {
+  const vz = ["", ...DEST_SLUGS.map((s) => `/${s}`), ...VISIT_PAIRS.map((x) => `/${x.slug}/${x.nat}`)].flatMap((s) => {
     const languages = { ar: `${SITE_ORIGIN}/visas${s}`, en: `${SITE_ORIGIN}/en/visas${s}` };
     return [{ url: languages.ar, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8, alternates: { languages } }, { url: languages.en, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7, alternates: { languages } }];
   });

@@ -33,8 +33,10 @@ export default {
       // Bawabat AlSafar visas section (20 Nov 2026): public at /visas and /en/visas, pages built under /study/visas.
       { source: "/visas", destination: `${ORIGIN}${BASE}/visas`, basePath: false },
       { source: "/visas/:slug", destination: `${ORIGIN}${BASE}/visas/:slug`, basePath: false },
+      { source: "/visas/:slug/:nat", destination: `${ORIGIN}${BASE}/visas/:slug/:nat`, basePath: false },
       { source: "/en/visas", destination: `${ORIGIN}${BASE}/en/visas`, basePath: false },
       { source: "/en/visas/:slug", destination: `${ORIGIN}${BASE}/en/visas/:slug`, basePath: false },
+      { source: "/en/visas/:slug/:nat", destination: `${ORIGIN}${BASE}/en/visas/:slug/:nat`, basePath: false },
     ] };
   },
   async redirects() {

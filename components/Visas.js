@@ -6,6 +6,8 @@ import Flag from "../lib/Flag";
 import VisaChecker from "./VisaChecker";
 import VisaWizard from "./VisaWizard";
 import VisaHero from "./VisaHero";
+import VisaAsk from "./VisaAsk";
+import { PTEXT, natSlug } from "../lib/visitPairs";
 import { T as STUDY_T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { hasVisaRoute } from "../lib/embassy";
@@ -14,7 +16,7 @@ import AtPointsCheck from "./AtPointsCheck";
 import { ROUTES, RTEXT } from "../lib/visaRoutes";
 import NomadFinder from "./NomadFinder";
 import { NOMADS, NTEXT, NOMAD_HUB } from "../lib/nomadVisas";
-import { DEST, ORIGINS, KIND, VTEXT, VISIT_REVIEWED } from "../lib/visit";
+import { DEST, ORIGINS, ORIGIN_NAME, KIND, VTEXT, VISIT_REVIEWED, statusFor } from "../lib/visit";
 import { BASE } from "../lib/site";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
@@ -204,7 +206,7 @@ export function VisaDest({ d, lang }) {
               const s = d.status[o.c];
               return (
                 <tr key={o.c} id={`n-${o.c}`}>
-                  <th scope="row">{o[lang]}</th>
+                  <th scope="row"><a href={`${b}/${d.slug}/${natSlug(o.c)}`}>{o[lang]}</a></th>
                   <td><span className={`vz-badge vz-${s.s}`}>{KIND[s.s][lang]}</span> <span className="vz-note">{s.n[lang]}</span>{s.src ? <> <a href={s.src} target="_blank" rel="noopener noreferrer" aria-label={t.src}>↗</a></> : null}</td>
                 </tr>
               );
@@ -214,6 +216,58 @@ export function VisaDest({ d, lang }) {
       </div>
       <h2>{t.destinations}</h2>
       <p className="chips vz-other">{DEST.filter((x) => x.id !== d.id).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}</p>
+    </Frame>
+  );
+}
+
+// One nationality to one destination (/visas/<destination>/<nationality>).
+export function VisaPair({ d, o, lang }) {
+  const t = VTEXT[lang];
+  const pt = PTEXT[lang];
+  const b = visasBase(lang);
+  const st = statusFor(d, o);
+  const name = d.name[lang];
+  const nat = natSlug(o);
+  const rows = [...ORIGINS].filter((x) => x.c !== o).sort((a, c) => a[lang].localeCompare(c[lang], lang));
+  const faq = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: pt.q(name, o), acceptedAnswer: { "@type": "Answer", text: `${KIND[st.s][lang]}. ${st.n[lang]}` } }] };
+  const need = st.s !== "free" && st.s !== "banned";
+  return (
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${d.slug}/${nat}`} crumbs={<><a href={`${b}/${d.slug}`}>{name}</a> {lang === "ar" ? "←" : "→"} {ORIGIN_NAME[o][lang]}</>}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }} />
+      <h1 className="vz-h1"><DestFlag id={d.id} /> {pt.h1(name, o)}</h1>
+      <p className="lead">{pt.q(name, o)} <span className="meta">({pt.short})</span></p>
+      <div className={`vz-result vz-${st.s}`}>
+        <p className="vz-who">{t.result(ORIGIN_NAME[o][lang], name)}</p>
+        <p className="vz-kind">{KIND[st.s][lang]}</p>
+        <p>{st.n[lang]}</p>
+        {st.src ? <p className="vz-links"><a href={st.src} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></p> : null}
+      </div>
+      {need && (
+        <section className="card">
+          <dl className="vz-facts">
+            <div><dt>{t.visa}</dt><dd>{d.visa[lang]}</dd></div>
+            <div><dt>{t.fee}</dt><dd>{d.fee[lang]} <a href={d.feeSrc} target="_blank" rel="noopener noreferrer" aria-label={t.src}>↗</a></dd></div>
+            <div><dt>{t.stay}</dt><dd>{d.stay[lang]}</dd></div>
+            <div><dt>{t.time}</dt><dd>{d.time[lang]} <a href={d.timeSrc} target="_blank" rel="noopener noreferrer" aria-label={t.src}>↗</a></dd></div>
+            <div><dt>{t.where}</dt><dd>{d.where[lang]} <a href={d.whereUrl} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></dd></div>
+            {d.early && <div><dt>{t.early}</dt><dd>{d.early[lang]}</dd></div>}
+          </dl>
+          {d.schengen && <p className="meta">{t.schengenNote}</p>}
+        </section>
+      )}
+      {need && (
+        <section className="card">
+          <h2>{t.docs}</h2>
+          <ul>{d.docs[lang].map((x) => <li key={x}>{x}</li>)}</ul>
+          <p className="meta"><a href={d.docsSrc} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></p>
+        </section>
+      )}
+      <VisaAsk id="vask-pair" level={2} lang={lang} ctx={{ p: "visit", o, d: d.id }} base={b} studyBase={lang === "ar" ? BASE : `${BASE}/en`} />
+      <h2>{pt.otherDest(o)}</h2>
+      <p className="chips vz-other">{DEST.filter((x) => x.id !== d.id).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}/${nat}`}>{x.name[lang]}</a>)}</p>
+      <h2>{pt.otherNat}</h2>
+      <p className="chips vz-other">{rows.map((x) => <a key={x.c} className="chip" href={`${b}/${d.slug}/${natSlug(x.c)}`}>{x[lang]}</a>)}</p>
+      <p><a href={`${b}/${d.slug}`}>{pt.allDest(name)} {lang === "ar" ? "←" : "→"}</a></p>
     </Frame>
   );
 }

@@ -37,7 +37,8 @@ const X = {
   },
 };
 
-export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask" }) {
+export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask", level = 3 }) {
+  const H = level === 2 ? "h2" : "h3";
   const s = ASK_TEXT[lang];
   const x = X[lang];
   const [msgs, setMsgs] = useState([]);
@@ -79,7 +80,7 @@ export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask"
 
   return (
     <div className="vask" aria-labelledby={`${id}-h`} id={id}>
-      <h3 id={`${id}-h`}>✨ {ctx.p === "any" ? x.anyTitle : x.title}</h3>
+      <H id={`${id}-h`}>✨ {ctx.p === "any" ? x.anyTitle : x.title}</H>
       <p className="meta">{ctx.p === "any" ? x.anyLead : x.lead}</p>
       {!msgs.length && (
         <div className="city-chips">

@@ -5,6 +5,7 @@
 import { useEffect, useRef, useState } from "react";
 import Flag from "../lib/Flag";
 import VisaAsk from "./VisaAsk";
+import { natSlug } from "../lib/visitPairs";
 import { ORIGINS, ORIGIN_NAME, DEST, KIND, VTEXT } from "../lib/visit";
 import { NOMADS, NTEXT, nationalityOk } from "../lib/nomadVisas";
 
@@ -176,7 +177,7 @@ export default function VisaWizard({ lang, base, studyBase, countries, studyRead
             </dl>
           )}
           <p className="vz-links">
-            <a href={`${base}/${dest.slug}`}>{t.full} {dest.name[lang]} {lang === "ar" ? "←" : "→"}</a>
+            <a href={`${base}/${dest.slug}/${natSlug(o)}`}>{t.full} {dest.name[lang]} {lang === "ar" ? "←" : "→"}</a>
             {st.src ? <> · <a href={st.src} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></> : null}
           </p>
         </div>
