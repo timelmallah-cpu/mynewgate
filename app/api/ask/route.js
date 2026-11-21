@@ -9,7 +9,7 @@ import { limitsConfigured } from "@/lib/assistant/limit";
 import { useQuota, limitBody } from "@/lib/assistant/usage";
 import { currentUser } from "@/lib/account/http";
 import { studentContext } from "@/lib/assistant/memory";
-import { programmeCards } from "@/lib/assistant/cards";
+import { programmeCards, scholarshipCards, nomadCards } from "@/lib/assistant/cards";
 import { cleanVisaCtx, visaDocs, visaSituation, VISA_SYSTEM } from "@/lib/assistant/visaContext";
 
 export const runtime = "nodejs";
@@ -84,7 +84,8 @@ export async function POST(req) {
   const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => allowed.has(u)).slice(0, 5)
     .map((url) => ({ url, title: (TITLES.get(url) || { ar: url, en: url })[lang] }));
   const cards = programmeCards(sources.map((x) => x.url), lang);
-  return Response.json({ answer: out.answer, sources, cards, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
+  const schCards = scholarshipCards(sources.map((x) => x.url), lang);
+  return Response.json({ answer: out.answer, sources, cards, schCards, found: out.found, left, per, memory: Boolean(student) }, { headers: { "Cache-Control": "no-store" } });
 }
 
 async function answerVisa({ visa, lang, message, history, mock, left, per }) {
@@ -112,5 +113,5 @@ async function answerVisa({ visa, lang, message, history, mock, left, per }) {
   }
   const sources = [...new Set(out.sources.map((u) => u.trim()))].filter((u) => titles.has(u)).slice(0, 4)
     .map((url) => ({ url, title: titles.get(url)[lang] }));
-  return Response.json({ answer: out.answer, sources, cards: [], found: out.found, left, per }, { headers: { "Cache-Control": "no-store" } });
+  return Response.json({ answer: out.answer, sources, cards: [], nomadCards: nomadCards(sources.map((x) => x.url), lang), found: out.found, left, per }, { headers: { "Cache-Control": "no-store" } });
 }

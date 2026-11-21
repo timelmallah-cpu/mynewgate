@@ -8,6 +8,7 @@ import VisaWizard from "./VisaWizard";
 import VisaHero from "./VisaHero";
 import VisaAsk from "./VisaAsk";
 import { PTEXT, natSlug } from "../lib/visitPairs";
+import { centreFor } from "../lib/visitCentres";
 import { T as STUDY_T } from "../lib/i18n";
 import { COUNTRY_IDS } from "../lib/options";
 import { hasVisaRoute } from "../lib/embassy";
@@ -259,6 +260,16 @@ export function VisaPair({ d, o, lang }) {
         <p>{st.n[lang]}</p>
         {st.src ? <p className="vz-links"><a href={st.src} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></p> : null}
       </div>
+      {need && centreFor(d.id, o) && (() => {
+        const c = centreFor(d.id, o);
+        return (
+          <section className="card vz-centre">
+            <h2>{lang === "ar" ? `أين تقدّم إذا كنت تقيم في ${ORIGIN_NAME[o].ar}` : `Where to apply if you live in ${ORIGIN_NAME[o].en}`}</h2>
+            <p>{c[lang]}{c.check && !c[lang].includes(t.check) ? ` (${t.check})` : ""}</p>
+            <p className="meta"><a href={c.src || d.whereUrl} target="_blank" rel="noopener noreferrer">{t.src} ↗</a></p>
+          </section>
+        );
+      })()}
       {need && (
         <section className="card">
           <dl className="vz-facts">

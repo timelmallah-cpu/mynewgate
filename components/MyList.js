@@ -5,6 +5,7 @@ import Link from "@/components/Link";
 import deadlines from "../lib/deadlines.json";
 import { T } from "../lib/i18n";
 import { SCHOLARSHIPS } from "../lib/scholarships";
+import { NOMADS } from "../lib/nomadVisas";
 import { getSaved, removeSaved, onSavedChange, shareUrl, readShared, addSaved, signedIn } from "../lib/saved";
 import { ACC } from "../lib/accountText";
 import { fmtDate } from "./ScholarshipParts";
@@ -24,6 +25,11 @@ function items(saved, lang) {
       if (!p) return null;
       const next = p.dates.find((d) => d.d >= now);
       return { k, title: p.name, sub: `${p.university} · ${t.countries[p.country]}`, href: `${t.base}/programme/${p.id}`, text: p[lang], next, dates: p.dates.filter((d) => d.d >= now) };
+    }
+    if (type === "n") {
+      const n = NOMADS.find((x) => x.slug === id);
+      if (!n) return null;
+      return { k, title: `${n.name[lang]}: ${n.visa[lang]}`, sub: n.income[lang], href: `${lang === "ar" ? "" : "/en"}/visas/${n.slug}`, ext: true, text: n.stay[lang], next: null, dates: [] };
     }
     const s = SCHOLARSHIPS.find((x) => x.id === id);
     if (!s) return null;
@@ -161,7 +167,7 @@ export default function MyList({ lang }) {
                     )}
                   </div>
                   <div className="what">
-                    <Link href={it.href} className="ltr-auto">{it.title}</Link>
+                    {it.ext ? <a href={it.href} className="ltr-auto">{it.title}</a> : <Link href={it.href} className="ltr-auto">{it.title}</Link>}
                     <span className="sub">{it.sub}</span>
                     <span className="txt">{it.text}</span>
                     <span className="acts">

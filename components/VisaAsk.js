@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { ASK_TEXT } from "../lib/assistantText";
 import { BASE } from "../lib/site";
 import Upgrade, { leftText } from "./Upgrade";
+import SaveButton from "./SaveButton";
 
 const X = {
   ar: {
@@ -39,6 +40,31 @@ const X = {
   },
 };
 
+const NCARD = {
+  ar: { title: "تأشيرات من الإجابة", min: "الحد الأدنى الشهري", est: "تقديري", none: "لا يوجد رقم شهري", fam: "العائلة", yes: "مسموح", no: "غير مسموح", unk: "غير منشور", open: "التفاصيل والمصدر" },
+  en: { title: "Visas from this answer", min: "Monthly minimum", est: "estimate", none: "No monthly figure", fam: "Family", yes: "Allowed", no: "Not allowed", unk: "Not published", open: "Details and source" },
+};
+function NomadCards({ cards, lang, href }) {
+  const c = NCARD[lang];
+  return (
+    <div className="ask-cards">
+      <span className="ask-cards-h">{c.title}</span>
+      <ul>
+        {cards.map((x) => (
+          <li key={x.id} className="ask-card">
+            <a href={href(x.url)} className="ask-card-name">{x.name}: {x.visa}</a>
+            <dl>
+              <div><dt>{c.min}</dt><dd>{x.min != null ? `${Math.round(x.min).toLocaleString("en-US")} €${x.minCheck ? ` (${c.est})` : ""}` : c.none}</dd></div>
+              <div><dt>{c.fam}</dt><dd>{x.family === true ? c.yes : x.family === false ? c.no : c.unk}</dd></div>
+            </dl>
+            <div className="ask-card-act"><SaveButton k={`n:${x.id}`} lang={lang} /> <a className="btn ghost small" href={href(x.url)}>{c.open}</a></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask", level = 3 }) {
   const H = level === 2 ? "h2" : "h3";
   const s = ASK_TEXT[lang];
@@ -72,7 +98,7 @@ export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask"
       const d = await r.json().catch(() => ({}));
       if (!r.ok) { if (d.error === "limit") setUp({ plus: d.plus, per: d.per }); else setErr(s.errors[d.error] || s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
       else {
-        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [] }]);
+        setMsgs((m) => [...m, { role: "model", text: d.answer, sources: d.sources || [], nomadCards: d.nomadCards || [] }]);
         if (typeof d.left === "number") { setLeft(d.left); setPer(d.per); }
       }
     } catch { setErr(s.errors.failed); setMsgs((m) => m.slice(0, -1)); setInput(q); }
@@ -100,6 +126,7 @@ export default function VisaAsk({ lang, ctx, base, studyBase, first, id = "vask"
                 <ul>{m.sources.map((y) => <li key={y.url}><a href={href(y.url)}>{y.title}</a></li>)}</ul>
               </div>
             )}
+            {m.nomadCards?.length > 0 && <NomadCards cards={m.nomadCards} lang={lang} href={href} />}
           </div>
         ))}
         {busy && <div className="ask-msg bot"><span className="ask-who">{s.bot}</span><p className="note">{s.sending}</p></div>}
