@@ -38,7 +38,7 @@ export default function sitemap() {
   const now = new Date();
   const ar = (p) => (p === "/" ? "" : p);
   // French pages (version 1): home, country summaries and questions, linked to their Arabic/English versions.
-  const fr = [["", "/"], ...COUNTRY_IDS.map((c) => [`/pays/${c}`, `/country/${c}`]), ["/questions", "/questions"], ["/bourses", "/scholarships"], ["/eligibilite", "/eligibility"], ["/visa", "/visa"], ...Object.keys(FR_ORIGINS).map((o) => [`/visa/${o}`, "/visa"]), ...FR_QUESTIONS.map((q) => [`/questions/${q.slug}`, `/questions/${q.slug}`])]
+  const fr = [["", "/"], ...COUNTRY_IDS.map((c) => [`/pays/${c}`, `/country/${c}`]), ["/questions", "/questions"], ["/bourses", "/scholarships"], ["/eligibilite", "/eligibility"], ["/ou-etudier", "/quiz"], ["/cout", "/countries"], ["/visa", "/visa"], ...Object.keys(FR_ORIGINS).map((o) => [`/visa/${o}`, "/visa"]), ...FR_QUESTIONS.map((q) => [`/questions/${q.slug}`, `/questions/${q.slug}`])]
     .map(([f, p]) => ({ url: `${SITE_URL}/fr${f}`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.6, alternates: { languages: { fr: `${SITE_URL}/fr${f}`, ar: SITE_URL + (p === "/" ? "" : p), en: `${SITE_URL}/en${p === "/" ? "" : p}` } } }));
   // Visas section at the domain root (bawabatalsafar.com/visas).
   const vz = ["", ...DEST_SLUGS.map((s) => `/${s}`), ...VISIT_PAIRS.map((x) => `/${x.slug}/${x.nat}`)].flatMap((s) => {

@@ -11,6 +11,10 @@ import { VISA } from "../lib/embassy";
 import { VISA_FR, FR_ORIGINS } from "../lib/visaFr";
 import { FR_SCH, FR_DL_KIND } from "../lib/frScholarships";
 import FrEligibility from "./FrEligibility";
+import FrQuiz from "./FrQuiz";
+import FrCost from "./FrCost";
+import { COSTS } from "../lib/costs";
+import { rows as qRows } from "../lib/questions";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/latin-400.css";
 import "@fontsource/ibm-plex-sans-arabic/latin-600.css";
@@ -85,7 +89,8 @@ export function FrHome() {
         <li><a className="chip" href={`${FR}/eligibilite`}>Suis-je admissible ?</a></li>
         <li><a className="chip" href={`${FR}/bourses`}>Bourses</a></li>
         <li><a className="chip" href={`${FR}/visa`}>Visa étudiant</a></li>
-        <li><a className="chip" href={`${BASE}/en/quiz`}>Trouver un programme</a></li>
+        <li><a className="chip" href={`${FR}/ou-etudier`}>Où étudier ? (questionnaire)</a></li>
+        <li><a className="chip" href={`${FR}/cout`}>Combien coûtent les études ?</a></li>
         <li><a className="chip" href={`${BASE}/en/my-plan`}>Mon plan en une minute</a></li>
         <li><a className="chip" href={`${BASE}/en/countries`}>Comparer les pays</a></li>
         <li><a className="chip" href={`${BASE}/ask`}>Assistant (arabe)</a></li>
@@ -297,6 +302,60 @@ export function FrEligibilityPage() {
         <li>La conversion d'une note vers l'échelle allemande (formule bavaroise modifiée) est approximative ; chaque université le fait à sa façon.</li>
         <li>Un résultat n'est pas une admission. L'université décide : vérifiez toujours sa page officielle.</li>
       </ul>
+    </FrShell>
+  );
+}
+
+export function FrQuizPage() {
+  return (
+    <FrShell ar="/quiz" en="/quiz">
+      <p className="crumbs"><a href={FR}>Accueil</a></p>
+      <h1>Où étudier ? Trouvez votre programme en cinq questions</h1>
+      <p className="lead">Niveau, pays, domaine, budget et durée : nous montrons les programmes publics enseignés en anglais qui correspondent, du moins cher au plus cher. Vos réponses ne sont enregistrées nulle part.</p>
+      <FrQuiz />
+      <ul className="meta">
+        <li>Les pages des programmes sont en anglais ; les conditions officielles y sont reprises avec un lien vers la source.</li>
+        <li>Un résultat n'est pas une admission. Vérifiez toujours la page officielle de l'université.</li>
+      </ul>
+    </FrShell>
+  );
+}
+
+// Starting figures for the French cost calculator, per country, from our data only.
+function costDefs() {
+  const med = (a) => { if (!a.length) return null; const s = [...a].sort((x, y) => x - y); const m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; };
+  const out = {};
+  for (const r of qRows()) {
+    const c = COSTS[r.c] || {};
+    const fees = (c.fees || []).filter((f) => !f.only);
+    const known = fees.reduce((a, f) => a + (f.eur || 0), 0);
+    const lv = (level) => {
+      const list = programmes.filter((p) => p.country === r.c && p.level === level);
+      const st = r[level];
+      return { count: list.length, paid: st.paid, free: st.free, med: st.med != null ? Math.round(st.med / 10) * 10 : null, years: med(list.filter((p) => p.years).map((p) => p.years)) };
+    };
+    const floor = c.proofExcludesHousing ? null : c.proofMonthly ?? null;
+    out[r.c] = {
+      master: lv("master"), bachelor: lv("bachelor"),
+      living: r.living != null && floor ? Math.max(r.living, floor) : r.living ?? floor ?? null, livingN: r.livingN,
+      proof: c.proofMonthly ?? null, proofExcludesHousing: !!c.proofExcludesHousing, proofCheck: !!c.proofCheck,
+      proofText: c.proof?.en || null, proofSrc: c.proofSrc || null,
+      insurance: c.insurance && c.insurance.eur != null ? c.insurance.eur : null,
+      oneTime: known || null,
+    };
+  }
+  return out;
+}
+
+export function FrCostPage() {
+  const defs = costDefs();
+  const order = [...FR_COUNTRY_IDS].sort((a, b) => frName(a).localeCompare(frName(b), "fr"));
+  return (
+    <FrShell ar="/countries" en="/countries">
+      <p className="crumbs"><a href={FR}>Accueil</a></p>
+      <h1>Combien coûtent les études à l'étranger ?</h1>
+      <p className="lead">Choisissez un pays et un niveau. Nous partons des frais médians de nos programmes, du coût de la vie publié et des montants officiels du visa ; modifiez chaque chiffre selon votre cas.</p>
+      <FrCost defs={defs} order={order} />
     </FrShell>
   );
 }
