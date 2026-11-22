@@ -20,6 +20,7 @@ import NomadFinder from "./NomadFinder";
 import { NOMADS, NTEXT, NOMAD_HUB } from "../lib/nomadVisas";
 import { DEST, ORIGINS, ORIGIN_NAME, KIND, VTEXT, VISIT_REVIEWED, statusFor } from "../lib/visit";
 import { BASE } from "../lib/site";
+import { REFUSAL_SLUG, REFUSAL_STEPS, SCHENGEN_GROUNDS, SCHENGEN_SRC, REFUSAL_ROUTES, REFUSAL_TEXT, REFUSAL_REVIEWED } from "../lib/visaRefusal";
 import "@fontsource-variable/readex-pro/index.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-400.css";
 import "@fontsource/ibm-plex-sans-arabic/arabic-600.css";
@@ -49,6 +50,7 @@ function Frame({ lang, other, crumbs, children, note }) {
           <a href={home}>{t.home}</a> {arrow} {crumbs ? <><a href={visasBase(lang)}>{t.brand}</a> {arrow} {crumbs}</> : t.brand}
         </p>
         {children}
+        {!String(other).endsWith(`/${REFUSAL_SLUG}`) && <p className="meta"><a href={`${visasBase(lang)}/${REFUSAL_SLUG}`}>{REFUSAL_TEXT[lang].hubCard}</a></p>}
         <p className="notice">{note || t.disclaimer}</p>
         <p className="meta">{t.reviewed(fmt(VISIT_REVIEWED, lang))} · {t.studyLink} <a href={lang === "ar" ? `${BASE}/visa` : `${BASE}/en/visa`}>{t.studyGo}</a></p>
       </main>
@@ -137,6 +139,14 @@ export function VisasHub({ lang }) {
             </li>
           );
         })}
+      </ul>
+      <ul className="vz-dests">
+        <li>
+          <a className="card vz-dest" href={`${b}/${REFUSAL_SLUG}`}>
+            <span className="vz-dname"><b>{REFUSAL_TEXT[lang].title}</b></span>
+            <span className="meta">{REFUSAL_TEXT[lang].hubCard}</span>
+          </a>
+        </li>
       </ul>
       <h2>{RTEXT[lang].jobSection}</h2>
       <p className="meta">{RTEXT[lang].jobLead}</p>
@@ -403,6 +413,37 @@ export function NomadPage({ n, lang }) {
         </section>
       )}
       <p className="chips vz-other"><a className="chip" href={`${b}/${NOMAD_HUB}`}>{t.all}</a>{NOMADS.filter((x) => x.id !== n.id).map((x) => <a key={x.id} className="chip" href={`${b}/${x.slug}`}>{x.name[lang]}</a>)}</p>
+    </Frame>
+  );
+}
+
+export function VisaRefused({ lang }) {
+  const t = REFUSAL_TEXT[lang];
+  const ext = { target: "_blank", rel: "noopener noreferrer" };
+  return (
+    <Frame lang={lang} other={`${visasBase(lang === "ar" ? "en" : "ar")}/${REFUSAL_SLUG}`} crumbs={t.title} note={t.disclaimer}>
+      <section className="gate vz-hero">
+        <h1>{t.title}</h1>
+        <p className="lead">{t.lead}</p>
+      </section>
+      <h2>{t.stepsH}</h2>
+      <ol className="card vz-steps">{REFUSAL_STEPS.map((x, i) => <li key={i}>{x[lang]}</li>)}</ol>
+      <h2>{t.schengenH}</h2>
+      <p className="meta">{t.schengenLead}</p>
+      <ol className="card vz-steps">{SCHENGEN_GROUNDS.map((x, i) => <li key={i}>{x[lang]}</li>)}</ol>
+      <p className="meta">{t.src}: <a className="ltr" href={SCHENGEN_SRC} {...ext}>Regulation (EC) No 810/2009, Art. 32</a></p>
+      <h2>{t.routesH}</h2>
+      {REFUSAL_ROUTES.map((r) => (
+        <section key={r.id} className="card vz-ref" id={`ref-${r.id}`}>
+          <h3><DestFlag id={r.id} /> {r.name[lang]} <span className={`vz-badge vz-${r.kind === "appeal" ? "cond" : "visa"}`}>{r.kind === "appeal" ? t.appeal : t.none}</span></h3>
+          <p>{r.route[lang]}</p>
+          <p><b>{t.after}:</b> {r.after[lang]}</p>
+          <p className="meta">{t.src}: <a className="ltr" href={r.src} {...ext}>{new URL(r.src).hostname}</a></p>
+        </section>
+      ))}
+      <p className="notice">{t.other}</p>
+      <p className="notice">{t.scam}</p>
+      <p className="meta">{t.reviewed(fmt(REFUSAL_REVIEWED, lang))}</p>
     </Frame>
   );
 }

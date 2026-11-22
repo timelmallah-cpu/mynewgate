@@ -48,8 +48,8 @@ export default function EarningsCalc({ rows, lang }) {
         <p className="notice">{s.term}</p>
       ) : (
         <div className="earn-out" aria-live="polite">
-          <div><span>{s.rate}</span><b dir="ltr">{n2(reg.localH)} {reg.cur}</b><small>{s.perHour}{reg.cur !== "EUR" ? ` (≈ €${n2(reg.eurH)})` : ""}{reg.calc ? ` · ${s.ourCalc}` : ""}</small></div>
-          <div><span>{s.earn}</span><b><bdi dir="ltr">€{n0(monthly)}</bdi></b><small>{s.perMonth}</small></div>
+          <div><span>{s.rate}</span><b dir="ltr">{n2(reg.localH)} {reg.cur}</b><small>{reg.net ? s.perHourNet : s.perHour}{reg.cur !== "EUR" ? ` (≈ €${n2(reg.eurH)})` : ""}{reg.calc ? ` · ${s.ourCalc}` : ""}</small></div>
+          <div><span>{s.earn}</span><b><bdi dir="ltr">€{n0(monthly)}</bdi></b><small>{reg.net ? s.perMonthNet : s.perMonth}</small></div>
           <div><span>{s.living}</span>{row.living ? <b><bdi dir="ltr">€{n0(row.living)}</bdi></b> : <small>{s.livingNA}</small>}{pct != null && <small>{s.covers(pct)}</small>}</div>
         </div>
       )}

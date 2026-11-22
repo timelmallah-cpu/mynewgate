@@ -38,6 +38,7 @@ export function earningsRows(lang) {
         localH: r2(hourlyLocal(g)),
         cur: g.cur,
         calc: g.per !== "hour",
+        net: !!(g.net ?? m.net),
         from: g.from,
         src: g.src,
         check: !!g.check,

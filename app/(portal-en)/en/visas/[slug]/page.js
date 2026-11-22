@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { VisaDest, VisaRoute, NomadHub, NomadPage } from "@/components/Visas";
+import { VisaDest, VisaRoute, NomadHub, NomadPage, VisaRefused } from "@/components/Visas";
+import { REFUSAL_SLUG } from "@/lib/visaRefusal";
 import { NOMAD_BY_SLUG, NOMAD_HUB } from "@/lib/nomadVisas";
 import { visasMeta, DEST_SLUGS } from "@/lib/visasMeta";
 import { DEST_BY_SLUG } from "@/lib/visit";
@@ -13,6 +14,7 @@ export async function generateMetadata({ params }) {
 }
 export default async function Page({ params }) {
   const { slug } = await params;
+  if (slug === REFUSAL_SLUG) return <VisaRefused lang="en" />;
   if (slug === NOMAD_HUB) return <NomadHub lang="en" />;
   if (NOMAD_BY_SLUG[slug]) return <NomadPage n={NOMAD_BY_SLUG[slug]} lang="en" />;
   if (ROUTE_BY_SLUG[slug]) return <VisaRoute r={ROUTE_BY_SLUG[slug]} lang="en" />;

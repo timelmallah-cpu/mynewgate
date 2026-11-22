@@ -1459,3 +1459,9 @@ h1.quiz-q { font-size: 1.35rem; line-height: 1.45; font-weight: 600; margin: 0 0
 .vask h3 { margin: 0 0 4px; color: var(--navy); }
 .vask .ask-form textarea { min-width: 0; }
 .wz .quiz-q { font-size: 1.25rem; line-height: 1.45; font-weight: 600; color: var(--navy); margin: 0 0 10px; }
+/* Visa refused page */
+.vz-steps { padding-inline-start: 2.2em; line-height: 1.8; }
+.vz-steps li { margin: 4px 0; }
+.vz-ref { margin: 12px 0; }
+.vz-ref h3 { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 0 0 6px; }
+.vz-ref p { margin: 6px 0; line-height: 1.75; }

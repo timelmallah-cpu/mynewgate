@@ -67,6 +67,7 @@ export default function Scholarship({ id, lang }) {
       <ScamBox lang={lang} />
       <div className="notice">
         {t.source} <a className="ltr" href={s.url} target="_blank" rel="noopener noreferrer">{s.url}</a>
+        {(s.sources || []).map((u) => <span key={u}><br /><a className="ltr" href={u} target="_blank" rel="noopener noreferrer">{u}</a></span>)}
         <br />{st.reviewed} {SCHOLARSHIPS_REVIEWED}
       </div>
       <ReportLink lang={lang} what={s.name.en} path={`${t.base}/scholarships/${s.id}`} />
