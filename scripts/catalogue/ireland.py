@@ -101,25 +101,29 @@ tud("arch", "Master of Architecture", "21,750",
 
 # Trinity College Dublin
 TCD_EN = ("IELTS أكاديمي 6.5 إجمالي، أو TOEFL iBT 88", "IELTS Academic 6.5 overall, or TOEFL iBT 88")
+# Business school 2027/28 (Masters FAQ, checked 21 Nov 2026)
+TCD_EN65 = ("IELTS أكاديمي 6.5 (لا يقل أي قسم عن 6.0)، أو TOEFL iBT 90 (لا يقل أي قسم عن 21)", "IELTS Academic 6.5 (no band below 6.0), or TOEFL iBT 90 (no section below 21)")
+TCD_EN70 = ("IELTS أكاديمي 7.0 (لا يقل أي قسم عن 6.5)، أو TOEFL iBT 100 (لا يقل أي قسم عن 23)", "IELTS Academic 7.0 (no band below 6.5), or TOEFL iBT 100 (no section below 23)")
+TCD_DL27 = ("31 يوليو 2027 لدفعة سبتمبر 2027 (التقديم يفتح في نوفمبر 2026، وقد يُغلق البرنامج قبل الموعد إذا امتلأت الأماكن)", "31 July 2027 for the September 2027 intake (applications open in November 2026; a programme may close early when full)")
 TCD_OTHER = ("يُشترط بكالوريوس بتقدير 2.1 (Upper Second) أو ما يعادله", "Requires at least a 2.1 honours degree or international equivalent")
 TCD_HOW = ("التقديم أونلاين على بوابة my.tcd.ie، والرسوم تُدفع على قسطين", "Apply online on the my.tcd.ie portal; fees can be paid in two instalments")
 TCD_APPLY = "https://tcd.ie/study/postgraduate/apply"
-def tcd(field, name, fee, src, other=TCD_OTHER, dl=NP):
+def tcd(field, name, fee, src, other=TCD_OTHER, dl=NP, en=TCD_EN, year="2026/2027"):
     add(MA, field, name, "Trinity College Dublin (TCD)", "Dublin", MSC, Y1,
-        (f"{fee} يورو سنوياً لغير الأوروبيين (2026/2027)", f"€{fee} a year for non-EU students (2026/2027)") if fee else NP, NP,
-        dl, TCD_EN, other, TCD_HOW, NP, NP, src, TCD_APPLY)
+        (f"{fee} يورو سنوياً لغير الأوروبيين ({year})", f"€{fee} a year for non-EU students ({year})") if fee else NP, NP,
+        dl, en, other, TCD_HOW, NP, NP, src, TCD_APPLY)
 
-tcd("bus", "MSc in Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-management/fees",
-    ("لخريجي التخصصات غير التجارية فقط، ويُشترط تقدير 2.1", "Only for non-business graduates; requires a 2.1 honours degree"))
-tcd("bus", "MSc in Marketing", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-marketing/fees")
-tcd("bus", "MSc in Digital Marketing Strategy", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-digital-marketing-strategy/fees")
-tcd("bus", "MSc in International Management", "24,500", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-international-management/fees/",
-    ("الرسوم تشمل أسبوعاً دراسياً في الخارج (السفر والسكن). يُشترط تقدير 2.1", "The fee includes an International Week Abroad (travel and accommodation). Requires a 2.1 honours degree"))
+tcd("bus", "MSc in Management", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-management/fees",
+    ("لخريجي التخصصات غير التجارية فقط، ويُشترط تقدير 2.1", "Only for non-business graduates; requires a 2.1 honours degree"), dl=TCD_DL27, year="2027/2028", en=TCD_EN65)
+tcd("bus", "MSc in Marketing", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-marketing/fees", dl=TCD_DL27, year="2027/2028", en=TCD_EN70)
+tcd("bus", "MSc in Digital Marketing Strategy", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-digital-marketing-strategy/fees", dl=TCD_DL27, year="2027/2028", en=TCD_EN70)
+tcd("bus", "MSc in International Management", "25,150", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-international-management/fees/",
+    ("الرسوم تشمل أسبوعاً دراسياً في الخارج (السفر والسكن). يُشترط تقدير 2.1", "The fee includes an International Week Abroad (travel and accommodation). Requires a 2.1 honours degree"), dl=TCD_DL27, year="2027/2028", en=TCD_EN70)
 tcd("bus", "MSc in Finance", "27,300", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-finance/fees/")
-tcd("bus", "MSc in Operations and Supply Chain Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-operations-and-supply-chain-management/fees/")
-tcd("bus", "MSc in Human Resource Management", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-human-resource-management/fees/")
-tcd("bus", "MSc in Entrepreneurship and Innovation", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-entrepreneurship-and-innovation/fees/")
-tcd("bus", "MSc in Accounting and Analytics", "24,000", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-accounting-and-analytics-/fees/")
+tcd("bus", "MSc in Operations and Supply Chain Management", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-operations-and-supply-chain-management/fees/", dl=TCD_DL27, year="2027/2028", en=TCD_EN65)
+tcd("bus", "MSc in Human Resource Management", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-human-resource-management/fees/", dl=TCD_DL27, year="2027/2028", en=TCD_EN65)
+tcd("bus", "MSc in Entrepreneurship and Innovation", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-entrepreneurship-and-innovation/fees/", dl=TCD_DL27, year="2027/2028", en=TCD_EN65)
+tcd("bus", "MSc in Accounting and Analytics", "24,600", "https://www.tcd.ie/business/programmes/masters-programmes/msc-in-accounting-and-analytics-/fees/", dl=TCD_DL27, year="2027/2028", en=TCD_EN65)
 tcd("cs", "MSc in Computer Science (Intelligent Systems)", None, "https://www.tcd.ie/scss/courses/postgraduate/computer-science/application-requirements/",
     ("في الذكاء الاصطناعي وتعلم الآلة؛ يُشترط تقدير 2.1 في الحاسب أو تخصص قريب جداً", "AI and machine learning; requires a 2.1 honours degree in computing or a strongly related discipline"),
     ("لدفعة 2026/2027 فتح التقديم 1 نوفمبر 2025 وأُغلق 30 يونيو 2026 (مواعيد 2027 للتحقق)", "For 2026/2027 applications opened on 1 November 2025 and closed on 30 June 2026 (2027 dates to verify)"))

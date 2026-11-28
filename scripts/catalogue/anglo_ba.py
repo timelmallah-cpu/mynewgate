@@ -18,8 +18,8 @@ ADM = ("شهادة الثانوية حسب شروط الجامعة لبلدك؛ 
        "A school-leaving certificate per the university's rules for your country; some universities may not accept the certificate alone (check with the university)")
 
 
-def add(cc, field, name, uni, city, deg, dur, fee, dl, other, how, src, apply):
-    B.setdefault(cc, []).append(P(field=field, name=name, uni=uni, city=city, deg=deg, dur=dur, fee=fee, adm=ADM, dl=dl, en=EN,
+def add(cc, field, name, uni, city, deg, dur, fee, dl, other, how, src, apply, en=EN):
+    B.setdefault(cc, []).append(P(field=field, name=name, uni=uni, city=city, deg=deg, dur=dur, fee=fee, adm=ADM, dl=dl, en=en,
                                   other=other, how=how, living=NP, house=NP, src=src, req=src, req_note=NOTE_R,
                                   apply=apply, apply_note=NOTE_A))
 
@@ -29,8 +29,13 @@ MUN_SRC = "https://www.mun.ca/finance/tuition-fees-and-charges/tuition-fees/unde
 MUN_APPLY = "https://www.mun.ca/undergrad/"
 MUN_FEE = ("حوالي 14,330 يورو في السنة (750 دولاراً كندياً لكل ساعة معتمدة للطلاب الدوليين، أي 22,500 دولار كندي لـ 30 ساعة في السنة الدراسية العادية؛ أسعار 2026/2027 مجمدة عند أسعار 2025/2026؛ بدون الرسوم الإضافية والتأمين؛ بسعر البنك المركزي الأوروبي في 17 نوفمبر 2026)",
            "About €14,330 a year (CAD 750 per credit hour for international students, i.e. CAD 22,500 for 30 credit hours in a normal year; 2026/27 rates frozen at 2025/26; excluding ancillary fees and insurance; ECB rate of 17 November 2026)")
-MUN_DL = ("غير منشور هنا؛ الدراسة تبدأ عادة في سبتمبر، وقدّم مبكراً لترك وقت لتصريح الدراسة (خطاب الإقليم PAL مطلوب غالباً لطلاب البكالوريوس)",
-          "Not published here; study usually starts in September, so apply early to leave time for the study permit (bachelor's students usually need a provincial attestation letter, PAL)")
+MUN_DL = ("1 مارس هو الموعد الموصى به لدفعة خريف 2027 (صفحة المواعيد لا تذكر السنة، للتحقق)؛ يبقى التقديم مفتوحاً حتى أوائل سبتمبر، ويُنصح الطلاب الدوليون بالتقديم قبل 12 أسبوعاً على الأقل من بداية الفصل (خطاب الإقليم PAL مطلوب غالباً لطلاب البكالوريوس)",
+          "1 March is the recommended priority date for fall 2027 (the deadlines page gives no year, to verify); applications stay open until early September, and international applicants should apply at least 12 weeks before the semester starts (bachelor's students usually need a provincial attestation letter, PAL)")
+MUN_EN = ("IELTS أكاديمي 6.5 (6 على الأقل في القراءة والكتابة)، أو TOEFL iBT 83 للاختبارات حتى يناير 2026 (4.5 بالمقياس الجديد)، أو Duolingo 115، أو PTE Academic 60",
+          "IELTS Academic 6.5 (at least 6 in reading and writing), or TOEFL iBT 83 for tests up to January 2026 (4.5 on the new scale), or Duolingo 115, or PTE Academic 60")
+MUN_EN_ENG = (MUN_EN[0] + "؛ لكلية الهندسة شروط لغة خاصة في دليل الجامعة (للتحقق)", MUN_EN[1] + "; the Faculty of Engineering has its own language rules in the university calendar (to verify)")
+MUN_DL_ENG = ("1 يونيو لبرنامج Engineering One (لدفعة خريف 2027؛ صفحة المواعيد لا تذكر السنة، للتحقق)؛ الطلبات المتأخرة تُدرس حسب توفر الأماكن، ويُنصح الطلاب الدوليون بالتقديم قبل 12 أسبوعاً على الأقل من بداية الفصل (خطاب الإقليم PAL مطلوب غالباً لطلاب البكالوريوس)",
+              "1 June for Engineering One (for fall 2027; the deadlines page gives no year, to verify); later applications are considered as space permits, and international applicants should apply at least 12 weeks before the semester starts (bachelor's students usually need a provincial attestation letter, PAL)")
 MUN_HOW = ("التقديم أونلاين على بوابة القبول للبكالوريوس في الجامعة", "Apply online through the university's undergraduate admissions portal")
 Y4 = ("4 سنوات عادةً (120 ساعة معتمدة)", "Usually 4 years (120 credit hours)")
 for field, name, deg, dur, other in [
@@ -41,7 +46,9 @@ for field, name, deg, dur, other in [
     ("psych", "Bachelor of Science (Psychology)", ("بكالوريوس العلوم (BSc)", "Bachelor of Science (BSc)"), Y4, ("علم النفس", "Psychology")),
     ("pol", "Bachelor of Arts (Political Science)", ("بكالوريوس الآداب (BA)", "Bachelor of Arts (BA)"), Y4, ("العلوم السياسية", "Political science")),
 ]:
-    add("ca", field, name, "Memorial University of Newfoundland", "St. John's", deg, dur, MUN_FEE, MUN_DL, other, MUN_HOW, MUN_SRC, MUN_APPLY)
+    eng = field == "eng"
+    add("ca", field, name, "Memorial University of Newfoundland", "St. John's", deg, dur, MUN_FEE, MUN_DL_ENG if eng else MUN_DL, other, MUN_HOW, MUN_SRC, MUN_APPLY,
+        en=MUN_EN_ENG if eng else MUN_EN)
 
 # ---------------- Australia: Flinders University (Adelaide)
 FL_SRC = "https://www.flinders.edu.au/content/dam/documents/study/international/2027-international-commencing-tuition-fee-schedule.pdf"
