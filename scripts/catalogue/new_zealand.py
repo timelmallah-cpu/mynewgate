@@ -9,7 +9,7 @@ from helpers import add, append_master
 
 MA = []
 UNI = "University of Waikato"
-SRC = "https://www.waikato.ac.nz/int/study/fees-costs/international-tuition-costs/"
+SRC = "https://www.waikato.ac.nz/study/fees-costs/international-tuition-costs/"
 APPLY = "https://www.waikato.ac.nz/int/about/calendar/admission/enrolment"
 D180 = ("3 فصول (180 نقطة، سنة ونصف تقريباً؛ الجامعة تقول من سنة إلى سنتين)", "3 trimesters (180 points, about 18 months; the university says 1-2 years)")
 D120 = ("سنة واحدة (120 نقطة)", "1 year (120 points)")

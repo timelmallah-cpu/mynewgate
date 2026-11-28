@@ -376,10 +376,10 @@ ba("hu", "art", "Motion Pictures BA", "Eötvös Loránd University (ELTE)", "Bud
    ("صناعة الأفلام بكلية الآداب في جامعة ELTE", "Film-making at ELTE's Faculty of Humanities"),
    ("التقديم أونلاين على apply.elte.hu", "Apply online on apply.elte.hu"), "https://www.btk.elte.hu/en/fees-and-finances")
 ba("hu", "sport", "BSc in Physical Training", "University of Pécs", "Pécs", BSC, B6,
-   ("2,500 يورو للفصل لغير الأوروبيين حسب صفحة البرنامج (صفحة الرسوم العامة تذكر 3,000 يورو لبكالوريوس التدريب الرياضي، للتحقق)", "€2,500 per semester for non-EU students per the programme page (the general fee page lists €3,000 for the Sports Coaching BSc, to verify)"),
-   ("رسوم طلب 140 يورو؛ اختيار تخصص رياضي واحد عند التقديم (ألعاب القوى، كرة اليد، السلة، القدم، السباحة)", "€140 application fee; choose one sport when applying (athletics, handball, basketball, football, swimming)"),
-   ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
-   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://www.ttk.pte.hu/en/admission/english-degree-programs/bsc-study-programs/physical-training-bsc", PTE_FEES)
+   ("6,000 يورو في السنة الدراسية (فصلان) لغير الأوروبيين حسب صفحة البرنامج، واسمه الآن Sports Coaching BSc (الصفحة لا تذكر السنة الدراسية، للتحقق)", "€6,000 per academic year (two semesters) for non-EU students per the programme page, now called Sports Coaching BSc (the page does not name the academic year, to verify)"),
+   ("رسوم طلب 200 يورو غير مستردة؛ اختيار تخصص رياضي واحد عند التقديم", "Non-refundable application fee €200; choose one sport specialisation when applying"),
+   ("20 يونيو حسب صفحة البرنامج (السنة غير مذكورة؛ الدراسة تبدأ في سبتمبر، دفعة الخريف فقط)", "20 June per the programme page (year not stated; studies start in September, autumn intake only)"), NP,
+   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://www.ttk.pte.hu/en/admission/english-degree-programs/bsc-study-programs/sports-coaching-bsc", PTE_FEES)
 ba("hu", "sw", "BA in Social Work", "University of Pécs", "Pécs", BAA, ("3.5 سنوات (7 فصول)", "3.5 years (7 semesters)"), HU("2,200"),
    NP, ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
    ("الخدمة الاجتماعية", "Social work"), PTE_HOW, "https://btk.pte.hu/en/study-programs/ba-in-social-work")

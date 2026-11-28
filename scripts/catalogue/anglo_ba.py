@@ -89,7 +89,7 @@ for field, name, aud, other in [
 NZ_DL = ("الجامعة تعالج طلبات الطلاب الدوليين باستمرار؛ الدراسة تبدأ عادة في مارس ويوليو، وقدّم مبكراً لترك وقت للتأشيرة",
          "The university processes international applications on an ongoing basis; study usually starts in March and July, so apply early to leave time for the visa")
 NZ_HOW = ("التقديم أونلاين على موقع الجامعة؛ بعد عرض المكان تقدّم طلب تأشيرة الطالب", "Apply online through the university; after the offer of place you apply for the student visa")
-WK_SRC = "https://www.waikato.ac.nz/int/study/fees-costs/international-tuition-costs/"
+WK_SRC = "https://www.waikato.ac.nz/study/fees-costs/international-tuition-costs/"
 WK_APPLY = "https://www.waikato.ac.nz/int/about/calendar/admission/enrolment"
 def nz_fee(nzd, what_ar, what_en):
     eur = round(nzd / 1.9985 / 10) * 10
