@@ -54,12 +54,12 @@ ma("de", "sci", "Master of Science in Biochemistry", "Friedrich Schiller Univers
    ("للفصل الشتوي فقط: 1 أبريل - 31 مايو", "Winter semester only: 1 April - 31 May"),
    ("مستوى B2 (بدون شهادة إلزامية حسب صفحة DAAD)", "B2 level (no certificate required per the DAAD page)"),
    ("الكيمياء الحيوية", "Biochemistry"), ("التقديم على صفحة جامعة ينا", "Apply on the University of Jena's page"), DAAD + "4340/")
-ma("de", "sci", "Biochemistry and Molecular Biology (BMB)", "University of Bremen", "Bremen", MSC, S4, FREE("350"),
+ma("de", "sci", "Biochemistry and Molecular Biology (BMB)", "University of Bremen", "Bremen", MSC, S4, ("لا توجد رسوم دراسية؛ رسوم الفصل مع تذكرة المواصلات حوالي 425 يورو (الصفحة لا تذكر السنة الدراسية)", "No tuition fee; semester fee including the semester ticket about €425 (the page does not name the academic year)"),
    ("بكالوريوس في الكيمياء الحيوية أو الأحياء أو الكيمياء أو مجال قريب", "Bachelor's in biochemistry, biology, chemistry or a related field"),
-   ("15 يناير للفصل الشتوي التالي (صفحة DAAD 2024/2025، للتحقق)", "15 January for the following winter semester (DAAD page 2024/2025, to verify)"),
+   ("15 يناير 2027 للفصل الشتوي 2027/2028 (التقديم يفتح في ديسمبر)", "15 January 2027 for winter semester 2027/2028 (applications open in December)"),
    ("مستوى C1 بشهادة TOEFL أو ما يعادلها", "C1 level shown by TOEFL or equivalent"),
    ("الكيمياء الحيوية والبيولوجيا الجزيئية", "Biochemistry and molecular biology"),
-   ("التقديم على صفحة البرنامج بجامعة بريمن", "Apply on the programme page at the University of Bremen"), DAAD + "3900/",
+   ("التقديم على صفحة البرنامج بجامعة بريمن", "Apply on the programme page at the University of Bremen"), "https://www.uni-bremen.de/en/studies/orientation-application/offered-study-program/dbs/study/biochemistry-and-molecular-biology-master",
    "https://www.uni-bremen.de/en/mscbmb/application-and-admission-1")
 ma("de", "sci", "Physics", "University of Siegen", "Siegen", MSC, S4, FREE("372"),
    ("بكالوريوس في الفيزياء أو على وشك إنهائه", "Bachelor's in physics, or about to complete one"),
@@ -376,10 +376,10 @@ ba("hu", "art", "Motion Pictures BA", "Eötvös Loránd University (ELTE)", "Bud
    ("صناعة الأفلام بكلية الآداب في جامعة ELTE", "Film-making at ELTE's Faculty of Humanities"),
    ("التقديم أونلاين على apply.elte.hu", "Apply online on apply.elte.hu"), "https://www.btk.elte.hu/en/fees-and-finances")
 ba("hu", "sport", "BSc in Physical Training", "University of Pécs", "Pécs", BSC, B6,
-   ("2,500 يورو للفصل لغير الأوروبيين حسب صفحة البرنامج (صفحة الرسوم العامة تذكر 3,000 يورو لبكالوريوس التدريب الرياضي، للتحقق)", "€2,500 per semester for non-EU students per the programme page (the general fee page lists €3,000 for the Sports Coaching BSc, to verify)"),
-   ("رسوم طلب 140 يورو؛ اختيار تخصص رياضي واحد عند التقديم (ألعاب القوى، كرة اليد، السلة، القدم، السباحة)", "€140 application fee; choose one sport when applying (athletics, handball, basketball, football, swimming)"),
-   ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
-   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://www.ttk.pte.hu/en/admission/english-degree-programs/bsc-study-programs/physical-training-bsc", PTE_FEES)
+   ("6,000 يورو في السنة الدراسية (فصلان) لغير الأوروبيين حسب صفحة البرنامج، واسمه الآن Sports Coaching BSc (الصفحة لا تذكر السنة الدراسية، للتحقق)", "€6,000 per academic year (two semesters) for non-EU students per the programme page, now called Sports Coaching BSc (the page does not name the academic year, to verify)"),
+   ("رسوم طلب 200 يورو غير مستردة؛ اختيار تخصص رياضي واحد عند التقديم", "Non-refundable application fee €200; choose one sport specialisation when applying"),
+   ("20 يونيو حسب صفحة البرنامج (السنة غير مذكورة؛ الدراسة تبدأ في سبتمبر، دفعة الخريف فقط)", "20 June per the programme page (year not stated; studies start in September, autumn intake only)"), NP,
+   ("التربية البدنية والتدريب الرياضي", "Physical education and coaching"), PTE_HOW, "https://www.ttk.pte.hu/en/admission/english-degree-programs/bsc-study-programs/sports-coaching-bsc", PTE_FEES)
 ba("hu", "sw", "BA in Social Work", "University of Pécs", "Pécs", BAA, ("3.5 سنوات (7 فصول)", "3.5 years (7 semesters)"), HU("2,200"),
    NP, ("موعد 2027 غير منشور في صفحة البرنامج", "2027 deadline not on the programme page"), NP,
    ("الخدمة الاجتماعية", "Social work"), PTE_HOW, "https://btk.pte.hu/en/study-programs/ba-in-social-work")

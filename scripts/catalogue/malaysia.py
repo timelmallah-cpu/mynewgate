@@ -79,7 +79,7 @@ for field, name, usd, other in [
     add(MA, field, name, USM, "Penang", deg, USM_DUR.get(name, DUR_NP), usm_fee(usd, round(usd / 1.11 / 10) * 10, name in USM_DUR), USM_ADM, USM_DL, USM_EN, other, USM_HOW, NP, NP, USM_SRC, "https://admission.usm.my/")
 
 # Universiti Teknologi Malaysia (UTM), Kuala Lumpur campus: Faculty of Artificial Intelligence and Malaysia-Japan International
-# Institute of Technology (MJIIT). International coursework/mixed-mode fees per programme (3 semesters) from admission.utm.my/?p=48200
+# Institute of Technology (MJIIT). International coursework/mixed-mode fees per programme (3 semesters) from admission.utm.my/fees-pg-inter/
 # (the page gives no session or effective date, so the fee text says so); intake windows from UTM's PG programme lists
 # (Feb 2026: 1 Nov - 31 Dec 2025; Sept 2026: 1 Apr - 31 Jul 2026, international); English: sps.utm.my general entry requirements.
 # Checked 2026-11-20.
@@ -92,7 +92,7 @@ UTM_EN = ("IELTS أكاديمي 6.0 أو TOEFL iBT 79 (أو PBT 550)؛ من لا
           "IELTS Academic 6.0 or TOEFL iBT 79 (or PBT 550); those below the level take an intensive English programme at the university; language of teaching English for international students (check with the programme)")
 UTM_HOW = ("التقديم أونلاين على نظام UTM-SMARt من موقع القبول؛ الطلبات بعد تاريخ الإغلاق تُحوَّل للدفعة التالية؛ الرسوم لا تشمل السكن والتأشيرة والكفالة الشخصية",
            "Apply online through UTM-SMARt on the admission site; applications after the closing date are moved to the next intake; fees exclude housing, visa and the personal bond")
-UTM_FEES = "https://admission.utm.my/?p=48200"
+UTM_FEES = "https://admission.utm.my/fees-pg-inter/"
 UTM_SRC = "https://sps.utm.my/general-entry-requirements/"
 def utm_fee(rm):
     eur = round(rm / 4.4983 / 10) * 10
